@@ -150,7 +150,7 @@
     padding: 0 5px;
 }
 
-.footer_page_container-information-country-list .footer_page_container-information-country-list-item:not(:last-child, :first-child) {
+.footer_page_container-information-country-list .footer_page_container-information-country-list-item:not(:last-child):not(:last-child) {
     border-style: solid;
     border-width: 0 1px 0 0;
     border-color: #DFDFDF;
@@ -165,8 +165,71 @@
 .footer .footer_infomation {
     width: 100%;
     min-height: 100px;
-    background-color: yellow;
+    background-color: transparent;
     padding: 50px 0;
     font-size: .75rem;
     color: rgba(0, 0, 0, .65);
+}
+
+.footer_infomation .footer_infomation-center {
+    max-width: 100%;
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.footer_infomation_container-nav-text-link .footer_infomation_container-nav-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+    margin-bottom: 40px;
+}
+
+.footer_infomation_container-nav-list .footer_infomation_container-nav-list-item {
+    padding: 0 25px;
+}
+
+.footer_infomation_container-nav-list .footer_infomation_container-nav-list-item:not(:last-child) {
+    border-style: solid;
+    border-width: 0 1px 0 0;
+    border-color: #DFDFDF;
+}
+
+.footer_infomation_container-nav-list-item .footer_infomation_container-nav-list-item-link {
+    text-decoration: none;
+    color: rgba(0, 0, 0, .65);
+    font-size: 12px;
+}
+
+.footer_infomation_container-main-img .footer_infomation_container-main-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer_infomation_container-main-list .footer_infomation_container-main-list {
+    margin: 0 20px;
+}
+
+.footer_infomation_container-main-list-link .footer_infomation_container-main-list-img {
+    width: 120px;
+    height: 80px;
+    object-fit: contain;
+    background-color: transparent;
+}
+
+.footer_infomation_container-main-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    margin-bottom: 25px;
+    font-size: 14px;
+}
+
+.footer_infomation_container-footer-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
 }
