@@ -1,0 +1,272 @@
+.main {
+    height: 600px;
+    background-color: #EE4D2D;
+    /* display: flex; */
+
+}
+
+.main_page {
+    max-width: 100%;
+    width: 1040px;
+    height: 600px;
+    margin: 0 auto;
+    background-color: transparent;
+    background-image: url(https://down-vn.img.susercontent.com/file/sg-11134004-7rblj-lqn2045ns7l2ec);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+}
+
+.main_page .main_page-brand-paragraph {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.main_page-brand-paragraph .main_page-brand-left-margin {
+    margin-left: 40px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.main_page-brand .main_page-register {
+    width: 400px;
+    min-height: 427px;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 3px 10px 0 rgba(0, 0, 0, .14);
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.main_page-register .main_page-header-item-text {
+    width: 400px;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    background-color: #fff;
+}
+
+.main_page-header-item-text .main_page-header-item-text-item-container {
+    width: 100%;
+    padding: 0 30px;
+    display: flex;
+}
+
+.main_page-header-item-text-item-container .main_page-header-item-text-item-container-item-text {
+    font-size: 22px;
+}
+
+.main_page-brand-input-button-text-link {
+    width: 340px;
+    padding: 0 30px 30px 30px;
+    background-color: #fff;
+}
+
+.main_page-brand-input-button-text-link .main_page-input-button-text {
+    width: 100%;
+}
+
+.main_page-input-button-text .main_page-item-input {
+    height: 40px;
+    background-color: #fff;
+    display: flex;
+    position: relative;
+
+}
+
+.main_page-item-input .main_page-item-input-item-input {
+    width: 100%;
+    padding: 12px;
+    outline: none;
+    border-color: #DBDBDB;
+    border-style: solid;
+    border-width: 0.5px;
+}
+
+.main_page-item-input .main_page-item-input-item-input::placeholder {
+    color: #BDBDBD;
+    font-size: small;
+}
+
+.main_page-item-input .main_page-item-input-item-input:focus {
+    border-color: #757575;
+    outline-offset: 0px;
+}
+
+/* .main_page-item-input .main_page-item-input-item-input-false {
+    width: 100%;
+    padding: 12px;
+    outline: none;
+    border-color: #FF424F;
+    border-style: solid;
+    border-width: 0.5px;
+    background-color: #FFF6F7;
+} */
+.main_page-item-input .main_page-item-input-item-icon {
+    display: flex;
+    align-items: center;
+    padding-left: 12px;
+    padding-right: 15px;
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    top: 35%;
+    left: 89%;
+}
+
+.main_page-item-input .main_page-item-input-item-icon-hidden {
+    display: none;
+}
+
+.main_page-item-input-item-icon .fa-check {
+    color: #87D737;
+    font-size: 14px;
+    border-color: #87D737;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 30px;
+}
+
+.main_page-input-button-text .container_main_page-item-input-item-text {
+    margin-bottom: 20px;
+    height: 10px;
+    box-sizing: border-box;
+}
+
+.container_main_page-item-input-item-text .main_page-item-input-item-text {
+    padding-top: 4px;
+    width: 100%;
+    color: #FF424F;
+    font-size: 13px;
+    display: none;
+}
+
+.main_page-brand-input-button-text-link .main_page-item-button-item-button-disable:disabled {
+    width: 100%;
+    height: 40px;
+    padding: 0 10px;
+    color: #fff;
+    background-color: #f3826c;
+    border-style: none;
+    cursor: not-allowed;
+    margin-bottom: 30px;
+    opacity: 7;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+/* .main_page-brand-input-button-text-link .main_page-item-button-item-button-none-disabale {
+    cursor: pointer;
+    width: 100%;
+    height: 40px;
+    padding: 0 10px;
+    background-color: #ee4d2d;
+    border: none;
+    margin-bottom: 30px;
+    color: #FFFFFF;
+    display: none;
+} */
+
+.main_page-text-brand-link .main_Page-item-text {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 14px;
+}
+
+.main_Page-item-text .main_page-item-text-item-text {
+    color: #dbdbdb;
+    font-size: smaller;
+    font-weight: 300;
+    display: inline-block;
+    padding: 0 15px;
+}
+
+.main_Page-item-text .horizontal_item-text {
+    content: "";
+    width: 100%;
+    height: 0.5px;
+    background-color: #dbdbdb;
+}
+
+.main_page-item-button-brand {
+    width: 350px;
+    height: 50px;
+    margin: 0 -5px;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+.main_page-item-button-brand .main_page-item-button {
+    width: 50%;
+    height: 84%;
+    margin: 5px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #B9B9B9;
+    box-sizing: border-box;
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.main_page-item-button-brand .main_page-item-button:active {
+    background-color: rgba(0, 0, 0, .06);
+}
+
+.main_page-item-button .main_page-item-buttom-brand {
+    height: 36px;
+    width: 36px;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main_page-item-buttom-brand .main_page-item-buttom-brand-container_brand {
+    height: 22px;
+    width: 22px;
+}
+
+.main_page-item-buttom-brand-container_brand-img {
+    height: 22px;
+    width: 22px;
+}
+
+.main_page-item-text-link {
+    width: 100%;
+    margin-top: 25px;
+}
+
+.main_page-item-text-link .main_page-item-text-link-container_item {
+    padding: 0 25px;
+    font-size: small;
+    text-align: center;
+}
+
+.main_page-item-text-link-container_item-text-link .main_page-item-text-link-conainer_item-link {
+    text-decoration: none;
+    color: #EE4D2D;
+}
+
+.main_page-footer {
+    text-align: center;
+    color: rgba(0, 0, 0, .26);
+}
+
+.main_page-footer-item-text .main_page-footer-item-text-item-link {
+    text-decoration: none;
+    color: #ee4d2d;
+}

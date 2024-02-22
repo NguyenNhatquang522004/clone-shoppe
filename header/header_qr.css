@@ -1,0 +1,51 @@
+.header_navbar-qr {
+    width: 180px;
+    height: 242px;
+    position: absolute;
+    background-color: #FFFFFF;
+    margin-top: 20px;
+    cursor: grab;
+    display: none;
+   
+}
+
+.header_navbar-qr::before {
+    position: absolute;
+    width: 180px;
+    height: 25px;
+    top: -20px;
+    display: block;
+    background-color: transparent;
+    content: "";
+}
+
+.header_navbar-image-qr {
+    width: 100%;
+    display: inline-block;
+    margin: 0 auto;
+
+}
+
+.header_navbar-item-brand-around {
+    max-width: 100%;
+    width: 180px;
+    padding: 0 9px;
+}
+
+.header_navbar-image-brand {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+}
+
+.header_navbar-item-brand {
+    margin: 3.5px;
+}
+
+.header_navbar-item-brand-image {
+    width: 75px;
+}
+
+.header_navbar-item-hasQR:hover .header_navbar-qr {
+    display: block;
+}

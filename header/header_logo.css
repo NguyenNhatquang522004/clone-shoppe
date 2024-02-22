@@ -1,0 +1,16 @@
+.header_logo {
+    display: flex;
+    align-items: center;
+    margin-right: 40px;
+}
+
+.header_logo-item {
+    height: 50px;
+    width: 162px;
+    object-fit: contain;
+
+}
+
+.header_logo-link {
+    display: block;
+}
