@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>login</title>
     <link rel="stylesheet" href="">
-    <link rel="stylesheet" href="register_footer.css">
-    <link rel="stylesheet" href="register_header.css">
-    <link rel="stylesheet" href="register_main.css">
+    <link rel="stylesheet" href="login_footer.css">
+    <link rel="stylesheet" href="login_header.css">
+    <link rel="stylesheet" href="login_main.css">
     <link rel="stylesheet" href="path/to/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -28,7 +28,7 @@
                                             alt=""></a>
                                 </div>
                                 <div class="header_nav-text">
-                                    <span class="header_nav-item-span">Đăng ký</span>
+                                    <span class="header_nav-item-span">Đăng nhập</span>
                                 </div>
                             </div>
                             <div class="header_nav-link-text">
@@ -53,8 +53,21 @@
                                 <div class="main_page-header-item-text">
                                     <div class="main_page-header-item-text-item-container">
                                         <span class="main_page-header-item-text-item-container-item-text">
-                                            Đăng ký
+                                            Đăng nhập
                                         </span>
+                                    </div>
+                                    <div class="main_page-header_container-item-text-has-text-qr">
+                                        <div class="main_page-header-item-text-has-text-qr">
+                                            <a class="main_page-header-item-text-has-text-qr-item-link" href="">
+                                                Đăng nhập với mã QR
+                                            </a>
+                                        </div>
+                                        <div class="main_page-header-item-text-has-qr">
+                                            <a class="main_page-header-item-text-has-qr-item-link" href="">
+                                                <img class="main_page-header-item-text-has-qr-item-link-img" src=""
+                                                    alt="">
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="main_page-brand-input-button-text-link">
@@ -62,23 +75,46 @@
                                         <div class="main_page-item-input">
                                             <input type="text"
                                                 class="main_page-item-input-item-input main_page-item-input-item-input-false "
-                                                placeholder="Số điện thoại">
+                                                placeholder="Email/Số điện thoại/Tên đăng nhập">
+
+                                        </div>
+                                        <div class="container_main_page-item-input-item-text">
+                                            <span class="main_page-item-input-item-text">
+                                                Vui lòng điền vào mục này.
+                                            </span>
+                                        </div>
+                                        <div class="main_page-item-input">
+                                            <input type="password"
+                                                class="main_page-item-input-item-input main_page-item-input-item-input-false "
+                                                placeholder="Mật khẩu">
                                             <div
                                                 class="main_page-item-input-item-icon main_page-item-input-item-icon-hidden">
-                                                <i class="fa-solid fa-check"></i>
+                                                <i class="main_page-item-input-item-icon fa-regular fa-eye-slash"></i>
                                             </div>
                                         </div>
                                         <div class="container_main_page-item-input-item-text">
                                             <span class="main_page-item-input-item-text">
-                                                Số điện thoại không hợp lệ
+                                                Vui lòng điền vào mục này.
                                             </span>
                                         </div>
                                         <button
                                             class="main_page-item-button-item-button-disable main_page-item-button-item-button-none-disabale"
                                             disabled>
-                                            TIẾP THEO
+                                            Đăng nhập
                                         </button>
                                     </form>
+                                    <div class="main_page-footer-form">
+                                        <div class="main_page-footer-form-item">
+                                            <a class="main_page-footer-form-item-link" href="">
+                                                Quên mật khẩu
+                                            </a>
+                                        </div>
+                                        <div class="main_page-footer-form-item">
+                                            <a class="main_page-footer-form-item-link" href="">
+                                                Đăng nhập với SMS
+                                            </a>
+                                        </div>
+                                    </div>
                                     <div class="main_page-text-brand-link">
                                         <div class="main_Page-item-text">
                                             <div class="horizontal_item-text">
@@ -115,32 +151,13 @@
                                                 </div>
                                             </button>
                                         </div>
-                                        <div class="main_page-item-text-link">
-                                            <div class="main_page-item-text-link-container_item">
-                                                <div class="main_page-item-text-link-container_item-text">Bằng việc đăng
-                                                    kí,
-                                                    bạn đã đồng ý với Shopee về
-                                                </div>
-                                                <div class="main_page-item-text-link-container_item-text-link"><a
-                                                        class="main_page-item-text-link-conainer_item-link"
-                                                        href="#">Điều
-                                                        khoản
-                                                        dịch vụ</a>
-                                                    &
-                                                    <a class="main_page-item-text-link-conainer_item-link"
-                                                        href="#">Chính
-                                                        sách
-                                                        bảo mật</a>
-                                                </div>
-                                            </div>
 
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="main_page-footer">
                                     <span class="main_page-footer-item-text">
                                         Bạn đã có tài khoản?
-                                        <a href="../login/login.html" class="main_page-footer-item-text-item-link">
+                                        <a href="../../login/login.html" class="main_page-footer-item-text-item-link">
                                             Đăng nhập</a>
                                     </span>
                                 </div>
