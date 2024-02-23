@@ -153,7 +153,7 @@
 }
 
 .main_page-item-input .main_page-item-input-item-icon-hidden {
-    /* display: none; */
+    display: block;
 }
 
 .main_page-item-input-item-icon .fa-check {
@@ -208,8 +208,6 @@
     justify-content: space-between;
     margin: 10px 0;
 }
-
-.main_page-footer-form .main_page-footer-form-item {}
 
 .main_page-footer-form-item .main_page-footer-form-item-link {
     text-decoration: none;
