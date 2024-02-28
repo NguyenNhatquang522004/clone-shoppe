@@ -1,0 +1,125 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 62.5%;
+    line-height: 1.6rem;
+    font-family: "Roboto", sans-serif;
+}
+
+.header_nav {
+    width: 100%;
+    min-height: 50px;
+    background-image: linear-gradient(180deg, #F7442E, #FD6132);
+}
+
+.header_nav .header_nav-grind {
+    width: 1200px;
+    max-width: 100%;
+    margin: 0 auto;
+    background-color: transparent;
+}
+
+.header_nav .header_nav-grind-display {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header_nav_container .header_nav_container-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style-type: none;
+    padding: 0.5rem;
+}
+
+.header_nav_container-list .header_nav_container-list-item {
+    padding: 0.4rem;
+    font-size: 1.38rem;
+    color: #FEFFF2;
+    margin-right: 0.5rem;
+    position: relative;
+}
+
+.header_nav_container-list-item .header_nav_container-list-item-link {
+    text-decoration: none;
+    color: #FEFFF2;
+}
+
+.header_nav_container-list-item-link .header_nav_container-list-item-link-text {
+    font-weight: 400;
+}
+
+.header_nav_container-list-item-link .header_nav_container-list-item-link-icon-left {
+    font-size: 1.6rem;
+    vertical-align: text-bottom;
+    text-align: start;
+    margin-right: 0.6rem;
+}
+
+.header_nav_container-list-item-link .header_nav_container-list-item-link-icon-right {
+    font-size: 1.42rem;
+    margin: 0 0.35rem 0 0.35rem;
+}
+
+.header_nav_container-list-left .header_nav_container-list-item-left:not(:first-child)::before {
+    content: "";
+    border-style: solid;
+    border-width: 0 0.2rem 0 0;
+    border-color: #F86C5C;
+    margin-right: 1rem;
+    border-radius: 2rem;
+}
+
+.header_nav_container-list-right .header_nav_container-list-item-right:nth-child(5)::before {
+    content: "";
+    border-style: solid;
+    border-width: 0 0.2rem 0 0;
+    border-color: #F86C5C;
+    margin-right: 1rem;
+    border-radius: 2rem;
+}
+
+.header_nav_container-list-item-left:hover:not(:last-child) .header_nav_container-list-item-link-left {
+    color: hsla(0, 0%, 100%, .7);
+    cursor: pointer;
+}
+
+.header_nav_container-list-item-right:hover .header_nav_container-list-item-link-right {
+    color: hsla(0, 0%, 100%, .7);
+    cursor: pointer;
+}
+
+.header_nav_container-list-item-hasqr {
+    position: absolute;
+    left: 15%;
+    width: calc(100% *1.9);
+    min-height: 10rem;
+    background-color: yellow;
+}
+
+.header_nav_container-list-item-hasqr-grind {
+    width: calc(100% - 10%);
+    max-width: 100%;
+    height: 100%;
+    background-color: aqua;
+    margin: 0 auto;
+}
+
+.header_nav_container-list-item-hasqr-item-container-top-img {
+    display: inline-block;
+    width: 6rem;
+    height: 6rem;
+    object-fit: contain;
+
+}
+
+.header_nav_container-list-item-hasqr-item-container-bottom-img {
+    display: inline-block;
+    width: 6rem;
+    height: 6rem;
+    object-fit: contain;
+}
