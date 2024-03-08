@@ -10,7 +10,8 @@
         rel="stylesheet">
 
     <link rel="stylesheet" href="/header/header_nav.css">
-    <link rel="stylesheet" href="path/to/bootstrap/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -47,24 +48,20 @@
                                     class="header_nav_container-list-item-link-text header_nav_container-list-item-link-text-left">
                                     Tải ứng dụng</span>
                             </a>
-                            <div class="header_nav_container-list-item-hasqr">
-                                <div
-                                    class="header_nav_container-list-item-hasqr-item header_nav_container-list-item-hasqr-grind">
-                                    <div
-                                        class="header_nav_container-list-item-hasqr-item-container header_nav_container-list-item-hasqr-item-container-top">
-                                        <img class="header_nav_container-list-item-hasqr-item-container-top-img"
-                                            src="https://qrcg-free-editor.qr-code-generator.com/main/assets/images/websiteQRCode_noFrame.png"
-                                            alt="">
+                            <div class="header_download mt-3 header_download-before">
+                                <div class=" header_download_container container mt-3 ">
+                                    <div class="header_download-hasqr px-3 py-1 mb-4">
+                                        <img class="header_download-hasqr-img"
+                                            src="https://blog.dktcdn.net/files/qr-code-black.jpg" alt="">
                                     </div>
-                                    <div
-                                        class="header_nav_container-list-item-hasqr-item-container header_nav_container-list-item-hasqr-item-container-bottom">
-                                        <img class="header_nav_container-list-item-hasqr-item-container-bottom-img"
+                                    <div class="header_download-hasbrand row g-3">
+                                        <img class="header_download-hasbrand-img col-6 "
                                             src="https://transmea.b-cdn.net/wp-content/uploads/2023/11/download-on-the-app-store-apple-logo-png-transparent-1536x455.png"
                                             alt="">
-                                        <img class="header_nav_container-list-item-hasqr-item-container-bottom-img"
+                                        <img class="header_download-hasbrand-img  col-6"
                                             src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Google_Play_2022_logo.svg/512px-Google_Play_2022_logo.svg.png"
                                             alt="">
-                                        <img class="header_nav_container-list-item-hasqr-item-container-bottom-img"
+                                        <img class="header_download-hasbrand-img  col-6"
                                             src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Huawei_AppGallery_white_badge_EN.png"
                                             alt="">
                                     </div>
@@ -98,6 +95,28 @@
                                     Thông báo
                                 </span>
                             </a>
+                            <div class="header_notification-not shadow">
+                                <div class="header_notification-container container ">
+                                    <div class="header_notification-grid row">
+                                        <div class="header_notification-grid-item-img col-12  ">
+                                            <img class="item-img"
+                                                src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/assets/99e561e3944805a023e87a81d4869600.png"
+                                                alt="">
+
+                                        </div>
+
+                                        <a class="header_notification-grid-item-link header_notification-grid-item-register-link col-6 p-3"
+                                            href="">đăng Ký</a>
+                                        <a class="header_notification-grid-item-link header_notification-grid-item-login-link col-6 p-3"
+                                            href="">đăng
+                                            nhập</a>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+
                         </li>
                         <li class="header_nav_container-list-item header_nav_container-list-item-right">
                             <a href="#"
@@ -109,6 +128,7 @@
                                     Hỗ Trợ
                                 </span>
                             </a>
+
                         </li>
                         <li class="header_nav_container-list-item header_nav_container-list-item-right">
                             <a href="#"
@@ -122,6 +142,18 @@
                                 <i
                                     class="header_nav_container-list-item-link-icon header_nav_container-list-item-link-icon-right fa-solid fa-angle-down"></i>
                             </a>
+                            <div class="header_language shadow mt-3 ">
+                                <div class="header_language-grid container">
+                                    <div class="header_language-row row">
+                                        <div class="header_language-item header_language-item-Vietnamese col-12 p-3">
+                                            Tiếng Việt
+                                        </div>
+                                        <div class="header_language-item header_language-item-English col-12 p-3">
+                                            English
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </li>
                         <li class="header_nav_container-list-item header_nav_container-list-item-right">
                             <a href="#"
@@ -142,6 +174,86 @@
                             </a>
                         </li>
                     </ul>
+                </div>
+            </div>
+        </div>
+        <div class="header_main container">
+            <div class="header_main-grid d-flex mx-5 align-items-start justify-content-start">
+                <div class="header_main-wrap-brand ms-5">
+                    <img class="header_main-wrap-brand-img object-fit-contain"
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Shopee.svg/1200px-Shopee.svg.png"
+                        alt="">
+                </div>
+                <div class="header_main-wrap-nav-search">
+                    <div class="header_main-wrap-search mx-5 position-relative">
+                        <input class="header_main-wrap-search-input p-4 position-absolute " type="search"
+                            placeholder="Shopee bao ship 0Đ - Đăng ký ngay!">
+                        <div
+                            class="header_main-wrap-search-wrap-icon position-absolute d-flex align-items-center justify-content-center">
+                            <i class="header_main-wrap-search-wrap-icon-item fa-solid fa-magnifying-glass"></i>
+                        </div>
+
+                    </div>
+                    <ul class="header_main-list d-flex align-items-center justify-content-between">
+                        <li class="header_main-item">
+                            <a class="heade_main-item-link" href="">
+                                ốp
+                            </a>
+                        </li>
+                        <li class="header_main-item">
+                            <a class="heade_main-item-link" href="">
+                                Decor Phòng Ngủ Chill
+                            </a>
+                        </li>
+                        <li class="header_main-item">
+                            <a class="heade_main-item-link" href="">
+                                Set Áo Kiểu
+                            </a>
+                        </li>
+                        <li class="header_main-item">
+                            <a class="heade_main-item-link" href="">
+                                Dép Nữ
+                            </a>
+                        </li>
+                        <li class="header_main-item">
+                            <a class="heade_main-item-link" href="">
+                                Son Peripera
+                            </a>
+                        </li>
+                        <li class="header_main-item">
+                            <a class="heade_main-item-link" href="">
+                                Áo Phông
+                            </a>
+                        </li>
+                        <li class="header_main-item">
+                            <a class="heade_main-item-link" href="">
+                                Vợt Cầu Lông
+                            </a>
+                        </li>
+                        <li class="header_main-item">
+                            <a class="heade_main-item-link" href="">
+                                Giày Đá Bóng
+                            </a>
+                        </li>
+                        <li class="header_main-item">
+                            <a class="heade_main-item-link" href="">
+                                Gấu Bông To
+                            </a>
+                        </li>
+                        <li class="header_main-item">
+                            <a class="heade_main-item-link" href="">
+                                Áo Khoác
+                            </a>
+                        </li>
+                        <li class="header_main-item">
+                            <a class="heade_main-item-link" href="">
+                                Vòng Tay Đôi
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="">
+                    <i class="fa-solid fa-cart-shopping"></i>
                 </div>
             </div>
         </div>
