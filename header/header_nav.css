@@ -10,7 +10,7 @@ html {
 }
 
 .header_app {
-
+    position: sticky;
     background-image: linear-gradient(180deg, #F7442E, #FD6132);
 }
 
@@ -219,7 +219,50 @@ html {
     min-height: 20rem;
     z-index: 3;
     right: 0%;
+    transform-origin: 90% top;
     background-color: #FFFFFF;
+    animation: dropdown_notification-has-item-in ease-in 0.3s;
+    display: none;
+}
+
+@keyframes dropdown_notification-has-item-in {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+
+@keyframes animateToBottom {
+    from {
+        transform: translate3d(0, 0, 0);
+        opacity: 1
+    }
+
+    to {
+        transform: translate3d(0, 10px, 0);
+        opacity: 0
+    }
+}
+
+.dropdown_notification-has-item::before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 1.5rem solid transparent;
+    border-right: 1.5rem solid transparent;
+    border-bottom: 1rem solid #FFFFFF;
+    position: absolute;
+    top: -1.9%;
+    left: 88%;
+    z-index: 1;
+
 }
 
 .dropdown_notification-grid .notification_wrap-text {
@@ -248,7 +291,7 @@ html {
     line-height: 1.5rem;
     overflow: hidden;
 }
-    
+
 .container_wrap-warning-infomation .container_wrap-infomation {
     width: 100%;
     max-height: 6rem;
@@ -271,6 +314,9 @@ html {
     background-color: #F8F8F8;
 }
 
+.header_nav_container-list-item:hover .dropdown_notification-has-item {
+    display: block;
+}
 
 
 
@@ -393,11 +439,32 @@ html {
 .header_main-wrap-icon {
     height: 4rem;
     width: 3.5rem;
+    cursor: pointer;
 }
 
 .header_main-wrap-icon .header_main-wrap-icon-item {
     font-size: 2.5rem;
     color: white;
+    cursor: pointer;
+}
+
+.header_main-wrap-icon .set-icon-cart {
+    z-index: 3;
+    text-align: center;
+    line-height: 1.5rem;
+    height: 2rem;
+    width: 2.5rem;
+    border-style: solid;
+    border-color: #F55630;
+    border-width: 0.3rem;
+    border-radius: 1rem;
+    color: #F55630;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: #FFFFFF;
+    bottom: 70%;
+    left: 70%;
+    z-index: 2;
     cursor: pointer;
 }
 
@@ -408,7 +475,8 @@ html {
     width: 41.5rem;
     height: 28rem;
     z-index: 3;
-    animation: header_dropdown-cart ease-in 0.25s;
+    transform-origin: 95% top;
+    animation: header_dropdown-cart ease-in 0.3s;
     display: none;
 }
 
@@ -461,13 +529,13 @@ html {
     width: 43rem;
     min-width: 20rem;
     background-color: #FFFFFF;
-    right: 10.5%;
-    top: 14%;
+    top: 110%;
+    right: -43%;
     box-sizing: border-box;
     flex-direction: row;
     animation: dropdown_cart-has-item ease-in-out 0.25s;
     display: none;
-    z-index: ;
+    z-index: 3;
 }
 
 @keyframes dropdown_cart-has-item {
@@ -492,6 +560,16 @@ html {
     border-bottom: 1rem solid #FFFFFF;
     top: -2.9%;
     left: 89%;
+}
+
+.dropdown_cart-has-item::after {
+    content: "";
+    width: 31.5%;
+    height: 4.5rem;
+    background-color: transparent;
+    position: absolute;
+    bottom: 100%;
+    left: 68.5%;
 }
 
 .header_dropdown-wrap-row .header_dropdown-wrap-text {
@@ -562,4 +640,61 @@ html {
 
 .header_main-wrap-icon:hover .dropdown_cart-has-item {
     display: block;
+}
+
+.header_dropdown-search {
+    top: 100%;
+    width: 92%;
+    min-height: 1rem;
+    border-radius: 0.2rem;
+    overflow: hidden;
+    background-color: #FFFFFF;
+    z-index: 3;
+    overflow: hidden;
+    cursor: pointer;
+    display: none;
+}
+
+.header_dropdown-search-row .header_dropdown-wrap-top {
+    text-align: start;
+}
+
+.header_dropdown-wrap-top .icon-top {
+    font-size: 1.4rem;
+    color: #F17860;
+    vertical-align: text-bottom;
+}
+
+.header_dropdown-wrap-top .text-top {
+    display: inline-block;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: #525252;
+
+}
+
+.header_dropdown-search-row .dropdown_wrap-list {
+    list-style-type: none;
+}
+
+.dropdown_wrap-item .dropdown_wrap-item-link {
+    display: inline-block;
+    width: 100%;
+    text-decoration: none;
+    color: #202020;
+    font-size: 1.3rem;
+    font-weight: 400;
+}
+
+.header_dropdown-search-row .header_dropdown-wrap-top:hover {
+    background-color: #ececec;
+}
+
+.dropdown_wrap-list .dropdown_wrap-item:hover {
+    background-color: #ececec;
+}
+
+.header_main-wrap-search-input-focus:focus~.header_dropdown-search {
+    display: block;
+
 }
