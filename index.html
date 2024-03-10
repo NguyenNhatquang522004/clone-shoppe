@@ -9,7 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="/header/header_nav.css">
+    <link rel="stylesheet" href="/home_page/header_nav.css">
+    <link rel="stylesheet" href="./home_page/home_page-main.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
@@ -301,7 +302,7 @@
                     <div class="header_main-wrap-search mx-5 position-relative">
                         <input
                             class="header_main-wrap-search-input header_main-wrap-search-input-focus p-4 position-absolute "
-                            type="search" placeholder="Shopee bao ship 0Đ - Đăng ký ngay!" autofocus>
+                            type="search" placeholder="Shopee bao ship 0Đ - Đăng ký ngay!">
                         <div
                             class="header_main-wrap-search-wrap-icon position-absolute d-flex align-items-center justify-content-center">
                             <i class="header_main-wrap-search-wrap-icon-item fa-solid fa-magnifying-glass"></i>
@@ -337,73 +338,49 @@
                             </div>
                         </div>
                     </div>
-                    <ul class="header_main-list d-flex align-items-center justify-content-between  mt-3">
-                        <li class="header_main-item">
-                            <a class="header_main-item-link" href="#">
-                                ốp
-                            </a>
-                        </li>
-                        <li class="header_main-item">
-                            <a class="header_main-item-link" href="#">
-                                Decor Phòng Ngủ Chill
-                            </a>
-                        </li>
-                        <li class="header_main-item">
-                            <a class="header_main-item-link" href="#">
-                                Set Áo Kiểu
-                            </a>
-                        </li>
-                        <li class="header_main-item">
-                            <a class="header_main-item-link" href="#">
-                                Dép Nữ
-                            </a>
-                        </li>
-                        <li class="header_main-item">
-                            <a class="header_main-item-link" href="#">
-                                Son Peripera
-                            </a>
-                        </li>
-                        <li class="header_main-item">
-                            <a class="header_main-item-link" href="#">
-                                Áo Phông
-                            </a>
-                        </li>
-                        <li class="header_main-item">
-                            <a class="header_main-item-link" href="#">
-                                Vợt Cầu Lông
-                            </a>
-                        </li>
-                        <li class="header_main-item">
-                            <a class="header_main-item-link" href="#">
-                                Giày Đá Bóng
-                            </a>
-                        </li>
-                        <li class="header_main-item">
-                            <a class="header_main-item-link" href="#">
-                                Gấu Bông To
-                            </a>
-                        </li>
-                        <li class="header_main-item">
-                            <a class="header_main-item-link" href="#">
-                                Áo Khoác
-                            </a>
-                        </li>
-                        <li class="header_main-item">
-                            <a class="header_main-item-link" href="#">
-                                Vòng Tay Đôi
-                            </a>
-                        </li>
-                    </ul>
+                    <div class="header_under_input d-flex align-items-center justify-content-start px-5 my-2">
+                        <a class="under_input-link px-2 " href="#">
+                            ốp
+                        </a>
+                        <a class="under_input-link px-2 " href="#">
+                            Decor Phòng Ngủ Chill
+                        </a>
+                        <a class="under_input-link px-2 " href="#">
+                            Set Áo Kiểu
+                        </a>
+                        <a class="under_input-link px-2 " href="#">
+                            Dép Nữ
+                        </a>
+                        <a class="under_input-link px-2 " href="#">
+                            Son Peripera
+                        </a>
+                        <a class="under_input-link px-2 " href="#">
+                            Áo Phông
+                        </a>
+                        <a class="under_input-link px-2 " href="#">
+                            Vợt Cầu Lông
+                        </a>
+                        <a class="under_input-link px-2 " href="#">
+                            Giày Đá Bóng
+                        </a>
+                        <a class="under_input-link px-2 " href="#">
+                            Gấu Bông To
+                        </a>
+                        <a class="under_input-link px-2 " href="#">
+                            Áo Khoác
+                        </a>
+                        <a class="under_input-link px-2 " href="#">
+                            Vòng Tay Đôi
+                        </a>
+                    </div>
                 </div>
                 <div class="header_main-wrap-icon position-relative  me-5 my-2  ">
                     <i class="header_main-wrap-icon-item fa-solid fa-cart-shopping me-5 mt-4 position-relative ">
-                        <div class="set-icon-cart position-absolute">
-                            6
+                        <div class="set-icon-cart position-absolute  rounded-pill ">
+                            5
                         </div>
                     </i>
-                    <!-- <div class="set-icon-cart position-absolute">
-                        6
-                    </div> -->
+
                     <!-- <div class="dropdowm-cart position-absolute">
                         <div class="dropdowm-cart-container container px-0 shadow">
                             <div class="dropdown_cart-grid ">
@@ -505,12 +482,114 @@
         </div>
         </div>
     </header>
-    <div class="main">
+    <div class="content mt-5">
+        <div class="content_carousel bg-primary">
+            <div class="content_carousel-container container">
+                <div class="content_carousel-row row mx-5">
+                    <div class=" ms-4 me-2 col-7 ">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                                    class="active " aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                                    aria-label="Slide 2"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                                    aria-label="Slide 3"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
+                                    aria-label="Slide 4"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4"
+                                    aria-label="Slide 5"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5"
+                                    aria-label="Slide 6"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="6"
+                                    aria-label="Slide 7"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="7"
+                                    aria-label="Slide 8"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="8"
+                                    aria-label="Slide 9"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="9"
+                                    aria-label="Slide 10"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="10"
+                                    aria-label="Slide 11"></button>
 
+                            </div>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active" data-bs-interval="5000">
+                                    <img src="https://cf.shopee.vn/file/vn-50009109-f12976db91f5daf8b2017b1212e6a96b_xxhdpi"
+                                        class="d-block carousel-item-img" alt="...">
+                                </div>
+                                <div class="carousel-item " data-bs-interval="5000">
+                                    <img src="https://cf.shopee.vn/file/vn-50009109-19473380033bb4b59cba667f78e03ad9_xxhdpi"
+                                        class="d-block carousel-item-img" alt="...">
+                                </div>
+                                <div class="carousel-item" data-bs-interval="5000">
+                                    <img src="https://cf.shopee.vn/file/vn-50009109-4159d39eeab52b6f89bfae5e29cb0abd_xxhdpi"
+                                        class="d-block carousel-item-img" alt="...">
+                                </div>
+                                <div class="carousel-item" data-bs-interval="5000">
+                                    <img src="https://cf.shopee.vn/file/vn-50009109-a271e70c78ec800422ba07fcba1fd844_xxhdpi"
+                                        class="d-block carousel-item-img" alt="...">
+                                </div>
+                                <div class="carousel-item" data-bs-interval="5000">
+                                    <img src="https://cf.shopee.vn/file/vn-50009109-968527fde0c3516388beec9a2fadc862_xxhdpi"
+                                        class="d-block carousel-item-img" alt="...">
+                                </div>
+                                <div class="carousel-item" data-bs-interval="5000">
+                                    <img src="https://cf.shopee.vn/file/vn-50009109-4e849705f16bb65ccb2f651dcdf8c656_xxhdpi"
+                                        class="d-block carousel-item-img" alt="...">
+                                </div>
+                                <div class="carousel-item" data-bs-interval="5000">
+                                    <img src="https://cf.shopee.vn/file/vn-50009109-7ec5ce7bf74f4598a14b0a440506cde5_xxhdpi"
+                                        class="d-block carousel-item-img" alt="...">
+                                </div>
+                                <div class="carousel-item" data-bs-interval="5000">
+                                    <img src="https://cf.shopee.vn/file/vn-50009109-48906331f77a3596701b77f39b8c4ddd_xxhdpi"
+                                        class="d-block carousel-item-img" alt="...">
+                                </div>
+                                <div class="carousel-item" data-bs-interval="5000">
+                                    <img src="https://cf.shopee.vn/file/vn-50009109-48906331f77a3596701b77f39b8c4ddd_xxhdpi"
+                                        class="d-block carousel-item-img" alt="...">
+                                </div>
+                                <div class="carousel-item" data-bs-interval="5000">
+                                    <img src="https://cf.shopee.vn/file/vn-50009109-6c066000c265a7aab7dade70b449535d_xxhdpi"
+                                        class="d-block carousel-item-img" alt="...">
+                                </div>
+                                <div class="carousel-item" data-bs-interval="5000">
+                                    <img src="https://cf.shopee.vn/file/vn-50009109-66c04950135be24a6a3ed33e34657c31_xxhdpi"
+                                        class="d-block carousel-item-img" alt="...">
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev bg-secondary" type="button"
+                                data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next bg-secondary width-10" type="button"
+                                data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-4">
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="footer">
 
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
     <script src="index.js"></script>
 </body>
 

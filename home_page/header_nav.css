@@ -424,18 +424,12 @@ html {
     font-weight: 600;
 }
 
-.header_main-wrap-nav-search .header_main-list {
-    list-style: none;
-    width: 100%;
-}
-
-.header_main-item .header_main-item-link {
+.header_under_input .under_input-link {
     text-decoration: none;
     color: #FFE7EB;
     font-size: 1.3rem;
-    font-weight: 500;
+    font-weight: 400;
 }
-
 .header_main-wrap-icon {
     height: 4rem;
     width: 3.5rem;

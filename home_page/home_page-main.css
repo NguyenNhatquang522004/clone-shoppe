@@ -1,0 +1,22 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 62.5%;
+    line-height: 1.6rem;
+    font-family: "Roboto", sans-serif;
+}
+
+.carousel-item .carousel-item-img {
+    width: 80rem !important;
+    height: 23.5rem !important;
+}
+
+.carousel-control-prev {
+    width: 2rem !important;
+    height: 10rem !important;
+    position: absolute;
+    top: 40% !important;
+}
