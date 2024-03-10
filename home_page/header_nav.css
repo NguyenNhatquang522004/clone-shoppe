@@ -10,7 +10,7 @@ html {
 }
 
 .header_app {
-    position: sticky;
+    overflow: visible;
     background-image: linear-gradient(180deg, #F7442E, #FD6132);
 }
 
@@ -65,6 +65,7 @@ html {
 }
 
 .header_nav_container-list-item-link .header_nav_container-list-item-link-icon-right {
+
     font-size: 1.42rem;
     margin: 0 0.35rem 0 0.35rem;
 }
@@ -79,6 +80,7 @@ html {
 }
 
 .header_nav_container-list-right .header_nav_container-list-item-right:nth-child(5)::before {
+
     content: "";
     border-style: solid;
     border-width: 0 0.2rem 0 0;
@@ -216,13 +218,24 @@ html {
 
 .dropdown_notification-has-item {
     width: 45rem;
+    position: absolute;
     min-height: 20rem;
-    z-index: 3;
+    z-index: 10;
     right: 0%;
+    top: 100%;
     transform-origin: 90% top;
     background-color: #FFFFFF;
     animation: dropdown_notification-has-item-in ease-in 0.3s;
     display: none;
+}
+
+.dropdown_notification-has-item-before::after {
+    height: 1.5rem;
+    width: 100%;
+    content: "";
+    background-color: transparent;
+    position: absolute;
+    bottom: 100%;
 }
 
 @keyframes dropdown_notification-has-item-in {
@@ -317,14 +330,6 @@ html {
 .header_nav_container-list-item:hover .dropdown_notification-has-item {
     display: block;
 }
-
-
-
-
-
-
-
-
 
 .header_language {
     position: absolute;
@@ -430,6 +435,7 @@ html {
     font-size: 1.3rem;
     font-weight: 400;
 }
+
 .header_main-wrap-icon {
     height: 4rem;
     width: 3.5rem;
@@ -643,8 +649,8 @@ html {
     border-radius: 0.2rem;
     overflow: hidden;
     background-color: #FFFFFF;
-    z-index: 3;
-    overflow: hidden;
+    z-index: 10;
+    overflow: initial;
     cursor: pointer;
     display: none;
 }
@@ -690,5 +696,4 @@ html {
 
 .header_main-wrap-search-input-focus:focus~.header_dropdown-search {
     display: block;
-
 }
