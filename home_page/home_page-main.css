@@ -209,3 +209,26 @@ html {
     font-size: 1rem;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 12px 0px !important;
 }
+
+.sale_top-wrap-grid .top_wrap-left .wrap-item .item-countdown {
+    height: 2rem;
+    width: 10%;
+    vertical-align: text-bottom;
+    text-align: center;
+    background-color: black;
+    color: white;
+}
+
+.sale_top-wrap-grid .top_wrap-right {
+    text-decoration: none;
+    color: #EE4D2D;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.wrap_item-top .item-note-left-wrap {
+    top: 50%;
+    height: 5rem;
+    width: 5rem;
+    background-color: yellow;
+}
