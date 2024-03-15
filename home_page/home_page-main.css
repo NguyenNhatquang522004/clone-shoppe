@@ -213,6 +213,8 @@ html {
 .sale_top-wrap-grid .top_wrap-left .wrap-item .item-countdown {
     height: 2rem;
     width: 10%;
+    font-size: 1.1rem;
+    font-weight: 500;
     vertical-align: text-bottom;
     text-align: center;
     background-color: black;
@@ -222,13 +224,150 @@ html {
 .sale_top-wrap-grid .top_wrap-right {
     text-decoration: none;
     color: #EE4D2D;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.sale_carousel-grid .sale_carousel-wrap {
+    text-decoration: none;
+    color: #EE4D2D;
+    background-color: #FFFFFF;
+}
+
+.sale_carousel-wrap .sale_wrap-product::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    z-index: 3;
+    width: 0;
+    height: 0;
+    border-top: 0.4rem solid;
+    border-left: 0.4rem solid transparent;
+    filter: brightness(60%);
+    left: 0%;
+    top: calc(5% + 1.4rem);
+}
+
+.sale_wrap-product .item-img {
+    height: 17rem;
+    width: 17rem;
+    object-fit: contain;
+}
+
+.sale_wrap-product .img-destination {
+    height: 1.3rem;
+    object-fit: contain;
+    background-color: rgb(208, 1, 27);
+    top: 5%;
+    z-index: 3;
+}
+
+.sale_wrap-product .item-wrap-per {
+    width: 24%;
+    text-align: end;
+    color: #F35830 !important;
+    top: 0%;
+    right: 0%;
+    background-color: #FFE97A;
+    font-size: 1.4rem;
+    font-weight: bold;
+    z-index: 3;
+}
+
+.item-wrap-per .item-icon {
+    color: #F35830;
+    z-index: 4;
+    font-size: 1.9rem;
+    left: -10%;
+    top: 0%;
+}
+
+.sale_carousel-wrap .sale_wrap-price {
+    font-size: 1.8rem;
     font-weight: 500;
 }
 
-.wrap_item-top .item-note-left-wrap {
+.sale_carousel-wrap .sale_wrap-price .item-icon {
+    font-size: 1.3rem;
+    top: 0%;
+    transform: translateX(-1rem);
+}
+
+.sale_carousel-wrap .content_sale-progress {
+    height: 1.8rem;
+    width: 75%;
+    background-color: #FFBDA6;
+}
+
+.content_sale-progress .sale_progress-img {
+    width: 1.8rem;
+    left: 1%;
     top: 50%;
-    height: 5rem;
-    width: 5rem;
-    background-color: yellow;
+    transform: translateY(-60%);
+    z-index: 2;
+}
+
+.sale_carousel-wrap .content_sale-progress .sale_progress-text {
+    z-index: 2;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.content_sale-progress .content_sale-progress-item {
+    background-color: #EF3713;
+}
+
+.sale_main-carousel-slide .sale_carousel-prev {
+    opacity: 0.5 !important;
+    visibility: visible !important;
+    height: 3.5rem !important;
+    width: 3.5rem !important;
+    left: calc(0% - 2.1rem);
+    background-color: rgb(255, 255, 255) !important;
+    transition: all 0.3s !important;
+}
+
+.sale_carousel-prev .sale_carousel-prev-icon {
+    width: 35%;
+    height: 35%;
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23009be1' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+}
+
+.sale_carousel-next .sale_carousel-next-icon {
+    width: 35%;
+    height: 35%;
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23009be1' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+}
+
+.sale_main-carousel-slide .sale_carousel-prev:hover {
+    opacity: 1 !important;
+    height: 5.5rem !important;
+    width: 5.5rem !important;
+    right: calc(100% - 2rem);
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 12px 0px !important;
+}
+
+.sale_main-carousel-slide .sale_carousel-next {
+    opacity: 0.5 !important;
+    height: 3.5rem !important;
+    width: 3.5rem !important;
+    top: 50% !important;
+    transform: translateY(-50%);
+    right: calc(0% - 2.1rem);
+    background-color: rgb(255, 255, 255) !important;
+    transition: all 0.3s;
+}
+
+.sale_main-carousel-slide .sale_carousel-next:hover {
+    opacity: 1 !important;
+    height: 5.5rem !important;
+    width: 5.5rem !important;
+    right: calc(0% - 2rem);
+    font-size: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 12px 0px !important;
+}
+
+.sale_carousel-inner .carousel-item {
+    transition: all ease 0.4s;
 }
