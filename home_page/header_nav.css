@@ -10,16 +10,21 @@ html {
 }
 
 .header_app {
+    position: sticky;
+    top: 0%;
+    z-index: 6;
     overflow: visible;
     background-image: linear-gradient(180deg, #F7442E, #FD6132);
 }
 
 .header_nav {
+
     width: 100%;
     min-height: 50px;
 }
 
 .header_nav .header_nav-grind {
+
     width: 1200px;
     max-width: 100%;
     margin: 0 auto;

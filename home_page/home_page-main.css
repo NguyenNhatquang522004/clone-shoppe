@@ -678,7 +678,7 @@ html {
 .content .content_suggest {
     background-color: #FFFFFF;
     position: sticky;
-    top: 0%;
+    top: 11.9rem;
     z-index: 5;
 }
 
