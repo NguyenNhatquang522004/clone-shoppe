@@ -1,0 +1,103 @@
+.content .content_separate_footer {
+    content: "";
+}
+
+body .footer {
+    border-color: #ee4d2d !important;
+}
+
+.footer_catagory-container .footer_catagory-grid .footer_catagory-top {
+    font-size: 1.5rem;
+    color: rgba(0, 0, 0, .54);
+    font-weight: bold;
+}
+
+.footer_catagory-wrap .item-header {
+    text-decoration: none;
+    color: rgba(0, 0, 0, .54);
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.footer_catagory-wrap .item-header:hover {
+    color: #ee4d2d;
+}
+
+.footer_catagory-wrap .wrap-item .item-catagory .item-link {
+    text-decoration: none;
+    color: rgba(0, 0, 0, .54);
+    font-size: 1.15rem;
+    line-height: 1.9rem;
+    font-weight: 600;
+}
+
+.footer_catagory-wrap .wrap-item .item-catagory .item-link:hover {
+    color: #ee4d2d;
+}
+
+.footer_info-container .footer_info-wrap .item-header {
+    text-decoration: none;
+    color: rgba(0, 0, 0, .87);
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.footer_info-container .footer_info-wrap .item-link {
+    text-decoration: none;
+    color: rgba(0, 0, 0, .54);
+    font-size: 1.25rem;
+    line-height: 1.9rem;
+    font-weight: 400;
+}
+
+.footer_info-container .footer_info-wrap .item-link:hover {
+    color: #ee4d2d;
+}
+
+.footer .footer_catagory-container .footer_country .item-left {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: rgba(0, 0, 0, .54);
+}
+
+.footer .footer_catagory-container .footer_country .wrap-item-right .item-link {
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: rgba(0, 0, 0, .54);
+}
+
+.footer .footer_catagory-container .footer_country .wrap-item-right .vertical {
+    margin: 0 0.25rem;
+    vertical-align: text-bottom;
+}
+
+.footer_under {
+    background-color: #F5F5F5;
+}
+
+.footer_under .footer_under-container .footer_under-grid .footer_under-top .item-link {
+    text-decoration: none;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: rgba(0, 0, 0, .54);
+}
+
+.footer_under .footer_under-container .footer_under-grid .footer_under-top .vertical {
+    vertical-align: text-bottom;
+}
+
+.footer_under .footer_under-container .under_certification .item-text {
+    text-decoration: none;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: rgba(0, 0, 0, .54);
+}
+
+.footer_under .footer_under-container .under_certification .item-text-addres {
+    line-height: 2.1rem;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: rgba(0, 0, 0, .54);
+}

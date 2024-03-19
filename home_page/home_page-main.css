@@ -845,7 +845,7 @@ html {
     content: "";
 }
 
-body .footer {
+/* body .footer {
     border-color: #ee4d2d !important;
 }
 
@@ -896,3 +896,51 @@ body .footer {
 .footer_info-container .footer_info-wrap .item-link:hover {
     color: #ee4d2d;
 }
+
+.footer .footer_catagory-container .footer_country .item-left {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: rgba(0, 0, 0, .54);
+}
+
+.footer .footer_catagory-container .footer_country .wrap-item-right .item-link {
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: rgba(0, 0, 0, .54);
+}
+
+.footer .footer_catagory-container .footer_country .wrap-item-right .vertical {
+    margin: 0 0.25rem;
+    vertical-align: text-bottom;
+}
+
+.footer_under {
+    background-color: #F5F5F5;
+}
+
+.footer_under .footer_under-container .footer_under-grid .footer_under-top .item-link {
+    text-decoration: none;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: rgba(0, 0, 0, .54);
+}
+
+.footer_under .footer_under-container .footer_under-grid .footer_under-top .vertical {
+    vertical-align: text-bottom;
+}
+
+.footer_under .footer_under-container .under_certification .item-text {
+    text-decoration: none;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: rgba(0, 0, 0, .54);
+}
+
+.footer_under .footer_under-container .under_certification .item-text-addres {
+    line-height: 2.5rem;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: rgba(0, 0, 0, .54);
+} */
