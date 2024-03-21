@@ -1,0 +1,55 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    background-color: #F5F5F5;
+    font-size: 62.5%;
+    line-height: 1.6rem;
+    font-family: "Roboto", sans-serif;
+}
+
+:root {
+    --text-main: #ee4d2d;
+    --background-header: linear-gradient(-180deg, #f53d2d, #f63);
+    --text-Normal-08: rgba(0, 0, 0, 0.8);
+    --background-flast-sale: linear-gradient(-90deg, #f0451e 9%, #f32424 96%);
+    --background-main: #fff;
+    --shadow-main-05: 0 1px 1px 0 rgba(0, 0, 0, .05);
+    --vc-card-left-border-color: #fbc9c0;
+    --background--sale-05: rgba(208, 1, 27, .08);
+    --text-nav: #fff;
+    --font-size-nav: 1.35rem;
+    --font-size-icon-nav: 1.5rem;
+    --background-btn-dropdown-notification: rgba(0, 0, 0, 0.05);
+    --background-btn-dropdown-notification-hover: rgba(0, 0, 0, 0.1);
+    --text-while-026: rgba(0, 0, 0, .26);
+    --text-grey: rgba(0, 0, 0, .26);
+    --background-content: #F5F5F5;
+}
+
+body {
+    background-color: var(--background-content);
+}
+
+.content_detail-container .content_detail-grid .detail_top {
+    background-color: transparent;
+}
+
+.content_detail-container .content_detail-grid .detail_top .item-link {
+    text-decoration: none;
+    font-size: 1.25rem;
+}
+
+.content_detail-container .content_detail-grid .detail_top .item-icon {
+    color: var(--text-grey);
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.content_detail-container .content_detail-grid .detail_top .item-text {
+    font-size: 1.45rem;
+    font-weight: 400;
+    color: black;
+}

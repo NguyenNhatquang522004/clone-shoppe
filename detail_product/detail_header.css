@@ -360,8 +360,8 @@ html {
     height: 1.5rem;
     width: 2rem;
     font-size: 1rem;
-    top: -20%;
-    right: -20%;
+    top: -18%;
+    right: -30%;
     transform: translateY(-50%);
     background-color: #FFFFFF;
     color: var(--text-main);
