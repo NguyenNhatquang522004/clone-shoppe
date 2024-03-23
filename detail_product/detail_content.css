@@ -27,6 +27,7 @@ html {
     --text-while-026: rgba(0, 0, 0, .26);
     --text-grey: rgba(0, 0, 0, .26);
     --background-content: #F5F5F5;
+    --background-slider-btn: rgba(0, 0, 0, 0.2);
 }
 
 body {
@@ -52,4 +53,55 @@ body {
     font-size: 1.45rem;
     font-weight: 400;
     color: black;
+}
+
+.detail_products-grid .products_left .detail_img-button {
+    background-color: var(--background-slider-btn);
+    color: white;
+    font-size: 2rem;
+    height: 5rem;
+    width: 2rem;
+    border: none;
+}
+
+.detail_products-grid .products_left .detail_img-button-next {
+    top: 50%;
+    right: 0%;
+    transform: translateY(-50%);
+}
+
+.detail_products-grid .products_left .detail_img-button-prev {
+    top: 50%;
+    left: 0%;
+    transform: translateY(-50%);
+
+}
+
+.products_left .footer_left .footer_left-wrap .item-text {
+    font-size: 1.5rem;
+}
+
+.products_left .footer_left .footer_left-wrap .item-link {
+    font-size: 2.3rem;
+    text-decoration: none;
+
+}
+
+.products_left .footer_left .footer_right-wrap .item-link {
+    text-decoration: none;
+    font-size: 2.3rem;
+    color: var(--text-main);
+    vertical-align: middle;
+}
+
+.products_left .footer_left .vertical {
+    content: "";
+    color: var(--text-grey);
+    font-size: 1.5rem;
+
+    height: 100%;
+}
+
+.products_left .footer_left .footer_right-wrap .item-text {
+    font-size: 1.6rem;
 }
