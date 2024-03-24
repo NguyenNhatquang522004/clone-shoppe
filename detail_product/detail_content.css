@@ -15,7 +15,7 @@ html {
     --background-header: linear-gradient(-180deg, #f53d2d, #f63);
     --text-Normal-08: rgba(0, 0, 0, 0.8);
     --background-flast-sale: linear-gradient(-90deg, #f0451e 9%, #f32424 96%);
-    --background-main: #fff;
+    --background-main: #FFFFFF;
     --shadow-main-05: 0 1px 1px 0 rgba(0, 0, 0, .05);
     --vc-card-left-border-color: #fbc9c0;
     --background--sale-05: rgba(208, 1, 27, .08);
@@ -28,6 +28,10 @@ html {
     --text-grey: rgba(0, 0, 0, .26);
     --background-content: #F5F5F5;
     --background-slider-btn: rgba(0, 0, 0, 0.2);
+    --background-discounts-option: rgba(208, 1, 27, 0.08);
+    --text-discounts-option: rgb(208, 1, 27);
+    --text-grey-1: #636363;
+    --background-btn: rgb(208, 1, 27);
 }
 
 body {
@@ -50,7 +54,7 @@ body {
 }
 
 .content_detail-container .content_detail-grid .detail_top .item-text {
-    font-size: 1.45rem;
+    font-size: 1.5rem;
     font-weight: 400;
     color: black;
 }
@@ -104,4 +108,198 @@ body {
 
 .products_left .footer_left .footer_right-wrap .item-text {
     font-size: 1.6rem;
+}
+
+.products_left .detail_img .detail_img-gird {
+    cursor: pointer;
+}
+
+.products_left .detail_img .detail_img-gird .item-img:hover {
+    border-color: var(--text-main);
+    border: 0.2px 0.2px;
+    border-style: solid;
+}
+
+.products_right-grid .wrap-describe .item-text {
+    font-size: 2rem;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 1);
+}
+
+.products_right-grid .wrap-rate .wrap-rate-grid .item-link {
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+
+.products_right-grid .wrap-rate .wrap-rate-grid .item-link-top {
+    color: var(--text-main);
+}
+
+.products_right-grid .wrap-rate .wrap-rate-grid .item-link .item-text-top {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.5rem;
+    font-size: 1.85rem !important;
+    font-weight: 500 !important;
+}
+
+
+.products_right-grid .wrap-sale {
+    max-height: 5rem;
+    background-repeat: no-repeat;
+    background-image: url(https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/productdetailspage/4323ad4dc2b3c72d0474.jpg), linear-gradient(-90deg, #f0451e 9%, #f32424 96%)
+}
+
+.products_right-grid .wrap-price .wrap_price-grid .item-price-initial {
+    font-size: 2rem;
+    color: var(--text-grey);
+    font-weight: 500;
+    text-decoration: line-through;
+
+}
+
+.products_right-grid .wrap-price .wrap_price-grid .item-price-initial .item-value {
+    font-size: 1.5rem !important;
+    vertical-align: text-top;
+    text-decoration: underline;
+    text-underline-offset: 1px;
+}
+
+.products_right-grid .wrap-price .wrap_price-grid .item-price-Presents {
+    font-size: 3rem;
+    color: var(--text-main);
+    font-weight: 500;
+}
+
+.products_right-grid .wrap-price .wrap_price-grid .item-price-Presents .item-value {
+    font-size: 1.85rem !important;
+    vertical-align: text-top;
+    text-decoration: underline;
+    text-underline-offset: 1px;
+    font-weight: 400 !important;
+}
+
+.products_right-grid .wrap-price .wrap_price-grid .item-sale {
+    background-color: var(--text-main);
+    color: white;
+    font-weight: 500;
+    font-size: 1.3rem;
+}
+
+.wrap-Discounts-grid .item-Discounts-info {
+    font-size: 1.6rem;
+    line-height: 1.5rem;
+    color: var(--text-grey);
+    font-weight: 500;
+}
+
+.wrap-Discounts-grid .wrap-Discounts-option .wrap-Discounts-option-grid-wrap .wrap-Discounts-option-grid .item-per {
+    font-size: 1.4rem;
+    font-weight: 500;
+    background-color: var(--background-discounts-option);
+    color: var(--text-discounts-option);
+    text-align: center;
+}
+
+.wrap-Discounts-grid .wrap-Discounts-option .wrap-Discounts-option-grid-wrap .wrap-Discounts-option-grid .item-per:last-child {
+    background-color: rgba(208, 1, 27, 0.05);
+    color: rgba(208, 1, 27, 0.4);
+}
+
+.wrap-Discounts-grid .wrap-Discounts-option .wrap-Discounts-option-grid-wrap .item-text {
+    font-size: 1.4rem;
+    color: var(--text-discounts-option);
+    font-weight: 500;
+    right: 0%;
+    transform: translateX(-60%);
+    transform: translateX(-50%);
+    z-index: 3;
+}
+
+.wrap-Discounts-grid .wrap-Discounts-option .wrap-Discounts-option-grid-wrap .dropdown_discounts {
+    background-color: var(--background-main);
+}
+
+.dropdown_discounts-grid .item-text-top {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.dropdown_discounts-grid .item-benefit {
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--text-grey-1);
+}
+
+.dropdown_discounts-grid .wrap-overflow {
+    max-height: 25rem;
+    overflow: auto;
+}
+
+.dropdown_discounts-grid .wrap-overflow .wrap-cart {
+    background-color: var(--background-main);
+}
+
+.dropdown_discounts-grid .wrap-overflow .wrap-cart-grid .wrap-info .wrap-info .item-text-sale-max {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: black;
+}
+
+.dropdown_discounts-grid .wrap-overflow .wrap-cart .wrap-cart-grid .wrap-info .wrap-info .item-text-bill {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: black;
+}
+
+.dropdown_discounts-grid .wrap-overflow .wrap-cart .wrap-cart-grid .wrap-info .wrap-info .item-text-expiry {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--text-grey-1);
+}
+
+.dropdown_discounts-grid .wrap-overflow .wrap-cart .wrap-cart-grid .wrap-btn .item-text {
+    background-color: var(--background-btn);
+    color: white;
+    width: 100%;
+    transform: translateX(0%);
+    font-size: 1.3rem;
+    text-align: center;
+    cursor: pointer;
+}
+
+.wrap-Discounts-option-grid-wrap .dropdown_discounts {
+    top: 5rem;
+    right: 48%;
+
+}
+
+.wrap-Discounts-option-grid-wrap .dropdown_discounts::before {
+    content: "";
+    height: 10rem;
+    width: 75rem;
+    background-color: transparent;
+    position: absolute;
+    top: -20%;
+    z-index: -2;
+}
+
+.wrap-Discounts-option-grid-wrap .dropdown_discounts::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-width: 1px 1px 1px 1px;
+    border-style: solid;
+    border-color: black;
+    border-right: transparent;
+    border-bottom: transparent;
+    transform: rotate(45deg);
+    top: calc(0% - 0.5rem);
+    left: 40%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    opacity: 0.3;
+
+
 }
