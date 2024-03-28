@@ -461,3 +461,28 @@ body {
 .background_modal {
     background-color: rgba(0, 0, 0, .4);
 }
+
+#modal_anddress-sec {
+    overflow-x: none !important;
+}
+
+/* .modal_anddress-third-header {
+    border: none !important;
+}
+
+.modal_anddress-third-body {
+    border: none !important;
+} */
+.modal_anddress-third-content {
+    background-color: #fff;
+}
+
+.modal_anddress-third-body-grid .item-title {
+    font-size: 1.85rem;
+    color: var(--text-black);
+    font-weight: 400;
+}
+
+.modal_anddress-third-body-grid .input-text::first-letter::placeholder {
+    text-transform: uppercase;
+}

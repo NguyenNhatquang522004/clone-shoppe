@@ -495,7 +495,9 @@
                                         <i class="item-icon fa-solid fa-star text-danger "></i>
                                         <i class="item-icon fa-solid fa-star text-danger "></i>
                                     </a>
-                                    <div class="bg-info mx-5" style="height: 2rem; width: 2px; cursor: pointer; "></div>
+                                    <div class=" mx-5"
+                                        style="height: 2rem; width: 1px; cursor: pointer;  background-color: var(--text-grey);">
+                                    </div>
                                     <a class="item-link  item-link-main " href="#">
                                         <span class="item-text-top text-capitalize mx-2"
                                             style="color: black; text-decoration: underline; text-underline-offset:0.5rem; text-decoration-thickness: 1px;">1.1</span>
@@ -503,7 +505,9 @@
                                             style="font-size: 1.65rem; color:var(--text-grey); font-weight: 600 !important;">đánh
                                             giá</span>
                                     </a>
-                                    <div class="bg-info mx-5" style="height: 2rem; width: 2px; cursor: pointer; "></div>
+                                    <div class="mx-5"
+                                        style="height: 2rem; width: 1px; cursor: pointer; background-color: var(--text-grey);">
+                                    </div>
                                     <a class="item-link item-link-bottom" href="#">
                                         <span class="item-text-top text-capitalize mx-1"
                                             style=" color: black;">4k</span>
@@ -866,11 +870,12 @@
                                                     </span>
                                                 </a>
 
-                                                <div class="modal  modal_anddress" id="modal_transportto-address"
+                                                <div class="modal  modal_anddress " id="modal_transportto-address"
                                                     tabindex="-1" aria-labelledby="modal_transportto-addressLabel"
                                                     aria-hidden="true">
-                                                    <div class="modal-dialog modal_anddress-dialog">
-                                                        <div class="modal-content modal_anddress-content rounded-0">
+                                                    <div class="modal-dialog modal_anddress-dialog ">
+                                                        <div
+                                                            class="modal-content modal_anddress-content border-0 rounded-0">
                                                             <div class="modal-header modal_anddress-header ">
                                                                 <span
                                                                     class="modal-title  modal_anddress-title text-capitalize px-4 py-3"
@@ -904,6 +909,7 @@
                                                                         </span>
                                                                         <a data-toggle="modal"
                                                                             href="#modal_anddress-third"
+                                                                            id="itembtnaddaddress"
                                                                             class="item-btn-add-address btn text-capitalize col-4 border border-1 rounded py-2 mb-4 px-0">
                                                                             <i class="item-icon fa-solid fa-plus"></i>
                                                                             thêm địa chỉ
@@ -921,7 +927,7 @@
                                                     <div
                                                         class="modal-dialog modal_anddress-sec-dialog  modal-dialog-centered  ">
                                                         <div
-                                                            class="modal-content modal_anddress-sec-content shadow-lg ">
+                                                            class="modal-content modal_anddress-sec-content shadow-lg border-0 rounded-0 ">
                                                             <div class="wrap_modal_anddress-sec-body modal-body">
                                                                 <div
                                                                     class="wrap_modal_anddress-sec-container container  ">
@@ -948,38 +954,38 @@
                                                     </div>
 
                                                 </div>
-                                                <div class="modal  modal_anddress123 " id="modal_anddress-third ">
+                                                <div class="modal  modal_anddress-third " id="modal_anddress-third">
                                                     <div
-                                                        class="modal-dialog modal_anddress-sec-dialog  modal-dialog-centered  ">
+                                                        class="modal-dialog modal_anddress-third-dialog modal-dialog-centered modal-md">
                                                         <div
-                                                            class="modal-content modal_anddress-sec-content shadow-lg ">
-                                                            <div class="wrap_modal_anddress-sec-body modal-body">
+                                                            class="modal-content modal_anddress-third-content border-0 rounded-0 shadow-lg">
+                                                            <div class="modal-body modal_anddress-third-body px-0">
                                                                 <div
-                                                                    class="wrap_modal_anddress-sec-container container  ">
+                                                                    class="modal_anddress-third-body-container container px-5">
                                                                     <div
-                                                                        class="wrap_modal_anddress-sec-grid row p-0 d-flex ">
+                                                                        class="modal_anddress-third-body-grid row px-4  d-flex align-items-center justify-content-between">
                                                                         <span
-                                                                            class="item-access text-capitalize col-12 mt-3 me-5">Please
-                                                                            allow location access
+                                                                            class="item-title text-capitalize col-12 px-0 mb-4 mt-2">địa
+                                                                            chỉ mới
                                                                         </span>
-                                                                        <div
-                                                                            class="wrap-item-accept d-flex align-items-center justify-content-end">
-                                                                            <div
-                                                                                class="item-accept col-4 mt-5 mb-3 py-3 text-uppercase px-5 ">
-
-                                                                                ok
-                                                                            </div>
-                                                                        </div>
-
+                                                                        <input class="input-name  input-text col-5 px-2"
+                                                                            type="text" placeholder="Họ và tên">
+                                                                        <input class="input-name  input-text col-5 px-2"
+                                                                            type="text" placeholder="Họ và tên">
                                                                     </div>
                                                                 </div>
-
+                                                            </div>
+                                                            <div
+                                                                class="modal-footer modal_anddress-third-footer border-0">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-bs-dismiss="modal">Close</button>
+                                                                <button type="button" class="btn btn-primary">Save
+                                                                    changes</button>
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                 </div>
-
 
                                             </div>
                                         </div>
