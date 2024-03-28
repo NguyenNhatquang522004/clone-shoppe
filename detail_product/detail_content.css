@@ -12,6 +12,7 @@ html {
 
 :root {
     --text-main: #ee4d2d;
+    --background-main-orange: #ee4d2d;
     --background-header: linear-gradient(-180deg, #f53d2d, #f63);
     --text-Normal-08: rgba(0, 0, 0, 0.8);
     --background-flast-sale: linear-gradient(-90deg, #f0451e 9%, #f32424 96%);
@@ -32,6 +33,10 @@ html {
     --text-discounts-option: rgb(208, 1, 27);
     --text-grey-1: #636363;
     --background-btn: rgb(208, 1, 27);
+    --text-price: #d0011b;
+    --background-sale: #d0011b;
+    --text-white: #fff;
+    --text-black: #000;
 }
 
 body {
@@ -128,7 +133,7 @@ body {
 
 .products_right-grid .wrap-rate .wrap-rate-grid .item-link {
     text-decoration: none;
-    font-size: 1.5rem;
+    font-size: 1.1rem;
 }
 
 .products_right-grid .wrap-rate .wrap-rate-grid .item-link-top {
@@ -139,7 +144,7 @@ body {
     text-decoration: underline;
     text-decoration-thickness: 1px;
     text-underline-offset: 0.5rem;
-    font-size: 1.85rem !important;
+    font-size: 1.4rem !important;
     font-weight: 500 !important;
 }
 
@@ -167,8 +172,8 @@ body {
 
 .products_right-grid .wrap-price .wrap_price-grid .item-price-Presents {
     font-size: 3rem;
-    color: var(--text-main);
-    font-weight: 500;
+    color: var(--text-price);
+    font-weight: 400;
 }
 
 .products_right-grid .wrap-price .wrap_price-grid .item-price-Presents .item-value {
@@ -177,20 +182,21 @@ body {
     text-decoration: underline;
     text-underline-offset: 1px;
     font-weight: 400 !important;
+
 }
 
 .products_right-grid .wrap-price .wrap_price-grid .item-sale {
-    background-color: var(--text-main);
-    color: white;
+    background-color: var(--background-sale);
+    color: var(--text-white);
     font-weight: 500;
     font-size: 1.3rem;
 }
 
 .wrap-Discounts-grid .item-Discounts-info {
-    font-size: 1.6rem;
+    font-size: 1.55rem;
     line-height: 1.5rem;
     color: var(--text-grey);
-    font-weight: 500;
+    font-weight: bold;
 }
 
 .wrap-Discounts-grid .wrap-Discounts-option .wrap-Discounts-option-grid-wrap .wrap-Discounts-option-grid .item-per {
@@ -210,14 +216,15 @@ body {
     font-size: 1.4rem;
     color: var(--text-discounts-option);
     font-weight: 500;
-    right: 0%;
-    transform: translateX(-60%);
-    transform: translateX(-50%);
-    z-index: 3;
+
+
+
 }
 
 .wrap-Discounts-grid .wrap-Discounts-option .wrap-Discounts-option-grid-wrap .dropdown_discounts {
     background-color: var(--background-main);
+    width: 70%;
+    box-sizing: border-box;
 }
 
 .dropdown_discounts-grid .item-text-top {
@@ -232,7 +239,7 @@ body {
 }
 
 .dropdown_discounts-grid .wrap-overflow {
-    max-height: 25rem;
+    max-height: 30rem;
     overflow: auto;
 }
 
@@ -243,13 +250,13 @@ body {
 .dropdown_discounts-grid .wrap-overflow .wrap-cart-grid .wrap-info .wrap-info .item-text-sale-max {
     font-size: 1.4rem;
     font-weight: 500;
-    color: black;
+    color: var(--text-black);
 }
 
 .dropdown_discounts-grid .wrap-overflow .wrap-cart .wrap-cart-grid .wrap-info .wrap-info .item-text-bill {
     font-size: 1.3rem;
     font-weight: 500;
-    color: black;
+    color: var(--text-black);
 }
 
 .dropdown_discounts-grid .wrap-overflow .wrap-cart .wrap-cart-grid .wrap-info .wrap-info .item-text-expiry {
@@ -271,7 +278,11 @@ body {
 .wrap-Discounts-option-grid-wrap .dropdown_discounts {
     top: 5rem;
     right: 48%;
+    display: none;
+}
 
+.products_right .wrap-Discounts:hover .dropdown_discounts {
+    display: block;
 }
 
 .wrap-Discounts-option-grid-wrap .dropdown_discounts::before {
@@ -281,7 +292,7 @@ body {
     background-color: transparent;
     position: absolute;
     top: -20%;
-    z-index: -2;
+
 }
 
 .wrap-Discounts-option-grid-wrap .dropdown_discounts::after {
@@ -289,17 +300,164 @@ body {
     position: absolute;
     width: 10px;
     height: 10px;
+
     border-width: 1px 1px 1px 1px;
     border-style: solid;
-    border-color: black;
+    border-color: var(--text-black);
     border-right: transparent;
     border-bottom: transparent;
     transform: rotate(45deg);
     top: calc(0% - 0.5rem);
     left: 40%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    z-index: 10;
+    z-index: 1;
     opacity: 0.3;
+}
+
+.wrap_transport-grid .item-text-left {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--text-grey);
+}
+
+.wrap_transport-grid .wrap-introduce .wrap_introduce-gird .item-text {
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--text-black);
+}
+
+.wrap-introduce .wrap_introduce-gird .wrap-transportto .item-text-info {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--text-grey-1);
+}
+
+.wrap-introduce .wrap_introduce-gird .wrap-transportto .item-text-info .item-icon {
+    font-size: 1.5rem !important;
+}
+
+.wrap-introduce .wrap_introduce-gird .wrap-transportto .modal_anddress-btn {
+    text-decoration: none;
+}
+
+.wrap-introduce .wrap_introduce-gird .wrap-transportto .modal_anddress-btn .item-text {
+    font-size: 1.4rem;
+    color: var(--text-black);
+    font-weight: 400;
 
 
+}
+
+.wrap-introduce .wrap_introduce-gird .wrap-transportto .modal_anddress-btn .item-text .item-icon {
+    color: var(--text-grey);
+    font-weight: 600;
+}
+
+.wrap-introduce .wrap_introduce-gird .wrap-transportto .modal_anddress-btn:focus,
+.modal_anddress-btn:active {
+    outline: none !important;
+    box-shadow: none;
+}
+
+.wrap-introduce .wrap_introduce-gird .wrap-transportto .modal_anddress .modal_anddress-dialog {
+    top: 30%;
+}
+
+.modal_anddress-dialog .modal_anddress-content .modal_anddress-header .modal_anddress-title {
+    font-size: 1.65rem;
+    color: var(--text-black);
+    font-weight: 450;
+}
+
+.modal_anddress-body-grid .item-search {
+    outline: none;
+    font-size: 1.5rem;
+    color: var(--text-grey-1);
+    font-weight: 450;
+    height: 3.8rem;
+    outline: none;
+
+    background-color: transparent;
+}
+
+.modal_anddress-body-grid .item-btn {
+    font-size: 1.5rem;
+    width: 20%;
+    border-color: transparent;
+    color: var(--text-white);
+    background-color: var(--background-main-orange);
+}
+
+.modal_anddress-body-grid .item-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.modal_anddress-body-grid .item-text-use-address-present {
+    font-size: 1.5rem;
+    color: var(--text-black);
+    font-weight: 450;
+    cursor: pointer;
+}
+
+.modal_anddress-body-grid .item-text-use-address-present .item-icon {
+    font-size: 2.5rem;
+    vertical-align: text-top;
+
+}
+
+.modal_anddress-body-grid .item-text-address-present {
+    font-size: 1.4rem;
+    font-weight: 450;
+    color: var(--text-black);
+}
+
+.modal_anddress-body-grid .item-btn-add-address {
+    font-size: 1.4rem;
+    color: var(--text-black);
+    font-weight: 450;
+    background-color: transparent;
+}
+
+.modal_anddress-body-grid .item-btn-add-address .item-icon {
+    color: var(--text-grey-1);
+    font-weight: 600;
+    font-size: 1.55rem;
+
+}
+
+.modal_anddress-body-grid .item-text-use-address-present:focus,
+.item-text-use-address-present:active {
+    outline: none !important;
+    box-shadow: none;
+}
+
+#modal_anddress-sec .modal-dialog {
+    width: 28% !important;
+    top: 5%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.wrap_modal_anddress-sec-body .wrap_modal_anddress-sec-container .wrap_modal_anddress-sec-grid .item-access {
+    font-size: 1.65rem;
+    font-weight: 400;
+    color: var(--text-grey-1);
+}
+
+.wrap_modal_anddress-sec-grid .wrap-item-accept .item-accept {
+    font-size: 1.5rem;
+    color: var(--text-white);
+    background-color: var(--background-main-orange);
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.25;
+}
+
+.wrap_modal_anddress-sec-grid .wrap-item-accept .item-accept:hover {
+    opacity: 0.8 !important;
+}
+
+.background_modal {
+    background-color: rgba(0, 0, 0, .4);
 }

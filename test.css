@@ -53,3 +53,11 @@
 .sale_carousel-inner .carousel-item {
     transition: all ease 0.4s;
 }
+
+.modal:nth-of-type(even) {
+    z-index: 1062 !important;
+}
+
+.modal-backdrop.show:nth-of-type(even) {
+    z-index: 1061 !important;
+}

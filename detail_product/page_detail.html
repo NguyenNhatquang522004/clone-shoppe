@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="./detail_header.css">
     <link rel="stylesheet" href="./detail_content.css">
+    <script src="jquery-3.7.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -541,14 +543,14 @@
 
                                 </div>
                             </div>
-                            <div class="wrap-price col-12 mb-5 ">
+                            <div class="wrap-price col-12 mb-5 px-0 ">
                                 <div class="wrap_price-grid  ">
                                     <div class="item-price-initial d-inline-block">
                                         <span class="item-value">đ</span>170.000 -
                                         <span class="item-value">đ</span>200.000
                                     </div>
 
-                                    <div class="item-price-Presents d-inline-block mx-3">
+                                    <div class="item-price-Presents d-inline-block mx-4">
                                         <span class="item-value">đ</span>200.000 -
                                         <span class="item-value">đ</span>320.00
                                     </div>
@@ -556,9 +558,9 @@
                                         giảm</span>
                                 </div>
                             </div>
-                            <div class="wrap-Discounts col-12 mt-3 ">
+                            <div class="wrap-Discounts col-12 mt-3 mb-5">
                                 <div class="wrap-Discounts-grid row px-0 mx-0">
-                                    <div class="item-Discounts-info text-capitalize col-2">
+                                    <div class="item-Discounts-info text-capitalize col-2 px-0">
                                         mã giảm giá của shop
                                     </div>
                                     <div class="wrap-Discounts-option col-10 mt-2">
@@ -570,21 +572,20 @@
                                                 <span class="item-per text-uppercase  col-2 mx-2">20% giảm</span>
                                                 <span class="item-per text-uppercase  col-2 mx-2">8% giảm</span>
                                             </div>
-                                            <span class="item-text text-capitalize col-2 px-0 position-absolute">xem tất
+                                            <span class="item-text text-capitalize col-2 px-0 ">xem tất
                                                 cả <i class="item-icon fa-solid fa-circle-chevron-down"></i></span>
-                                            <div class="dropdown_discounts position-absolute w-75">
-                                                <div
-                                                    class="dropdown_discounts-container container border border-1 shadow-lg px-0">
-                                                    <div class="dropdown_discounts-grid row  px-5 py-3 ">
+                                            <div class="dropdown_discounts position-absolute shadow-lg px-2 pb-3 pt-2">
+                                                <div class="dropdown_discounts-container container px-0">
+                                                    <div class="dropdown_discounts-grid row  px-5 py-3  py-5 ">
                                                         <span class="item-text-top text-capitalize col-12"> mã giảm giá
                                                             của shope</span>
                                                         <span class="item-benefit text-capitalize col-10 pe-1">
                                                             Tiết kiệm hơn khi áp dụng mã giảm giá của Shop. Liên hệ với
                                                             Shop nếu gặp trục trặc về mã giảm giá do Shop tự tạo.
                                                         </span>
-                                                        <div class="wrap-overflow col-12 px-0 row mx-0">
-                                                            <div class="wrap-cart col-12 px-4 my-3 shadow-sm">
-                                                                <div class="wrap-cart-grid row px-0 border border-1">
+                                                        <div class="wrap-overflow col-12 px-0 row mx-0  mt-2 ">
+                                                            <div class="wrap-cart col-12 px-4 my-3 shadow-sm  ">
+                                                                <div class="wrap-cart-grid row px-0 border border-1 ">
                                                                     <img class="item-img img-fluid col-3 img-thumbnail px-4"
                                                                         src="https://down-bs-vn.img.susercontent.com/vn-11134216-7r98o-ls2lmpihj9nd4e_tn.webp"
                                                                         alt="">
@@ -842,7 +843,151 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="wrap-transport col-12 h-100 ">
+                                <div class="wrap_transport-grid row">
+                                    <div class="item-text-left col-2 text-capitalize px-2">
+                                        Vận Chuyển
+                                    </div>
+                                    <div class="wrap-introduce col-4 px-0 h-100">
+                                        <div class="wrap_introduce-gird row">
+                                            <img class="item-img col-1 px-0 img-fluid object-fit-contain"
+                                                src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/productdetailspage/d9e992985b18d96aab90.png"
+                                                alt="">
+                                            <span class="item-text col-6 px-0 text-capitalize ms-3">miễn phí vận
+                                                chuyển</span>
+                                            <div class="wrap-transportto col-12 px-0 mt-2">
+                                                <span class="item-text-info text-capitalize ms-1"><i
+                                                        class="item-icon fa-solid fa-truck me-4"></i>vận chuyển
+                                                    tới</span>
+                                                <a data-toggle="modal" href="#modal_transportto-address"
+                                                    class="modal_anddress-btn pt-0  ms-2 pb-2 mb-1">
+                                                    <span class="item-text text-capitalize">
+                                                        huyện ba vì <i class="item-icon fa-solid fa-angle-down"></i>
+                                                    </span>
+                                                </a>
 
+                                                <div class="modal  modal_anddress" id="modal_transportto-address"
+                                                    tabindex="-1" aria-labelledby="modal_transportto-addressLabel"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog modal_anddress-dialog">
+                                                        <div class="modal-content modal_anddress-content rounded-0">
+                                                            <div class="modal-header modal_anddress-header ">
+                                                                <span
+                                                                    class="modal-title  modal_anddress-title text-capitalize px-4 py-3"
+                                                                    id="modal_transportto-addressLabel "> địa chỉ
+                                                                    nhận
+                                                                    hàng</span>
+                                                                <button type="button"
+                                                                    class="btn-close modal_anddress-close"
+                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body modal_anddress-body mt-3  ">
+                                                                <div class="modal_anddress-body-container container ">
+                                                                    <div class="modal_anddress-body-grid row px-0">
+                                                                        <input
+                                                                            class="item-search col-9 p-4 border border-1 rounded "
+                                                                            placeholder="Tìm Thành phố, Quận/Huyện"
+                                                                            type="text">
+                                                                        <button
+                                                                            class="item-btn ms-4 col-2 text-capitalize  rounded  py-2"
+                                                                            type="button" disabled>sử dụng</button>
+                                                                        <a data-toggle="modal"
+                                                                            href="#modal_anddress-sec"
+                                                                            class="item-text-use-address-present text-capitalize col-6 px-0 mt-4 mb-5 btn  "><i
+                                                                                class="item-icon fa-solid fa-crosshairs me-2"></i>
+                                                                            sử
+                                                                            dụng địa chỉ hiện tại
+                                                                        </a>
+                                                                        <span
+                                                                            class="item-text-address-present text-capitalize col-12 px-0 mb-3">
+                                                                            Địa chỉ của tôi
+                                                                        </span>
+                                                                        <a data-toggle="modal"
+                                                                            href="#modal_anddress-third"
+                                                                            class="item-btn-add-address btn text-capitalize col-4 border border-1 rounded py-2 mb-4 px-0">
+                                                                            <i class="item-icon fa-solid fa-plus"></i>
+                                                                            thêm địa chỉ
+                                                                        </a>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="modal  modal_anddress " id="modal_anddress-sec">
+                                                    <div
+                                                        class="modal-dialog modal_anddress-sec-dialog  modal-dialog-centered  ">
+                                                        <div
+                                                            class="modal-content modal_anddress-sec-content shadow-lg ">
+                                                            <div class="wrap_modal_anddress-sec-body modal-body">
+                                                                <div
+                                                                    class="wrap_modal_anddress-sec-container container  ">
+                                                                    <div
+                                                                        class="wrap_modal_anddress-sec-grid row p-0 d-flex ">
+                                                                        <span
+                                                                            class="item-access text-capitalize col-12 mt-3 me-5">Please
+                                                                            allow location access
+                                                                        </span>
+                                                                        <div
+                                                                            class="wrap-item-accept d-flex align-items-center justify-content-end">
+                                                                            <div
+                                                                                class="item-accept col-4 mt-5 mb-3 py-3 text-uppercase px-5 ">
+
+                                                                                ok
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="modal  modal_anddress123 " id="modal_anddress-third ">
+                                                    <div
+                                                        class="modal-dialog modal_anddress-sec-dialog  modal-dialog-centered  ">
+                                                        <div
+                                                            class="modal-content modal_anddress-sec-content shadow-lg ">
+                                                            <div class="wrap_modal_anddress-sec-body modal-body">
+                                                                <div
+                                                                    class="wrap_modal_anddress-sec-container container  ">
+                                                                    <div
+                                                                        class="wrap_modal_anddress-sec-grid row p-0 d-flex ">
+                                                                        <span
+                                                                            class="item-access text-capitalize col-12 mt-3 me-5">Please
+                                                                            allow location access
+                                                                        </span>
+                                                                        <div
+                                                                            class="wrap-item-accept d-flex align-items-center justify-content-end">
+                                                                            <div
+                                                                                class="item-accept col-4 mt-5 mb-3 py-3 text-uppercase px-5 ">
+
+                                                                                ok
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -860,6 +1005,7 @@
     <script src="./detail.js">
 
     </script>
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
         </script>
