@@ -18,6 +18,7 @@ $(document).ready(() => {
     let handle_slide_img = () => {
         changeImg();
         scrollslidecart();
+
     }
     let setup_ClassName_ModalBackDrop = () => {
         $('.modal_anddress').on('shown.bs.modal', () => {
@@ -65,11 +66,173 @@ $(document).ready(() => {
     let auto_show = () => {
         $('#modal_anddress-third').modal().show();
     }
-    // auto_show()
+    let checkRexName = (name) => {
+        let regex = /^[a-zA-Z ]+$/;
+        return regex.test(name);
+    }
+    let checkRexPhone = (Phone) => {
+        let regex = /(84|0[3|5|7|8|9])+([0-9]{8})\b/g;
+        return regex.test(Phone);
+    }
+    let handleGetvalidateform = (inputNameId, NameSubId, inputPhoneId, PhonesubId) => {
+
+        let handleGetvalidateName = (inputNameId, NameSubId) => {
+            $(inputNameId).on('keypress keyup blur change click ', function (e) {
+
+                if ($(this).val() === "") {
+                    $(NameSubId).css("display", "none")
+
+                    $(this).blur(() => {
+                        $(this).addClass('input-red-boder input-red-placeholder')
+                        $(NameSubId).css("display", "block")
+                    })
+                    $(this).keyup(() => {
+                        $(this).removeClass('input-red-boder input-red-placeholder')
+                    })
+                    $(this).click(() => {
+                        $(this).removeClass('input-red-boder input-red-placeholder')
+                    })
+                }
+                else {
+                    if (checkRexName($(this).val()) === false) {
+                        $(this).on('change', () => {
+                            $(this).addClass('input-red-boder input-red-placeholder-trans')
+                        })
+                        $(this).on('blur', () => {
+                            $(this).addClass('input-red-boder input-red-placeholder-trans')
+                            $(NameSubId).css("display", "block")
+                        })
+                        $(this).on('click', () => {
+                            $(this).addClass(' input-red-placeholder-trans')
+                            $(NameSubId).css("display", "none")
+                        })
+                    }
+                    else {
+                        $(this).on('click', () => {
+                            $(this).addClass('input-red-boder input-red-placeholder-trans')
+                            $(this).removeClass('input-red-boder')
+                            $(NameSubId).css("display", "none")
+                        })
+                        $(this).on('blur', () => {
+                            $(this).addClass('input-red-boder input-red-placeholder-trans')
+                            $(this).removeClass('input-red-boder')
+                            $(NameSubId).css("display", "none")
+                        })
+                        $(NameSubId).css("display", "none")
+                    }
+                }
+            })
+
+        }
+        let handleGetvalidatePhone = (inputPhoneId, PhonesubId) => {
+            $(inputPhoneId).on('keypress keyup blur change click ', function (e) {
+
+                if ($(this).val() === "") {
+                    $(PhonesubId).css("display", "none")
+                    // $(this).removeClass('input-red-boder input-red-placeholder .input-red-text ')
+                    $(this).blur(() => {
+                        $(this).addClass('input-red-boder input-red-placeholder')
+                        $(PhonesubId).css("display", "block")
+                    })
+                    $(this).keyup(() => {
+                        $(this).removeClass('input-red-boder input-red-placeholder')
+                    })
+                    $(this).click(() => {
+                        $(this).removeClass('input-red-boder input-red-placeholder')
+                    })
+                }
+                else {
+                    if (checkRexPhone($(this).val()) === false) {
+                        $(this).on('change', () => {
+                            $(this).addClass('input-red-boder  input-red-placeholder-trans')
+
+                        })
+                        $(this).on('blur', () => {
+                            $(this).addClass('input-red-boder  input-red-placeholder-trans')
+                            $(PhonesubId).css("display", "block")
+
+                        })
+                        $(this).on('click', () => {
+                            $(this).addClass(' input-red-placeholder-trans')
+                            $(PhonesubId).css("display", "none")
+
+                        })
+                    }
+                    else {
+                        $(this).on('click', () => {
+                            $(this).addClass('input-red-boder input-red-placeholder-trans')
+                            $(this).removeClass('input-red-boder')
+                            $(PhonesubId).css("display", "none")
+
+                        })
+                        $(this).on('blur', () => {
+                            $(this).addClass('input-red-boder input-red-placeholder-trans')
+                            $(this).removeClass('input-red-boder')
+                            $(PhonesubId).css("display", "none")
+
+                        })
+                        $(PhonesubId).css("display", "none")
+                    }
+                }
+            })
+        }
+        handleGetvalidateName(inputNameId, NameSubId);
+        handleGetvalidatePhone(inputPhoneId, PhonesubId)
+
+    }
+    let handleInputPhone = (inputPhoneId, PhonesubId) => {
+        $(inputPhoneId).on('change', function (e) {
+            value = $(this).val();
+            let slicevalue = value.trim().slice(1, value.length);
+            let spaceValue = slicevalue.substr(0, 3) + ' ' +
+                slicevalue.substr(3, 3) + ' ' +
+                slicevalue.substr(6, 4);
+            let areaCode = "(+84)"
+            let successValue = `${areaCode} ${spaceValue}`;
+            $(inputPhoneId).attr('value', `${successValue}`)
+            $(this).removeClass('input-red-boder input-red-placeholder-trans');
+            $(PhonesubId).css("display", "none");
+            e.target.value = successValue;
+
+        })
+    }
+
+    const getprovince = (url) => {
+        return new Promise(async (resolve, reject) => {
+            try {
+                let province = {};
+                provincedata = await axios.get(`${url}`);
+
+                if (provincedata) {
+                    resolve(provincedata.data.data)
+                }
+                else {
+                    province.mess = "not data ...."
+                    alert(province.mess);
+                }
+            }
+            catch (e) {
+                console.log(e);
+            }
+        })
+    };
+    let loopProvince = async (inputProvince) => {
+
+        let get = await getprovince("../province.json");
+        get.map(item => {
+            let newElementDiv = document.createElement('div')
+            let newElementspan = document.createElement('span');
+            // $(newElement).addClass('item-text-Province col-12 p-4 text-capitalize').attr("id", `${item.id}`).html(`${item.name}`).appendTo("#wrapItemProvincegird");
+            $(newElementspan).addClass('itemId d-none').html(`${item.id}`).appendTo("#itemtextProvince")
+        })
+
+    }
+    handleGetvalidateform(modalAddress_InputName, itemSubName, modalAddress_InputPhone, itemSubPhone);
+    handleInputPhone(modalAddress_InputPhone, itemSubPhone);
+    auto_show();
     handle_modal_transportto();
     handle_slide_img();
+    // GetApiProvince();
+
+    getprovince("../province.json");
 })
-
-
-
-
