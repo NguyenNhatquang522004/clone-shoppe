@@ -216,23 +216,98 @@ $(document).ready(() => {
             }
         })
     };
-    let loopProvince = async (inputProvince) => {
+    let handleAnimationInputAddress = () => {
+        $('#wrapProvincecity').click(function (e) {
+            if ($("#horizoneProvince").position().left === 153.4000244140625) {
+                $("#horizoneProvince").css("left", `0%`);
+            }
+            else if ($("#horizoneProvince").position().left === 306.79998779296875) {
+                $("#horizoneProvince").css("left", `0%`)
+                $("#horizoneProvince").css('transform', 'translate(0,0)');
 
+
+            }
+        });
+        $('#wrapProvinceDistrict').click(function (e) {
+            if ($("#horizoneProvince").position().left === 0) {
+                $("#horizoneProvince").css("left", `33.333333333%`);
+                percent = 0;
+            }
+            else if ($("#horizoneProvince").position().left === 306.79998779296875) {
+                $("#horizoneProvince").css("left", `33.333333333%`)
+                $("#horizoneProvince").css('transform', 'translate(0,0)');
+                percent = 0;
+            }
+        });
+
+        $('#wrapProvincewards').click(function () {
+            console.log($("#horizoneProvince").position().left);
+            if ($("#horizoneProvince").position().left === 0) {
+                $("#horizoneProvince").css("left", `100%`);
+                $("#horizoneProvince").css('transform', 'translate(-100%,0)');
+                percent = 0;
+            }
+
+            else if ($("#horizoneProvince").position().left === 153.4000244140625) {
+                $("#horizoneProvince").css("left", `100%`);
+                $("#horizoneProvince").css('transform', 'translate(-100%,0)');
+                percent = 0;
+            }
+            console.log($("#horizoneProvince").position().left);
+        });
+    }
+    let handleCloseOutside = () => {
+        $(document).on('click', function (event) {
+            let $target = $(event.target);
+            if (!$target.closest('#wrapItemProvincegird').length && !$target.closest('#inputProvince').length && !$target.closest('#wrapProvincecity').length && !$target.closest('#wrapProvinceDistrict').length && !$target.closest('#wrapProvincewards').length) {
+                $("#dropdownaddress").hide();
+            }
+        });
+    }
+    // modal_anddress-third-down-body
+    let handleInputAddress = async (inputProvince) => {
         let get = await getprovince("../province.json");
-        get.map(item => {
-            let newElementDiv = document.createElement('div')
-            let newElementspan = document.createElement('span');
-            // $(newElement).addClass('item-text-Province col-12 p-4 text-capitalize').attr("id", `${item.id}`).html(`${item.name}`).appendTo("#wrapItemProvincegird");
-            $(newElementspan).addClass('itemId d-none').html(`${item.id}`).appendTo("#itemtextProvince")
+
+        $('#inputProvince').on("keyup click ", () => {
+            $("#dropdownaddress").show()
+            $("#wrapItemProvincegird").empty().append(get.map(item => `<div class="item-text-Province col-12 p-4 text-capitalize" id="${item.id}">${item.name}</div>`)
+            );
+            $('#inputProvince').on('keyup', function (e) {
+                let value = $(this).val().toLowerCase();
+                $('.item-text-Province').each(function () {
+                    if ($(this).html().toLowerCase().indexOf(value) != -1) {
+                        $(this).show()
+                    }
+                    else {
+                        $(this).hide();
+                    }
+                })
+
+            })
+            $('#wrapItemProvincegird').find('.item-text-Province').on('click', function () {
+                let index = $('#wrapItemProvincegird .item-text-Province').index(this);
+                console.log(index);
+                let getName = get.filter(item => {
+                    if (item.id === index + 1) {
+                        return item.name;
+                    }
+                })
+                $('#inputProvince').val(`${getName[0].name} ,`);
+                $('#horizoneProvince').css("left", "33.33333333%")
+            })
+
         })
 
+        handleCloseOutside();
+        handleAnimationInputAddress();
     }
+
     handleGetvalidateform(modalAddress_InputName, itemSubName, modalAddress_InputPhone, itemSubPhone);
     handleInputPhone(modalAddress_InputPhone, itemSubPhone);
     auto_show();
     handle_modal_transportto();
     handle_slide_img();
     // GetApiProvince();
-
+    handleInputAddress(inputProvince)
     getprovince("../province.json");
 })

@@ -478,12 +478,14 @@ body {
 } */
 .modal_anddress-third-down-content {
     background-color: #fff;
+    overflow: visible;
 }
 
 .modal_anddress-third-down-grid .item-title {
     font-size: 1.85rem;
     color: var(--text-black);
     font-weight: 400;
+
 }
 
 .modal_anddress-third-body-grid .input-text::first-letter::placeholder {
@@ -512,7 +514,7 @@ body {
 
 .modal_anddress-third-down-grid .wrap-input-city .input-address {
     height: 4rem;
-    font-size: 1.35rem;
+    font-size: 1.55rem;
     font-weight: 400;
     color: #222;
     box-sizing: border-box;
@@ -533,6 +535,7 @@ body {
 .modal_anddress-third-down-grid .wrap-input-city .input-city {
     padding: 0 1rem;
     opacity: 1;
+
 }
 
 .modal_anddress-third-down-grid .wrap-input-city .item-icon {
@@ -639,6 +642,7 @@ body {
     color: var(--text-black);
 }
 
+
 .input-red-boder {
     border-color: red !important;
 }
@@ -669,17 +673,21 @@ body {
 
 .dropdown_address {
     box-sizing: border-box;
-    display: block;
+    display: none;
+    overflow: visible;
+    z-index: 600 !important;
 
 }
 
 .wrap-input-city .dropdown_address .dropdown_address-container {
     background-color: var(--background-main);
+    visibility: visible;
 }
 
 .wrap-Province-grid .button-Province {
     font-size: 1.5rem;
     text-align: center;
+    visibility: visible;
 }
 
 .wrap-Province-grid .horizone-Province {
@@ -688,18 +696,18 @@ body {
     background-color: var(--background-main-orange);
     bottom: -2%;
     left: 0%;
-    transition: all ease 0.35s;
-    animation-fill-mode: forwards;
+    transition: all ease 0.25s;
+
 }
 
-.wrap-Province-grid .wrap-Province-District:hover~.horizone-Province {
+/* .wrap-Province-grid .wrap-Province-District:hover~.horizone-Province {
     left: 33.3333333%;
 }
 
 .wrap-Province-grid .wrap-Province-wards:hover~.horizone-Province {
     left: 100%;
     transform: translateX(-100%);
-}
+} */
 
 .wrap-input-city .dropdown_address {
     display: block;

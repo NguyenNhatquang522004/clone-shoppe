@@ -1,0 +1,21 @@
+{
+    "quans": [
+        "Quận Hồng Bàng",
+        "Quận Ngô Quyền",
+        "Quận Lê Chân",
+        "Quận Hải An",
+        "Quận Kiến An",
+        "Quận Đồ Sơn",
+        "Quận Dương Kinh"
+    ],
+    "huyens": [
+        "Huyện Thuỷ Nguyên",
+        "Huyện An Dương",
+        "Huyện An Lão",
+        "Huyện Kiến Thuỵ",
+        "Huyện Tiên Lãng",
+        "Huyện Vĩnh Bảo",
+        "Huyện Cát Hải",
+        "Huyện Bạch Long Vĩ"
+    ]
+}
