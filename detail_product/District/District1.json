@@ -1,33 +1,48 @@
 {
-    "district": [
-        "Ba Đình",
-        "Hoàn Kiếm",
-        "Hai Bà Trưng",
-        "Đống Đa",
-        "Tây Hồ",
-        "Cầu Giấy",
-        "Thanh Xuân",
-        "Hoàng Mai",
-        "Long Biên",
-        "Bắc Từ Liêm",
-        "Nam Từ Liêm"
-    ],
-    "district-1": [
-        "Sóc Sơn",
-        "Đông Anh",
-        "Gia Lâm",
-        "Thanh Trì",
-        "Thường Tín",
-        "Phú Xuyên",
-        "Mê Linh",
-        "Đan Phượng",
-        "Hoài Đức",
-        "Quốc Oai",
-        "Thạch Thất",
-        "Chương Mỹ",
-        "Thanh Oai",
-        "Thường Tín",
-        "Ứng Hòa",
-        "Mỹ Đức"
+    "District": [
+        {
+            "id": 1,
+            "name": "Ba Đình"
+        },
+        {
+            "id": 2,
+            "name": "Hoàn Kiếm"
+        },
+        {
+            "id": 3,
+            "name": "Hai Bà Trưng"
+        },
+        {
+            "id": 4,
+            "name": "Đống Đa"
+        },
+        {
+            "id": 5,
+            "name": "Tây Hồ"
+        },
+        {
+            "id": 6,
+            "name": "Cầu Giấy"
+        },
+        {
+            "id": 7,
+            "name": "Thanh Xuân"
+        },
+        {
+            "id": 8,
+            "name": "Hoàng Mai"
+        },
+        {
+            "id": 9,
+            "name": "Long Biên"
+        },
+        {
+            "id": 10,
+            "name": "Bắc Từ Liêm"
+        },
+        {
+            "id": 11,
+            "name": "Nam Từ Liêm"
+        }
     ]
 }
