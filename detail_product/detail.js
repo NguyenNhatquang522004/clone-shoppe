@@ -214,6 +214,7 @@ $(document).ready(() => {
             }
             catch (e) {
                 console.log(e);
+                reject(e)
             }
         })
     };
@@ -251,46 +252,44 @@ $(document).ready(() => {
             }
         });
         $('#wrapProvincecity').click(function (e) {
-            isLoad.isCity = true
-            isLoad.isWards == false;
-            isLoad.isDistrict = false
-            if (isLoad.isCity === true) {
-                $("#wrapItemProvincegird").empty().append(ListProvince.data.data.map(item => `<div class="item-text-Province col-12 p-4 text-capitalize" id="${item.id}">${item.name}</div>`)
+
+            if (((isSuccess.isCity === true && isSuccess.isDistrict === true) || (isSuccess.isCity === true && isSuccess.isWards === true))) {
+                isLoad.isCity = true
+                isLoad.isDistrict = false
+                $("#wrapItemProvincegird").empty().append(ListProvince.data.data.map(item => `<div class="item-text-Province col-12 p-4 text-capitalize"      id="${item.id}">${item.name}</div>`)
                 );
-            }
-            if ($("#horizoneProvince").position().left === 153.4000244140625 && (haveValue.isCity === true && haveValue.isDistrict === true)) {
-                $("#horizoneProvince").css("left", `0%`);
 
-            }
+                if ($("#horizoneProvince").position().left === 153.4000244140625 && (isSuccess.isCity === true && isSuccess.isDistrict === true)) {
+                    $("#horizoneProvince").css("left", `0%`);
 
-            else if ($("#horizoneProvince").position().left === 306.79998779296875 && (haveValue.isCity === true && haveValue.isWards === true)) {
-                $("#horizoneProvince").css("left", `0%`)
-                $("#horizoneProvince").css('transform', 'translate(0,0)');
+                }
+
+                else if ($("#horizoneProvince").position().left === 306.79998779296875 && (isSuccess.isCity === true && isSuccess.isWards === true)) {
+                    $("#horizoneProvince").css("left", `0%`)
+                    $("#horizoneProvince").css('transform', 'translate(0,0)');
+                }
             }
         });
         $('#wrapProvinceDistrict').click(function (e) {
-            isLoad.isDistrict = true
-            isLoad.isCity = false;
-            isLoad.isWards = false
-            if (isLoad.isDistrict === true) {
-                $("#wrapItemProvincegird").empty().append(listDistrict.data.District.map(item => `<div class="item-text-Province col-12 p-4 text-capitalize" id="${item.id}">${item.name}</div>`)
+            if (((isSuccess.isCity === true && isSuccess.isDistrict === true) || (isSuccess.isDistrict === true && isSuccess.isWards === true))) {
+
+                $("#wrapItemProvincegird").empty().append(listDistrict.data.District.map(item => `<div class="item-text-Province col-12 p-4 text-capitalize"     id="${item.id}">${item.name}</div>`)
                 );
-            }
-            if ($("#horizoneProvince").position().left === 0 && (haveValue.isCity === true && haveValue.isDistrict === true)) {
-                $("#horizoneProvince").css("left", `33.333333333%`);
 
-            }
-            else if ($("#horizoneProvince").position().left === 306.79998779296875 && (haveValue.isDistrict === true && haveValue.isWards === true)) {
-                $("#horizoneProvince").css("left", `33.333333333%`)
-                $("#horizoneProvince").css('transform', 'translate(0,0)');
+                if ($("#horizoneProvince").position().left === 0 && (isSuccess.isCity === true && isSuccess.isDistrict === true)) {
+                    $("#horizoneProvince").css("left", `33.333333333%`);
 
+                }
+                else if ($("#horizoneProvince").position().left === 306.79998779296875 && (isSuccess.isDistrict === true && isSuccess.isWards === true)) {
+                    $("#horizoneProvince").css("left", `33.333333333%`)
+                    $("#horizoneProvince").css('transform', 'translate(0,0)');
+
+                }
             }
         });
 
         $('#wrapProvincewards').click(function () {
-            isLoad.isDistrict = false
-            isLoad.isCity = false;
-            isLoad.isWards = true
+
             if ($("#horizoneProvince").position().left === 0 && (haveValue.isWards === true && haveValue.isCity === true)) {
                 $("#horizoneProvince").css("left", `100%`);
                 $("#horizoneProvince").css('transform', 'translate(-100%,0)');
@@ -312,18 +311,86 @@ $(document).ready(() => {
         });
     }
 
+
     let getValueIsSuccess = () => {
         return isSuccess
     }
-    let ActionDropDownAddress = async () => {
+    let handleShow = async () => {
+        try {
+            let ListProvince = await getData("../province.json");
+            let listDistrict = await getData(`./District/District${1}.json`)
+            let count = 0;
+            if (count <= 0) {
+                ++count
+                $("#wrapItemProvincegird").empty().append(ListProvince.data.data.map(item => `<div class="item-text-Province col-12 p-4 text-capitalize"   id="${item.id}">${item.name}</div>`)
+                );
+            }
+            if (isLoad.isCity === true) {
+                $("#wrapItemProvincegird").empty().append(ListProvince.data.data.map(item => `<div class="item-text-Province col-12 p-4 text-capitalize"   id="${item.id}">${item.name}</div>`)
+                );
+            }
+            if (isLoad.isDistrict === true) {
+                $("#wrapItemProvincegird").empty().append(listDistrict.data.District.map(item => `<div class="item-text-Province col-12 p-4 text-capitalize"    id="${item.id}">${item.name}</div>`)
+                );
+            }
+        }
+        catch (e) {
+            console.log(e);
+        }
+
+    }
+    let handlePreventCopy = () => {
+        $(document).on("cut copy drag", "#inputProvince", function (event) {
+            event.preventDefault();
+        });
+
+    }
+    let handleActionClickItem = async () => {
         let ListProvince = await getData("../province.json");
         let listDistrict = await getData(`./District/District${1}.json`)
+        let getNameProvince
+        let getNameDistrict
+        $('#wrapItemProvincegird').on('click', '.item-text-Province ', function () {
+            let index = $('#wrapItemProvincegird .item-text-Province').index(this);
+            if (isLoad.isCity === true) {
+                getNameProvince = ListProvince.data.data.filter(item => {
+                    if (item.id === index + 1) {
+                        return item
+                    }
+                })
+                $('#inputProvince').val(`${getNameProvince[0].name} ,`);
+                $('#horizoneProvince').css("left", "33.333333333%")
+                isSuccess.isCity = true;
+                isSuccess.isDistrict = true;
+                isSuccess.isWards = false
+                isLoad.isCity = false;
+                isLoad.isDistrict = true;
+                isLoad.isWards = false
+                handleShow();
+            }
+            else if (isLoad.isDistrict === true) {
+                getNameDistrict = listDistrict.data.District.filter(item => {
+                    if (item.id === index + 1) {
+                        return item
+                    }
+                })
+                $('#inputProvince').val('')
+                $('#inputProvince').val(`${getNameProvince[0].name} ,${getNameDistrict[0].name}`);
+                isSuccess.isCity = true;
+                isSuccess.isDistrict = true;
+                isSuccess.isWards = false
+                isLoad.isCity = false;
+                isLoad.isDistrict = false;
+                isLoad.isWards = true
+
+            }
+        });
+
+    }
+    let ActionDropDownAddress = async () => {
         $('#inputProvince').on("keyup click ", () => {
-
-
             $("#dropdownaddress").show()
-            $("#wrapItemProvincegird").empty().append(ListProvince.data.data.map(item => `<div class="item-text-Province col-12 p-4 text-capitalize" id="${item.id}">${item.name}</div>`)
-            );
+
             $('#inputProvince').on('keyup', function (e) {
                 let value = $(this).val().toLowerCase();
                 $('.item-text-Province').each(function () {
@@ -333,35 +400,23 @@ $(document).ready(() => {
                     else {
                         $(this).hide();
                     }
+
                 })
-
-            })
-            $('#wrapItemProvincegird').find('.item-text-Province').on('click', function () {
-                let index = $('#wrapItemProvincegird .item-text-Province').index(this);
-                console.log(index);
-                let getName = ListProvince.data.data.filter(item => {
-                    if (item.id === index + 1) {
-                        return item
-                    }
-                })
-
-                isLoad.value = getName
-
-                $('#inputProvince').val(`${getName[0].name} ,`);
-                $('#horizoneProvince').css("left", "33.333333333%")
-                isSuccess.isDistrict = true;
-                isLoad.isCity = false;
-                isLoad.isDistrict = true;
-                isLoad.isWards = false;
 
             })
         })
 
     }
     let handleActionInputAddress = async () => {
-        ActionDropDownAddress();
+        await handleShow()
+        await ActionDropDownAddress();
+        handlePreventCopy()
     }
     let handleInputAddress = async () => {
+
+        await handleShow()
+        handlePreventCopy();
+        handleActionClickItem()
         handleActionInputAddress()
         handleCloseOutside();
         handleAnimationInputAddress();
