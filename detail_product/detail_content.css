@@ -547,7 +547,7 @@ body {
 
 .modal_anddress-third-down-grid .wrap-input-address-specifically .input-address-specifically {
     height: 5rem;
-    font-size: 1.5rem;
+    font-size: 1.5rem !important;
     font-weight: 400;
     color: #222;
     box-sizing: border-box;
@@ -695,7 +695,7 @@ body {
     background-color: var(--background-main-orange);
     bottom: -2%;
     left: 0%;
-    transition: all ease 0.25s;
+    transition: all ease 0.15s;
 
 }
 
@@ -732,4 +732,9 @@ body {
 
 .dropdown_address-grid .wrap-Item-Province .wrap-Item-Province-gird .item-text-Province:hover {
     background-color: var(--text-background-hover);
+}
+
+.intputCity_animation-color {
+    color: var(--text-main) !important;
+    transition: all 0.1s;
 }

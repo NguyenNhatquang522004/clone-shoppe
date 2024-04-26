@@ -160,6 +160,7 @@ $(document).ready(() => {
                         })
                     }
                     else {
+                        handleInputPhone(modalAddress_InputPhone, itemSubPhone);
                         $(this).on('click', () => {
                             $(this).addClass('input-red-boder input-red-placeholder-trans')
                             $(this).removeClass('input-red-boder')
@@ -193,7 +194,8 @@ $(document).ready(() => {
             $(inputPhoneId).attr('value', `${successValue}`)
             $(this).removeClass('input-red-boder input-red-placeholder-trans');
             $(PhonesubId).css("display", "none");
-            e.target.value = successValue;
+            $('#modalAddress_InputPhone').val(``)
+            $('#modalAddress_InputPhone').val(`${successValue}`)
 
         })
     }
@@ -222,6 +224,7 @@ $(document).ready(() => {
         let haveValue = await getValueIsSuccess();
         let ListProvince = await getData("../province.json");
         let listDistrict = await getData(`./District/District${1}.json`)
+        let listWards = await getData(`./District/District${2}.json`)
         $('#wrapProvincecity').mouseover(function (e) {
             if (haveValue.isCity === false) {
                 $(this).css('cursor', 'no-drop');
@@ -252,19 +255,17 @@ $(document).ready(() => {
             }
         });
         $('#wrapProvincecity').click(function (e) {
-
-            if (((isSuccess.isCity === true && isSuccess.isDistrict === true) || (isSuccess.isCity === true && isSuccess.isWards === true))) {
+            if ((isSuccess.isCity === true && isSuccess.isDistrict === true) || (isSuccess.isCity === true && isSuccess.isWards === true)) {
                 isLoad.isCity = true
                 isLoad.isDistrict = false
-                $("#wrapItemProvincegird").empty().append(ListProvince.data.data.map(item => `<div class="item-text-Province col-12 p-4 text-capitalize"      id="${item.id}">${item.name}</div>`)
-                );
-
-                if ($("#horizoneProvince").position().left === 153.4000244140625 && (isSuccess.isCity === true && isSuccess.isDistrict === true)) {
+                isLoad.isWards = false
+                handleShow();
+                if ($("#horizoneProvince").position().left > 150.4000244140625 && $("#horizoneProvince").position().left < 300 && (isSuccess.isCity === true && isSuccess.isDistrict === true)) {
                     $("#horizoneProvince").css("left", `0%`);
 
                 }
 
-                else if ($("#horizoneProvince").position().left === 306.79998779296875 && (isSuccess.isCity === true && isSuccess.isWards === true)) {
+                else if ($("#horizoneProvince").position().left > 300.79998779296875 && (isSuccess.isCity === true && isSuccess.isWards === true)) {
                     $("#horizoneProvince").css("left", `0%`)
                     $("#horizoneProvince").css('transform', 'translate(0,0)');
                 }
@@ -272,15 +273,16 @@ $(document).ready(() => {
         });
         $('#wrapProvinceDistrict').click(function (e) {
             if (((isSuccess.isCity === true && isSuccess.isDistrict === true) || (isSuccess.isDistrict === true && isSuccess.isWards === true))) {
-
-                $("#wrapItemProvincegird").empty().append(listDistrict.data.District.map(item => `<div class="item-text-Province col-12 p-4 text-capitalize"     id="${item.id}">${item.name}</div>`)
-                );
+                isLoad.isCity = false
+                isLoad.isDistrict = true
+                isLoad.isWards = false
+                handleShow();
 
                 if ($("#horizoneProvince").position().left === 0 && (isSuccess.isCity === true && isSuccess.isDistrict === true)) {
                     $("#horizoneProvince").css("left", `33.333333333%`);
 
                 }
-                else if ($("#horizoneProvince").position().left === 306.79998779296875 && (isSuccess.isDistrict === true && isSuccess.isWards === true)) {
+                else if ($("#horizoneProvince").position().left > 300.79998779296875 && (isSuccess.isDistrict === true && isSuccess.isWards === true)) {
                     $("#horizoneProvince").css("left", `33.333333333%`)
                     $("#horizoneProvince").css('transform', 'translate(0,0)');
 
@@ -289,17 +291,23 @@ $(document).ready(() => {
         });
 
         $('#wrapProvincewards').click(function () {
+            if ((isSuccess.isWards === true && isSuccess.isCity === true) || (isSuccess.isWards === true && isSuccess.isDistrict === true)) {
+                isLoad.isCity = false
+                isLoad.isDistrict = false
+                isLoad.isWards = true
+                handleShow();
+                if ($("#horizoneProvince").position().left === 0 && (isSuccess.isWards === true && isSuccess.isCity === true)) {
+                    $("#horizoneProvince").css("left", `100%`);
+                    $("#horizoneProvince").css('transform', 'translate(-100%,0)');
 
-            if ($("#horizoneProvince").position().left === 0 && (haveValue.isWards === true && haveValue.isCity === true)) {
-                $("#horizoneProvince").css("left", `100%`);
-                $("#horizoneProvince").css('transform', 'translate(-100%,0)');
+                }
+                else if ($("#horizoneProvince").position().left > 150.4000244140625 && (isSuccess.isWards === true && isSuccess.isDistrict === true)) {
+                    $("#horizoneProvince").css("left", `100%`);
+                    $("#horizoneProvince").css('transform', 'translate(-100%,0)');
 
+                }
             }
-            else if ($("#horizoneProvince").position().left === 153.4000244140625 && (haveValue.isWards === true && haveValue.isDistrict === true)) {
-                $("#horizoneProvince").css("left", `100%`);
-                $("#horizoneProvince").css('transform', 'translate(-100%,0)');
 
-            }
         });
     }
     let handleCloseOutside = () => {
@@ -319,20 +327,57 @@ $(document).ready(() => {
         try {
             let ListProvince = await getData("../province.json");
             let listDistrict = await getData(`./District/District${1}.json`)
-            let count = 0;
-            if (count <= 0) {
-                ++count
-                $("#wrapItemProvincegird").empty().append(ListProvince.data.data.map(item => `<div class="item-text-Province col-12 p-4 text-capitalize"   id="${item.id}">${item.name}</div>`)
-                );
-            }
+            let listWards = await getData(`./District/District${2}.json`)
+
             if (isLoad.isCity === true) {
-                $("#wrapItemProvincegird").empty().append(ListProvince.data.data.map(item => `<div class="item-text-Province col-12 p-4 text-capitalize"   id="${item.id}">${item.name}</div>`)
-                );
+                // console.log(isLoad.value.getNameProvince[0].name);
+                $('#wrapProvincecity').addClass('intputCity_animation-color')
+                $('#wrapProvinceDistrict').removeClass('intputCity_animation-color')
+                $('#wrapProvincewards').removeClass('intputCity_animation-color')
+                if (typeof isLoad.value.getNameProvince === "object") {
+                    $("#wrapItemProvincegird").empty().append(ListProvince.data.data.map(item => `<div class="item-text-Province col-12 p-4 text-capitalize"   id="${item.id}">${item.name}</div>`)
+                    );
+                    $(`#wrapItemProvincegird .item-text-Province`).removeClass('intputCity_animation-color')
+                    $(`#wrapItemProvincegird #${isLoad.value.getNameProvince[0].id}.item-text-Province`).addClass('intputCity_animation-color')
+                }
+                else {
+                    $("#wrapItemProvincegird").empty().append(ListProvince.data.data.map(item => `<div class="item-text-Province col-12 p-4 text-capitalize"   id="${item.id}">${item.name}</div>`)
+                    );
+                }
+
             }
             if (isLoad.isDistrict === true) {
-                $("#wrapItemProvincegird").empty().append(listDistrict.data.District.map(item => `<div class="item-text-Province col-12 p-4 text-capitalize"    id="${item.id}">${item.name}</div>`)
-                );
+                $('#wrapProvincecity').removeClass('intputCity_animation-color')
+                $('#wrapProvinceDistrict').addClass('intputCity_animation-color')
+                $('#wrapProvincewards').removeClass('intputCity_animation-color')
+                if (typeof isLoad.value.getNameDistrict === "object") {
+                    $("#wrapItemProvincegird").empty().append(listDistrict.data.District.map(item => `<div class="item-text-Province col-12 p-4 text-capitalize"    id="${item.id}">${item.name}</div>`)
+                    );
+                    $(`#wrapItemProvincegird .item-text-Province`).removeClass('intputCity_animation-color')
+                    $(`#wrapItemProvincegird #${isLoad.value.getNameDistrict[0].id}.item-text-Province`).addClass('intputCity_animation-color')
+                }
+                else {
+                    $("#wrapItemProvincegird").empty().append(listDistrict.data.District.map(item => `<div class="item-text-Province col-12 p-4 text-capitalize"    id="${item.id}">${item.name}</div>`)
+                    );
+
+                }
             }
+            if (isLoad.isWards === true) {
+                $('#wrapProvincecity').removeClass('intputCity_animation-color')
+                $('#wrapProvinceDistrict').removeClass('intputCity_animation-color')
+                $('#wrapProvincewards').addClass('intputCity_animation-color')
+                if (typeof isLoad.value.getNameWards === "object") {
+                    $("#wrapItemProvincegird").empty().append(listWards.data.District.map(item => `<div class="item-text-Province col-12 p-4 text-capitalize"    id="${item.id}">${item.name}</div>`)
+                    );
+                    $(`#wrapItemProvincegird .item-text-Province`).removeClass('intputCity_animation-color')
+                    $(`#wrapItemProvincegird #${isLoad.value.getNameDistrict[0].id}.item-text-Province`).addClass('intputCity_animation-color')
+                }
+                else {
+                    $("#wrapItemProvincegird").empty().append(listWards.data.District.map(item => `<div class="item-text-Province col-12 p-4 text-capitalize"    id="${item.id}">${item.name}</div>`)
+                    );
+                }
+            }
+
         }
         catch (e) {
             console.log(e);
@@ -340,26 +385,34 @@ $(document).ready(() => {
 
     }
     let handlePreventCopy = () => {
-        $(document).on("cut copy drag", "#inputProvince", function (event) {
+        $(document).on("cut copy ", "#inputProvince", function (event) {
             event.preventDefault();
         });
 
     }
+
     let handleActionClickItem = async () => {
         let ListProvince = await getData("../province.json");
         let listDistrict = await getData(`./District/District${1}.json`)
+        let listWards = await getData(`./District/District${2}.json`)
         let getNameProvince
         let getNameDistrict
+        let getNameWards
+
         $('#wrapItemProvincegird').on('click', '.item-text-Province ', function () {
             let index = $('#wrapItemProvincegird .item-text-Province').index(this);
             if (isLoad.isCity === true) {
+
                 getNameProvince = ListProvince.data.data.filter(item => {
                     if (item.id === index + 1) {
+
                         return item
                     }
                 })
+
                 $('#inputProvince').val(`${getNameProvince[0].name} ,`);
                 $('#horizoneProvince').css("left", "33.333333333%")
+                isLoad.value = { getNameProvince }
                 isSuccess.isCity = true;
                 isSuccess.isDistrict = true;
                 isSuccess.isWards = false
@@ -367,6 +420,7 @@ $(document).ready(() => {
                 isLoad.isDistrict = true;
                 isLoad.isWards = false
                 handleShow();
+
             }
             else if (isLoad.isDistrict === true) {
                 getNameDistrict = listDistrict.data.District.filter(item => {
@@ -376,21 +430,48 @@ $(document).ready(() => {
                 })
                 $('#inputProvince').val('')
                 $('#inputProvince').val(`${getNameProvince[0].name} ,${getNameDistrict[0].name}`);
+                $("#horizoneProvince").css("left", `100%`);
+                $("#horizoneProvince").css('transform', 'translate(-100%,0)');
                 isSuccess.isCity = true;
                 isSuccess.isDistrict = true;
-                isSuccess.isWards = false
+                isSuccess.isWards = true
                 isLoad.isCity = false;
                 isLoad.isDistrict = false;
                 isLoad.isWards = true
+                isLoad.value = { getNameProvince, getNameDistrict }
+                handleShow();
 
+
+            }
+            else if (isLoad.isWards === true) {
+                getNameWards = listWards.data.District.filter(item => {
+                    if (item.id === index + 1) {
+                        return item
+                    }
+                })
+                $('#inputProvince').val('')
+                $('#inputProvince').val(`${getNameProvince[0].name} ,${getNameDistrict[0].name} ,${getNameWards[0].name}`);
+                isLoad.value = { getNameProvince, getNameDistrict, getNameWards }
+                isSuccess.isCity = true;
+                isSuccess.isDistrict = true;
+                isSuccess.isWards = true
+                isLoad.isCity = false;
+                isLoad.isDistrict = false;
+                isLoad.isWards = false
+                $("#horizoneProvince").css("left", `0%`)
+                $("#horizoneProvince").css('transform', 'translate(0,0)');
+                $("#dropdownaddress").hide();
             }
         });
 
     }
     let ActionDropDownAddress = async () => {
-        $('#inputProvince').on("keyup click ", () => {
+        $("#dropdownaddress").hide()
+        $('#inputProvince').on("keyup click ", function () {
             $("#dropdownaddress").show()
-
+            isLoad.isCity = true;
+            isSuccess.isCity = true
+            handleShow()
             $('#inputProvince').on('keyup', function (e) {
                 let value = $(this).val().toLowerCase();
                 $('.item-text-Province').each(function () {
@@ -404,39 +485,50 @@ $(document).ready(() => {
                 })
 
             })
+            if ($(this).val() != "" && $(this).val().includes(`${isLoad.value.getNameProvince[0].name}`) && $(this).val().includes(`${isLoad.value.getNameDistrict[0].name}`) && $(this).val().includes(`${isLoad.value.getNameWards[0].name}`)) {
+                $(this).attr("placeholder", `${isLoad.value.getNameProvince[0].name} ,${isLoad.value.getNameDistrict[0].name} ,${isLoad.value.getNameWards[0].name}`).val("").blur();
+                isLoad.isCity = true;
+                isLoad.isWards = false;
+                handleShow()
+                $("#horizoneProvince").css("left", `0%`)
+                $("#horizoneProvince").css('transform', 'translate(0,0)');
+            }
         })
 
     }
     let handleActionInputAddress = async () => {
-        await handleShow()
-        await ActionDropDownAddress();
+        ActionDropDownAddress();
         handlePreventCopy()
     }
     let handleInputAddress = async () => {
-
-        await handleShow()
         handlePreventCopy();
         handleActionClickItem()
         handleActionInputAddress()
         handleCloseOutside();
         handleAnimationInputAddress();
     }
+    let SuccessForm = {
+        count: 0,
+    }
     let isSuccess = {
-        isCity: true,
+        isCity: false,
         isDistrict: false,
         isWards: false
     }
     let isLoad = {
-        isCity: true,
+        isCity: false,
         isDistrict: false,
         isWards: false,
-        value: {},
+        value: [],
+    }
+    let handleDetailAddress = () => {
+
     }
     handleGetvalidateform(modalAddress_InputName, itemSubName, modalAddress_InputPhone, itemSubPhone);
-    handleInputPhone(modalAddress_InputPhone, itemSubPhone);
-    auto_show();
+    // handleInputPhone(modalAddress_InputPhone, itemSubPhone);
+    // auto_show();
     handle_modal_transportto();
     handle_slide_img();
-    // GetApiProvince();
     handleInputAddress(inputProvince)
+    handleDetailAddress();
 })
