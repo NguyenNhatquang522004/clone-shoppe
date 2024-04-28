@@ -608,6 +608,16 @@ body {
     background-color: var(--background-main);
 }
 
+.item-placeholders-city {
+    top: 28%;
+    font-size: 1.3rem;
+    color: #636363;
+    transform: translateY(-50%);
+    left: 5%;
+    background-color: var(--background-main);
+
+}
+
 .input-rim {
     box-shadow: inset 0 2px 3px 0 rgba(0, 0, 0, .05)
 }

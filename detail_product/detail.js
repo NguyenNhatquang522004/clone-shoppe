@@ -465,6 +465,7 @@ $(document).ready(() => {
                         return item
                     }
                 })
+                isLoad.Past = [...isLoad.Past, getNameProvince]
                 isLoad.value = { ...isLoad.value, getNameProvince }
                 $('#inputProvince').val('');
                 $('#inputProvince').val(`${isLoad.value.getNameProvince[0].name}`);
@@ -476,7 +477,6 @@ $(document).ready(() => {
                 isLoad.isDistrict = true;
                 isLoad.isWards = false
                 handleShow();
-                console.log(index);
 
             }
             else if (isLoad.isDistrict === true) {
@@ -485,7 +485,7 @@ $(document).ready(() => {
                         return item
                     }
                 })
-                console.log(index);
+                isLoad.Past = [...isLoad.Past, getNameDistrict]
                 isLoad.value = { ...isLoad.value, getNameDistrict }
                 $('#inputProvince').val('')
                 $('#inputProvince').val(`${isLoad.value.getNameProvince[0].name} ,${isLoad.value.getNameDistrict[0].name}`);
@@ -505,6 +505,7 @@ $(document).ready(() => {
                         return item
                     }
                 })
+                isLoad.Past = [...isLoad.Past, getNameWards]
                 isLoad.value = { ...isLoad.value, getNameWards }
                 $('#inputProvince').val('')
                 $('#inputProvince').val(`${isLoad.value.getNameProvince[0].name} ,${isLoad.value.getNameDistrict[0].name} ,${isLoad.value.getNameWards[0].name}`);
@@ -518,6 +519,7 @@ $(document).ready(() => {
                 $("#horizoneProvince").css("left", `0%`)
                 $("#horizoneProvince").css('transform', 'translate(0,0)');
                 $("#dropdownaddress").hide();
+                handleInputAddressSpecifically();
             }
         });
 
@@ -526,11 +528,11 @@ $(document).ready(() => {
         $("#dropdownaddress").hide()
         $('#inputProvince').on("click ", function () {
             $("#dropdownaddress").show()
-            handleShow();
-            if (typeof isLoad.value.getNameProvince === 'undefined') {
-                isLoad.isCity = true;
-                isSuccess.isCity = true
-
+            // handleShow();
+            if (typeof isLoad.value.getNameProvince === 'undefined' && typeof isLoad.value.getNameDistrict === "undefined" && typeof isLoad.value.getNameWards === 'undefined') {
+                isLoad.isCity = true
+                isSuccess.isCity = true;
+                handleShow();
             }
 
         })
@@ -578,8 +580,12 @@ $(document).ready(() => {
         handleCloseOutside();
         handleAnimationInputAddress();
     }
-    let SuccessForm = {
-        count: 0,
+    CountInputAddress = {
+        name: 0,
+        isTrueName: false,
+        phone: 0,
+        isTruePhone: false,
+        address: 0,
     }
     let isSuccess = {
         isCity: false,
@@ -590,9 +596,18 @@ $(document).ready(() => {
         isCity: false,
         isDistrict: false,
         isWards: false,
+        Past: [],
         value: {},
     }
-    let handleDetailAddress = () => {
+    let handleInputAddressSpecifically = () => {
+
+        if (typeof isLoad.value.getNameProvince === 'object' && typeof isLoad.value.getNameDistrict === "object" && typeof isLoad.value.getNameWards === 'object') {
+            $('#inputaddressspecifically').prop("disabled", false)
+        }
+        else {
+            $('#inputaddressspecifically').prop("disabled", true)
+        }
+
 
     }
     handleGetvalidateform(modalAddress_InputName, itemSubName, modalAddress_InputPhone, itemSubPhone);
@@ -600,6 +615,7 @@ $(document).ready(() => {
     auto_show();
     handle_modal_transportto();
     handle_slide_img();
-    handleInputAddress(inputProvince)
-    handleDetailAddress();
+    handleInputAddress()
+    handleInputAddressSpecifically();
+
 })
