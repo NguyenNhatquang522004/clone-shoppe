@@ -1,6 +1,5 @@
 
 $(document).ready(() => {
-
     let changeImg = () => {
         $(".products_left .detail_img .detail_img-gird .item-img").each((index, item) => {
             $(item).on("mouseover", (e) => {
@@ -71,134 +70,189 @@ $(document).ready(() => {
         let regex = /^[a-zA-Z ]+$/;
         return regex.test(name);
     }
-    let checkRexPhone = (Phone) => {
-        let regex = /(84|0[3|5|7|8|9])+([0-9]{8})\b/g;
+    let checkRexPhoneBasic = (Phone) => {
+        let regex = /^0\d{9}$/;
         return regex.test(Phone);
     }
+    let checkRexPhone = (Phone) => {
+        let regex = /^\(\+84\) \d{3} \d{3} \d{3}$/;
+        return regex.test(Phone);
+    }
+    CountInputAddress = {
+        name: 0,
+        isTrueName: false,
+        phone: 0,
+        isTruePhone: false,
+    }
+    let handleInputPhone = () => {
+        value = $('#modalAddress_InputPhone').val();
+        let slicevalue = value.trim().slice(1, value.length);
+        let spaceValue = slicevalue.substr(0, 3) + ' ' +
+            slicevalue.substr(3, 3) + ' ' +
+            slicevalue.substr(6, 4);
+        let areaCode = "(+84)"
+        let successValue = `${areaCode} ${spaceValue}`;
+        $(inputPhoneId).attr('value', `${successValue}`)
+        $(this).removeClass('input-red-boder input-red-placeholder-trans');
+        $('#itemSubPhone').hide();
+        $('#modalAddress_InputPhone').val(``)
+        $('#modalAddress_InputPhone').val(`${successValue}`)
+
+    }
     let handleGetvalidateform = (inputNameId, NameSubId, inputPhoneId, PhonesubId) => {
-
-        let handleGetvalidateName = (inputNameId, NameSubId) => {
-            $(inputNameId).on('keypress keyup blur change click ', function (e) {
-
-                if ($(this).val() === "") {
-                    $(NameSubId).css("display", "none")
-
-                    $(this).blur(() => {
-                        $(this).addClass('input-red-boder input-red-placeholder')
-                        $(NameSubId).css("display", "block")
-                    })
-                    $(this).keyup(() => {
-                        $(this).removeClass('input-red-boder input-red-placeholder')
-                    })
-                    $(this).click(() => {
-                        $(this).removeClass('input-red-boder input-red-placeholder')
-                    })
+        $("#item-placeholders-name").hide();
+        let handleGetvalidateName = () => {
+            $('#modalAddress_InputName').blur(function () {
+                if ($(this).val() === '' && CountInputAddress.name === 0) {
+                    $(this).removeClass('input-red-placeholder input-red-boder');
                 }
-                else {
-                    if (checkRexName($(this).val()) === false) {
-                        $(this).on('change', () => {
-                            $(this).addClass('input-red-boder input-red-placeholder-trans')
-                        })
-                        $(this).on('blur', () => {
-                            $(this).addClass('input-red-boder input-red-placeholder-trans')
-                            $(NameSubId).css("display", "block")
-                        })
-                        $(this).on('click', () => {
-                            $(this).addClass(' input-red-placeholder-trans')
-                            $(NameSubId).css("display", "none")
-                        })
+                if ($(this).val() === '' && CountInputAddress.name != 0) {
+                    $(this).addClass('input-red-placeholder input-red-boder')
+                    $('#item-placeholders-name').hide();
+                    $('#itemSubName').hide();
+                    $('#itemSubNameLength').hide();
+                }
+                if ($(this).val() != "" && checkRexName($(this).val()) != true && CountInputAddress.name != 0) {
+                    $(this).removeClass('input-red-placeholder input-red-boder');
+                    $(this).addClass(`input-red-placeholder input-red-boder input-red-placeholder-trans `);
+                    $("#item-placeholders-name").show();
+                    $("#item-placeholders-name").addClass('input-red-text')
+                    if ($(this).val().length <= 1) {
+                        $('#itemSubName').hide();
+                        $('#itemSubNameLength').show();
                     }
                     else {
-                        $(this).on('click', () => {
-                            $(this).addClass('input-red-boder input-red-placeholder-trans')
-                            $(this).removeClass('input-red-boder')
-                            $(NameSubId).css("display", "none")
-                        })
-                        $(this).on('blur', () => {
-                            $(this).addClass('input-red-boder input-red-placeholder-trans')
-                            $(this).removeClass('input-red-boder')
-                            $(NameSubId).css("display", "none")
-                        })
-                        $(NameSubId).css("display", "none")
+                        $('#itemSubNameLength').hide();
+                        $('#itemSubName').show();
                     }
                 }
+                if ($(this).val() != "" && checkRexName($(this).val()) === true && CountInputAddress.name != 0) {
+                    $(this).removeClass('input-red-placeholder input-red-boder');
+                    $('#itemSubName').hide();
+                    $('#itemSubNameLength').hide();
+                    $("#item-placeholders-name").hide();
+                    CountInputAddress.isTrueName = true;
+                }
+
             })
-
-        }
-        let handleGetvalidatePhone = (inputPhoneId, PhonesubId) => {
-            $(inputPhoneId).on('keypress keyup blur change click ', function (e) {
-
-                if ($(this).val() === "") {
-                    $(PhonesubId).css("display", "none")
-                    // $(this).removeClass('input-red-boder input-red-placeholder .input-red-text ')
-                    $(this).blur(() => {
-                        $(this).addClass('input-red-boder input-red-placeholder')
-                        $(PhonesubId).css("display", "block")
-                    })
-                    $(this).keyup(() => {
-                        $(this).removeClass('input-red-boder input-red-placeholder')
-                    })
-                    $(this).click(() => {
-                        $(this).removeClass('input-red-boder input-red-placeholder')
-                    })
+            $('#modalAddress_InputName').click(function () {
+                if ($(this).val() != "") {
+                    $(this).removeClass(`input-red-boder input-red-placeholder `)
+                    $('#itemSubNameLength').hide();
+                    $("#item-placeholders-name").show();
+                    $('#itemSubName').hide()
+                    $("#item-placeholders-name").removeClass('input-red-text')
                 }
                 else {
-                    if (checkRexPhone($(this).val()) === false) {
-                        $(this).on('change', () => {
-                            $(this).addClass('input-red-boder  input-red-placeholder-trans')
+                    $("#item-placeholders-name").hide();
+                    $(this).removeClass('input-red-boder input-red-placeholder');
+                    $('#itemSubName').hide();
+                    $('#itemSubNameLength').hide();
+                }
+            })
+            $('#modalAddress_InputName').on('keyup change', function () {
+                CountInputAddress.name = 1
+                if (CountInputAddress.name != 0 && $(this).val() === "") {
+                    $(this).removeClass(`input-red-boder input-red-placeholder `)
+                    $("#item-placeholders-name").removeClass('input-red-text');
+                    $("#item-placeholders-name").hide();
+                    $('#itemSubNameLength').hide();
+                    $('#itemSubName').hide();
+                }
+                if ($(this).val() != '' && CountInputAddress.name != 0) {
+                    $("#item-placeholders-name").show();
+                }
 
-                        })
-                        $(this).on('blur', () => {
-                            $(this).addClass('input-red-boder  input-red-placeholder-trans')
-                            $(PhonesubId).css("display", "block")
 
-                        })
-                        $(this).on('click', () => {
-                            $(this).addClass(' input-red-placeholder-trans')
-                            $(PhonesubId).css("display", "none")
+            })
+        }
+        let handleGetvalidatePhone = () => {
 
-                        })
-                    }
-                    else {
-                        handleInputPhone(modalAddress_InputPhone, itemSubPhone);
-                        $(this).on('click', () => {
-                            $(this).addClass('input-red-boder input-red-placeholder-trans')
-                            $(this).removeClass('input-red-boder')
-                            $(PhonesubId).css("display", "none")
+            $('#modalAddress_InputPhone').blur(function () {
+                if ($(this).val() === '' && CountInputAddress.phone === 0) {
+                    $(this).removeClass('input-red-placeholder input-red-boder');
+                }
+                if ($(this).val() === '' && CountInputAddress.phone != 0) {
+                    $(this).addClass('input-red-placeholder input-red-boder')
+                    $('#item-placeholders-Phone').hide();
+                    $('#itemSubPhone').hide();
+                }
+                if ($(this).val() != '' && CountInputAddress.phone != 0 && checkRexPhoneBasic($(this).val()) != true && checkRexPhone($(this).val()) != true) {
+                    $(this).addClass('input-red-placeholder input-red-boder');
+                    $('#item-placeholders-Phone').show();
+                    $('#item-placeholders-Phone').addClass('input-red-text');
+                    $('#itemSubPhone').show();
 
-                        })
-                        $(this).on('blur', () => {
-                            $(this).addClass('input-red-boder input-red-placeholder-trans')
-                            $(this).removeClass('input-red-boder')
-                            $(PhonesubId).css("display", "none")
+                }
+                if ($(this).val() != '' && CountInputAddress.phone != 0 && checkRexPhoneBasic($(this).val()) === true || checkRexPhone($(this).val()) === true) {
+                    $(this).removeClass('input-red-placeholder input-red-boder');
+                    $('#item-placeholders-Phone').show();
+                    $('#item-placeholders-Phone').removeClass('input-red-text');
+                    $('#itemSubPhone').hide();
 
-                        })
-                        $(PhonesubId).css("display", "none")
-                    }
+                }
+                if ($(this).val() != '' && checkRexPhone($(this).val()) === false && checkRexPhoneBasic($(this).val()) === true && CountInputAddress.phone != 0) {
+                    value = $('#modalAddress_InputPhone').val();
+                    let slicevalue = value.trim().slice(1, value.length);
+                    let spaceValue = slicevalue.substr(0, 3) + ' ' +
+                        slicevalue.substr(3, 3) + ' ' +
+                        slicevalue.substr(6, 4);
+                    let areaCode = "(+84)"
+                    let successValue = `${areaCode} ${spaceValue}`;
+                    $(inputPhoneId).attr('value', `${successValue}`)
+                    $(this).removeClass('input-red-boder input-red-placeholder-trans');
+                    $('#itemSubPhone').hide();
+                    $('#modalAddress_InputPhone').val(``)
+                    $('#modalAddress_InputPhone').val(`${successValue}`)
+                    CountInputAddress.isTruePhone = true;
+                }
+
+            })
+            $('#modalAddress_InputPhone').click(function () {
+                if ($(this).val() === '') {
+                    $(this).removeClass('input-red-placeholder input-red-boder')
+                    $('#item-placeholders-Phone').hide();
+                    $('#itemSubPhone').hide();
+                }
+                if ($(this).val() != '' && checkRexPhoneBasic($(this).val()) != true && checkRexPhone($(this).val()) != true) {
+                    $(this).removeClass('input-red-placeholder input-red-boder')
+                    $('#item-placeholders-Phone').removeClass('input-red-text');
+                    $('#item-placeholders-Phone').show();
+                    $('#itemSubPhone').hide();
+                }
+                if ($(this).val() != '' && checkRexPhone($(this).val()) === false && checkRexPhoneBasic($(this).val()) === true) {
+                    value = $('#modalAddress_InputPhone').val();
+                    let slicevalue = value.trim().slice(1, value.length);
+                    let spaceValue = slicevalue.substr(0, 3) + ' ' +
+                        slicevalue.substr(3, 3) + ' ' +
+                        slicevalue.substr(6, 4);
+                    let areaCode = "(+84)"
+                    let successValue = `${areaCode} ${spaceValue}`;
+                    $(inputPhoneId).attr('value', `${successValue}`)
+                    $(this).removeClass('input-red-boder input-red-placeholder-trans');
+                    $('#itemSubPhone').hide();
+                    $('#modalAddress_InputPhone').val(``)
+                    $('#modalAddress_InputPhone').val(`${successValue}`)
+                    CountInputAddress.isTruePhone = true;
+                }
+            })
+            $('#modalAddress_InputPhone').on('keyup', function () {
+                CountInputAddress.phone = 1;
+                if ($(this).val() != '') {
+                    $(this).removeClass('input-red-placeholder input-red-boder')
+                    $('#item-placeholders-Phone').removeClass('input-red-text');
+                    $('#item-placeholders-Phone').show();
+                }
+                else {
+                    $('#item-placeholders-Phone').hide();
                 }
             })
         }
-        handleGetvalidateName(inputNameId, NameSubId);
-        handleGetvalidatePhone(inputPhoneId, PhonesubId)
+        handleGetvalidateName();
+        handleGetvalidatePhone();
 
     }
-    let handleInputPhone = (inputPhoneId, PhonesubId) => {
-        $(inputPhoneId).on('change', function (e) {
-            value = $(this).val();
-            let slicevalue = value.trim().slice(1, value.length);
-            let spaceValue = slicevalue.substr(0, 3) + ' ' +
-                slicevalue.substr(3, 3) + ' ' +
-                slicevalue.substr(6, 4);
-            let areaCode = "(+84)"
-            let successValue = `${areaCode} ${spaceValue}`;
-            $(inputPhoneId).attr('value', `${successValue}`)
-            $(this).removeClass('input-red-boder input-red-placeholder-trans');
-            $(PhonesubId).css("display", "none");
-            $('#modalAddress_InputPhone').val(``)
-            $('#modalAddress_InputPhone').val(`${successValue}`)
 
-        })
-    }
 
     const getData = (url) => {
         return new Promise(async (resolve, reject) => {
@@ -330,18 +384,21 @@ $(document).ready(() => {
             let listWards = await getData(`./District/District${2}.json`)
 
             if (isLoad.isCity === true) {
+
                 // console.log(isLoad.value.getNameProvince[0].name);
                 $('#wrapProvincecity').addClass('intputCity_animation-color')
                 $('#wrapProvinceDistrict').removeClass('intputCity_animation-color')
                 $('#wrapProvincewards').removeClass('intputCity_animation-color')
                 if (typeof isLoad.value.getNameProvince === "object") {
-                    $("#wrapItemProvincegird").empty().append(ListProvince.data.data.map(item => `<div class="item-text-Province col-12 p-4 text-capitalize"   id="${item.id}">${item.name}</div>`)
+
+                    $("#wrapItemProvincegird").empty().append(ListProvince.data.data.map(item => `<div class="item-text-Province col-12 p-3 text-capitalize"   id="${item.id}">${item.name}</div>`)
                     );
                     $(`#wrapItemProvincegird .item-text-Province`).removeClass('intputCity_animation-color')
+
                     $(`#wrapItemProvincegird #${isLoad.value.getNameProvince[0].id}.item-text-Province`).addClass('intputCity_animation-color')
                 }
                 else {
-                    $("#wrapItemProvincegird").empty().append(ListProvince.data.data.map(item => `<div class="item-text-Province col-12 p-4 text-capitalize"   id="${item.id}">${item.name}</div>`)
+                    $("#wrapItemProvincegird").empty().append(ListProvince.data.data.map(item => `<div class="item-text-Province col-12 p-3 text-capitalize"   id="${item.id}">${item.name}</div>`)
                     );
                 }
 
@@ -351,13 +408,13 @@ $(document).ready(() => {
                 $('#wrapProvinceDistrict').addClass('intputCity_animation-color')
                 $('#wrapProvincewards').removeClass('intputCity_animation-color')
                 if (typeof isLoad.value.getNameDistrict === "object") {
-                    $("#wrapItemProvincegird").empty().append(listDistrict.data.District.map(item => `<div class="item-text-Province col-12 p-4 text-capitalize"    id="${item.id}">${item.name}</div>`)
+                    $("#wrapItemProvincegird").empty().append(listDistrict.data.District.map(item => `<div class="item-text-Province col-12 p-3 text-capitalize"    id="${item.id}">${item.name}</div>`)
                     );
                     $(`#wrapItemProvincegird .item-text-Province`).removeClass('intputCity_animation-color')
                     $(`#wrapItemProvincegird #${isLoad.value.getNameDistrict[0].id}.item-text-Province`).addClass('intputCity_animation-color')
                 }
                 else {
-                    $("#wrapItemProvincegird").empty().append(listDistrict.data.District.map(item => `<div class="item-text-Province col-12 p-4 text-capitalize"    id="${item.id}">${item.name}</div>`)
+                    $("#wrapItemProvincegird").empty().append(listDistrict.data.District.map(item => `<div class="item-text-Province col-12 p-3 text-capitalize"    id="${item.id}">${item.name}</div>`)
                     );
 
                 }
@@ -367,13 +424,13 @@ $(document).ready(() => {
                 $('#wrapProvinceDistrict').removeClass('intputCity_animation-color')
                 $('#wrapProvincewards').addClass('intputCity_animation-color')
                 if (typeof isLoad.value.getNameWards === "object") {
-                    $("#wrapItemProvincegird").empty().append(listWards.data.District.map(item => `<div class="item-text-Province col-12 p-4 text-capitalize"    id="${item.id}">${item.name}</div>`)
+                    $("#wrapItemProvincegird").empty().append(listWards.data.District.map(item => `<div class="item-text-Province col-12 p-3 text-capitalize"    id="${item.id}">${item.name}</div>`)
                     );
                     $(`#wrapItemProvincegird .item-text-Province`).removeClass('intputCity_animation-color')
-                    $(`#wrapItemProvincegird #${isLoad.value.getNameDistrict[0].id}.item-text-Province`).addClass('intputCity_animation-color')
+                    $(`#wrapItemProvincegird #${isLoad.value.getNameWards[0].id}.item-text-Province`).addClass('intputCity_animation-color')
                 }
                 else {
-                    $("#wrapItemProvincegird").empty().append(listWards.data.District.map(item => `<div class="item-text-Province col-12 p-4 text-capitalize"    id="${item.id}">${item.name}</div>`)
+                    $("#wrapItemProvincegird").empty().append(listWards.data.District.map(item => `<div class="item-text-Province col-12 p-3 text-capitalize"    id="${item.id}">${item.name}</div>`)
                     );
                 }
             }
@@ -400,19 +457,18 @@ $(document).ready(() => {
         let getNameWards
 
         $('#wrapItemProvincegird').on('click', '.item-text-Province ', function () {
-            let index = $('#wrapItemProvincegird .item-text-Province').index(this);
+            let index = $(this).attr('id')
             if (isLoad.isCity === true) {
-
                 getNameProvince = ListProvince.data.data.filter(item => {
-                    if (item.id === index + 1) {
+                    if (item.id === Number(index)) {
 
                         return item
                     }
                 })
-
-                $('#inputProvince').val(`${getNameProvince[0].name} ,`);
+                isLoad.value = { ...isLoad.value, getNameProvince }
+                $('#inputProvince').val('');
+                $('#inputProvince').val(`${isLoad.value.getNameProvince[0].name}`);
                 $('#horizoneProvince').css("left", "33.333333333%")
-                isLoad.value = { getNameProvince }
                 isSuccess.isCity = true;
                 isSuccess.isDistrict = true;
                 isSuccess.isWards = false
@@ -420,16 +476,19 @@ $(document).ready(() => {
                 isLoad.isDistrict = true;
                 isLoad.isWards = false
                 handleShow();
+                console.log(index);
 
             }
             else if (isLoad.isDistrict === true) {
                 getNameDistrict = listDistrict.data.District.filter(item => {
-                    if (item.id === index + 1) {
+                    if (item.id === Number(index)) {
                         return item
                     }
                 })
+                console.log(index);
+                isLoad.value = { ...isLoad.value, getNameDistrict }
                 $('#inputProvince').val('')
-                $('#inputProvince').val(`${getNameProvince[0].name} ,${getNameDistrict[0].name}`);
+                $('#inputProvince').val(`${isLoad.value.getNameProvince[0].name} ,${isLoad.value.getNameDistrict[0].name}`);
                 $("#horizoneProvince").css("left", `100%`);
                 $("#horizoneProvince").css('transform', 'translate(-100%,0)');
                 isSuccess.isCity = true;
@@ -438,20 +497,18 @@ $(document).ready(() => {
                 isLoad.isCity = false;
                 isLoad.isDistrict = false;
                 isLoad.isWards = true
-                isLoad.value = { getNameProvince, getNameDistrict }
                 handleShow();
-
-
             }
             else if (isLoad.isWards === true) {
                 getNameWards = listWards.data.District.filter(item => {
-                    if (item.id === index + 1) {
+                    if (item.id === Number(index)) {
                         return item
                     }
                 })
+                isLoad.value = { ...isLoad.value, getNameWards }
                 $('#inputProvince').val('')
-                $('#inputProvince').val(`${getNameProvince[0].name} ,${getNameDistrict[0].name} ,${getNameWards[0].name}`);
-                isLoad.value = { getNameProvince, getNameDistrict, getNameWards }
+                $('#inputProvince').val(`${isLoad.value.getNameProvince[0].name} ,${isLoad.value.getNameDistrict[0].name} ,${isLoad.value.getNameWards[0].name}`);
+
                 isSuccess.isCity = true;
                 isSuccess.isDistrict = true;
                 isSuccess.isWards = true
@@ -467,31 +524,45 @@ $(document).ready(() => {
     }
     let ActionDropDownAddress = async () => {
         $("#dropdownaddress").hide()
-        $('#inputProvince').on("keyup click ", function () {
+        $('#inputProvince').on("click ", function () {
             $("#dropdownaddress").show()
-            isLoad.isCity = true;
-            isSuccess.isCity = true
-            handleShow()
-            $('#inputProvince').on('keyup', function (e) {
-                let value = $(this).val().toLowerCase();
-                $('.item-text-Province').each(function () {
-                    if ($(this).html().toLowerCase().indexOf(value) != -1) {
-                        $(this).show()
-                    }
-                    else {
-                        $(this).hide();
-                    }
-
-                })
-
-            })
-            if ($(this).val() != "" && $(this).val().includes(`${isLoad.value.getNameProvince[0].name}`) && $(this).val().includes(`${isLoad.value.getNameDistrict[0].name}`) && $(this).val().includes(`${isLoad.value.getNameWards[0].name}`)) {
-                $(this).attr("placeholder", `${isLoad.value.getNameProvince[0].name} ,${isLoad.value.getNameDistrict[0].name} ,${isLoad.value.getNameWards[0].name}`).val("").blur();
+            handleShow();
+            if (typeof isLoad.value.getNameProvince === 'undefined') {
                 isLoad.isCity = true;
+                isSuccess.isCity = true
+
+            }
+
+        })
+        $('#inputProvince').on('keyup', function (e) {
+            let value = $(this).val().toLowerCase();
+            $('.item-text-Province').filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+            })
+
+        })
+        $('#inputProvince').click(function () {
+            if ($(this).val() != "" && typeof isLoad.value.getNameProvince === 'object' && typeof isLoad.value.getNameDistrict === "undefined" && typeof isLoad.value.getNameWards === 'undefined') {
+                $(this).attr("placeholder", `${isLoad.value.getNameProvince[0].name} `).val("").blur();
+                isLoad.isCity = false;
+                isLoad.isDistrict = true;
                 isLoad.isWards = false;
                 handleShow()
-                $("#horizoneProvince").css("left", `0%`)
-                $("#horizoneProvince").css('transform', 'translate(0,0)');
+
+            }
+            if ($(this).val() != "" && typeof isLoad.value.getNameProvince === 'object' && typeof isLoad.value.getNameDistrict === "object" && typeof isLoad.value.getNameWards === 'undefined') {
+                $(this).attr("placeholder", `${isLoad.value.getNameProvince[0].name} ,${isLoad.value.getNameDistrict[0].name}`).val("").blur();
+                isLoad.isCity = false;
+                isLoad.isDistrict = false;
+                isLoad.isWards = true;
+                handleShow()
+            }
+            if ($(this).val() != "" && typeof isLoad.value.getNameProvince === 'object' && typeof isLoad.value.getNameDistrict === "object" && typeof isLoad.value.getNameWards === 'object') {
+                $(this).attr("placeholder", `${isLoad.value.getNameProvince[0].name} ,${isLoad.value.getNameDistrict[0].name} ,${isLoad.value.getNameWards[0].name}`).val("").blur();
+                isLoad.isCity = true;
+                isLoad.isDistrict = false;
+                isLoad.isWards = false;
+                handleShow()
             }
         })
 
@@ -519,14 +590,14 @@ $(document).ready(() => {
         isCity: false,
         isDistrict: false,
         isWards: false,
-        value: [],
+        value: {},
     }
     let handleDetailAddress = () => {
 
     }
     handleGetvalidateform(modalAddress_InputName, itemSubName, modalAddress_InputPhone, itemSubPhone);
     // handleInputPhone(modalAddress_InputPhone, itemSubPhone);
-    // auto_show();
+    auto_show();
     handle_modal_transportto();
     handle_slide_img();
     handleInputAddress(inputProvince)
