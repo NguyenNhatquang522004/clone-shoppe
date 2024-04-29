@@ -275,12 +275,12 @@ $(document).ready(() => {
         })
     };
     let handleAnimationInputAddress = async () => {
-        let haveValue = await getValueIsSuccess();
+
         let ListProvince = await getData("../province.json");
         let listDistrict = await getData(`./District/District${1}.json`)
         let listWards = await getData(`./District/District${2}.json`)
         $('#wrapProvincecity').mouseover(function (e) {
-            if (haveValue.isCity === false) {
+            if (isSuccess.isCity === false) {
                 $(this).css('cursor', 'no-drop');
             }
 
@@ -289,7 +289,7 @@ $(document).ready(() => {
             }
         });
         $('#wrapProvinceDistrict').mouseover(function (e) {
-            if (haveValue.isDistrict === false) {
+            if (isSuccess.isDistrict === false) {
                 $(this).css('cursor', 'no-drop');
             }
 
@@ -300,7 +300,7 @@ $(document).ready(() => {
 
         $('#wrapProvincewards').mouseover(function () {
 
-            if (haveValue.isWards === false) {
+            if (isSuccess.isWards === false) {
                 $(this).css('cursor', 'no-drop');
             }
 
@@ -469,6 +469,7 @@ $(document).ready(() => {
                 isLoad.value = { ...isLoad.value, getNameProvince }
                 $('#inputProvince').val('');
                 $('#inputProvince').val(`${isLoad.value.getNameProvince[0].name}`);
+                $('#inputProvince').attr("placeholder", `${isLoad.value.getNameProvince[0].name} `)
                 $('#horizoneProvince').css("left", "33.333333333%")
                 isSuccess.isCity = true;
                 isSuccess.isDistrict = true;
@@ -476,6 +477,10 @@ $(document).ready(() => {
                 isLoad.isCity = false;
                 isLoad.isDistrict = true;
                 isLoad.isWards = false
+                $('#inputProvince').attr("placeholder", `${isLoad.value.getNameProvince[0].name} `)
+                console.log();
+                $("#itemSubProvince").removeClass('input-red-text')
+                $("#itemSubProvince").show();
                 handleShow();
 
             }
@@ -489,6 +494,7 @@ $(document).ready(() => {
                 isLoad.value = { ...isLoad.value, getNameDistrict }
                 $('#inputProvince').val('')
                 $('#inputProvince').val(`${isLoad.value.getNameProvince[0].name} ,${isLoad.value.getNameDistrict[0].name}`);
+                $('#inputProvince').attr("placeholder", `${isLoad.value.getNameProvince[0].name} ,${isLoad.value.getNameDistrict[0].name} `)
                 $("#horizoneProvince").css("left", `100%`);
                 $("#horizoneProvince").css('transform', 'translate(-100%,0)');
                 isSuccess.isCity = true;
@@ -497,6 +503,9 @@ $(document).ready(() => {
                 isLoad.isCity = false;
                 isLoad.isDistrict = false;
                 isLoad.isWards = true
+
+                $("#itemSubProvince").removeClass('input-red-text')
+                $("#itemSubProvince").show();
                 handleShow();
             }
             else if (isLoad.isWards === true) {
@@ -509,33 +518,84 @@ $(document).ready(() => {
                 isLoad.value = { ...isLoad.value, getNameWards }
                 $('#inputProvince').val('')
                 $('#inputProvince').val(`${isLoad.value.getNameProvince[0].name} ,${isLoad.value.getNameDistrict[0].name} ,${isLoad.value.getNameWards[0].name}`);
-
+                $('#inputProvince').attr("placeholder", `${isLoad.value.getNameProvince[0].name} ,${isLoad.value.getNameDistrict[0].name} ,${isLoad.value.getNameWards[0].name} `)
                 isSuccess.isCity = true;
                 isSuccess.isDistrict = true;
                 isSuccess.isWards = true
                 isLoad.isCity = false;
                 isLoad.isDistrict = false;
                 isLoad.isWards = false
+
                 $("#horizoneProvince").css("left", `0%`)
                 $("#horizoneProvince").css('transform', 'translate(0,0)');
                 $("#dropdownaddress").hide();
+                $("#itemSubProvince").removeClass('input-red-text')
+                $("#itemSubProvince").show();
                 handleInputAddressSpecifically();
             }
         });
 
     }
+    let checkPastValue = () => {
+
+    }
     let ActionDropDownAddress = async () => {
         $("#dropdownaddress").hide()
         $('#inputProvince').on("click ", function () {
+            $("#itemSubProvince").hide();
+            $(this).removeClass('input-red-boder  input-red-text input-red-placeholder')
             $("#dropdownaddress").show()
-            // handleShow();
-            if (typeof isLoad.value.getNameProvince === 'undefined' && typeof isLoad.value.getNameDistrict === "undefined" && typeof isLoad.value.getNameWards === 'undefined') {
+
+            if (isLoad.Past.length === 0 && typeof isLoad.value.getNameProvince === 'undefined' && typeof isLoad.value.getNameDistrict === "undefined" && typeof isLoad.value.getNameWards === 'undefined') {
                 isLoad.isCity = true
-                isSuccess.isCity = true;
+                isLoad.isDistrict = false;
+                isLoad.isWards = false
+
                 handleShow();
             }
+            if (isLoad.Past.length === 3) {
+                isLoad.isCity = true;
+                isLoad.isDistrict = false;
+                isLoad.isWards = false;
+                handleShow();
+            }
+            if (isLoad.Past.length > 3 && $(this).val().includes(`${isLoad.value.getNameProvince[0].name}`) === true && $(this).val().includes(`${isLoad.value.getNameDistrict[0].name}`) === false && $(this).val().includes(`${isLoad.value.getNameWards[0].name}`) === false && typeof isLoad.value.getNameProvince === 'object' && typeof isLoad.value.getNameDistrict === "object" && typeof isLoad.value.getNameWards === 'object') {
+                isLoad.isCity = false
+                isLoad.isDistrict = true;
+                isLoad.isWards = false;
 
+                handleShow();
+            }
+            if (isLoad.Past.length > 3 && $(this).val().includes(`${isLoad.value.getNameProvince[0].name}`) === true && $(this).val().includes(`${isLoad.value.getNameDistrict[0].name}`) === true && $(this).val().includes(`${isLoad.value.getNameWards[0].name}`) === false && typeof isLoad.value.getNameProvince === 'object' && typeof isLoad.value.getNameDistrict === "object" && typeof isLoad.value.getNameWards === 'object') {
+                isLoad.isCity = false
+                isLoad.isDistrict = false;
+                isLoad.isWards = true;
+                handleShow();
+            }
+            if (isLoad.Past.length > 3 && $(this).val().includes(`${isLoad.value.getNameProvince[0].name}`) === true && $(this).val().includes(`${isLoad.value.getNameDistrict[0].name}`) === true && $(this).val().includes(`${isLoad.value.getNameWards[0].name}`) === true && typeof isLoad.value.getNameProvince === 'object' && typeof isLoad.value.getNameDistrict === "object" && typeof isLoad.value.getNameWards === 'object') {
+                isLoad.isCity = true
+                isLoad.isDistrict = false;
+                isLoad.isWards = false;
+                handleShow();
+            }
+            if ($(this).val() != '') {
+                $(this).attr("placeholder", `${$(this).val()} `).val("").blur();
+            }
         })
+        $(document).on('click', function (event) {
+            let $target = $(event.target);
+            if (!$target.closest('#inputProvince').length && !$target.closest('#dropdownaddress').length) {
+                if (isLoad.Past.length > 3) {
+                    if ($('#inputProvince').val().includes(`${isLoad.value.getNameProvince[0].name} ,${isLoad.value.getNameDistrict[0].name} ,${isLoad.value.getNameWards[0].name}`) === false) {
+                        $("#itemSubProvince").addClass("input-red-text")
+                        $("#itemSubProvince").show();
+                        $('#inputProvince').addClass('input-red-boder')
+                    }
+                }
+
+                $('#inputProvince').val(`${$('#inputProvince').attr('placeholder')}`)
+            }
+        });
         $('#inputProvince').on('keyup', function (e) {
             let value = $(this).val().toLowerCase();
             $('.item-text-Province').filter(function () {
@@ -543,30 +603,7 @@ $(document).ready(() => {
             })
 
         })
-        $('#inputProvince').click(function () {
-            if ($(this).val() != "" && typeof isLoad.value.getNameProvince === 'object' && typeof isLoad.value.getNameDistrict === "undefined" && typeof isLoad.value.getNameWards === 'undefined') {
-                $(this).attr("placeholder", `${isLoad.value.getNameProvince[0].name} `).val("").blur();
-                isLoad.isCity = false;
-                isLoad.isDistrict = true;
-                isLoad.isWards = false;
-                handleShow()
 
-            }
-            if ($(this).val() != "" && typeof isLoad.value.getNameProvince === 'object' && typeof isLoad.value.getNameDistrict === "object" && typeof isLoad.value.getNameWards === 'undefined') {
-                $(this).attr("placeholder", `${isLoad.value.getNameProvince[0].name} ,${isLoad.value.getNameDistrict[0].name}`).val("").blur();
-                isLoad.isCity = false;
-                isLoad.isDistrict = false;
-                isLoad.isWards = true;
-                handleShow()
-            }
-            if ($(this).val() != "" && typeof isLoad.value.getNameProvince === 'object' && typeof isLoad.value.getNameDistrict === "object" && typeof isLoad.value.getNameWards === 'object') {
-                $(this).attr("placeholder", `${isLoad.value.getNameProvince[0].name} ,${isLoad.value.getNameDistrict[0].name} ,${isLoad.value.getNameWards[0].name}`).val("").blur();
-                isLoad.isCity = true;
-                isLoad.isDistrict = false;
-                isLoad.isWards = false;
-                handleShow()
-            }
-        })
 
     }
     let handleActionInputAddress = async () => {

@@ -615,7 +615,7 @@ body {
     transform: translateY(-50%);
     left: 5%;
     background-color: var(--background-main);
-
+    display: none;
 }
 
 .input-rim {
