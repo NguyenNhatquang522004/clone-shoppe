@@ -465,10 +465,12 @@ $(document).ready(() => {
                         return item
                     }
                 })
+
                 isLoad.Past = [...isLoad.Past, getNameProvince]
                 isLoad.value = { ...isLoad.value, getNameProvince }
                 $('#inputProvince').val('');
                 $('#inputProvince').val(`${isLoad.value.getNameProvince[0].name}`);
+                $('#inputProvince').removeClass('input-red-boder input-red-text')
                 $('#inputProvince').attr("placeholder", `${isLoad.value.getNameProvince[0].name} `)
                 $('#horizoneProvince').css("left", "33.333333333%")
                 isSuccess.isCity = true;
@@ -477,10 +479,10 @@ $(document).ready(() => {
                 isLoad.isCity = false;
                 isLoad.isDistrict = true;
                 isLoad.isWards = false
-                $('#inputProvince').attr("placeholder", `${isLoad.value.getNameProvince[0].name} `)
-                console.log();
                 $("#itemSubProvince").removeClass('input-red-text')
                 $("#itemSubProvince").show();
+                $('#itemIconSearch').hide();
+                $('#itemIconDelete').show();
                 handleShow();
 
             }
@@ -503,9 +505,10 @@ $(document).ready(() => {
                 isLoad.isCity = false;
                 isLoad.isDistrict = false;
                 isLoad.isWards = true
-
                 $("#itemSubProvince").removeClass('input-red-text')
                 $("#itemSubProvince").show();
+                $('#itemIconSearch').hide();
+                $('#itemIconDelete').show();
                 handleShow();
             }
             else if (isLoad.isWards === true) {
@@ -525,75 +528,121 @@ $(document).ready(() => {
                 isLoad.isCity = false;
                 isLoad.isDistrict = false;
                 isLoad.isWards = false
-
                 $("#horizoneProvince").css("left", `0%`)
                 $("#horizoneProvince").css('transform', 'translate(0,0)');
                 $("#dropdownaddress").hide();
                 $("#itemSubProvince").removeClass('input-red-text')
                 $("#itemSubProvince").show();
+                $('#itemIconDelete').hide();
+                $('#itemIconSearch').hide();
                 handleInputAddressSpecifically();
             }
         });
 
     }
-    let checkPastValue = () => {
-
-    }
     let ActionDropDownAddress = async () => {
-        $("#dropdownaddress").hide()
         $('#inputProvince').on("click ", function () {
             $("#itemSubProvince").hide();
-            $(this).removeClass('input-red-boder  input-red-text input-red-placeholder')
+            $(this).removeClass('input-red-boder input-red-text input-red-placeholder')
             $("#dropdownaddress").show()
+            if (isLoad.Past.length <= 3) {
+                $(this).val('');
 
-            if (isLoad.Past.length === 0 && typeof isLoad.value.getNameProvince === 'undefined' && typeof isLoad.value.getNameDistrict === "undefined" && typeof isLoad.value.getNameWards === 'undefined') {
+            }
+            if (isLoad.Past.length < 3 && typeof isLoad.value.getNameProvince === 'undefined' && typeof isLoad.value.getNameDistrict === "undefined" && typeof isLoad.value.getNameWards === 'undefined') {
                 isLoad.isCity = true
                 isLoad.isDistrict = false;
                 isLoad.isWards = false
-
                 handleShow();
             }
             if (isLoad.Past.length === 3) {
                 isLoad.isCity = true;
                 isLoad.isDistrict = false;
                 isLoad.isWards = false;
-                handleShow();
-            }
-            if (isLoad.Past.length > 3 && $(this).val().includes(`${isLoad.value.getNameProvince[0].name}`) === true && $(this).val().includes(`${isLoad.value.getNameDistrict[0].name}`) === false && $(this).val().includes(`${isLoad.value.getNameWards[0].name}`) === false && typeof isLoad.value.getNameProvince === 'object' && typeof isLoad.value.getNameDistrict === "object" && typeof isLoad.value.getNameWards === 'object') {
-                isLoad.isCity = false
-                isLoad.isDistrict = true;
-                isLoad.isWards = false;
 
                 handleShow();
             }
-            if (isLoad.Past.length > 3 && $(this).val().includes(`${isLoad.value.getNameProvince[0].name}`) === true && $(this).val().includes(`${isLoad.value.getNameDistrict[0].name}`) === true && $(this).val().includes(`${isLoad.value.getNameWards[0].name}`) === false && typeof isLoad.value.getNameProvince === 'object' && typeof isLoad.value.getNameDistrict === "object" && typeof isLoad.value.getNameWards === 'object') {
-                isLoad.isCity = false
-                isLoad.isDistrict = false;
-                isLoad.isWards = true;
-                handleShow();
+            if (isLoad.Past.length > 3 && typeof isLoad.value.getNameProvince === 'object' && typeof isLoad.value.getNameDistrict === "object" && typeof isLoad.value.getNameWards === 'object') {
+                if ($(this).val().includes(`${isLoad.value.getNameProvince[0].name}`) === true && $(this).val().includes(`${isLoad.value.getNameDistrict[0].name}`) === false && $(this).val().includes(`${isLoad.value.getNameWards[0].name}`) === false) {
+                    isLoad.isCity = false
+                    isLoad.isDistrict = true;
+                    isLoad.isWards = false;
+                    $(this).val('')
+                    handleShow();
+                }
+
             }
-            if (isLoad.Past.length > 3 && $(this).val().includes(`${isLoad.value.getNameProvince[0].name}`) === true && $(this).val().includes(`${isLoad.value.getNameDistrict[0].name}`) === true && $(this).val().includes(`${isLoad.value.getNameWards[0].name}`) === true && typeof isLoad.value.getNameProvince === 'object' && typeof isLoad.value.getNameDistrict === "object" && typeof isLoad.value.getNameWards === 'object') {
-                isLoad.isCity = true
-                isLoad.isDistrict = false;
-                isLoad.isWards = false;
-                handleShow();
+            if (isLoad.Past.length > 3 && typeof isLoad.value.getNameProvince === 'object' && typeof isLoad.value.getNameDistrict === "object" && typeof isLoad.value.getNameWards === 'object') {
+                if ($(this).val().includes(`${isLoad.value.getNameProvince[0].name}`) === true && $(this).val().includes(`${isLoad.value.getNameDistrict[0].name}`) === true && $(this).val().includes(`${isLoad.value.getNameWards[0].name}`) === false) {
+                    isLoad.isCity = false
+                    isLoad.isDistrict = false;
+                    isLoad.isWards = true;
+
+                    $(this).val('')
+                    handleShow();
+                }
+
             }
-            if ($(this).val() != '') {
-                $(this).attr("placeholder", `${$(this).val()} `).val("").blur();
+            if (isLoad.Past.length > 3 && typeof isLoad.value.getNameProvince === 'object' && typeof isLoad.value.getNameDistrict === "object" && typeof isLoad.value.getNameWards === 'object') {
+                if ($(this).val().includes(`${isLoad.value.getNameProvince[0].name}`) === true && $(this).val().includes(`${isLoad.value.getNameDistrict[0].name}`) === true && $(this).val().includes(`${isLoad.value.getNameWards[0].name}`) === true) {
+                    isLoad.isCity = true
+                    isLoad.isDistrict = false;
+                    isLoad.isWards = false;
+                    $(this).val('')
+                    handleShow();
+                }
+
+            }
+            if ($(this).val() === '') {
+                $('#itemIconSearch').show();
+
+            }
+            if ($(this).attr("placeholder") === 'Tỉnh/Thành phố, Quận/Huyện, Phường/Xã') {
+                $(this).val('');
+                $('#itemIconDelete').hide();
+            }
+            if ($(this).attr("placeholder") != 'Tỉnh/Thành phố, Quận/Huyện, Phường/Xã') {
+                $('#itemIconDelete').show();
             }
         })
+        $('#itemIconDelete').click(function (e) {
+            e.stopPropagation();
+            isLoad.Past = []
+            $('#itemSubProvince').removeClass('input-red-text')
+            $('#itemSubProvince').hide();
+            $('#itemIconDelete').hide();
+            $('#inputProvince').val('');
+            $('#inputProvince').attr("placeholder", `Tỉnh/Thành phố, Quận/Huyện, Phường/Xã`)
+            $('#inputProvince').removeClass('input-red-text  input-red-boder')
+            isLoad.isCity = true;
+            isLoad.isDistrict = false;
+            isLoad.isWards = false;
+            isLoad.value.getNameDistrict = 'undefined'
+            isLoad.value.getNameProvince = 'undefined'
+            isLoad.value.getNameWards = 'undefined'
+            isSuccess.isCity = false;
+            isSuccess.isDistrict = false;
+            isSuccess.isWards = false
+
+            $("#horizoneProvince").css("left", `0%`)
+            $("#horizoneProvince").css('transform', 'translate(0,0)');
+            handleShow();
+        })
         $(document).on('click', function (event) {
-            let $target = $(event.target);
-            if (!$target.closest('#inputProvince').length && !$target.closest('#dropdownaddress').length) {
-                if (isLoad.Past.length > 3) {
-                    if ($('#inputProvince').val().includes(`${isLoad.value.getNameProvince[0].name} ,${isLoad.value.getNameDistrict[0].name} ,${isLoad.value.getNameWards[0].name}`) === false) {
+            if (event.target.id != 'inputProvince' && event.target.id != 'dropdownaddress' && !$(event.target).attr('class').includes('item-text-Province')) {
+                $('#itemIconSearch').hide();
+                if (isLoad.Past.length > 3 && typeof isLoad.value.getNameProvince === 'object' && typeof isLoad.value.getNameDistrict === "object" && typeof isLoad.value.getNameWards === 'object') {
+                    if ($('#inputProvince').val().includes(`${isLoad.value.getNameProvince[0].name} ,${isLoad.value.getNameDistrict[0].name} ,${isLoad.value.getNameWards[0].name}`) === false && event.target.id != 'itemIconDelete') {
                         $("#itemSubProvince").addClass("input-red-text")
                         $("#itemSubProvince").show();
                         $('#inputProvince').addClass('input-red-boder')
                     }
                 }
+                if ($('#inputProvince').attr('placeholder', 'Tỉnh/Thành phố, Quận/Huyện, Phường/Xã') === false) {
+                    $('#inputProvince').val(`${$('#inputProvince').attr('placeholder')}`)
+                }
 
-                $('#inputProvince').val(`${$('#inputProvince').attr('placeholder')}`)
+
             }
         });
         $('#inputProvince').on('keyup', function (e) {
@@ -603,7 +652,6 @@ $(document).ready(() => {
             })
 
         })
-
 
     }
     let handleActionInputAddress = async () => {
@@ -637,15 +685,36 @@ $(document).ready(() => {
         value: {},
     }
     let handleInputAddressSpecifically = () => {
+        let mainValue = $('#inputaddressspecifically')
+        $('#inputaddressspecifically').on('mouseover', function (e) {
+            if (e.target.id === 'inputaddressspecifically') {
+                if (isLoad.Past.length <= 3 && typeof isLoad.value.getNameProvince === 'undefined' && typeof isLoad.value.getNameDistrict === "undefined" && typeof isLoad.value.getNameWards === 'undefined') {
+                    $('#inputaddressspecifically').prop("disabled", true)
+                }
+                if (isLoad.Past.length > 3 && $('#inputProvince').val().includes(`${isLoad.value.getNameProvince[0].name}${isLoad.value.getNameDistrict[0].name}${isLoad.value.getNameWards[0].name}`) === false) {
+                    $('#inputaddressspecifically').prop("disabled", true)
+                }
+                if ($('#inputProvince').val() != "" && typeof isLoad.value.getNameProvince === 'object' && typeof isLoad.value.getNameDistrict === "object" && typeof isLoad.value.getNameWards === 'object' && isLoad.Past.length <= 3) {
+                    $('#inputaddressspecifically').prop("disabled", false)
+                }
+                if (isLoad.Past.length > 3 && $('#inputProvince').val().includes(`${isLoad.value.getNameProvince[0].name} ,${isLoad.value.getNameDistrict[0].name} ,${isLoad.value.getNameWards[0].name}`) === true) {
+                    $('#inputaddressspecifically').prop("disabled", false)
+                }
+            }
+        })
+        let handleGetvalidateDetailAddress = () => {
+            $(document).on('click', function (e) {
 
-        if (typeof isLoad.value.getNameProvince === 'object' && typeof isLoad.value.getNameDistrict === "object" && typeof isLoad.value.getNameWards === 'object') {
-            $('#inputaddressspecifically').prop("disabled", false)
+                if (e.target.id != 'inputaddressspecifically') {
+                    console.log("1");
+                    if (mainValue.val().length < 5 && $('#inputaddressspecifically').attr('disabled') === ) {
+                        console.log("2");
+                        $('#inputaddressspecifically').addClassa('input-red-boder')
+                    }
+                }
+            })
         }
-        else {
-            $('#inputaddressspecifically').prop("disabled", true)
-        }
-
-
+        handleGetvalidateDetailAddress();
     }
     handleGetvalidateform(modalAddress_InputName, itemSubName, modalAddress_InputPhone, itemSubPhone);
     // handleInputPhone(modalAddress_InputPhone, itemSubPhone);

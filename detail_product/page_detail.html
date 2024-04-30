@@ -1019,13 +1019,15 @@
                                                                                 placeholder="Tỉnh/Thành phố, Quận/Huyện, Phường/Xã"
                                                                                 id="inputProvince" autocomplete="off">
                                                                             <i
-                                                                                class="item-icon fa-solid fa-caret-down  position-absolute"></i>
+                                                                                class="item-icon item-icon-triangle fa-solid fa-caret-down  position-absolute"></i>
                                                                             <div class="item-placeholders-city  position-absolute "
-                                                                                id="itemSubProvince">Tỉnh/
-                                                                                Thành
-                                                                                phố, Quận/Huyện, Phường/Xã
+                                                                                id="itemSubProvince">Tỉnh/ Thành phố, Quận/Huyện, Phường/Xã
                                                                             </div>
+                                                                            <i class="item-icon item-icon-delete fa-solid fa-circle-xmark position-absolute"
+                                                                                id="itemIconDelete"></i>
 
+                                                                            <i class="item-icon item-icon-search fa-solid fa-magnifying-glass position-absolute"
+                                                                                id="itemIconSearch"></i>
                                                                             <div class="dropdown_address position-absolute  w-100 mt-1"
                                                                                 style="z-index:5 ;"
                                                                                 id="dropdownaddress">
@@ -1069,14 +1071,20 @@
                                                                         <div
                                                                             class="wrap-input-address-specifically animate-placeholders-specifically  position-relative col-12 px-0">
                                                                             <textarea
-                                                                                class="input-address-specifically input-address mt-3 w-100"
-                                                                                placeholder="Địa chỉ cụ thể" rows="2"
-                                                                                id="inputaddressspecifically">
-                                                                        </textarea>
-                                                                            <!-- <span
-                                                                                class="item-placeholders-specifically d-inline-block position-absolute  ">Địa
+                                                                                class="input-address-specifically input-address mt-4 w-100 p-3 "
+                                                                                placeholder="Địa chỉ cụ thể" rows="1"
+                                                                                id="inputaddressspecifically" disabled></textarea>
+
+                                                                            <div
+                                                                                class="item-placeholders-specifically  position-absolute  ">
+                                                                                Địa
                                                                                 chỉ cụ thể
-                                                                            </span> -->
+                                                                            </div>
+                                                                            <span class="item-sub"
+                                                                                id="itemSubSpecificallyLength">Số
+                                                                                Địa chỉ quá ngắn. Địa chỉ phải có 5 ký
+                                                                                tự trở lên</span>
+
                                                                         </div>
                                                                         <div class="wrap-map col-12 mt-4">
                                                                             <div class="wrap-map row  ">
