@@ -607,6 +607,7 @@ $(document).ready(() => {
         })
         $('#itemIconDelete').click(function (e) {
             e.stopPropagation();
+            $(document).trigger('mouseover');
             isLoad.Past = []
             $('#itemSubProvince').removeClass('input-red-text')
             $('#itemSubProvince').hide();
@@ -629,8 +630,10 @@ $(document).ready(() => {
             handleShow();
         })
         $(document).on('click', function (event) {
-            if (event.target.id != 'inputProvince' && event.target.id != 'dropdownaddress' && !$(event.target).attr('class').includes('item-text-Province')) {
+
+            if ($(event.target).closest('#wrapInputCity').length === 0 && $('#inputProvince').val() != '') {
                 $('#itemIconSearch').hide();
+                $('#itemIconDelete').hide();
                 if (isLoad.Past.length > 3 && typeof isLoad.value.getNameProvince === 'object' && typeof isLoad.value.getNameDistrict === "object" && typeof isLoad.value.getNameWards === 'object') {
                     if ($('#inputProvince').val().includes(`${isLoad.value.getNameProvince[0].name} ,${isLoad.value.getNameDistrict[0].name} ,${isLoad.value.getNameWards[0].name}`) === false && event.target.id != 'itemIconDelete') {
                         $("#itemSubProvince").addClass("input-red-text")
@@ -638,7 +641,9 @@ $(document).ready(() => {
                         $('#inputProvince').addClass('input-red-boder')
                     }
                 }
-                if ($('#inputProvince').attr('placeholder', 'Tỉnh/Thành phố, Quận/Huyện, Phường/Xã') === false) {
+
+                if ($('#inputProvince').attr('placeholder') != 'Tỉnh/Thành phố, Quận/Huyện, Phường/Xã') {
+
                     $('#inputProvince').val(`${$('#inputProvince').attr('placeholder')}`)
                 }
 
@@ -686,35 +691,105 @@ $(document).ready(() => {
     }
     let handleInputAddressSpecifically = () => {
         let mainValue = $('#inputaddressspecifically')
-        $('#inputaddressspecifically').on('mouseover', function (e) {
-            if (e.target.id === 'inputaddressspecifically') {
+        $(document).on('mouseover', function (e) {
+
+            if ($(e.target).closest('#inputaddressspecifically').length === 0) {
                 if (isLoad.Past.length <= 3 && typeof isLoad.value.getNameProvince === 'undefined' && typeof isLoad.value.getNameDistrict === "undefined" && typeof isLoad.value.getNameWards === 'undefined') {
                     $('#inputaddressspecifically').prop("disabled", true)
+
                 }
-                if (isLoad.Past.length > 3 && $('#inputProvince').val().includes(`${isLoad.value.getNameProvince[0].name}${isLoad.value.getNameDistrict[0].name}${isLoad.value.getNameWards[0].name}`) === false) {
+                if (isLoad.Past.length > 3 && $('#inputProvince').val().includes(`${isLoad.value.getNameProvince[0].name} ,${isLoad.value.getNameDistrict[0].name} ,${isLoad.value.getNameWards[0].name}`) === false) {
                     $('#inputaddressspecifically').prop("disabled", true)
+
                 }
                 if ($('#inputProvince').val() != "" && typeof isLoad.value.getNameProvince === 'object' && typeof isLoad.value.getNameDistrict === "object" && typeof isLoad.value.getNameWards === 'object' && isLoad.Past.length <= 3) {
                     $('#inputaddressspecifically').prop("disabled", false)
+
                 }
                 if (isLoad.Past.length > 3 && $('#inputProvince').val().includes(`${isLoad.value.getNameProvince[0].name} ,${isLoad.value.getNameDistrict[0].name} ,${isLoad.value.getNameWards[0].name}`) === true) {
                     $('#inputaddressspecifically').prop("disabled", false)
+
                 }
+
             }
         })
         let handleGetvalidateDetailAddress = () => {
             $(document).on('click', function (e) {
 
-                if (e.target.id != 'inputaddressspecifically') {
-                    console.log("1");
-                    if (mainValue.val().length < 5 && $('#inputaddressspecifically').attr('disabled') === ) {
-                        console.log("2");
-                        $('#inputaddressspecifically').addClassa('input-red-boder')
+                if ($(e.target).closest('#inputaddressspecifically').length === 0) {
+                    mainValue.val($.trim(mainValue.val()));
+                    if (mainValue.val().length < 5 && mainValue.val().length > 0 && mainValue.prop('disabled') === false && mainValue.val() != '' && CountInputAddress.address === 1) {
+                        $('#inputaddressspecifically').addClass('input-red-boder')
+                        $('#itemSubSpecificallyLength').show();
+                        $(`#itemPlaceholdersSpecifically`).addClass(`input-red-text`)
+                        $(`#itemPlaceholdersSpecifically`).show()
+
+                    }
+                    if (mainValue.val().length > 5 && mainValue.val() != '' && CountInputAddress.address === 1) {
+                        $(`#itemPlaceholdersSpecifically`).show()
+                        $(`#itemPlaceholdersSpecifically`).removeClass('input-red-text')
+                        $('#inputaddressspecifically').removeClass('input-red-boder input-red-placeholder');
+                        $('#itemSubSpecificallyLength').hide();
+
+                    }
+                    if (CountInputAddress.address === 0) {
+                        $('#inputaddressspecifically').removeClass('input-red-boder input-red-text');
+                        $('#itemSubSpecificallyLength').hide();
+                        $(`#itemPlaceholdersSpecifically`).hide()
+
+                    }
+                    if (CountInputAddress.address === 1 && mainValue.val().length === 0 && mainValue.prop('disabled') === false && mainValue.val() === '') {
+                        mainValue.addClass('input-red-boder input-red-placeholder')
+                        $(`#itemPlaceholdersSpecifically`).removeClass('input-red-text')
+                        $('#itemSubSpecificallyLength').hide();
+                        $(`#itemPlaceholdersSpecifically`).hide()
+
+                    }
+                    if (CountInputAddress.address === 1 && mainValue.val().length === 0 && mainValue.prop('disabled') === true && mainValue.val() === '') {
+                        mainValue.removeClass('input-red-placeholder')
                     }
                 }
             })
+            $('#inputaddressspecifically').click(function () {
+
+                mainValue.removeClass('input-red-boder input-red-placeholder')
+                $(`#itemPlaceholdersSpecifically`).removeClass('input-red-text')
+                $('#itemSubSpecificallyLength').hide();
+                if ($(this).val().length > 0) {
+                    $(`#itemPlaceholdersSpecifically`).show();
+                }
+                else {
+                    $(`#itemPlaceholdersSpecifically`).hide();
+                }
+            })
+            $('#inputaddressspecifically').keyup(function () {
+                CountInputAddress.address = 1;
+                mainValue.removeClass('input-red-boder input-red-placeholder')
+                $(`#itemPlaceholdersSpecifically`).removeClass('input-red-text')
+
+                $('#itemSubSpecificallyLength').hide();
+                if ($(this).val().length > 0) {
+                    $(`#itemPlaceholdersSpecifically`).show();
+                }
+                else {
+                    $(`#itemPlaceholdersSpecifically`).hide();
+                }
+            })
+
         }
-        handleGetvalidateDetailAddress();
+        let handleShow_Dropdown_DetailAddress = async () => {
+            let DataDetailAddress = await getData('../province.json');
+            $('#dropdrownDetailAddressGird').empty().append(DataDetailAddress.data.data.map(item => `<div class="item-detailAddress col-12 bg-primary p-2" id="${item.id}">${item.name} </div>`))
+
+        }
+        let handleAction_Dropdown_DetailAddress = () => {
+            $('#dropdrownDetailAddressGird').on('click', `.item-detailAddress`, function () {
+                let index = $(this).prop('id');
+            })
+        }
+        // handleShow_Dropdown_DetailAddress();
+        handleAction_Dropdown_DetailAddress();
+
     }
     handleGetvalidateform(modalAddress_InputName, itemSubName, modalAddress_InputPhone, itemSubPhone);
     // handleInputPhone(modalAddress_InputPhone, itemSubPhone);
