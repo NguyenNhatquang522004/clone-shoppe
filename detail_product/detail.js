@@ -1,5 +1,6 @@
 
 $(document).ready(() => {
+
     let changeImg = () => {
         $(".products_left .detail_img .detail_img-gird .item-img").each((index, item) => {
             $(item).on("mouseover", (e) => {
@@ -78,12 +79,12 @@ $(document).ready(() => {
         let regex = /^\(\+84\) \d{3} \d{3} \d{3}$/;
         return regex.test(Phone);
     }
-    CountInputAddress = {
-        name: 0,
-        isTrueName: false,
-        phone: 0,
-        isTruePhone: false,
-    }
+    //    let CountInputAddress = {
+    //         name: 0,
+    //         isTrueName: false,
+    //         phone: 0,
+    //         isTruePhone: false,
+    //     }
     let handleInputPhone = () => {
         value = $('#modalAddress_InputPhone').val();
         let slicevalue = value.trim().slice(1, value.length);
@@ -449,16 +450,15 @@ $(document).ready(() => {
     }
 
     let handleActionClickItem = async () => {
-        let ListProvince = await getData("../province.json");
-        let listDistrict = await getData(`./District/District${1}.json`)
-        let listWards = await getData(`./District/District${2}.json`)
         let getNameProvince
         let getNameDistrict
         let getNameWards
 
-        $('#wrapItemProvincegird').on('click', '.item-text-Province ', function () {
+        $('#wrapItemProvincegird').on('click', '.item-text-Province ', async function () {
             let index = $(this).attr('id')
             if (isLoad.isCity === true) {
+
+                let ListProvince = await getData("../province.json");
                 getNameProvince = ListProvince.data.data.filter(item => {
                     if (item.id === Number(index)) {
 
@@ -487,6 +487,8 @@ $(document).ready(() => {
 
             }
             else if (isLoad.isDistrict === true) {
+
+                let listDistrict = await getData(`./District/District${1}.json`)
                 getNameDistrict = listDistrict.data.District.filter(item => {
                     if (item.id === Number(index)) {
                         return item
@@ -512,6 +514,8 @@ $(document).ready(() => {
                 handleShow();
             }
             else if (isLoad.isWards === true) {
+
+                let listWards = await getData(`./District/District${2}.json`)
                 getNameWards = listWards.data.District.filter(item => {
                     if (item.id === Number(index)) {
                         return item
@@ -542,6 +546,7 @@ $(document).ready(() => {
     }
     let ActionDropDownAddress = async () => {
         $('#inputProvince').on("click ", function () {
+
             $("#itemSubProvince").hide();
             $(this).removeClass('input-red-boder input-red-text input-red-placeholder')
             $("#dropdownaddress").show()
@@ -607,7 +612,6 @@ $(document).ready(() => {
         })
         $('#itemIconDelete').click(function (e) {
             e.stopPropagation();
-            $(document).trigger('mouseover');
             isLoad.Past = []
             $('#itemSubProvince').removeClass('input-red-text')
             $('#itemSubProvince').hide();
@@ -630,7 +634,7 @@ $(document).ready(() => {
             handleShow();
         })
         $(document).on('click', function (event) {
-
+            ("10");
             if ($(event.target).closest('#wrapInputCity').length === 0 && $('#inputProvince').val() != '') {
                 $('#itemIconSearch').hide();
                 $('#itemIconDelete').hide();
@@ -670,7 +674,7 @@ $(document).ready(() => {
         handleCloseOutside();
         handleAnimationInputAddress();
     }
-    CountInputAddress = {
+    let CountInputAddress = {
         name: 0,
         isTrueName: false,
         phone: 0,
@@ -689,114 +693,194 @@ $(document).ready(() => {
         Past: [],
         value: {},
     }
-    let handleInputAddressSpecifically = () => {
-        let mainValue = $('#inputaddressspecifically')
+    let handleMouseoverDisabled_DropDown_DetailAddress = (mainValue, dropdown, itemSub, itemPlaceholder) => {
         $(document).on('mouseover', function (e) {
 
-            if ($(e.target).closest('#inputaddressspecifically').length === 0) {
-                if (isLoad.Past.length <= 3 && typeof isLoad.value.getNameProvince === 'undefined' && typeof isLoad.value.getNameDistrict === "undefined" && typeof isLoad.value.getNameWards === 'undefined') {
-                    $('#inputaddressspecifically').prop("disabled", true)
+            if (isLoad.Past.length <= 3 && typeof isLoad.value.getNameProvince === 'undefined' && typeof isLoad.value.getNameDistrict === "undefined" && typeof isLoad.value.getNameWards === 'undefined') {
+                mainValue.prop("disabled", true)
 
+            }
+            if (isLoad.Past.length > 3 && typeof isLoad.value.getNameProvince != 'undefined' && typeof isLoad.value.getNameDistrict != "undefined" && typeof isLoad.value.getNameWards != 'undefined') {
+                if ($('#inputProvince').val().includes(`${isLoad.value.getNameProvince[0].name} ,${isLoad.value.getNameDistrict[0].name} ,${isLoad.value.getNameWards[0].name}`) === false) {
+                    mainValue.prop("disabled", true)
                 }
-                if (isLoad.Past.length > 3 && $('#inputProvince').val().includes(`${isLoad.value.getNameProvince[0].name} ,${isLoad.value.getNameDistrict[0].name} ,${isLoad.value.getNameWards[0].name}`) === false) {
-                    $('#inputaddressspecifically').prop("disabled", true)
 
-                }
-                if ($('#inputProvince').val() != "" && typeof isLoad.value.getNameProvince === 'object' && typeof isLoad.value.getNameDistrict === "object" && typeof isLoad.value.getNameWards === 'object' && isLoad.Past.length <= 3) {
-                    $('#inputaddressspecifically').prop("disabled", false)
 
-                }
-                if (isLoad.Past.length > 3 && $('#inputProvince').val().includes(`${isLoad.value.getNameProvince[0].name} ,${isLoad.value.getNameDistrict[0].name} ,${isLoad.value.getNameWards[0].name}`) === true) {
-                    $('#inputaddressspecifically').prop("disabled", false)
+            }
+            if ($('#inputProvince').val() != "" && typeof isLoad.value.getNameProvince === 'object' && typeof isLoad.value.getNameDistrict === "object" && typeof isLoad.value.getNameWards === 'object' && isLoad.Past.length <= 3) {
+                mainValue.prop("disabled", false)
 
+            }
+            if (isLoad.Past.length > 3 && typeof isLoad.value.getNameProvince != 'undefined' && typeof isLoad.value.getNameDistrict != "undefined" && typeof isLoad.value.getNameWards != 'undefined') {
+                if ($('#inputProvince').val().includes(`${isLoad.value.getNameProvince[0].name} ,${isLoad.value.getNameDistrict[0].name} ,${isLoad.value.getNameWards[0].name}`) === true) {
+                    mainValue.prop("disabled", false)
                 }
+
 
             }
         })
-        let handleGetvalidateDetailAddress = () => {
-            $(document).on('click', function (e) {
+    }
+    let handleClickDisabled_DropDown_DetailAddress = (mainValue, dropdown, itemSub, itemPlaceholder) => {
+        $(document).off('click').on('click', function (e) {
+            if ($(e.target).closest('#inputaddressspecifically').length === 0) {
+                dropdown.css('z-index', -1)
+                mainValue.val($.trim(mainValue.val()));
+                if (mainValue.val().length < 5 && mainValue.val().length > 0 && mainValue.prop('disabled') === false && mainValue.val() != '' && CountInputAddress.address === 1) {
+                    mainValue.addClass('input-red-boder')
+                    itemSub.show();
+                    itemPlaceholder.addClass(`input-red-text`)
+                    itemPlaceholder.show()
 
-                if ($(e.target).closest('#inputaddressspecifically').length === 0) {
-                    mainValue.val($.trim(mainValue.val()));
-                    if (mainValue.val().length < 5 && mainValue.val().length > 0 && mainValue.prop('disabled') === false && mainValue.val() != '' && CountInputAddress.address === 1) {
-                        $('#inputaddressspecifically').addClass('input-red-boder')
-                        $('#itemSubSpecificallyLength').show();
-                        $(`#itemPlaceholdersSpecifically`).addClass(`input-red-text`)
-                        $(`#itemPlaceholdersSpecifically`).show()
-
-                    }
-                    if (mainValue.val().length > 5 && mainValue.val() != '' && CountInputAddress.address === 1) {
-                        $(`#itemPlaceholdersSpecifically`).show()
-                        $(`#itemPlaceholdersSpecifically`).removeClass('input-red-text')
-                        $('#inputaddressspecifically').removeClass('input-red-boder input-red-placeholder');
-                        $('#itemSubSpecificallyLength').hide();
-
-                    }
-                    if (CountInputAddress.address === 0) {
-                        $('#inputaddressspecifically').removeClass('input-red-boder input-red-text');
-                        $('#itemSubSpecificallyLength').hide();
-                        $(`#itemPlaceholdersSpecifically`).hide()
-
-                    }
-                    if (CountInputAddress.address === 1 && mainValue.val().length === 0 && mainValue.prop('disabled') === false && mainValue.val() === '') {
-                        mainValue.addClass('input-red-boder input-red-placeholder')
-                        $(`#itemPlaceholdersSpecifically`).removeClass('input-red-text')
-                        $('#itemSubSpecificallyLength').hide();
-                        $(`#itemPlaceholdersSpecifically`).hide()
-
-                    }
-                    if (CountInputAddress.address === 1 && mainValue.val().length === 0 && mainValue.prop('disabled') === true && mainValue.val() === '') {
-                        mainValue.removeClass('input-red-placeholder')
-                    }
                 }
-            })
-            $('#inputaddressspecifically').click(function () {
+                if (mainValue.val().length > 5 && mainValue.val() != '' && CountInputAddress.address === 1) {
+                    itemPlaceholder.show()
+                    itemPlaceholder.removeClass('input-red-text')
+                    mainValue.removeClass('input-red-boder input-red-placeholder');
+                    itemSub.hide();
 
-                mainValue.removeClass('input-red-boder input-red-placeholder')
-                $(`#itemPlaceholdersSpecifically`).removeClass('input-red-text')
-                $('#itemSubSpecificallyLength').hide();
-                if ($(this).val().length > 0) {
-                    $(`#itemPlaceholdersSpecifically`).show();
+                }
+                if (CountInputAddress.address === 0) {
+                    mainValue.removeClass('input-red-boder input-red-text');
+                    itemSub.hide();
+                    itemPlaceholder.hide()
+
+                }
+                if (CountInputAddress.address === 1 && mainValue.val().length === 0 && mainValue.prop('disabled') === false && mainValue.val() === '') {
+                    mainValue.addClass('input-red-boder input-red-placeholder')
+                    itemPlaceholder.removeClass('input-red-text')
+                    itemSub.hide();
+                    itemPlaceholder.hide()
+
+                }
+                if (CountInputAddress.address === 1 && mainValue.val().length === 0 && mainValue.prop('disabled') === true && mainValue.val() === '') {
+                    mainValue.removeClass('input-red-placeholder')
+                }
+            }
+        })
+    }
+    let handleShow_Dropdown_DetailAddress = async (mainValue, dropdown) => {
+        let DataDetailAddress = await getData('../province.json');
+
+        $('#dropdrownDetailAddressGird').empty().append(DataDetailAddress.data.data.map(item => `<div class="item-detailAddress col-12  p-2" id="${item.id}">${item.name} </div>`))
+        $('#dropdrownDetailAddressGird').find('#1.item-detailAddress').addClass('item-detailAddress-active')
+
+
+    }
+
+
+    let handleClick_DropDown_DetailAddress = (mainValue, dropdown, itemSub, itemPlaceholder) => {
+        mainValue.off(`click`).click(function (e) {
+
+            e.stopPropagation();
+
+            mainValue.removeClass('input-red-boder input-red-placeholder')
+            itemPlaceholder.removeClass('input-red-text')
+            itemSub.hide();
+            if ($(this).val().length > 0) {
+                itemPlaceholder.show();
+            }
+            else {
+                itemPlaceholder.hide();
+            }
+
+
+        })
+    }
+    let handleKeyup_Dropdown_DetailAddress = (mainValue, dropdown, itemSub, itemPlaceholder) => {
+        mainValue.off('keyup').keyup(function (e) {
+            let count = 0;
+            let min = null;
+            CountInputAddress.address = 1;
+            let searchValue = $(this).val().trim().toLowerCase();
+            if (mainValue.val().trim().length > 0) {
+                dropdown.addClass('rounded-1  shadow-md  border border-1 ')
+                dropdown.css('z-index', 3)
+            }
+            else {
+                dropdown.removeClass('rounded-1 border border-1 shadow-md  ')
+                dropdown.css('z-index', -1)
+            }
+            $('.item-detailAddress').filter(function () {
+                if ($(this).text().toLowerCase().indexOf(searchValue) > -1) {
+                    $(this).show();
                 }
                 else {
-                    $(`#itemPlaceholdersSpecifically`).hide();
+
+                    $(this).hide();
                 }
             })
-            $('#inputaddressspecifically').keyup(function () {
-                CountInputAddress.address = 1;
-                mainValue.removeClass('input-red-boder input-red-placeholder')
-                $(`#itemPlaceholdersSpecifically`).removeClass('input-red-text')
+            $('.item-detailAddress').each(function () {
+                if ($(this).css('display') === 'block') {
+                    ++count
+                    return {
+                        min: min = $(this).attr('id'),
+                        count: count
+                    }
 
-                $('#itemSubSpecificallyLength').hide();
-                if ($(this).val().length > 0) {
-                    $(`#itemPlaceholdersSpecifically`).show();
                 }
-                else {
-                    $(`#itemPlaceholdersSpecifically`).hide();
-                }
+
             })
 
-        }
-        let handleShow_Dropdown_DetailAddress = async () => {
-            let DataDetailAddress = await getData('../province.json');
-            $('#dropdrownDetailAddressGird').empty().append(DataDetailAddress.data.data.map(item => `<div class="item-detailAddress col-12 bg-primary p-2" id="${item.id}">${item.name} </div>`))
-
-        }
-        let handleAction_Dropdown_DetailAddress = () => {
-            $('#dropdrownDetailAddressGird').on('click', `.item-detailAddress`, function () {
-                let index = $(this).prop('id');
+            let validate = {
+                min: min,
+                count: count,
+            };
+            console.log(validate);
+            if (mainValue.val().trim().length <= 0) {
+                validate.count = 0
+            }
+            if (validate.count > 0) {
+                console.log("2");
+                dropdown.addClass('rounded-1  shadow-lg  border border-1 ')
+            }
+            if (validate.count === 0) {
+                console.log("1");
+                dropdown.removeClass('rounded-1 border border-1 shadow-md')
+            }
+            mainValue.removeClass('input-red-boder input-red-placeholder')
+            itemPlaceholder.removeClass('input-red-text')
+            if ($(this).val().length > 0) {
+                itemPlaceholder.show();
+            }
+            else {
+                itemPlaceholder.hide();
+            }
+            // console.log($('#dropdrownDetailAddressGird').find('.item-detailAddress').css('display','block').length);
+        })
+    }
+    let handleAction_Dropdown_DetailAddress = async (mainValue, dropdown, itemSub, itemPlaceholder) => {
+        let DataDetailAddress = await getData('../province.json');
+        $('#dropdrownDetailAddressGird').off('click').on('click', `.item-detailAddress`, function (e) {
+            let position = $(this).prop('id');
+            let valuesDetailAddress = DataDetailAddress.data.data.filter((item) => {
+                if (item.id === Number(position)) {
+                    return item
+                }
             })
-        }
-        // handleShow_Dropdown_DetailAddress();
-        handleAction_Dropdown_DetailAddress();
+            mainValue.val('');
+            mainValue.val(`${valuesDetailAddress[0].name}`);
+        })
+    }
+
+    let handleInputAddressSpecifically = () => {
+        let mainValue = $('#inputaddressspecifically')
+        let dropdown = $('#dropdrownDetailAddress')
+        let itemSub = $('#itemSubSpecificallyLength')
+        let itemPlaceholder = $(`#itemPlaceholdersSpecifically`)
+        let itemMain = $('.item-detailAddress');
+        handleMouseoverDisabled_DropDown_DetailAddress(mainValue, dropdown, itemSub, itemPlaceholder);
+        handleClickDisabled_DropDown_DetailAddress(mainValue, dropdown, itemSub, itemPlaceholder);
+        handleClick_DropDown_DetailAddress(mainValue, dropdown, itemSub, itemPlaceholder)
+        handleKeyup_Dropdown_DetailAddress(mainValue, dropdown, itemSub, itemPlaceholder, itemMain);
+        handleShow_Dropdown_DetailAddress(mainValue, dropdown);
+        handleAction_Dropdown_DetailAddress(mainValue, dropdown, itemSub, itemPlaceholder);
+
 
     }
     handleGetvalidateform(modalAddress_InputName, itemSubName, modalAddress_InputPhone, itemSubPhone);
-    // handleInputPhone(modalAddress_InputPhone, itemSubPhone);
     auto_show();
     handle_modal_transportto();
     handle_slide_img();
     handleInputAddress()
     handleInputAddressSpecifically();
-
 })

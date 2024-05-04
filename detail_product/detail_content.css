@@ -751,3 +751,28 @@ body {
     color: var(--text-main) !important;
     transition: all 0.1s;
 }
+
+#wrapInputAddressSpecificall .dropdrown_detailAddress {
+    z-index: -1;
+}
+
+.dropdrown_detailAddress .dropdrown_detailAddress-container {
+    background-color: var(--background-main);
+    max-height: 29.3rem;
+    overflow-x: auto;
+}
+
+.dropdrown_detailAddress-container #dropdrownDetailAddressGird .item-detailAddress {
+    font-size: 1.5rem;
+    background-color: transparent;
+    max-width: 100%;
+    color: var(--text-black);
+}
+
+.dropdrown_detailAddress-container #dropdrownDetailAddressGird .item-detailAddress:hover {
+    background-color: var(--text-background-hover)
+}
+
+.item-detailAddress-active {
+    background-color: var(--text-background-hover) !important;
+}
