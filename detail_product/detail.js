@@ -1,6 +1,5 @@
 
 $(document).ready(() => {
-
     let changeImg = () => {
         $(".products_left .detail_img .detail_img-gird .item-img").each((index, item) => {
             $(item).on("mouseover", (e) => {
@@ -276,7 +275,6 @@ $(document).ready(() => {
         })
     };
     let handleAnimationInputAddress = async () => {
-
         let ListProvince = await getData("../province.json");
         let listDistrict = await getData(`./District/District${1}.json`)
         let listWards = await getData(`./District/District${2}.json`)
@@ -383,15 +381,11 @@ $(document).ready(() => {
             let ListProvince = await getData("../province.json");
             let listDistrict = await getData(`./District/District${1}.json`)
             let listWards = await getData(`./District/District${2}.json`)
-
             if (isLoad.isCity === true) {
-
-                // console.log(isLoad.value.getNameProvince[0].name);
                 $('#wrapProvincecity').addClass('intputCity_animation-color')
                 $('#wrapProvinceDistrict').removeClass('intputCity_animation-color')
                 $('#wrapProvincewards').removeClass('intputCity_animation-color')
                 if (typeof isLoad.value.getNameProvince === "object") {
-
                     $("#wrapItemProvincegird").empty().append(ListProvince.data.data.map(item => `<div class="item-text-Province col-12 p-3 text-capitalize"   id="${item.id}">${item.name}</div>`)
                     );
                     $(`#wrapItemProvincegird .item-text-Province`).removeClass('intputCity_animation-color')
@@ -402,7 +396,6 @@ $(document).ready(() => {
                     $("#wrapItemProvincegird").empty().append(ListProvince.data.data.map(item => `<div class="item-text-Province col-12 p-3 text-capitalize"   id="${item.id}">${item.name}</div>`)
                     );
                 }
-
             }
             if (isLoad.isDistrict === true) {
                 $('#wrapProvincecity').removeClass('intputCity_animation-color')
@@ -417,7 +410,6 @@ $(document).ready(() => {
                 else {
                     $("#wrapItemProvincegird").empty().append(listDistrict.data.District.map(item => `<div class="item-text-Province col-12 p-3 text-capitalize"    id="${item.id}">${item.name}</div>`)
                     );
-
                 }
             }
             if (isLoad.isWards === true) {
@@ -435,20 +427,16 @@ $(document).ready(() => {
                     );
                 }
             }
-
         }
         catch (e) {
             console.log(e);
         }
-
     }
     let handlePreventCopy = () => {
         $(document).on("cut copy ", "#inputProvince", function (event) {
             event.preventDefault();
         });
-
     }
-
     let handleActionClickItem = async () => {
         let getNameProvince
         let getNameDistrict
@@ -546,7 +534,6 @@ $(document).ready(() => {
     }
     let ActionDropDownAddress = async () => {
         $('#inputProvince').on("click ", function () {
-
             $("#itemSubProvince").hide();
             $(this).removeClass('input-red-boder input-red-text input-red-placeholder')
             $("#dropdownaddress").show()
@@ -634,7 +621,7 @@ $(document).ready(() => {
             handleShow();
         })
         $(document).on('click', function (event) {
-            ("10");
+
             if ($(event.target).closest('#wrapInputCity').length === 0 && $('#inputProvince').val() != '') {
                 $('#itemIconSearch').hide();
                 $('#itemIconDelete').hide();
@@ -721,7 +708,7 @@ $(document).ready(() => {
         })
     }
     let handleClickDisabled_DropDown_DetailAddress = (mainValue, dropdown, itemSub, itemPlaceholder) => {
-        $(document).off('click').on('click', function (e) {
+        $(document).on('click', function (e) {
             if ($(e.target).closest('#inputaddressspecifically').length === 0) {
                 dropdown.css('z-index', -1)
                 mainValue.val($.trim(mainValue.val()));
@@ -760,19 +747,13 @@ $(document).ready(() => {
     }
     let handleShow_Dropdown_DetailAddress = async (mainValue, dropdown) => {
         let DataDetailAddress = await getData('../province.json');
-
         $('#dropdrownDetailAddressGird').empty().append(DataDetailAddress.data.data.map(item => `<div class="item-detailAddress col-12  p-2" id="${item.id}">${item.name} </div>`))
         $('#dropdrownDetailAddressGird').find('#1.item-detailAddress').addClass('item-detailAddress-active')
-
-
     }
-
-
     let handleClick_DropDown_DetailAddress = (mainValue, dropdown, itemSub, itemPlaceholder) => {
-        mainValue.off(`click`).click(function (e) {
-
+        mainValue.click(function (e) {
             e.stopPropagation();
-
+            console.log("123");
             mainValue.removeClass('input-red-boder input-red-placeholder')
             itemPlaceholder.removeClass('input-red-text')
             itemSub.hide();
@@ -782,22 +763,23 @@ $(document).ready(() => {
             else {
                 itemPlaceholder.hide();
             }
-
-
         })
     }
     let handleKeyup_Dropdown_DetailAddress = (mainValue, dropdown, itemSub, itemPlaceholder) => {
-        mainValue.off('keyup').keyup(function (e) {
+        mainValue.keyup(function (event) {
+            event.stopPropagation();
             let count = 0;
-            let min = null;
+            let min = [];
+            itemSub.hide();
             CountInputAddress.address = 1;
             let searchValue = $(this).val().trim().toLowerCase();
+
             if (mainValue.val().trim().length > 0) {
-                dropdown.addClass('rounded-1  shadow-md  border border-1 ')
+                dropdown.addClass('rounded-2  shadow  border border-2 ')
                 dropdown.css('z-index', 3)
             }
             else {
-                dropdown.removeClass('rounded-1 border border-1 shadow-md  ')
+                dropdown.removeClass('rounded-2 border border-2 shadow  ')
                 dropdown.css('z-index', -1)
             }
             $('.item-detailAddress').filter(function () {
@@ -811,31 +793,23 @@ $(document).ready(() => {
             })
             $('.item-detailAddress').each(function () {
                 if ($(this).css('display') === 'block') {
-                    ++count
-                    return {
-                        min: min = $(this).attr('id'),
-                        count: count
-                    }
-
+                    ++count;
+                    min.push($(this).attr('id'))
                 }
 
             })
-
-            let validate = {
-                min: min,
-                count: count,
-            };
-            console.log(validate);
+            if (min.length > 0) {
+                $('#dropdrownDetailAddressGird').find(`.item-detailAddress`).removeClass('item-detailAddress-active')
+                $('#dropdrownDetailAddressGird').find(`#${min[0]}.item-detailAddress`).addClass('item-detailAddress-active')
+            }
             if (mainValue.val().trim().length <= 0) {
-                validate.count = 0
+                count = 0
             }
-            if (validate.count > 0) {
-                console.log("2");
-                dropdown.addClass('rounded-1  shadow-lg  border border-1 ')
+            if (count > 0) {
+                dropdown.addClass('rounded-2  shadow  border border-2 ')
             }
-            if (validate.count === 0) {
-                console.log("1");
-                dropdown.removeClass('rounded-1 border border-1 shadow-md')
+            else {
+                dropdown.removeClass('rounded-2 border border-2 shadow')
             }
             mainValue.removeClass('input-red-boder input-red-placeholder')
             itemPlaceholder.removeClass('input-red-text')
@@ -844,9 +818,10 @@ $(document).ready(() => {
             }
             else {
                 itemPlaceholder.hide();
+
             }
-            // console.log($('#dropdrownDetailAddressGird').find('.item-detailAddress').css('display','block').length);
         })
+
     }
     let handleAction_Dropdown_DetailAddress = async (mainValue, dropdown, itemSub, itemPlaceholder) => {
         let DataDetailAddress = await getData('../province.json');
@@ -874,8 +849,20 @@ $(document).ready(() => {
         handleKeyup_Dropdown_DetailAddress(mainValue, dropdown, itemSub, itemPlaceholder, itemMain);
         handleShow_Dropdown_DetailAddress(mainValue, dropdown);
         handleAction_Dropdown_DetailAddress(mainValue, dropdown, itemSub, itemPlaceholder);
-
-
+    }
+    let handleButtonTypeAddress = () => {
+        let buttonHouse = $('#btnTypeDetailAddresHouse')
+        let buttonCompany = $('#btnTypeDetailAddressCompany')
+        buttonHouse.text().trim();
+        buttonCompany.text().trim();
+        buttonHouse.click(function () {
+            buttonCompany.removeClass('input-red-boder input-red-text');
+            $(this).addClass('input-red-boder input-red-text')
+        })
+        buttonCompany.click(function () {
+            buttonHouse.removeClass('input-red-boder input-red-text');
+            $(this).addClass('input-red-boder input-red-text')
+        })
     }
     handleGetvalidateform(modalAddress_InputName, itemSubName, modalAddress_InputPhone, itemSubPhone);
     auto_show();
@@ -883,4 +870,5 @@ $(document).ready(() => {
     handle_slide_img();
     handleInputAddress()
     handleInputAddressSpecifically();
+    handleButtonTypeAddress();
 })

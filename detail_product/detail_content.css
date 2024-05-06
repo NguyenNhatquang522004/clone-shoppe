@@ -40,10 +40,12 @@ html {
     --background-modal-address-map: #fff8e4;
     --text-modal-address-map: #f69113;
     --text-background-hover: #f5f5f5;
+    --text-color-placeholders: #bbb;
 }
 
 body {
     background-color: var(--background-content);
+    overflow-y: scroll;
 }
 
 .content_detail-container .content_detail-grid .detail_top {
@@ -485,7 +487,12 @@ body {
     font-size: 1.85rem;
     color: var(--text-black);
     font-weight: 400;
-
+    position: sticky;
+    background-color: var(--background-main);
+    width: 100%;
+    top: 0%;
+    z-index: 3;
+    font-weight: 400;
 }
 
 .modal_anddress-third-body-grid .input-text::first-letter::placeholder {
@@ -514,6 +521,11 @@ body {
     transition: all 0.9s;
 }
 
+.modal_anddress-third-down-grid .animate-placeholders .input-address::placeholder {
+    color: var(--text-color-placeholders);
+}
+
+
 .modal_anddress-third-down-grid .wrap-input-city .input-address {
     height: 4rem;
     font-size: 1.55rem;
@@ -524,6 +536,7 @@ body {
     background-color: transparent;
     opacity: 0.5;
     border: 1px solid rgba(0, 0, 0, .14);
+    transition: border ease-in-out 0.3s;
 
 }
 
@@ -531,12 +544,17 @@ body {
     outline: none;
     opacity: 1;
     border-color: black;
-    transition: all 0.5 s;
+    /* transition: all 0.5s; */
 }
 
 .modal_anddress-third-down-grid .wrap-input-city .input-city {
     padding: 0 1rem;
     opacity: 1;
+
+}
+
+.modal_anddress-third-down-grid .wrap-input-city .input-city::placeholder {
+    color: var(--text-color-placeholders);
 }
 
 .modal_anddress-third-down-grid .wrap-input-city .item-icon {
@@ -565,7 +583,7 @@ body {
 
 .modal_anddress-third-down-grid .wrap-input-address-specifically .input-address-specifically {
     height: 5rem;
-    font-size: 1.3rem !important;
+    font-size: 1.5rem !important;
     font-weight: 400;
     color: #222;
     box-sizing: border-box;
@@ -574,8 +592,13 @@ body {
     resize: none !important;
 }
 
+.modal_anddress-third-down-grid .wrap-input-address-specifically .input-address-specifically::placeholder {
+    color: var(--text-color-placeholders);
+}
+
 .modal_anddress-third-down-grid .wrap-input-address-specifically .input-address-specifically:disabled {
     color: #e7e7e7;
+    background-color: transparent;
 }
 
 .modal_anddress-third-down-grid .wrap-input-address-specifically .input-address-specifically:focus {
@@ -622,6 +645,7 @@ body {
     transform: translateY(-50%);
     left: 12%;
     background-color: var(--background-main);
+    display: none;
 }
 
 .item-placeholders-city {
@@ -650,20 +674,20 @@ body {
 
 .input-red-boder-address-specifically {
     opacity: 1;
-    border-color: red !important;
+    border-color: var(--text-main) !important;
 }
 
 .input-red-outline {
-    outline-color: red;
+    outline-color: var(--text-main);
 }
 
 
 .input-red-boder {
-    border-color: red !important;
+    border-color: var(--text-main) !important;
 }
 
 .input-red-placeholder::placeholder {
-    color: red !important;
+    color: var(--text-main) !important;
 }
 
 .input-red-placeholder-trans {
@@ -671,12 +695,12 @@ body {
 }
 
 .input-red-text {
-    color: red !important;
+    color: var(--text-main) !important;
 }
 
 .item-sub {
     font-size: 1.2rem;
-    color: red;
+    color: var(--text-main);
 
 }
 
@@ -775,4 +799,90 @@ body {
 
 .item-detailAddress-active {
     background-color: var(--text-background-hover) !important;
+}
+
+
+
+#modal_anddress-third .modal-dialog .modal-content .modal-body {
+    max-height: 50rem;
+}
+
+#modal_anddress-third .modal-dialog .modal-content .modal-body::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+.modal_anddress-third-down-container .modal_anddress-third-down-grid .item_address-type {
+    font-size: 1.5rem;
+    color: var(--text-black);
+    font-weight: normal;
+}
+
+.modal_anddress-third-down-container .modal_anddress-third-down-grid .btn_address_detail {
+    color: var(--text-black);
+    background-color: var(--background-main);
+    font-size: 1.4rem;
+    width: 9rem;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .03);
+}
+
+.modal_anddress-third-down-grid .wrap_address-setting {
+    cursor: not-allowed;
+}
+
+.modal_anddress-third-down-grid .wrap_address-setting .item-icon {
+    color: var(--text-white);
+    height: 1.8rem;
+    width: 1.8rem;
+    font-size: 1.4rem;
+    background-color: var(--background-main-orange);
+    text-align: center;
+    opacity: 0.5;
+}
+
+.modal_anddress-third-down-grid .wrap_address-setting .item-text-setting {
+    font-size: 1.4rem;
+    color: var(--text-black);
+    font-weight: 500;
+    opacity: 0.5;
+}
+
+.modal_anddress-third-down-grid .wrap_address-setting .dropdown_setting {
+    top: 0%;
+    left: -0.5%;
+    transform: translateY(-104%);
+    height: 9.1rem;
+    width: 22rem;
+    z-index: 4;
+    background-color: var(--background-main);
+}
+
+.modal_anddress-third-down-grid .wrap_address-setting .dropdown_setting::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 10px 10px 10px;
+    border-color: transparent transparent #fae0bb transparent;
+    z-index: 9999;
+}
+
+.modal_anddress-third-down-grid .wrap_address-setting .dropdown_setting::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 17px 17px 17px 17px;
+    border-color: transparent transparent #ffffff transparent;
+    z-index: 9998;
+    ;
+}
+
+
+
+.dropdown_setting-grid .item-text {
+    font-size: 1.5rem;
+    width: 100%;
 }

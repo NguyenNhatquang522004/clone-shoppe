@@ -22,7 +22,7 @@
     https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js
     "></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
+    <script src="jQuery.scrollSpeed.js"></script>
 </head>
 
 <body>
@@ -948,7 +948,6 @@
                                                                             class="wrap-item-accept d-flex align-items-center justify-content-end">
                                                                             <div
                                                                                 class="item-accept col-4 mt-5 mb-3 py-3 text-uppercase px-5 ">
-
                                                                                 ok
                                                                             </div>
                                                                         </div>
@@ -963,16 +962,17 @@
                                                 </div>
                                                 <div class="modal  modal_anddress-third-down" id="modal_anddress-third">
                                                     <div
-                                                        class="modal-dialog modal_anddress-third-down-dialog modal-dialog-centered">
-                                                        <div class="modal-content modal_anddress-third-down-content">
-                                                            <div class="modal-body modal_anddress-third-down-body">
+                                                        class="modal-dialog modal_anddress-third-down-dialog modal-dialog-centered  modal-dialog modal-dialog-scrollable">
+                                                        <div class="modal-content modal_anddress-third-down-content ">
+                                                            <div class="modal-body modal_anddress-third-down-body pt-0">
                                                                 <div
-                                                                    class="modal_anddress-third-down-container container">
+                                                                    class="modal_anddress-third-down-container container  ">
                                                                     <div class="modal_anddress-third-down-grid row">
-                                                                        <span
-                                                                            class="item-title text-capitalize col-12 px-0 mb-4 mt-2">địa
+                                                                        <div
+                                                                            class="item-title text-capitalize col-12 p-3 ps-1 mb-4">
+                                                                            địa
                                                                             chỉ mới
-                                                                        </span>
+                                                                        </div>
                                                                         <div
                                                                             class="animate-placeholders col-7 position-relative px-0">
                                                                             <input
@@ -988,7 +988,8 @@
                                                                                 lòng điền Họ &
                                                                                 Tên</span>
                                                                             <span class="item-sub"
-                                                                                id="itemSubNameLength">Tên quá ngắn. Yêu
+                                                                                id="itemSubNameLength">Tên quá ngắn.
+                                                                                Yêu
                                                                                 cầu tối thiểu 2 ký tự.
                                                                             </span>
                                                                         </div>
@@ -1021,7 +1022,8 @@
                                                                             <i
                                                                                 class="item-icon item-icon-triangle fa-solid fa-caret-down  position-absolute"></i>
                                                                             <div class="item-placeholders-city  position-absolute "
-                                                                                id="itemSubProvince">Tỉnh/ Thành phố,
+                                                                                id="itemSubProvince">Tỉnh/ Thành
+                                                                                phố,
                                                                                 Quận/Huyện, Phường/Xã
                                                                             </div>
                                                                             <i class="item-icon item-icon-delete fa-solid fa-circle-xmark position-absolute"
@@ -1032,7 +1034,7 @@
                                                                             <div class="dropdown_address position-absolute  w-100 mt-1"
                                                                                 style="z-index:5 ;"
                                                                                 id="dropdownaddress">
-                                                                                <div class="dropdown_address-container container px-0 mx-0  shadow-md border border-1"
+                                                                                <div class="dropdown_address-container container px-0 mx-0  shadow border border-1"
                                                                                     id="dropdownAddresContainer">
                                                                                     <div
                                                                                         class="dropdown_address-grid row   px-0 mx-0">
@@ -1084,9 +1086,10 @@
                                                                             </div>
                                                                             <span class="item-sub"
                                                                                 id="itemSubSpecificallyLength">Số
-                                                                                Địa chỉ quá ngắn. Địa chỉ phải có 5 ký
+                                                                                Địa chỉ quá ngắn. Địa chỉ phải có 5
+                                                                                ký
                                                                                 tự trở lên</span>
-                                                                            <div class="dropdrown_detailAddress position-absolute w-100 mt-2 "
+                                                                            <div class="dropdrown_detailAddress position-absolute w-100 mt-2 rounded-2  shadow  border border-2 "
                                                                                 id="dropdrownDetailAddress">
                                                                                 <div
                                                                                     class="dropdrown_detailAddress-container  container   px-0  ">
@@ -1095,9 +1098,8 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-
                                                                         </div>
-                                                                        <div class="wrap-map col-12 mt-4">
+                                                                        <div class="wrap-map col-12 mt-3">
                                                                             <div class="wrap-map row  ">
                                                                                 <div class="wrap-notification col-12">
                                                                                     <div
@@ -1130,7 +1132,7 @@
                                                                             </div>
 
                                                                         </div>
-                                                                        <div class="wrap-map ">
+                                                                        <div class="wrap_map-google ">
                                                                             <div
                                                                                 class="wrap_map-grid row position-relative">
                                                                                 <iframe class="px-0 "
@@ -1142,11 +1144,58 @@
                                                                                     referrerpolicy="no-referrer-when-downgrade"></iframe>
                                                                             </div>
                                                                         </div>
+                                                                        <span
+                                                                            class="item_address-type text-capitalize mt-3 px-0 col-12 mb-3">
+                                                                            loại địa
+                                                                            chỉ:
+                                                                        </span>
+                                                                        <div class="wrap_button-typeAddress col-12 px-0">
+                                                                            <div
+                                                                                class="wrap_button-typeAddress-gird row mx-0">
+                                                                                <button
+                                                                                class="btn_address_detail  col-2 text-capitalize border border-1 me-3 px-2 py-3 shadow-sm"
+                                                                                type="button" id="btnTypeDetailAddresHouse">
+                                                                                nhà riêng
+                                                                            </button>
+                                                                            <button
+                                                                                class="btn_address_detail  col-2 text-capitalize border border-1 px-2 py-3 shadow-sm"
+                                                                                type="button"
+                                                                                id="btnTypeDetailAddressCompany">
+                                                                                văn phòng
+                                                                            </button>
+                                                                            </div>
+
+                                                                        </div>
+                                                                       
+                                                                        <div class="col-12"></div>
+                                                                        <div
+                                                                            class="wrap_address-setting col-5  px-0 mt-3  mx-0  position-relative">
+                                                                            <i
+                                                                                class="item-icon fa-solid fa-check rounded-2   px-0 py-1"></i>
+                                                                            <span
+                                                                                class="item-text-setting text-capitalize ms-2   px-0 ">
+                                                                                đặt làm địa chỉ mặc định
+                                                                            </span>
+                                                                            <div
+                                                                                class="dropdown_setting position-absolute  border border-1 ">
+                                                                                <div
+                                                                                    class="dropdown_setting-container container">
+                                                                                    <div
+                                                                                        class="dropdown_setting-grid row   ">
+                                                                                        <div
+                                                                                            class="item-text col-12">
+                                                                                            Địa chỉ đầu tiên của bạn
+                                                                                            được cài đặt làm Địa Chỉ Mặc
+                                                                                            Định. Vui lòng thêm địa chỉ
+                                                                                            thứ hai để có thể thay đổi
+                                                                                            cài đặt này.
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
-
-
                                                                 </div>
-
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary"
