@@ -41,6 +41,7 @@ html {
     --text-modal-address-map: #f69113;
     --text-background-hover: #f5f5f5;
     --text-color-placeholders: #bbb;
+    --background-hover-map: #f8f8f8;
 }
 
 body {
@@ -609,20 +610,21 @@ body {
     resize: none !important;
 }
 
+#wrapMap {
+    display: none;
+}
 
-
-
-.modal_anddress-third-down-grid .wrap-notification {
+#wrapMap .wrap-map-gird .wrap-notification {
     background-color: var(--background-modal-address-map);
 }
 
-.wrap-notification .item-text-top {
+#wrapMap .wrap-map-gird .wrap-notification .item-text-top {
     font-size: 1.45rem;
     color: var(--text-modal-address-map);
 
 }
 
-.wrap-notification .item-text-warning {
+#wrapMap .wrap-map-gird .wrap-notification .item-text-warning {
     font-size: 1.29rem;
     font-weight: 400;
     color: var(--text-black);
@@ -649,7 +651,7 @@ body {
 }
 
 .item-placeholders-city {
-    top: 28%;
+    top: 21%;
     font-size: 1.3rem;
     color: #636363;
     transform: translateY(-50%);
@@ -838,6 +840,7 @@ body {
     background-color: var(--background-main-orange);
     text-align: center;
     opacity: 0.5;
+
 }
 
 .modal_anddress-third-down-grid .wrap_address-setting .item-text-setting {
@@ -855,34 +858,131 @@ body {
     width: 22rem;
     z-index: 4;
     background-color: var(--background-main);
-}
+    /* animation: dropdown_notification-has-item-in ease .9s; */
+    display: none;
+    cursor: pointer;
 
-.modal_anddress-third-down-grid .wrap_address-setting .dropdown_setting::before {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 0 10px 10px 10px;
-    border-color: transparent transparent #fae0bb transparent;
-    z-index: 9999;
+
 }
 
 .modal_anddress-third-down-grid .wrap_address-setting .dropdown_setting::after {
     content: "";
     position: absolute;
-    width: 0;
-    height: 0;
+    width: 1.4rem;
+    height: 1.4rem;
+    transform: rotate(45deg);
+    background-color: var(--background-main);
     border-style: solid;
-    border-width: 17px 17px 17px 17px;
-    border-color: transparent transparent #ffffff transparent;
-    z-index: 9998;
-    ;
+    border-color: #dee2e6;
+    border-width: 0 1px 1px 0;
+    bottom: -8.7%;
+    left: 30%;
+    z-index: 3;
 }
 
+@keyframes dropdown_notification-has-item-in {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
 
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
 
 .dropdown_setting-grid .item-text {
     font-size: 1.5rem;
     width: 100%;
+}
+
+.modal_anddress-third-down-grid .wrap_address-setting:hover .dropdown_setting {
+    display: block;
+}
+
+.wrap_map-google .wrap_map-grid .map_veillayer {
+    width: 490px;
+    height: 150px;
+    background-color: rgb(247, 248, 249);
+    cursor: not-allowed;
+}
+
+.wrap_map-google .wrap_map-grid .map_veillayer .map_veillayer-grid {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-60%, -50%);
+}
+
+.wrap_map-google .wrap_map-grid .map_veillayer .map_veillayer-grid .item-buttton {
+    background-color: #fff;
+    color: #ccc;
+    height: 3rem;
+    width: 12rem;
+    font-size: 1.5rem;
+    cursor: not-allowed;
+    display: block;
+}
+
+.wrap_map-google .wrap_map-grid .map_barriercurtain {
+    width: 490px;
+    height: 150px;
+    background-color: transparent;
+    z-index: 1;
+    cursor: pointer;
+    display: none;
+}
+
+#embedGoogle {
+    display: none;
+}
+
+.wrap_map-google .wrap_map-grid #mapBarrierCurtain:hover .map_barriercurtain-inside .item_map_barriercurtain-inside {
+    display: block;
+}
+
+.wrap_map-google .wrap_map-grid #mapBarrierCurtain .map_barriercurtain-inside {
+    height: 100%;
+    width: 100%;
+}
+
+.wrap_map-google .wrap_map-grid #mapBarrierCurtain .map_barriercurtain-inside .item_map_barriercurtain-inside {
+    height: 3rem;
+    width: 10rem;
+    background-color: var(--background-main);
+    font-size: 1.5rem;
+    text-align: center;
+    right: 5%;
+    top: 10%;
+    display: none;
+}
+
+.wrap_map-google .wrap_map-grid #mapBarrierCurtain .map_barriercurtain-inside .item_map_barriercurtain-inside:hover {
+    background-color: var(--background-hover-map);
+}
+
+/* .modal_anddress-third-down-content .modal-footer {
+    background: linear-gradient(hsla(0, 0%, 100%, .7), #fff) !important;
+} */
+.modal_anddress-third-down-content .modal-footer .button {
+    font-size: 1.5rem;
+    border: none;
+    height: 4rem;
+}
+.modal_anddress-third-down-content .modal-footer{
+    height: 8rem;
+    background: linear-gradient(hsla(0, 0%, 100%, .6), #fff);
+}
+.modal_anddress-third-down-content .modal-footer .button_close {
+    background: transparent;
+    color: var(--text-black);
+}
+.modal_anddress-third-down-content .modal-footer .button_close:hover{
+    background-color: var(--text-background-hover);
+}
+.modal_anddress-third-down-content .modal-footer .button_success {
+    background-color: var(--background-main-orange);
+    color: var(--text-white);
 }

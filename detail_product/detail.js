@@ -1,5 +1,6 @@
 
 $(document).ready(() => {
+
     let changeImg = () => {
         $(".products_left .detail_img .detail_img-gird .item-img").each((index, item) => {
             $(item).on("mouseover", (e) => {
@@ -78,12 +79,6 @@ $(document).ready(() => {
         let regex = /^\(\+84\) \d{3} \d{3} \d{3}$/;
         return regex.test(Phone);
     }
-    //    let CountInputAddress = {
-    //         name: 0,
-    //         isTrueName: false,
-    //         phone: 0,
-    //         isTruePhone: false,
-    //     }
     let handleInputPhone = () => {
         value = $('#modalAddress_InputPhone').val();
         let slicevalue = value.trim().slice(1, value.length);
@@ -453,7 +448,7 @@ $(document).ready(() => {
                         return item
                     }
                 })
-
+                CountInputAddress.address = 1;
                 isLoad.Past = [...isLoad.Past, getNameProvince]
                 isLoad.value = { ...isLoad.value, getNameProvince }
                 $('#inputProvince').val('');
@@ -482,6 +477,7 @@ $(document).ready(() => {
                         return item
                     }
                 })
+                CountInputAddress.address = 1;
                 isLoad.Past = [...isLoad.Past, getNameDistrict]
                 isLoad.value = { ...isLoad.value, getNameDistrict }
                 $('#inputProvince').val('')
@@ -509,6 +505,7 @@ $(document).ready(() => {
                         return item
                     }
                 })
+                CountInputAddress.address = 1;
                 isLoad.Past = [...isLoad.Past, getNameWards]
                 isLoad.value = { ...isLoad.value, getNameWards }
                 $('#inputProvince').val('')
@@ -621,7 +618,6 @@ $(document).ready(() => {
             handleShow();
         })
         $(document).on('click', function (event) {
-
             if ($(event.target).closest('#wrapInputCity').length === 0 && $('#inputProvince').val() != '') {
                 $('#itemIconSearch').hide();
                 $('#itemIconDelete').hide();
@@ -642,6 +638,7 @@ $(document).ready(() => {
             }
         });
         $('#inputProvince').on('keyup', function (e) {
+            CountInputAddress.address = 1;
             let value = $(this).val().toLowerCase();
             $('.item-text-Province').filter(function () {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
@@ -665,8 +662,9 @@ $(document).ready(() => {
         name: 0,
         isTrueName: false,
         phone: 0,
-        isTruePhone: false,
         address: 0,
+        isTruePhone: false,
+        DetailAddress: 0,
     }
     let isSuccess = {
         isCity: false,
@@ -681,18 +679,22 @@ $(document).ready(() => {
         value: {},
     }
     let handleMouseoverDisabled_DropDown_DetailAddress = (mainValue, dropdown, itemSub, itemPlaceholder) => {
+        let veillayer = $('#mapVeilLayer');
+        let coverWarning = $('#wrapMap')
+        let coverMap = $('#wrapMapGoogle');
+        let curtainPrevent = $('#mapBarrierCurtain');
+        let embedGoogle = $('#embedGoogle')
         $(document).on('mouseover', function (e) {
-
             if (isLoad.Past.length <= 3 && typeof isLoad.value.getNameProvince === 'undefined' && typeof isLoad.value.getNameDistrict === "undefined" && typeof isLoad.value.getNameWards === 'undefined') {
                 mainValue.prop("disabled", true)
-
+            }
+            if (isLoad.Past.length > 3 || typeof isLoad.value.getNameProvince === 'undefined' || typeof isLoad.value.getNameDistrict === "undefined" || typeof isLoad.value.getNameWards === 'undefined') {
+                mainValue.prop("disabled", true)
             }
             if (isLoad.Past.length > 3 && typeof isLoad.value.getNameProvince != 'undefined' && typeof isLoad.value.getNameDistrict != "undefined" && typeof isLoad.value.getNameWards != 'undefined') {
                 if ($('#inputProvince').val().includes(`${isLoad.value.getNameProvince[0].name} ,${isLoad.value.getNameDistrict[0].name} ,${isLoad.value.getNameWards[0].name}`) === false) {
                     mainValue.prop("disabled", true)
                 }
-
-
             }
             if ($('#inputProvince').val() != "" && typeof isLoad.value.getNameProvince === 'object' && typeof isLoad.value.getNameDistrict === "object" && typeof isLoad.value.getNameWards === 'object' && isLoad.Past.length <= 3) {
                 mainValue.prop("disabled", false)
@@ -702,8 +704,27 @@ $(document).ready(() => {
                 if ($('#inputProvince').val().includes(`${isLoad.value.getNameProvince[0].name} ,${isLoad.value.getNameDistrict[0].name} ,${isLoad.value.getNameWards[0].name}`) === true) {
                     mainValue.prop("disabled", false)
                 }
-
-
+            }
+            if (mainValue.prop('disabled') === false && CountInputAddress.DeatilAddress === 0) {
+                veillayer.show();
+                embedGoogle.hide();
+                coverWarning.hide();
+                curtainPrevent.hide();
+                coverMap.addClass('mt-4')
+            }
+            if (mainValue.prop('disabled') === false && CountInputAddress.DeatilAddress === 1) {
+                coverWarning.show();
+                embedGoogle.show();
+                curtainPrevent.show();
+                veillayer.hide();
+                coverMap.removeClass('mt-4')
+            }
+            if (mainValue.prop('disabled') === true) {
+                veillayer.show();
+                embedGoogle.hide();
+                coverWarning.hide();
+                curtainPrevent.hide();
+                coverMap.addClass('mt-4')
             }
         })
     }
@@ -712,34 +733,34 @@ $(document).ready(() => {
             if ($(e.target).closest('#inputaddressspecifically').length === 0) {
                 dropdown.css('z-index', -1)
                 mainValue.val($.trim(mainValue.val()));
-                if (mainValue.val().length < 5 && mainValue.val().length > 0 && mainValue.prop('disabled') === false && mainValue.val() != '' && CountInputAddress.address === 1) {
+                if (mainValue.val().length < 5 && mainValue.val().length > 0 && mainValue.prop('disabled') === false && mainValue.val() != '' && CountInputAddress.DeatilAddress === 1) {
                     mainValue.addClass('input-red-boder')
                     itemSub.show();
                     itemPlaceholder.addClass(`input-red-text`)
                     itemPlaceholder.show()
 
                 }
-                if (mainValue.val().length > 5 && mainValue.val() != '' && CountInputAddress.address === 1) {
+                if (mainValue.val().length > 5 && mainValue.val() != '' && CountInputAddress.DeatilAddress === 1) {
                     itemPlaceholder.show()
                     itemPlaceholder.removeClass('input-red-text')
                     mainValue.removeClass('input-red-boder input-red-placeholder');
                     itemSub.hide();
 
                 }
-                if (CountInputAddress.address === 0) {
+                if (CountInputAddress.DeatilAddress === 0) {
                     mainValue.removeClass('input-red-boder input-red-text');
                     itemSub.hide();
                     itemPlaceholder.hide()
 
                 }
-                if (CountInputAddress.address === 1 && mainValue.val().length === 0 && mainValue.prop('disabled') === false && mainValue.val() === '') {
+                if (CountInputAddress.DeatilAddress === 1 && mainValue.val().length === 0 && mainValue.prop('disabled') === false && mainValue.val() === '') {
                     mainValue.addClass('input-red-boder input-red-placeholder')
                     itemPlaceholder.removeClass('input-red-text')
                     itemSub.hide();
                     itemPlaceholder.hide()
 
                 }
-                if (CountInputAddress.address === 1 && mainValue.val().length === 0 && mainValue.prop('disabled') === true && mainValue.val() === '') {
+                if (CountInputAddress.DeatilAddress === 1 && mainValue.val().length === 0 && mainValue.prop('disabled') === true && mainValue.val() === '') {
                     mainValue.removeClass('input-red-placeholder')
                 }
             }
@@ -753,7 +774,6 @@ $(document).ready(() => {
     let handleClick_DropDown_DetailAddress = (mainValue, dropdown, itemSub, itemPlaceholder) => {
         mainValue.click(function (e) {
             e.stopPropagation();
-            console.log("123");
             mainValue.removeClass('input-red-boder input-red-placeholder')
             itemPlaceholder.removeClass('input-red-text')
             itemSub.hide();
@@ -771,7 +791,7 @@ $(document).ready(() => {
             let count = 0;
             let min = [];
             itemSub.hide();
-            CountInputAddress.address = 1;
+            CountInputAddress.DeatilAddress = 1;
             let searchValue = $(this).val().trim().toLowerCase();
 
             if (mainValue.val().trim().length > 0) {
@@ -864,6 +884,13 @@ $(document).ready(() => {
             $(this).addClass('input-red-boder input-red-text')
         })
     }
+    let handleClick_Submit_ThirdModal = () => {
+        let buttonClose = $('#buttonCloseThirdModal')
+        let buttonSubmit = $('#buttonSuccessThirdModal')
+        buttonClose.click(function (e) {
+
+        })
+    }
     handleGetvalidateform(modalAddress_InputName, itemSubName, modalAddress_InputPhone, itemSubPhone);
     auto_show();
     handle_modal_transportto();
@@ -871,4 +898,5 @@ $(document).ready(() => {
     handleInputAddress()
     handleInputAddressSpecifically();
     handleButtonTypeAddress();
+    handleClick_Submit_ThirdModal();
 })

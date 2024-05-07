@@ -22,7 +22,6 @@
     https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js
     "></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="jQuery.scrollSpeed.js"></script>
 </head>
 
 <body>
@@ -963,7 +962,7 @@
                                                 <div class="modal  modal_anddress-third-down" id="modal_anddress-third">
                                                     <div
                                                         class="modal-dialog modal_anddress-third-down-dialog modal-dialog-centered  modal-dialog modal-dialog-scrollable">
-                                                        <div class="modal-content modal_anddress-third-down-content ">
+                                                        <div class="modal-content modal_anddress-third-down-content">
                                                             <div class="modal-body modal_anddress-third-down-body pt-0">
                                                                 <div
                                                                     class="modal_anddress-third-down-container container  ">
@@ -976,7 +975,7 @@
                                                                         <div
                                                                             class="animate-placeholders col-7 position-relative px-0">
                                                                             <input
-                                                                                class="input-name  input-address  w-100 px-2 me-5"
+                                                                                class="input-name  input-address  w-100 px-2 me-5 "
                                                                                 id="modalAddress_InputName" type="text"
                                                                                 placeholder="Họ và tên"
                                                                                 autocomplete="off" value="">
@@ -997,7 +996,7 @@
                                                                         <div
                                                                             class="animate-placeholders col-5 position-relative">
                                                                             <input
-                                                                                class="input-phone  input-address     w-100 ms-2 px-2   "
+                                                                                class="input-phone  input-address  w-100 ms-2 px-2 "
                                                                                 id="modalAddress_InputPhone" type="text"
                                                                                 placeholder="Số điện thoại"
                                                                                 autocomplete="off" value="">
@@ -1012,10 +1011,10 @@
 
                                                                         </div>
 
-                                                                        <div class="wrap-input-city position-relative px-0 animate-placeholders-city col-12 "
+                                                                        <div class="wrap-input-city position-relative px-0 animate-placeholders-city col-12  "
                                                                             id="wrapInputCity">
                                                                             <input
-                                                                                class="input-city  input-address    w-100 mt-4 "
+                                                                                class="input-city  input-address    w-100 mt-4 mb-3 "
                                                                                 type="text"
                                                                                 placeholder="Tỉnh/Thành phố, Quận/Huyện, Phường/Xã"
                                                                                 id="inputProvince" autocomplete="off">
@@ -1071,10 +1070,10 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="wrap-input-address-specifically animate-placeholders-specifically  position-relative col-12 px-0"
+                                                                        <div class="wrap-input-address-specifically animate-placeholders-specifically  position-relative col-12 px-0 "
                                                                             id="wrapInputAddressSpecificall">
                                                                             <textarea
-                                                                                class="input-address-specifically input-address mt-4 w-100 p-3 "
+                                                                                class="input-address-specifically input-address  w-100 p-3  mt-4 "
                                                                                 placeholder="Địa chỉ cụ thể" rows="1"
                                                                                 id="inputaddressspecifically"
                                                                                 disabled></textarea>
@@ -1099,8 +1098,8 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="wrap-map col-12 mt-3">
-                                                                            <div class="wrap-map row  ">
+                                                                        <div class="wrap-map col-12 mt-4" id="wrapMap">
+                                                                            <div class="wrap-map-gird row  ">
                                                                                 <div class="wrap-notification col-12">
                                                                                     <div
                                                                                         class="wrap-notification  row ps-2 ">
@@ -1128,20 +1127,44 @@
                                                                                         </span>
                                                                                     </div>
                                                                                 </div>
-
                                                                             </div>
-
                                                                         </div>
-                                                                        <div class="wrap_map-google ">
+                                                                        <div class="wrap_map-google mt-4"
+                                                                            id="wrapMapGoogle">
                                                                             <div
                                                                                 class="wrap_map-grid row position-relative">
-                                                                                <iframe class="px-0 "
+                                                                                <iframe class="px-0" id="embedGoogle"
                                                                                     style="height: 15rem;"
                                                                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d501726.164511863!2d106.0713566870948!3d10.754844324016602!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529292e8d3dd1%3A0xf15f5aad773c112b!2zVGjDoG5oIHBo4buRIEjhu5MgQ2jDrSBNaW5oLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1712331440859!5m2!1svi!2s"
                                                                                     width="600" height="450"
                                                                                     style="border:0;" allowfullscreen=""
                                                                                     loading="lazy"
-                                                                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                                                                    referrerpolicy="no-referrer-when-downgrade">
+                                                                                </iframe>
+                                                                                <div class="map_veillayer  col-12 px-0"
+                                                                                    id="mapVeilLayer">
+                                                                                    <div
+                                                                                        class="map_veillayer-grid px-0">
+                                                                                        <button
+                                                                                            class="item-buttton border border-1 shadow-sm"
+                                                                                            type="button"><i
+                                                                                                class="item-icon fa-solid fa-plus"></i>
+                                                                                            thêm vị trí
+                                                                                        </button>
+
+                                                                                    </div>
+
+                                                                                </div>
+                                                                                <div class="map_barriercurtain position-absolute  col-12 px-0"
+                                                                                    id="mapBarrierCurtain">
+                                                                                    <div
+                                                                                        class="map_barriercurtain-inside position-relative">
+                                                                                        <div
+                                                                                            class="item_map_barriercurtain-inside pt-1 shadow-sm position-absolute">
+                                                                                            xem bản đồ
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                         <span
@@ -1149,24 +1172,26 @@
                                                                             loại địa
                                                                             chỉ:
                                                                         </span>
-                                                                        <div class="wrap_button-typeAddress col-12 px-0">
+                                                                        <div
+                                                                            class="wrap_button-typeAddress col-12 px-0">
                                                                             <div
                                                                                 class="wrap_button-typeAddress-gird row mx-0">
                                                                                 <button
-                                                                                class="btn_address_detail  col-2 text-capitalize border border-1 me-3 px-2 py-3 shadow-sm"
-                                                                                type="button" id="btnTypeDetailAddresHouse">
-                                                                                nhà riêng
-                                                                            </button>
-                                                                            <button
-                                                                                class="btn_address_detail  col-2 text-capitalize border border-1 px-2 py-3 shadow-sm"
-                                                                                type="button"
-                                                                                id="btnTypeDetailAddressCompany">
-                                                                                văn phòng
-                                                                            </button>
+                                                                                    class="btn_address_detail  col-2 text-capitalize border border-1 me-3 px-2 py-3 shadow-sm"
+                                                                                    type="button"
+                                                                                    id="btnTypeDetailAddresHouse">
+                                                                                    nhà riêng
+                                                                                </button>
+                                                                                <button
+                                                                                    class="btn_address_detail  col-2 text-capitalize border border-1 px-2 py-3 shadow-sm"
+                                                                                    type="button"
+                                                                                    id="btnTypeDetailAddressCompany">
+                                                                                    văn phòng
+                                                                                </button>
                                                                             </div>
 
                                                                         </div>
-                                                                       
+
                                                                         <div class="col-12"></div>
                                                                         <div
                                                                             class="wrap_address-setting col-5  px-0 mt-3  mx-0  position-relative">
@@ -1182,8 +1207,7 @@
                                                                                     class="dropdown_setting-container container">
                                                                                     <div
                                                                                         class="dropdown_setting-grid row   ">
-                                                                                        <div
-                                                                                            class="item-text col-12">
+                                                                                        <div class="item-text col-12">
                                                                                             Địa chỉ đầu tiên của bạn
                                                                                             được cài đặt làm Địa Chỉ Mặc
                                                                                             Định. Vui lòng thêm địa chỉ
@@ -1197,11 +1221,16 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary"
-                                                                    data-bs-dismiss="modal">Close</button>
-                                                                <button type="button" class="btn btn-primary">Save
-                                                                    changes</button>
+                                                            <div class="modal-footer row mx-0 border border-0 pe-4">
+
+                                                                <button type="button"
+                                                                    class="button button_close text-capitalize col-3"
+                                                                    id="buttonCloseThirdModal"
+                                                                    data-bs-dismiss="modal">trở lại</button>
+                                                                <button type="button"
+                                                                    class="button button_success text-capitalize col-3 ms-1"
+                                                                    id="buttonSuccessThirdModal">hoàn
+                                                                    thành</button>
                                                             </div>
                                                         </div>
                                                     </div>
