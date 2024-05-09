@@ -869,16 +869,15 @@
                                                 <span class="item-text-info text-capitalize ms-1"><i
                                                         class="item-icon fa-solid fa-truck me-4"></i>vận chuyển
                                                     tới</span>
-                                                <a data-toggle="modal" href="#modal_transportto-address"
-                                                    class="modal_anddress-btn pt-0  ms-2 pb-2 mb-1">
+                                                <a data-toggle="modal" class="modal_anddress-btn pt-0  ms-2 pb-2 mb-1"
+                                                    data-bs-target="#modal_transportto-address"
+                                                    id="openModalAddressFirst">
                                                     <span class="item-text text-capitalize">
                                                         huyện ba vì <i class="item-icon fa-solid fa-angle-down"></i>
                                                     </span>
                                                 </a>
 
-                                                <div class="modal  modal_anddress " id="modal_transportto-address"
-                                                    tabindex="-1" aria-labelledby="modal_transportto-addressLabel"
-                                                    aria-hidden="true">
+                                                <div class="modal  modal_anddress" id="modal_transportto-address">
                                                     <div class="modal-dialog modal_anddress-dialog ">
                                                         <div
                                                             class="modal-content modal_anddress-content border-0 rounded-0">
@@ -889,8 +888,9 @@
                                                                     nhận
                                                                     hàng</span>
                                                                 <button type="button"
-                                                                    class="btn-close modal_anddress-close"
-                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                    class="btn-close modal_anddress-Close"
+                                                                    id="CloseModalAddressFirst" data-bs-dismiss="modal"
+                                                                    aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body modal_anddress-body mt-3  ">
                                                                 <div class="modal_anddress-body-container container ">
@@ -903,7 +903,9 @@
                                                                             class="item-btn ms-4 col-2 text-capitalize  rounded  py-2"
                                                                             type="button" disabled>sử dụng</button>
                                                                         <a data-toggle="modal"
+                                                                            data-bs-target="#modal_transportto-address"
                                                                             href="#modal_anddress-sec"
+                                                                            id="openModalAddressSecond"
                                                                             class="item-text-use-address-present text-capitalize col-6 px-0 mt-4 mb-5 btn  "><i
                                                                                 class="item-icon fa-solid fa-crosshairs me-2"></i>
                                                                             sử
@@ -914,8 +916,9 @@
                                                                             Địa chỉ của tôi
                                                                         </span>
                                                                         <a data-toggle="modal"
+                                                                            id="openModalAddressThird"
+                                                                            data-bs-target="#modal_anddress-third"
                                                                             href="#modal_anddress-third"
-                                                                            id="itembtnaddaddress"
                                                                             class="item-btn-add-address btn text-capitalize col-4 border border-1 rounded py-2 mb-4 px-0">
                                                                             <i class="item-icon fa-solid fa-plus"></i>
                                                                             thêm địa chỉ
@@ -945,8 +948,8 @@
                                                                         </span>
                                                                         <div
                                                                             class="wrap-item-accept d-flex align-items-center justify-content-end">
-                                                                            <div
-                                                                                class="item-accept col-4 mt-5 mb-3 py-3 text-uppercase px-5 ">
+                                                                            <div class="item-accept col-4 mt-5 mb-3 py-3 text-uppercase px-5 "
+                                                                                id="BackModalAddressFirstFromSecond">
                                                                                 ok
                                                                             </div>
                                                                         </div>
@@ -957,7 +960,6 @@
                                                             </div>
                                                         </div>
                                                     </div>
-
                                                 </div>
                                                 <div class="modal  modal_anddress-third-down" id="modal_anddress-third">
                                                     <div
@@ -1179,13 +1181,13 @@
                                                                                 <button
                                                                                     class="btn_address_detail  col-2 text-capitalize border border-1 me-3 px-2 py-3 shadow-sm"
                                                                                     type="button"
-                                                                                    id="btnTypeDetailAddresHouse">
+                                                                                    id="btnTypeDetailAddress">
                                                                                     nhà riêng
                                                                                 </button>
                                                                                 <button
                                                                                     class="btn_address_detail  col-2 text-capitalize border border-1 px-2 py-3 shadow-sm"
                                                                                     type="button"
-                                                                                    id="btnTypeDetailAddressCompany">
+                                                                                    id="btnTypeDetailAddress">
                                                                                     văn phòng
                                                                                 </button>
                                                                             </div>
@@ -1225,7 +1227,7 @@
 
                                                                 <button type="button"
                                                                     class="button button_close text-capitalize col-3"
-                                                                    id="buttonCloseThirdModal"
+                                                                    id="BackModalAddressFirstFromThird"
                                                                     data-bs-dismiss="modal">trở lại</button>
                                                                 <button type="button"
                                                                     class="button button_success text-capitalize col-3 ms-1"

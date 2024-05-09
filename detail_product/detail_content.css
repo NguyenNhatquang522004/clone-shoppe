@@ -432,17 +432,30 @@ body {
 
 }
 
+#openModalAddressFirst {
+    cursor: pointer;
+}
+
 .modal_anddress-body-grid .item-text-use-address-present:focus,
 .item-text-use-address-present:active {
     outline: none !important;
     box-shadow: none;
 }
 
+#CloseModalAddressFirst {
+    font-size: 2rem;
+
+}
+
+#CloseModalAddressFirst:focus {
+    box-shadow: none;
+}
+
 #modal_anddress-sec .modal-dialog {
     width: 28% !important;
-    top: 5%;
+    top: 0%;
     margin: 0 auto;
-    overflow: hidden;
+    width: 45.5rem !important;
 }
 
 .wrap_modal_anddress-sec-body .wrap_modal_anddress-sec-container .wrap_modal_anddress-sec-grid .item-access {
@@ -971,17 +984,21 @@ body {
     border: none;
     height: 4rem;
 }
-.modal_anddress-third-down-content .modal-footer{
+
+.modal_anddress-third-down-content .modal-footer {
     height: 8rem;
     background: linear-gradient(hsla(0, 0%, 100%, .6), #fff);
 }
+
 .modal_anddress-third-down-content .modal-footer .button_close {
     background: transparent;
     color: var(--text-black);
 }
-.modal_anddress-third-down-content .modal-footer .button_close:hover{
+
+.modal_anddress-third-down-content .modal-footer .button_close:hover {
     background-color: var(--text-background-hover);
 }
+
 .modal_anddress-third-down-content .modal-footer .button_success {
     background-color: var(--background-main-orange);
     color: var(--text-white);

@@ -21,47 +21,78 @@ $(document).ready(() => {
         scrollslidecart();
 
     }
-    let setup_ClassName_ModalBackDrop = () => {
-        $('.modal_anddress').on('shown.bs.modal', () => {
-            $('.modal-backdrop').each(function (index) {
-                if (index == 0) {
-                    $(this).addClass('modal_anddress modal_anddress-up background_modal ');
-                }
-                else {
-                    $(this).addClass('modal_anddress modal_anddress-up');
-                }
-            })
+    let handleSetupClassname_ModalAddress = (modalFirst, modalSecond, modalThird, backDrop) => {
+        modalFirst.on('shown.bs.modal', function () {
+            $(`.modal-backdrop`).addClass('modal_anddress modal_anddress-up background_modal');
         })
-        $('#modal_anddress-third').on('shown.bs.modal', () => {
-            $(this).addClass('modal_anddress modal_anddress-down background_modal');
+        modalSecond.on('shown.bs.modal', function () {
+            $(`.modal-backdrop`).addClass('modal_anddress modal_anddress-up');
         })
-        $('#modal_anddress-sec').modal({ backdrop: 'static', keyboard: false })
+        modalThird.on('shown.bs.modal', function () {
+            $(`.modal-backdrop`).addClass('modal_anddress-third background_modal');
+        })
     }
-    let modal_inside_modal_modalanddress = () => {
-        setup_ClassName_ModalBackDrop();
+    let handleClickPreventCloseOutside_ModalAddress = (modalFirst, modalSecond, modalThird) => {
+        modalFirst.modal({ backdrop: 'static', keyboard: false })
+        modalSecond.modal({ backdrop: 'static', keyboard: false })
+        modalThird.modal({ backdrop: 'static', keyboard: false })
+    }
+    let handleNestedFirstAndSecond_ModalAddress = () => {
         $('.modal_anddress').on('shown.bs.modal', function (e) {
             $('.modal_anddress.show').each(function (index) {
                 $(this).css('z-index', 1101 + index * 2);
             });
             $('.modal-backdrop').each(function (index) {
                 $(this).css('z-index', 1101 + index * 2 - 1);
-
             });
 
         });
     }
-
-    let handle_modal_down = () => {
-        $("#itembtnaddaddress").click(() => {
-            $("#modal_anddress-third").modal().show();
-            $("#modal_transportto-address").modal().hide();
-            $("#modal_anddress-sec").modal().hide();
-            $('.modal_anddress.modal-backdrop').modal().hide();
-        });
+    let handleOpenAndClose_ModalAddress = (modalFirst, modalSecond, modalThird, btnOpenModalFirst, btnCloseModalFirst, btnOpenModalSecond, btnOpenModalThird, btnBackModalFirstFromThird, btnBackModalFirstFromSecond) => {
+        btnOpenModalFirst.click(function (e) {
+            e.stopPropagation()
+            modalFirst.modal(`show`);
+        })
+        btnCloseModalFirst.click(function (e) {
+            e.stopPropagation()
+            modalFirst.modal(`hide`);
+        })
+        btnOpenModalSecond.click(function (e) {
+            e.stopPropagation()
+            modalSecond.modal('show')
+        })
+        btnBackModalFirstFromSecond.click(function (e) {
+            e.stopPropagation()
+            modalSecond.modal(`hide`);
+            modalFirst.modal('show')
+        })
+        btnOpenModalThird.click(function (e) {
+            e.stopPropagation()
+            modalFirst.modal('hide');
+            modalSecond.modal(`hide`);
+            modalThird.modal('show')
+        })
+        btnBackModalFirstFromThird.click(function (e) {
+            e.stopPropagation()
+            modalThird.modal(`hide`)
+            modalFirst.modal('show');
+        })
     }
-    let handle_modal_transportto = () => {
-        modal_inside_modal_modalanddress();
-        handle_modal_down();
+    let handleModalAddress = () => {
+        let modalFirst = $('#modal_transportto-address');
+        let modalSecond = $('#modal_anddress-sec');
+        let modalThird = $('#modal_anddress-third');
+        let btnOpenModalFirst = $('#openModalAddressFirst')
+        let btnCloseModalFirst = $('#CloseModalAddressFirst')
+        let btnOpenModalSecond = $('#openModalAddressSecond')
+        let btnBackModalFirstFromSecond = $('#BackModalAddressFirstFromSecond')
+        let btnOpenModalThird = $('#openModalAddressThird')
+        let btnBackModalFirstFromThird = $('#BackModalAddressFirstFromThird')
+        let backDrop = $(`.modal-backdrop`)
+        handleNestedFirstAndSecond_ModalAddress();
+        handleSetupClassname_ModalAddress(modalFirst, modalSecond, modalThird, backDrop);
+        handleClickPreventCloseOutside_ModalAddress(modalFirst, modalSecond, modalThird)
+        handleOpenAndClose_ModalAddress(modalFirst, modalSecond, modalThird, btnOpenModalFirst, btnCloseModalFirst, btnOpenModalSecond, btnOpenModalThird, btnBackModalFirstFromThird, btnBackModalFirstFromSecond)
     }
 
     let auto_show = () => {
@@ -871,32 +902,29 @@ $(document).ready(() => {
         handleAction_Dropdown_DetailAddress(mainValue, dropdown, itemSub, itemPlaceholder);
     }
     let handleButtonTypeAddress = () => {
-        let buttonHouse = $('#btnTypeDetailAddresHouse')
-        let buttonCompany = $('#btnTypeDetailAddressCompany')
-        buttonHouse.text().trim();
-        buttonCompany.text().trim();
-        buttonHouse.click(function () {
-            buttonCompany.removeClass('input-red-boder input-red-text');
-            $(this).addClass('input-red-boder input-red-text')
-        })
-        buttonCompany.click(function () {
-            buttonHouse.removeClass('input-red-boder input-red-text');
-            $(this).addClass('input-red-boder input-red-text')
+        $('.btn_address_detail').click(function (e) {
+            var index = $(this).index();
+            e.stopPropagation();
+            $('.btn_address_detail').removeClass('input-red-boder input-red-text');
+            $($('.btn_address_detail')[index]).addClass('input-red-boder input-red-text')
         })
     }
     let handleClick_Submit_ThirdModal = () => {
         let buttonClose = $('#buttonCloseThirdModal')
         let buttonSubmit = $('#buttonSuccessThirdModal')
+        let modalThird = $('#modal_anddress-third')
+        let modalThirdBackDrop = $('.back-drop')
         buttonClose.click(function (e) {
+            e.stopPropagation()
+            modalThird.modal().hide();
 
         })
     }
     handleGetvalidateform(modalAddress_InputName, itemSubName, modalAddress_InputPhone, itemSubPhone);
-    auto_show();
-    handle_modal_transportto();
+    // auto_show();
     handle_slide_img();
+    handleModalAddress();
     handleInputAddress()
     handleInputAddressSpecifically();
     handleButtonTypeAddress();
-    handleClick_Submit_ThirdModal();
 })
