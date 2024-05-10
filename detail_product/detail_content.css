@@ -532,7 +532,7 @@ body {
     opacity: 1;
     border-color: black;
     box-shadow: inset 0 2px 3px 0 rgba(0, 0, 0, .05);
-    transition: all 0.9s;
+    transition: all 0.2s;
 }
 
 .modal_anddress-third-down-grid .animate-placeholders .input-address::placeholder {
@@ -550,7 +550,7 @@ body {
     background-color: transparent;
     opacity: 0.5;
     border: 1px solid rgba(0, 0, 0, .14);
-    transition: border ease-in-out 0.3s;
+    transition: border ease-in-out 0.2s;
 
 }
 
@@ -573,7 +573,7 @@ body {
 
 .modal_anddress-third-down-grid .wrap-input-city .item-icon {
     font-size: 1.4rem;
-    transform: translateY();
+    transform: translateY(-30%);
     opacity: 0.2;
 }
 
@@ -604,6 +604,7 @@ body {
     outline: none;
     overflow: hidden;
     resize: none !important;
+    background-color: transparent;
 }
 
 .modal_anddress-third-down-grid .wrap-input-address-specifically .input-address-specifically::placeholder {
@@ -613,6 +614,7 @@ body {
 .modal_anddress-third-down-grid .wrap-input-address-specifically .input-address-specifically:disabled {
     color: #e7e7e7;
     background-color: transparent;
+    outline: none;
 }
 
 .modal_anddress-third-down-grid .wrap-input-address-specifically .input-address-specifically:focus {
@@ -621,6 +623,9 @@ body {
     transition: all 0.5s;
     overflow-y: none;
     resize: none !important;
+    border-style: solid !important;
+    border-color: var(--text-black) !important;
+    border-width: 1px !important;
 }
 
 #wrapMap {
@@ -690,49 +695,59 @@ body {
 .input-red-boder-address-specifically {
     opacity: 1;
     border-color: var(--text-main) !important;
+    transition: all 0.2s;
 }
 
 .input-red-outline {
     outline-color: var(--text-main);
+    transition: all 0.2s;
 }
 
 
 .input-red-boder {
     border-color: var(--text-main) !important;
+    transition: all 0.2s;
 }
 
 .input-red-placeholder::placeholder {
     color: var(--text-main) !important;
+    transition: all 0.2s;
 }
 
 .input-red-placeholder-trans {
     color: transparent;
+    transition: all 0.2s;
 }
 
 .input-red-text {
     color: var(--text-main) !important;
+    transition: all 0.2s;
 }
 
 .item-sub {
     font-size: 1.2rem;
     color: var(--text-main);
-
+    transition: all 0.2s;
 }
 
 #itemSubNameLength {
+    transition: all 0.2s;
     display: none;
 }
 
 #itemSubName {
+    transition: all 0.2s;
     display: none;
 }
 
 
 #itemSubPhone {
+    transition: all 0.2s;
     display: none;
 }
 
 #itemSubSpecificallyLength {
+    transition: all 0.2s;
     display: none;
 }
 

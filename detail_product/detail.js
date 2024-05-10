@@ -73,11 +73,25 @@ $(document).ready(() => {
             modalThird.modal('show')
         })
         btnBackModalFirstFromThird.click(function (e) {
-            e.stopPropagation()
+            CountInputAddress.address = 0;
+            CountInputAddress.name = 0;
+            CountInputAddress.phone = 0;
+            CountInputAddress.DetailAddress = 0;
+            CountInputAddress.isTrueName = false;
+            CountInputAddress.isTruePhone = false
+            isSuccess.isCity = false;
+            isSuccess.isDistrict = false;
+            isSuccess.isWards = false;
+            isLoad.isCity = false;
+            isLoad.isDistrict = false;
+            isLoad.isWards = false;
+            isLoad.Past = [];
+            isLoad.value = {};
             modalThird.modal(`hide`)
             modalFirst.modal('show');
         })
     }
+
     let handleModalAddress = () => {
         let modalFirst = $('#modal_transportto-address');
         let modalSecond = $('#modal_anddress-sec');
@@ -96,7 +110,7 @@ $(document).ready(() => {
     }
 
     let auto_show = () => {
-        $('#modal_anddress-third').modal().show();
+        $('#modal_anddress-third').modal('show');
     }
     let checkRexName = (name) => {
         let regex = /^[a-zA-Z ]+$/;
@@ -125,25 +139,27 @@ $(document).ready(() => {
         $('#modalAddress_InputPhone').val(`${successValue}`)
 
     }
-    let handleGetvalidateform = (inputNameId, NameSubId, inputPhoneId, PhonesubId) => {
-        $("#item-placeholders-name").hide();
-        let handleGetvalidateName = () => {
-            $('#modalAddress_InputName').blur(function () {
-                if ($(this).val() === '' && CountInputAddress.name === 0) {
-                    $(this).removeClass('input-red-placeholder input-red-boder');
+    let handleClickOutSideForm_ModalAddress = () => {
+        $(document).on('click', function (e) {
+            const ThisInputName = $('#modalAddress_InputName');
+            const ThisInputPhone = $('#modalAddress_InputPhone');
+            // console.log($('#modal_anddress-third').hasClass('show'));
+            if ($(e.target).closest('#modalAddress_InputName').length === 0 && $(e.target).closest('#BackModalAddressFirstFromThird').length === 0) {
+                if (ThisInputName.val() === '' && CountInputAddress.name === 0) {
+                    ThisInputName.removeClass('input-red-placeholder input-red-boder');
                 }
-                if ($(this).val() === '' && CountInputAddress.name != 0) {
-                    $(this).addClass('input-red-placeholder input-red-boder')
+                if (ThisInputName.val() === '' && CountInputAddress.name != 0) {
+                    ThisInputName.addClass('input-red-placeholder input-red-boder')
                     $('#item-placeholders-name').hide();
                     $('#itemSubName').hide();
                     $('#itemSubNameLength').hide();
                 }
-                if ($(this).val() != "" && checkRexName($(this).val()) != true && CountInputAddress.name != 0) {
-                    $(this).removeClass('input-red-placeholder input-red-boder');
-                    $(this).addClass(`input-red-placeholder input-red-boder input-red-placeholder-trans `);
+                if (ThisInputName.val() != "" && checkRexName(ThisInputName.val()) != true && CountInputAddress.name != 0) {
+                    ThisInputName.removeClass('input-red-placeholder input-red-boder');
+                    ThisInputName.addClass(`input-red-placeholder input-red-boder input-red-placeholder-trans `);
                     $("#item-placeholders-name").show();
                     $("#item-placeholders-name").addClass('input-red-text')
-                    if ($(this).val().length <= 1) {
+                    if (ThisInputName.val().length <= 1) {
                         $('#itemSubName').hide();
                         $('#itemSubNameLength').show();
                     }
@@ -152,15 +168,75 @@ $(document).ready(() => {
                         $('#itemSubName').show();
                     }
                 }
-                if ($(this).val() != "" && checkRexName($(this).val()) === true && CountInputAddress.name != 0) {
-                    $(this).removeClass('input-red-placeholder input-red-boder');
+                if (ThisInputName.val() != "" && checkRexName(ThisInputName.val()) === true && CountInputAddress.name != 0) {
+                    ThisInputName.removeClass('input-red-placeholder input-red-boder');
                     $('#itemSubName').hide();
                     $('#itemSubNameLength').hide();
                     $("#item-placeholders-name").hide();
                     CountInputAddress.isTrueName = true;
                 }
+            }
+            if ($(e.target).closest('#modalAddress_InputPhone').length === 0 && $(e.target).closest('#BackModalAddressFirstFromThird').length === 0) {
+                if (ThisInputPhone.val() === '' && CountInputAddress.phone === 0) {
+                    ThisInputPhone.removeClass('input-red-placeholder input-red-boder');
+                }
+                if (ThisInputPhone.val() === '' && CountInputAddress.phone != 0) {
+                    ThisInputPhone.addClass('input-red-placeholder input-red-boder')
+                    $('#item-placeholders-Phone').hide();
+                    $('#itemSubPhone').hide();
+                }
+                if (ThisInputPhone.val() != '' && CountInputAddress.phone != 0 && checkRexPhoneBasic(ThisInputPhone.val()) != true && checkRexPhone(ThisInputPhone.val()) != true) {
+                    ThisInputPhone.addClass('input-red-placeholder input-red-boder');
+                    $('#item-placeholders-Phone').show();
+                    $('#item-placeholders-Phone').addClass('input-red-text');
+                    $('#itemSubPhone').show();
 
-            })
+                }
+                if (ThisInputPhone.val() != '' && CountInputAddress.phone != 0 && checkRexPhoneBasic(ThisInputPhone.val()) === true || checkRexPhone(ThisInputPhone.val()) === true) {
+                    ThisInputPhone.removeClass('input-red-placeholder input-red-boder');
+                    $('#item-placeholders-Phone').show();
+                    $('#item-placeholders-Phone').removeClass('input-red-text');
+                    $('#itemSubPhone').hide();
+
+                }
+                if (ThisInputPhone.val() != '' && checkRexPhone(ThisInputPhone.val()) === false && checkRexPhoneBasic(ThisInputPhone.val()) === true && CountInputAddress.phone != 0) {
+                    value = $('#modalAddress_InputPhone').val();
+                    let slicevalue = value.trim().slice(1, value.length);
+                    let spaceValue = slicevalue.substr(0, 3) + ' ' +
+                        slicevalue.substr(3, 3) + ' ' +
+                        slicevalue.substr(6, 4);
+                    let areaCode = "(+84)"
+                    let successValue = `${areaCode} ${spaceValue}`;
+                    ThisInputPhone.attr('value', `${successValue}`)
+                    ThisInputPhone.removeClass('input-red-boder input-red-placeholder-trans');
+                    $('#itemSubPhone').hide();
+                    $('#modalAddress_InputPhone').val(``)
+                    $('#modalAddress_InputPhone').val(`${successValue}`)
+                    CountInputAddress.isTruePhone = true;
+                }
+
+            }
+            if ($(e.target).closest('#BackModalAddressFirstFromThird').length != 0 && $(e.target).closest('#modalAddress_InputPhone').length === 0 && $(e.target).closest('#modalAddress_InputName').length === 0) {
+                ThisInputName.removeClass('input-red-placeholder input-red-boder input-red-placeholder-trans')
+                $("#item-placeholders-name").removeClass('input-red-text');
+                $("#item-placeholders-name").hide();
+                $('#itemSubName').hide()
+                $('#itemSubNameLength').hide();
+                ThisInputName.val(``)
+                ThisInputPhone.removeClass('input-red-placeholder input-red-boder')
+                $('#itemSubPhone').hide();
+                $('#item-placeholders-Phone').removeClass('input-red-text');
+                $('#item-placeholders-Phone').hide();
+                ThisInputPhone.val(``)
+            }
+
+        })
+    }
+
+    let handleGetvalidateform = (inputNameId, NameSubId, inputPhoneId, PhonesubId) => {
+        $("#item-placeholders-name").hide();
+        let handleGetvalidateName = () => {
+            handleClickOutSideForm_ModalAddress();
             $('#modalAddress_InputName').click(function () {
                 if ($(this).val() != "") {
                     $(this).removeClass(`input-red-boder input-red-placeholder `)
@@ -193,47 +269,6 @@ $(document).ready(() => {
             })
         }
         let handleGetvalidatePhone = () => {
-
-            $('#modalAddress_InputPhone').blur(function () {
-                if ($(this).val() === '' && CountInputAddress.phone === 0) {
-                    $(this).removeClass('input-red-placeholder input-red-boder');
-                }
-                if ($(this).val() === '' && CountInputAddress.phone != 0) {
-                    $(this).addClass('input-red-placeholder input-red-boder')
-                    $('#item-placeholders-Phone').hide();
-                    $('#itemSubPhone').hide();
-                }
-                if ($(this).val() != '' && CountInputAddress.phone != 0 && checkRexPhoneBasic($(this).val()) != true && checkRexPhone($(this).val()) != true) {
-                    $(this).addClass('input-red-placeholder input-red-boder');
-                    $('#item-placeholders-Phone').show();
-                    $('#item-placeholders-Phone').addClass('input-red-text');
-                    $('#itemSubPhone').show();
-
-                }
-                if ($(this).val() != '' && CountInputAddress.phone != 0 && checkRexPhoneBasic($(this).val()) === true || checkRexPhone($(this).val()) === true) {
-                    $(this).removeClass('input-red-placeholder input-red-boder');
-                    $('#item-placeholders-Phone').show();
-                    $('#item-placeholders-Phone').removeClass('input-red-text');
-                    $('#itemSubPhone').hide();
-
-                }
-                if ($(this).val() != '' && checkRexPhone($(this).val()) === false && checkRexPhoneBasic($(this).val()) === true && CountInputAddress.phone != 0) {
-                    value = $('#modalAddress_InputPhone').val();
-                    let slicevalue = value.trim().slice(1, value.length);
-                    let spaceValue = slicevalue.substr(0, 3) + ' ' +
-                        slicevalue.substr(3, 3) + ' ' +
-                        slicevalue.substr(6, 4);
-                    let areaCode = "(+84)"
-                    let successValue = `${areaCode} ${spaceValue}`;
-                    $(inputPhoneId).attr('value', `${successValue}`)
-                    $(this).removeClass('input-red-boder input-red-placeholder-trans');
-                    $('#itemSubPhone').hide();
-                    $('#modalAddress_InputPhone').val(``)
-                    $('#modalAddress_InputPhone').val(`${successValue}`)
-                    CountInputAddress.isTruePhone = true;
-                }
-
-            })
             $('#modalAddress_InputPhone').click(function () {
                 if ($(this).val() === '') {
                     $(this).removeClass('input-red-placeholder input-red-boder')
@@ -392,9 +427,10 @@ $(document).ready(() => {
     let handleCloseOutside = () => {
         $(document).on('click', function (event) {
             let $target = $(event.target);
-            if (!$target.closest('#wrapItemProvincegird').length && !$target.closest('#inputProvince').length && !$target.closest('#wrapProvincecity').length && !$target.closest('#wrapProvinceDistrict').length && !$target.closest('#wrapProvincewards').length) {
+            if (!$target.closest('#wrapItemProvincegird').length && !$target.closest('#inputProvince').length && !$target.closest('#wrapProvincecity').length && !$target.closest('#wrapProvinceDistrict').length && !$target.closest('#wrapProvincewards').length || $target.closest('#BackModalAddressFirstFromThird').length != 0) {
                 $("#dropdownaddress").hide();
             }
+
         });
     }
 
@@ -493,6 +529,7 @@ $(document).ready(() => {
                 isLoad.isCity = false;
                 isLoad.isDistrict = true;
                 isLoad.isWards = false
+                CountInputAddress.isTrueAddress = false
                 $("#itemSubProvince").removeClass('input-red-text')
                 $("#itemSubProvince").show();
                 $('#itemIconSearch').hide();
@@ -522,6 +559,7 @@ $(document).ready(() => {
                 isLoad.isCity = false;
                 isLoad.isDistrict = false;
                 isLoad.isWards = true
+                CountInputAddress.isTrueAddress = false
                 $("#itemSubProvince").removeClass('input-red-text')
                 $("#itemSubProvince").show();
                 $('#itemIconSearch').hide();
@@ -548,6 +586,7 @@ $(document).ready(() => {
                 isLoad.isCity = false;
                 isLoad.isDistrict = false;
                 isLoad.isWards = false
+                CountInputAddress.isTrueAddress = true;
                 $("#horizoneProvince").css("left", `0%`)
                 $("#horizoneProvince").css('transform', 'translate(0,0)');
                 $("#dropdownaddress").hide();
@@ -643,13 +682,13 @@ $(document).ready(() => {
             isSuccess.isCity = false;
             isSuccess.isDistrict = false;
             isSuccess.isWards = false
-
+            CountInputAddress.isTrueAddress = false;
             $("#horizoneProvince").css("left", `0%`)
             $("#horizoneProvince").css('transform', 'translate(0,0)');
             handleShow();
         })
         $(document).on('click', function (event) {
-            if ($(event.target).closest('#wrapInputCity').length === 0 && $('#inputProvince').val() != '') {
+            if ($(event.target).closest('#wrapInputCity').length === 0 && $('#inputProvince').val() != '' && CountInputAddress.address === 1) {
                 $('#itemIconSearch').hide();
                 $('#itemIconDelete').hide();
                 if (isLoad.Past.length > 3 && typeof isLoad.value.getNameProvince === 'object' && typeof isLoad.value.getNameDistrict === "object" && typeof isLoad.value.getNameWards === 'object') {
@@ -664,8 +703,18 @@ $(document).ready(() => {
 
                     $('#inputProvince').val(`${$('#inputProvince').attr('placeholder')}`)
                 }
-
-
+            }
+            if (CountInputAddress.address === 1 && $('#inputProvince').val() === "" && $(event.target).closest('#wrapInputCity').length === 0) {
+                $('#inputProvince').addClass('input-red-boder')
+            }
+            if ($(event.target).closest('#BackModalAddressFirstFromThird').length != 0) {
+                $('#itemIconSearch').hide();
+                $('#itemIconDelete').hide();
+                $("#itemSubProvince").hide();
+                $('#inputProvince').removeClass('input-red-boder input-red-text')
+                $("#horizoneProvince").css("left", `0%`)
+                $("#horizoneProvince").css('transform', 'translate(0,0)');
+                $('#inputProvince').val(``)
             }
         });
         $('#inputProvince').on('keyup', function (e) {
@@ -689,38 +738,11 @@ $(document).ready(() => {
         handleCloseOutside();
         handleAnimationInputAddress();
     }
-    let CountInputAddress = {
-        name: 0,
-        isTrueName: false,
-        phone: 0,
-        address: 0,
-        isTruePhone: false,
-        DetailAddress: 0,
-    }
-    let isSuccess = {
-        isCity: false,
-        isDistrict: false,
-        isWards: false
-    }
-    let isLoad = {
-        isCity: false,
-        isDistrict: false,
-        isWards: false,
-        Past: [],
-        value: {},
-    }
     let handleMouseoverDisabled_DropDown_DetailAddress = (mainValue, dropdown, itemSub, itemPlaceholder) => {
-        let veillayer = $('#mapVeilLayer');
-        let coverWarning = $('#wrapMap')
-        let coverMap = $('#wrapMapGoogle');
-        let curtainPrevent = $('#mapBarrierCurtain');
-        let embedGoogle = $('#embedGoogle')
         $(document).on('mouseover', function (e) {
             if (isLoad.Past.length <= 3 && typeof isLoad.value.getNameProvince === 'undefined' && typeof isLoad.value.getNameDistrict === "undefined" && typeof isLoad.value.getNameWards === 'undefined') {
                 mainValue.prop("disabled", true)
-            }
-            if (isLoad.Past.length > 3 || typeof isLoad.value.getNameProvince === 'undefined' || typeof isLoad.value.getNameDistrict === "undefined" || typeof isLoad.value.getNameWards === 'undefined') {
-                mainValue.prop("disabled", true)
+
             }
             if (isLoad.Past.length > 3 && typeof isLoad.value.getNameProvince != 'undefined' && typeof isLoad.value.getNameDistrict != "undefined" && typeof isLoad.value.getNameWards != 'undefined') {
                 if ($('#inputProvince').val().includes(`${isLoad.value.getNameProvince[0].name} ,${isLoad.value.getNameDistrict[0].name} ,${isLoad.value.getNameWards[0].name}`) === false) {
@@ -736,27 +758,6 @@ $(document).ready(() => {
                     mainValue.prop("disabled", false)
                 }
             }
-            if (mainValue.prop('disabled') === false && CountInputAddress.DeatilAddress === 0) {
-                veillayer.show();
-                embedGoogle.hide();
-                coverWarning.hide();
-                curtainPrevent.hide();
-                coverMap.addClass('mt-4')
-            }
-            if (mainValue.prop('disabled') === false && CountInputAddress.DeatilAddress === 1) {
-                coverWarning.show();
-                embedGoogle.show();
-                curtainPrevent.show();
-                veillayer.hide();
-                coverMap.removeClass('mt-4')
-            }
-            if (mainValue.prop('disabled') === true) {
-                veillayer.show();
-                embedGoogle.hide();
-                coverWarning.hide();
-                curtainPrevent.hide();
-                coverMap.addClass('mt-4')
-            }
         })
     }
     let handleClickDisabled_DropDown_DetailAddress = (mainValue, dropdown, itemSub, itemPlaceholder) => {
@@ -764,36 +765,51 @@ $(document).ready(() => {
             if ($(e.target).closest('#inputaddressspecifically').length === 0) {
                 dropdown.css('z-index', -1)
                 mainValue.val($.trim(mainValue.val()));
-                if (mainValue.val().length < 5 && mainValue.val().length > 0 && mainValue.prop('disabled') === false && mainValue.val() != '' && CountInputAddress.DeatilAddress === 1) {
+                if (mainValue.val().length < 5 && mainValue.val().length > 0 && mainValue.prop('disabled') === false && mainValue.val() != '' && CountInputAddress.DetailAddress === 1) {
+                    CountInputAddress.isTrueDetailAddress = false
                     mainValue.addClass('input-red-boder')
                     itemSub.show();
                     itemPlaceholder.addClass(`input-red-text`)
                     itemPlaceholder.show()
 
                 }
-                if (mainValue.val().length > 5 && mainValue.val() != '' && CountInputAddress.DeatilAddress === 1) {
+                if (mainValue.val().length > 5 && mainValue.val() != '' && CountInputAddress.DetailAddress === 1) {
+                    CountInputAddress.isTrueDetailAddress = true
                     itemPlaceholder.show()
                     itemPlaceholder.removeClass('input-red-text')
                     mainValue.removeClass('input-red-boder input-red-placeholder');
                     itemSub.hide();
 
                 }
-                if (CountInputAddress.DeatilAddress === 0) {
+                if (CountInputAddress.DetailAddress === 0) {
+                    CountInputAddress.isTrueDetailAddress = false
                     mainValue.removeClass('input-red-boder input-red-text');
                     itemSub.hide();
                     itemPlaceholder.hide()
 
                 }
-                if (CountInputAddress.DeatilAddress === 1 && mainValue.val().length === 0 && mainValue.prop('disabled') === false && mainValue.val() === '') {
+                if (CountInputAddress.DetailAddress === 1 && mainValue.val().length === 0 && mainValue.prop('disabled') === false && mainValue.val() === '') {
+                    CountInputAddress.isTrueDetailAddress = false
                     mainValue.addClass('input-red-boder input-red-placeholder')
                     itemPlaceholder.removeClass('input-red-text')
                     itemSub.hide();
                     itemPlaceholder.hide()
 
                 }
-                if (CountInputAddress.DeatilAddress === 1 && mainValue.val().length === 0 && mainValue.prop('disabled') === true && mainValue.val() === '') {
+                if (CountInputAddress.DetailAddress === 1 && mainValue.val().length === 0 && mainValue.prop('disabled') === true && mainValue.val() === '') {
+                    CountInputAddress.isTrueDetailAddress = false
+                    mainValue.addClass('input-red-boder input-red-placeholder')
                     mainValue.removeClass('input-red-placeholder')
                 }
+
+            }
+            if ($(e.target).closest('#BackModalAddressFirstFromThird').length != 0 && $(e.target).closest('#inputaddressspecifically').length === 0) {
+                mainValue.removeClass('input-red-boder input-red-placeholder')
+                itemSub.hide();
+                itemPlaceholder.removeClass('input-red-text')
+                itemPlaceholder.hide()
+                mainValue.prop('disabled', true)
+                mainValue.val(``)
             }
         })
     }
@@ -804,7 +820,7 @@ $(document).ready(() => {
     }
     let handleClick_DropDown_DetailAddress = (mainValue, dropdown, itemSub, itemPlaceholder) => {
         mainValue.click(function (e) {
-            e.stopPropagation();
+
             mainValue.removeClass('input-red-boder input-red-placeholder')
             itemPlaceholder.removeClass('input-red-text')
             itemSub.hide();
@@ -817,14 +833,17 @@ $(document).ready(() => {
         })
     }
     let handleKeyup_Dropdown_DetailAddress = (mainValue, dropdown, itemSub, itemPlaceholder) => {
+        let veillayer = $('#mapVeilLayer');
+        let coverWarning = $('#wrapMap')
+        let coverMap = $('#wrapMapGoogle');
+        let curtainPrevent = $('#mapBarrierCurtain');
+        let embedGoogle = $('#embedGoogle')
         mainValue.keyup(function (event) {
-            event.stopPropagation();
             let count = 0;
             let min = [];
             itemSub.hide();
-            CountInputAddress.DeatilAddress = 1;
+            CountInputAddress.DetailAddress = 1;
             let searchValue = $(this).val().trim().toLowerCase();
-
             if (mainValue.val().trim().length > 0) {
                 dropdown.addClass('rounded-2  shadow  border border-2 ')
                 dropdown.css('z-index', 3)
@@ -869,7 +888,36 @@ $(document).ready(() => {
             }
             else {
                 itemPlaceholder.hide();
-
+            }
+            if (mainValue.prop('disabled') === true) {
+                CountInputAddress.isTrueDetailAddress = false;
+            }
+            if (mainValue.prop('disabled') === false && mainValue.val().trim().length > 0 && mainValue.val().trim().length <= 5) {
+                CountInputAddress.isTrueDetailAddress = false;
+            }
+            if (mainValue.prop('disabled') === false && mainValue.val().trim().length > 5) {
+                CountInputAddress.isTrueDetailAddress = true;
+            }
+            if (mainValue.prop('disabled') === false && CountInputAddress.DetailAddress === 0) {
+                veillayer.show();
+                embedGoogle.hide();
+                coverWarning.hide();
+                curtainPrevent.hide();
+                coverMap.addClass('mt-4')
+            }
+            if (mainValue.prop('disabled') === false && CountInputAddress.DetailAddress === 1) {
+                coverWarning.show();
+                embedGoogle.show();
+                curtainPrevent.show();
+                veillayer.hide();
+                coverMap.removeClass('mt-4')
+            }
+            if (mainValue.prop('disabled') === true) {
+                veillayer.show();
+                embedGoogle.hide();
+                coverWarning.hide();
+                curtainPrevent.hide();
+                coverMap.addClass('mt-4')
             }
         })
 
@@ -904,22 +952,64 @@ $(document).ready(() => {
     let handleButtonTypeAddress = () => {
         $('.btn_address_detail').click(function (e) {
             var index = $(this).index();
-            e.stopPropagation();
             $('.btn_address_detail').removeClass('input-red-boder input-red-text');
             $($('.btn_address_detail')[index]).addClass('input-red-boder input-red-text')
         })
     }
     let handleClick_Submit_ThirdModal = () => {
-        let buttonClose = $('#buttonCloseThirdModal')
-        let buttonSubmit = $('#buttonSuccessThirdModal')
+        let buttonSubmit = $('#buttonModalThirdSubmit')
         let modalThird = $('#modal_anddress-third')
         let modalThirdBackDrop = $('.back-drop')
-        buttonClose.click(function (e) {
-            e.stopPropagation()
-            modalThird.modal().hide();
-
+        let mainValue = $('#inputaddressspecifically')
+        buttonSubmit.click(function (e) {
+            CountInputAddress.name = 1;
+            CountInputAddress.phone = 1;
+            CountInputAddress.address = 1;
+            CountInputAddress.DetailAddress = 1;
+            if (mainValue.prop('disabled') === true) {
+                CountInputAddress.isTrueDetailAddress = false;
+            }
+            if (mainValue.prop('disabled') === false && mainValue.val().trim().length > 0 && mainValue.val().trim().length <= 5) {
+                CountInputAddress.isTrueDetailAddress = false;
+            }
+            if (mainValue.prop('disabled') === false && mainValue.val().trim().length > 5) {
+                CountInputAddress.isTrueDetailAddress = true;
+            }
+            if (CountInputAddress.isTruePhone === true && CountInputAddress.isTrueName === true && CountInputAddress.isTrueAddress === true && CountInputAddress.isTrueDetailAddress === true) {
+                setTimeout(() => {
+                    alert("nice...")
+                }, 100);
+            }
+            else {
+                setTimeout(() => {
+                    alert("ohhNoo...")
+                }, 100)
+            }
         })
     }
+    let CountInputAddress = {
+        name: 0,
+        isTrueName: false,
+        phone: 0,
+        isTruePhone: false,
+        address: 0,
+        isTrueAddress: false,
+        DetailAddress: 0,
+        isTrueDetailAddress: false,
+    }
+    let isSuccess = {
+        isCity: false,
+        isDistrict: false,
+        isWards: false
+    }
+    let isLoad = {
+        isCity: false,
+        isDistrict: false,
+        isWards: false,
+        Past: [],
+        value: {},
+    }
+
     handleGetvalidateform(modalAddress_InputName, itemSubName, modalAddress_InputPhone, itemSubPhone);
     // auto_show();
     handle_slide_img();
@@ -927,4 +1017,5 @@ $(document).ready(() => {
     handleInputAddress()
     handleInputAddressSpecifically();
     handleButtonTypeAddress();
+    handleClick_Submit_ThirdModal()
 })
