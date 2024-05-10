@@ -18,7 +18,6 @@ $(document).ready(() => {
     let handle_slide_img = () => {
         changeImg();
         scrollslidecart();
-
     }
     let handleSetupClassname_ModalAddress = (modalFirst, modalSecond, modalThird, backDrop) => {
         modalFirst.on('shown.bs.modal', function () {
@@ -110,7 +109,7 @@ $(document).ready(() => {
     }
 
     let auto_show = () => {
-        $('#modal_anddress-third').modal('show');
+        $('#exampleModal').modal('show');
     }
     let checkRexName = (name) => {
         let regex = /^[a-zA-Z ]+$/;
@@ -1030,7 +1029,7 @@ $(document).ready(() => {
     }
 
     handleGetvalidateform(modalAddress_InputName, itemSubName, modalAddress_InputPhone, itemSubPhone);
-    // auto_show();
+    auto_show();
     handle_slide_img();
     handleModalAddress();
     handleInputAddress()
