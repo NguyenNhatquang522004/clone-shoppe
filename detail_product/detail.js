@@ -19,7 +19,7 @@ $(document).ready(() => {
         changeImg();
         scrollslidecart();
     }
-    let handleSetupClassname_ModalAddress = (modalFirst, modalSecond, modalThird, backDrop) => {
+    let handleSetupClassname_ModalAddress = (modalMap, modalFirst, modalSecond, modalThird, backDrop) => {
         modalFirst.on('shown.bs.modal', function () {
             $(`.modal-backdrop`).addClass('modal_anddress modal_anddress-up background_modal');
         })
@@ -29,11 +29,15 @@ $(document).ready(() => {
         modalThird.on('shown.bs.modal', function () {
             $(`.modal-backdrop`).addClass('modal_anddress-third background_modal');
         })
+        modalMap.on('shown.bs.modal', function () {
+            $(`.modal-backdrop`).addClass('modalAddress_Submit background_modal');
+        })
     }
-    let handleClickPreventCloseOutside_ModalAddress = (modalFirst, modalSecond, modalThird) => {
+    let handleClickPreventCloseOutside_ModalAddress = (modalMap, modalFirst, modalSecond, modalThird) => {
         modalFirst.modal({ backdrop: 'static', keyboard: false })
         modalSecond.modal({ backdrop: 'static', keyboard: false })
         modalThird.modal({ backdrop: 'static', keyboard: false })
+        modalMap.modal({ backdrop: 'static', keyboard: false })
     }
     let handleNestedFirstAndSecond_ModalAddress = () => {
         $('.modal_anddress').on('shown.bs.modal', function (e) {
@@ -46,7 +50,7 @@ $(document).ready(() => {
 
         });
     }
-    let handleOpenAndClose_ModalAddress = (modalFirst, modalSecond, modalThird, btnOpenModalFirst, btnCloseModalFirst, btnOpenModalSecond, btnOpenModalThird, btnBackModalFirstFromThird, btnBackModalFirstFromSecond) => {
+    let handleOpenAndClose_ModalAddress = (btnOpenModalMap, btnBackModalThirdFromMap, iconBackModalThirdFromMap, modalMap, modalFirst, modalSecond, modalThird, btnOpenModalFirst, btnCloseModalFirst, btnOpenModalSecond, btnOpenModalThird, btnBackModalFirstFromThird, btnBackModalFirstFromSecond) => {
         btnOpenModalFirst.click(function (e) {
             e.stopPropagation()
             modalFirst.modal(`show`);
@@ -89,27 +93,45 @@ $(document).ready(() => {
             modalThird.modal(`hide`)
             modalFirst.modal('show');
         })
+        iconBackModalThirdFromMap.click(function (e) {
+            e.stopPropagation();
+            modalMap.modal('hide');
+            modalThird.modal('show')
+        })
+        btnBackModalThirdFromMap.click(function (e) {
+            e.stopPropagation();
+            modalMap.modal('hide');
+            modalThird.modal('show')
+        })
+        btnOpenModalMap.click(function (e) {
+            modalThird.modal('hide');
+            modalMap.modal('show');
+        })
     }
 
     let handleModalAddress = () => {
         let modalFirst = $('#modal_transportto-address');
         let modalSecond = $('#modal_anddress-sec');
         let modalThird = $('#modal_anddress-third');
+        let modalMap = $('#ModalAddressMap')
         let btnOpenModalFirst = $('#openModalAddressFirst')
         let btnCloseModalFirst = $('#CloseModalAddressFirst')
         let btnOpenModalSecond = $('#openModalAddressSecond')
         let btnBackModalFirstFromSecond = $('#BackModalAddressFirstFromSecond')
         let btnOpenModalThird = $('#openModalAddressThird')
         let btnBackModalFirstFromThird = $('#BackModalAddressFirstFromThird')
+        let btnOpenModalMap = $('#mapBarrierCurtain');
+        let iconBackModalThirdFromMap = $('#BackModalAddressThirdFromMap_Icon')
+        let btnBackModalThirdFromMap = $('#BackModalAddressThirdFromMap_Button')
         let backDrop = $(`.modal-backdrop`)
         handleNestedFirstAndSecond_ModalAddress();
-        handleSetupClassname_ModalAddress(modalFirst, modalSecond, modalThird, backDrop);
-        handleClickPreventCloseOutside_ModalAddress(modalFirst, modalSecond, modalThird)
-        handleOpenAndClose_ModalAddress(modalFirst, modalSecond, modalThird, btnOpenModalFirst, btnCloseModalFirst, btnOpenModalSecond, btnOpenModalThird, btnBackModalFirstFromThird, btnBackModalFirstFromSecond)
+        handleSetupClassname_ModalAddress(modalMap, modalFirst, modalSecond, modalThird, backDrop);
+        handleClickPreventCloseOutside_ModalAddress(modalMap, modalFirst, modalSecond, modalThird)
+        handleOpenAndClose_ModalAddress(btnOpenModalMap, btnBackModalThirdFromMap, iconBackModalThirdFromMap, modalMap, modalFirst, modalSecond, modalThird, btnOpenModalFirst, btnCloseModalFirst, btnOpenModalSecond, btnOpenModalThird, btnBackModalFirstFromThird, btnBackModalFirstFromSecond)
     }
 
     let auto_show = () => {
-        $('#exampleModal').modal('show');
+        $('#modal_anddress-third').modal('show');
     }
     let checkRexName = (name) => {
         let regex = /^[a-zA-Z ]+$/;
@@ -705,6 +727,7 @@ $(document).ready(() => {
                 }
             }
             if ($(event.target).closest('#BackModalAddressFirstFromThird').length != 0) {
+                $("#dropdownaddress").hide()
                 $('#itemIconSearch').hide();
                 $('#itemIconDelete').hide();
                 $("#itemSubProvince").hide();
@@ -832,6 +855,7 @@ $(document).ready(() => {
                 }
             }
             if ($(e.target).closest('#BackModalAddressFirstFromThird').length != 0) {
+                console.log("1");
                 mainValue.removeClass('input-red-boder input-red-placeholder')
                 itemSub.hide();
                 itemPlaceholder.removeClass('input-red-text')
@@ -850,6 +874,8 @@ $(document).ready(() => {
     let handleClick_DropDown_DetailAddress = (mainValue, dropdown, itemSub, itemPlaceholder) => {
         mainValue.click(function (e) {
 
+            $(".modal_anddress-third-down-body").scrollTop(mainValue.offset().top);
+           
             mainValue.removeClass('input-red-boder input-red-placeholder')
             itemPlaceholder.removeClass('input-red-text')
             itemSub.hide();
@@ -1026,6 +1052,7 @@ $(document).ready(() => {
         isWards: false,
         Past: [],
         value: {},
+        
     }
 
     handleGetvalidateform(modalAddress_InputName, itemSubName, modalAddress_InputPhone, itemSubPhone);

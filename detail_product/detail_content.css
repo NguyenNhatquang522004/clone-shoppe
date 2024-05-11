@@ -507,6 +507,7 @@ body {
     top: 0%;
     z-index: 3;
     font-weight: 400;
+    height: 5rem;
 }
 
 .modal_anddress-third-body-grid .input-text::first-letter::placeholder {
@@ -1017,4 +1018,52 @@ body {
 .modal_anddress-third-down-content .modal-footer .button_success {
     background-color: var(--background-main-orange);
     color: var(--text-white);
+}
+
+#ModalAddressMap .modalAddress_Wrap-Map-dialog .modalAddress_Wrap-Map-content {
+    background-color: var(--background-main);
+}
+
+.modalAddress_Wrap-Map-header-gird .item-icon-back {
+    font-size: 2.2rem;
+    color: var(--text-grey);
+    display: inline-block;
+    height: 2rem;
+    width: 2rem;
+    cursor: pointer;
+}
+
+.modalAddress_Wrap-Map-header-gird .wrap-item-text .item-notify {
+    font-size: 2rem;
+    color: var(--text-black);
+}
+
+.modalAddress_Wrap-Map-header-gird .wrap-item-text .item-text-FromDetailAddress {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--text-grey);
+}
+
+.modalAddress_Wrap-Map-content .modalAddress_Wrap-Map-footer .button {
+    font-size: 1.5rem;
+    border: none;
+    height: 4rem;
+}
+
+.modalAddress_Wrap-Map-content .modalAddress_Wrap-Map-footer .button_close-map {
+    background: transparent;
+    color: var(--text-black);
+}
+
+.modalAddress_Wrap-Map-content .modalAddress_Wrap-Map-footer .button_close-map:hover {
+    background-color: var(--text-background-hover);
+}
+
+.modalAddress_Wrap-Map-content .modalAddress_Wrap-Map-footer .button_open-map {
+    background-color: var(--background-main-orange);
+    color: var(--text-white);
+}
+
+#openModalAddressThird:focus {
+    box-shadow: none;
 }

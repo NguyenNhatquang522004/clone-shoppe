@@ -970,7 +970,7 @@
                                                                     class="modal_anddress-third-down-container container  ">
                                                                     <div class="modal_anddress-third-down-grid row">
                                                                         <div
-                                                                            class="item-title text-capitalize col-12 p-3 ps-1 mb-4">
+                                                                            class="item-title text-capitalize col-12 pt-3">
                                                                             địa
                                                                             chỉ mới
                                                                         </div>
@@ -1158,12 +1158,12 @@
 
                                                                                 </div>
                                                                                 <div class="map_barriercurtain position-absolute  col-12 px-0"
-                                                                                    id="mapBarrierCurtain">
+                                                                                    id="mapBarrierCurtain"
+                                                                                    data-bs-target="#ModalAddressMap">
                                                                                     <div
                                                                                         class="map_barriercurtain-inside position-relative">
-                                                                                        <div class="item_map_barriercurtain-inside pt-1 shadow-sm position-absolute"
-                                                                                            data-bs-toggle="modal"
-                                                                                            data-bs-target="#exampleModal">
+                                                                                        <div
+                                                                                            class="item_map_barriercurtain-inside pt-1 shadow-sm position-absolute">
                                                                                             xem bản đồ
                                                                                         </div>
                                                                                     </div>
@@ -1237,22 +1237,62 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="modal modalAddress_Wrap-Map" id="exampleModal">
+                                                <div class="modal modalAddress_Wrap-Map fade" id="ModalAddressMap">
                                                     <div
-                                                        class="modal-dialog modalAddress_Wrap-Map-dialog modal-dialog-centered">
+                                                        class="modal-dialog modalAddress_Wrap-Map-dialog modal-dialog-centered modal-lg">
                                                         <div class="modal-content modalAddress_Wrap-Map-content">
-                                                            <div class="modal-header modalAddress_Wrap-Map-header">
-                                                                <!-- <button type="button" class="btn-close"
-                                                                    data-bs-dismiss="modal" aria-label="Close"></button> -->
+                                                            <div
+                                                                class="modal-header modalAddress_Wrap-Map-header border-0 py-4">
+                                                                <div
+                                                                    class="modalAddress_Wrap-Map-header-container container  ">
+                                                                    <div
+                                                                        class="modalAddress_Wrap-Map-header-gird row d-flex align-items-center justify-content-start">
+                                                                        <i class="item-icon-back fa-solid fa-arrow-left-long col-1 "
+                                                                            id="BackModalAddressThirdFromMap_Icon"></i>
+                                                                        <div class="wrap-item-text col-11 ms-3">
+                                                                            <span
+                                                                                class="item-notify text-capitalize">sửa
+                                                                                vị trí
+                                                                            </span>
+                                                                            <div class="item-text-FromDetailAddress">
+                                                                                Lorem ipsum dolor sit amet consectetur
+                                                                                adipisicing elit. Excepturi dolor alias
+                                                                                quidem ut esse iusto ex architecto,
+                                                                                commodi veritatis consectetur! Rem quasi
+                                                                                numquam ullam non quos nesciunt quidem
+                                                                                similique fugiat!
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                            <div class="modal-body modalAddress_Wrap-Map-body">
-                                                                ...
+                                                            <div
+                                                                class="modal-body modalAddress_Wrap-Map-body px-0 py-0">
+                                                                <div
+                                                                    class="modalAddress_Wrap-Map-body-container container px-0 ">
+                                                                    <div
+                                                                        class="modalAddress_Wrap-Map-body-grid row mx-0 px-0">
+                                                                        <iframe class="px-0" id=""
+                                                                            style="height: 50rem;"
+                                                                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d501726.164511863!2d106.0713566870948!3d10.754844324016602!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529292e8d3dd1%3A0xf15f5aad773c112b!2zVGjDoG5oIHBo4buRIEjhu5MgQ2jDrSBNaW5oLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1712331440859!5m2!1svi!2s"
+                                                                            width="600" height="450" style="border:0;"
+                                                                            allowfullscreen="" loading="lazy"
+                                                                            referrerpolicy="no-referrer-when-downgrade">
+                                                                        </iframe>
+                                                                    </div>
+                                                                </div>
+
                                                             </div>
-                                                            <div class="modal-footer modalAddress_Wrap-Map-footer">
-                                                                <button type="button" class="btn btn-secondary"
-                                                                    data-bs-dismiss="modal">Close</button>
-                                                                <button type="button" class="btn btn-primary">Save
-                                                                    changes</button>
+                                                            <div
+                                                                class="modal-footer modalAddress_Wrap-Map-footer border-0 py-4 pb-5">
+                                                                <button type="button"
+                                                                    class="button button_close-map col-2 text-capitalize"
+                                                                    id="BackModalAddressThirdFromMap_Button">trở
+                                                                    lại</button>
+                                                                <button type="button"
+                                                                    class="button button_open-map  col-2 text-capitalize me-4"
+                                                                    data-bs-target="">
+                                                                    đồng ý</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1281,7 +1321,7 @@
     <script src="./detail.js">
 
     </script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
         </script>
