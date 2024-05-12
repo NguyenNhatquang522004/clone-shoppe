@@ -146,6 +146,7 @@ $(document).ready(() => {
             }, 10);
             modalSubmitMap.modal('hide');
         })
+        handleClick_Submit_ThirdModal()
     }
     let handleModalAddress = () => {
         let modalFirst = $('#modal_transportto-address');
@@ -167,6 +168,7 @@ $(document).ready(() => {
         let btnBackModalMapAndSubmitMap = $('#BackModalAddressMapAndSubmit')
         let modalAddressNestedFirstAndSecond = $('.ModalNestedFirst')
         let modalAddressNestedMapAndSubmitMap = $('.ModalAddressNestedMap')
+        let btnSubmitModalAddressFirst = $('#BtnSubmitModalAddressFirst')
         let backDrop = $(`.modal-backdrop`)
         handleSetupClassname_ModalAddress(modalSubmitMap, modalMap, modalFirst, modalSecond, modalThird, backDrop);
         handleNested_ModalAddress(modalAddressNestedFirstAndSecond, modalAddressNestedMapAndSubmitMap);
@@ -1081,7 +1083,7 @@ $(document).ready(() => {
         let ListProvince = await getData("../province.json");
         girdDropDown.empty().append(ListProvince.data.data.map(item => `<div class="modalAddressFirst_dropdown-item col-12 py-2"id='${item.id}'>${item.name}</div>`))
     }
-    let handleClickItem_DropDown_ModalAddressFirst = async (girdDropDown, item, inputSearch) => {
+    let handleClickItem_DropDown_ModalAddressFirst = async (girdDropDown, inputSearch, btnSubmitModalAddressFirst) => {
         let ListProvince = await getData("../province.json");
         let value = null;
         girdDropDown.on('click', `.modalAddressFirst_dropdown-item`, function () {
@@ -1093,12 +1095,17 @@ $(document).ready(() => {
             })
             inputSearch.val('')
             inputSearch.val(`${value[0].name}`)
+            btnSubmitModalAddressFirst.prop('disabled', false)
             GlobalTransferValue.historyValueSearchModalAddressFirst = [...GlobalTransferValue.historyValueSearchModalAddressFirst, value]
         })
+    }
+    function hasWhiteSpace(valueInput) {
+        return valueInput.includes(' ');
     }
     let handleSearchItem_DropDown_ModalAddressFirst = async (inputSearch, dropdown, modalAddressDialog) => {
         let ListProvince = await getData("../province.json");
         let count = 0
+        let historyCount = []
         let formatCheckSpecialCharacters = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
         let formatCheckNumber = /^[0-9]+$/;
         inputSearch.keyup(function () {
@@ -1121,14 +1128,26 @@ $(document).ready(() => {
             if (inputSearch.val().trim().length === 0 || formatCheckSpecialCharacters.test(inputSearch.val().trim()) || formatCheckNumber.test(inputSearch.val().trim())) {
                 count = 0
             }
-            if (count > 0) {
+            // let checkWhiteSpace = hasWhiteSpace(inputSearch.val().trim()) ? ++count : count
+            // console.log(checkWhiteSpace);
+            historyCount = [...historyCount, count]
+            if (historyCount.length === 1 && historyCount[0] > 0) {
                 modalAddressDialog.css('overflow-y', 'auto')
                 dropdown.addClass("border border-2 shadow-lg mt-1 rounded-2")
             }
-            else {
+            if (historyCount.length === 1 && historyCount[0] === 0) {
+                modalAddressDialog.css('overflow-y', 'auto')
+                dropdown.removeClass("border border-2 shadow-lg mt-1 rounded-2")
+            }
+            if (historyCount[historyCount.length - 2] != historyCount[historyCount.length - 1] && historyCount.length > 1) {
+                modalAddressDialog.css('overflow-y', 'auto')
+                dropdown.addClass("border border-2 shadow-lg mt-1 rounded-2")
+            }
+            if (historyCount[historyCount.length - 2] === historyCount[historyCount.length - 1] && historyCount.length > 1) {
                 modalAddressDialog.css('overflow-y', 'none')
                 dropdown.removeClass("border border-2 shadow-lg mt-1 rounded-2")
             }
+            console.log(historyCount);
         })
     }
     let handleModalAddressFirst = () => {
@@ -1138,8 +1157,9 @@ $(document).ready(() => {
         let item = $('.modalAddressFirst_dropdown-item');
         let dropdown = $('#modalAddressFirstDropDown')
         let modalAddressDialog = $('#modalAnddressDialog')
+        let btnSubmitModalAddressFirst = $('#BtnSubmitModalAddressFirst');
         modalAddressDialog.css('overflow', 'hidden')
-        handleClickItem_DropDown_ModalAddressFirst(girdDropDown, item, inputSearch)
+        handleClickItem_DropDown_ModalAddressFirst(girdDropDown, item, inputSearch, btnSubmitModalAddressFirst)
         handleShow_DropDown_ModalAddressFirst(girdDropDown)
         handleSearchItem_DropDown_ModalAddressFirst(inputSearch, dropdown, modalAddressDialog);
     }
@@ -1182,6 +1202,5 @@ $(document).ready(() => {
     handleInputAddress()
     handleInputAddressSpecifically();
     handleButtonTypeAddress();
-    handleClick_Submit_ThirdModal()
     handleModalAddressFirst()
 })
