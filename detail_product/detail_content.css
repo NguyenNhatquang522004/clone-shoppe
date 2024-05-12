@@ -367,7 +367,6 @@ body {
 
 .wrap-introduce .wrap_introduce-gird .wrap-transportto .modal_anddress .modal_anddress-dialog {
     top: 30%;
-    overflow-y: auto;
     background-color: var(--background-main) !important;
 }
 
@@ -1119,7 +1118,6 @@ body {
     background-color: var(--background-main);
     width: 33.6rem;
     max-height: 100rem;
-
 }
 
 .modalAddressFirst_dropdown-gird .modalAddressFirst_dropdown-item {
@@ -1137,4 +1135,5 @@ body {
 }
 #modalAddressFirstDropDown{
     z-index: -1;
+    cursor: pointer;
 }

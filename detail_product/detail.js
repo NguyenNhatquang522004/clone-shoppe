@@ -1018,7 +1018,7 @@ $(document).ready(() => {
     }
     let handleAction_Dropdown_DetailAddress = async (mainValue, dropdown, itemSub, itemPlaceholder) => {
         let DataDetailAddress = await getData('../province.json');
-        $('#dropdrownDetailAddressGird').off('click').on('click', `.item-detailAddress`, function (e) {
+        $('#dropdrownDetailAddressGird').on('click', `.item-detailAddress`, function (e) {
             let position = $(this).prop('id');
             let valuesDetailAddress = DataDetailAddress.data.data.filter((item) => {
                 if (item.id === Number(position)) {
@@ -1077,6 +1077,72 @@ $(document).ready(() => {
         $('#itemTextFromDetailAddress').remove();
         $(`#wrapItemTextModalAddress`).append(`<div class="item-text-FromDetailAddress" id="itemTextFromDetailAddress">${GlobalTransferValue.historyDetailAddress[GlobalTransferValue.historyDetailAddress.length - 1]}</div>`)
     }
+    let handleShow_DropDown_ModalAddressFirst = async (girdDropDown) => {
+        let ListProvince = await getData("../province.json");
+        girdDropDown.empty().append(ListProvince.data.data.map(item => `<div class="modalAddressFirst_dropdown-item col-12 py-2"id='${item.id}'>${item.name}</div>`))
+    }
+    let handleClickItem_DropDown_ModalAddressFirst = async (girdDropDown, item, inputSearch) => {
+        let ListProvince = await getData("../province.json");
+        let value = null;
+        girdDropDown.on('click', `.modalAddressFirst_dropdown-item`, function () {
+            let position = $(this).prop('id')
+            value = ListProvince.data.data.filter((item) => {
+                if (item.id === Number(position)) {
+                    return item
+                }
+            })
+            inputSearch.val('')
+            inputSearch.val(`${value[0].name}`)
+            GlobalTransferValue.historyValueSearchModalAddressFirst = [...GlobalTransferValue.historyValueSearchModalAddressFirst, value]
+        })
+    }
+    let handleSearchItem_DropDown_ModalAddressFirst = async (inputSearch, dropdown, modalAddressDialog) => {
+        let ListProvince = await getData("../province.json");
+        let count = 0
+        let formatCheckSpecialCharacters = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+        let formatCheckNumber = /^[0-9]+$/;
+        inputSearch.keyup(function () {
+            modalAddressDialog.css('overflow', 'hidden')
+            let valueInput = $(this).val().toLowerCase();
+            $('#ModalAddressFirstDropdownGird .modalAddressFirst_dropdown-item').filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(valueInput) > -1)
+            })
+            if (inputSearch.val().trim().length > 0) {
+                dropdown.css('z-index', 3)
+            }
+            if (inputSearch.val().trim().length === 0) {
+                dropdown.css('z-index', -1)
+            }
+            $('#ModalAddressFirstDropdownGird .modalAddressFirst_dropdown-item').each(function () {
+                if ($(this).css('display') === 'block') {
+                    ++count;
+                }
+            })
+            if (inputSearch.val().trim().length === 0 || formatCheckSpecialCharacters.test(inputSearch.val().trim()) || formatCheckNumber.test(inputSearch.val().trim())) {
+                count = 0
+            }
+            if (count > 0) {
+                modalAddressDialog.css('overflow-y', 'auto')
+                dropdown.addClass("border border-2 shadow-lg mt-1 rounded-2")
+            }
+            else {
+                modalAddressDialog.css('overflow-y', 'none')
+                dropdown.removeClass("border border-2 shadow-lg mt-1 rounded-2")
+            }
+        })
+    }
+    let handleModalAddressFirst = () => {
+        let inputSearch = $('#SearchModalAddressFirst');
+        let btnSubmit = $('#BtnSubmitModalAddressFirst');
+        let girdDropDown = $('#ModalAddressFirstDropdownGird')
+        let item = $('.modalAddressFirst_dropdown-item');
+        let dropdown = $('#modalAddressFirstDropDown')
+        let modalAddressDialog = $('#modalAnddressDialog')
+        modalAddressDialog.css('overflow', 'hidden')
+        handleClickItem_DropDown_ModalAddressFirst(girdDropDown, item, inputSearch)
+        handleShow_DropDown_ModalAddressFirst(girdDropDown)
+        handleSearchItem_DropDown_ModalAddressFirst(inputSearch, dropdown, modalAddressDialog);
+    }
     let CountInputAddress = {
         name: 0,
         isTrueName: false,
@@ -1104,49 +1170,11 @@ $(document).ready(() => {
     }
     let GlobalTransferValue = {
         historyDetailAddress: [],
+        historyValueSearchModalAddressFirst: [],
     }
     let auto_show = () => {
         $('#modal_transportto-address').modal('show');
     }
-    let handleShow_DropDown_ModalAddressFirst = async (girdDropDown) => {
-        let ListProvince = await getData("../province.json");
-        girdDropDown.empty().append(ListProvince.data.data.map(item => `<div class="modalAddressFirst_dropdown-item col-12 py-2"id='${item.id}'>${item.name}</div>`))
-    }
-    let handleSearchItem_ModalAddressFirst = async (inputSearch, dropdown) => {
-        let ListProvince = await getData("../province.json");
-        let count = 0
-        inputSearch.keyup(function () {
-            let valueInput = $(this).val().toLowerCase();
-            $('#ModalAddressFirstDropdownGird .modalAddressFirst_dropdown-item').filter(function () {
-                $(this).toggle($(this).text().toLowerCase().indexOf(valueInput) > -1)
-            })
-            if (inputSearch.val().trim().length > 0) {
-                dropdown.css('z-index', 3)
-            }
-            if (inputSearch.val().trim().length === 0) {
-                dropdown.css('z-index', -1)
-            }
-            $('#ModalAddressFirstDropdownGird .modalAddressFirst_dropdown-item').each(function () {
-                if ($(this).css('display') === 'block') {
-                    ++count; 
-                }
-            })
-            if (inputSearch.val().trim().length === 0) {
-                count = 0
-            }
-           
-        })
-    }
-    let handleModalAddressFirst = () => {
-        let inputSearch = $('#SearchModalAddressFirst');
-        let btnSubmit = $('#BtnSubmitModalAddressFirst');
-        let girdDropDown = $('#ModalAddressFirstDropdownGird')
-        let item = $('.modalAddressFirst_dropdown-item');
-        let dropdown = $('#modalAddressFirstDropDown')
-        handleShow_DropDown_ModalAddressFirst(girdDropDown)
-        handleSearchItem_ModalAddressFirst(inputSearch, dropdown);
-    }
-
     handleGetvalidateform(modalAddress_InputName, itemSubName, modalAddress_InputPhone, itemSubPhone);
     auto_show();
     handle_slide_img();
