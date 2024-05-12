@@ -19,38 +19,60 @@ $(document).ready(() => {
         changeImg();
         scrollslidecart();
     }
-    let handleSetupClassname_ModalAddress = (modalMap, modalFirst, modalSecond, modalThird, backDrop) => {
+    let handleSetupClassname_ModalAddress = (modalSubmitMap, modalMap, modalFirst, modalSecond, modalThird, backDrop) => {
         modalFirst.on('shown.bs.modal', function () {
-            $(`.modal-backdrop`).addClass('modal_anddress modal_anddress-up background_modal');
+            $(`.modal-backdrop`).addClass('ModalBackDropNestedFirst BackDropAndgroundModal ');
         })
         modalSecond.on('shown.bs.modal', function () {
-            $(`.modal-backdrop`).addClass('modal_anddress modal_anddress-up');
+            $('.modal-backdrop').each(function (index) {
+                if (index === 1) {
+                    $(this).addClass('ModalBackDropNestedFirst ');
+                }
+            })
         })
         modalThird.on('shown.bs.modal', function () {
-            $(`.modal-backdrop`).addClass('modal_anddress-third background_modal');
+            $(`.modal-backdrop`).addClass('modal_anddress-thirdwerwer BackDropAndgroundModal');
         })
         modalMap.on('shown.bs.modal', function () {
-            $(`.modal-backdrop`).addClass('modalAddress_Submit background_modal');
+            $(`.modal-backdrop`).addClass('ModalBackDropNestedMap BackDropAndgroundModal');
+        })
+        modalSubmitMap.on('shown.bs.modal', function () {
+            $('.modal-backdrop').each(function (index) {
+                if (index === 1) {
+                    $(this).addClass('ModalBackDropNestedMap');
+                }
+            })
         })
     }
-    let handleClickPreventCloseOutside_ModalAddress = (modalMap, modalFirst, modalSecond, modalThird) => {
+    let handleClickPreventCloseOutside_ModalAddress = (modalSubmitMap, modalMap, modalFirst, modalSecond, modalThird) => {
         modalFirst.modal({ backdrop: 'static', keyboard: false })
         modalSecond.modal({ backdrop: 'static', keyboard: false })
         modalThird.modal({ backdrop: 'static', keyboard: false })
         modalMap.modal({ backdrop: 'static', keyboard: false })
+        modalSubmitMap.modal({ backdrop: 'static', keyboard: false })
+
     }
-    let handleNestedFirstAndSecond_ModalAddress = () => {
-        $('.modal_anddress').on('shown.bs.modal', function (e) {
-            $('.modal_anddress.show').each(function (index) {
+    let handleNested_ModalAddress = (modalAddressNestedFirstAndSecond, modalAddressNestedMapAndSubmitMap) => {
+        modalAddressNestedFirstAndSecond.on('shown.bs.modal', function (e) {
+            $('.ModalNestedFirst.show').each(function (index) {
                 $(this).css('z-index', 1101 + index * 2);
             });
-            $('.modal-backdrop').each(function (index) {
+            $('.modal-backdrop.ModalBackDropNestedFirst').each(function (index) {
+                $(this).css('z-index', 1101 + index * 2 - 1);
+            });
+
+        });
+        modalAddressNestedMapAndSubmitMap.on('shown.bs.modal', function (e) {
+            $('.ModalAddressNestedMap.show').each(function (index) {
+                $(this).css('z-index', 1101 + index * 2);
+            });
+            $('.modal-backdrop.ModalBackDropNestedMap').each(function (index) {
                 $(this).css('z-index', 1101 + index * 2 - 1);
             });
 
         });
     }
-    let handleOpenAndClose_ModalAddress = (btnOpenModalMap, btnBackModalThirdFromMap, iconBackModalThirdFromMap, modalMap, modalFirst, modalSecond, modalThird, btnOpenModalFirst, btnCloseModalFirst, btnOpenModalSecond, btnOpenModalThird, btnBackModalFirstFromThird, btnBackModalFirstFromSecond) => {
+    let handleOpenAndClose_ModalAddress = (btnBackModalMapAndSubmitMap, btnBackModalMapFromSubmitMap, btnOpenModalSubmitMap, modalSubmitMap, btnOpenModalMap, btnBackModalThirdFromMap, iconBackModalThirdFromMap, modalMap, modalFirst, modalSecond, modalThird, btnOpenModalFirst, btnCloseModalFirst, btnOpenModalSecond, btnOpenModalThird, btnBackModalFirstFromThird, btnBackModalFirstFromSecond) => {
         btnOpenModalFirst.click(function (e) {
             e.stopPropagation()
             modalFirst.modal(`show`);
@@ -71,8 +93,8 @@ $(document).ready(() => {
         btnOpenModalThird.click(function (e) {
             e.stopPropagation()
             modalFirst.modal('hide');
-            modalSecond.modal(`hide`);
             modalThird.modal('show')
+
         })
         btnBackModalFirstFromThird.click(function (e) {
             CountInputAddress.address = 0;
@@ -104,16 +126,33 @@ $(document).ready(() => {
             modalThird.modal('show')
         })
         btnOpenModalMap.click(function (e) {
+            e.stopPropagation();
+            handleShow_ModalMap()
             modalThird.modal('hide');
             modalMap.modal('show');
         })
+        btnOpenModalSubmitMap.click(function (e) {
+            e.stopPropagation();
+            modalSubmitMap.modal('show');
+        })
+        btnBackModalMapFromSubmitMap.click(function (e) {
+            e.stopPropagation();
+            modalSubmitMap.modal('hide');
+        })
+        btnBackModalMapAndSubmitMap.click(async function (e) {
+            e.stopPropagation();
+            setTimeout(() => {
+                alert("okkkkkk")
+            }, 10);
+            modalSubmitMap.modal('hide');
+        })
     }
-
     let handleModalAddress = () => {
         let modalFirst = $('#modal_transportto-address');
         let modalSecond = $('#modal_anddress-sec');
         let modalThird = $('#modal_anddress-third');
         let modalMap = $('#ModalAddressMap')
+        let modalSubmitMap = $('#ModalSubmitModalMap')
         let btnOpenModalFirst = $('#openModalAddressFirst')
         let btnCloseModalFirst = $('#CloseModalAddressFirst')
         let btnOpenModalSecond = $('#openModalAddressSecond')
@@ -123,16 +162,19 @@ $(document).ready(() => {
         let btnOpenModalMap = $('#mapBarrierCurtain');
         let iconBackModalThirdFromMap = $('#BackModalAddressThirdFromMap_Icon')
         let btnBackModalThirdFromMap = $('#BackModalAddressThirdFromMap_Button')
+        let btnOpenModalSubmitMap = $('#openModalAddressSubmitMap')
+        let btnBackModalMapFromSubmitMap = $('#BackModalAddressMapFromSubmitMap')
+        let btnBackModalMapAndSubmitMap = $('#BackModalAddressMapAndSubmit')
+        let modalAddressNestedFirstAndSecond = $('.ModalNestedFirst')
+        let modalAddressNestedMapAndSubmitMap = $('.ModalAddressNestedMap')
         let backDrop = $(`.modal-backdrop`)
-        handleNestedFirstAndSecond_ModalAddress();
-        handleSetupClassname_ModalAddress(modalMap, modalFirst, modalSecond, modalThird, backDrop);
-        handleClickPreventCloseOutside_ModalAddress(modalMap, modalFirst, modalSecond, modalThird)
-        handleOpenAndClose_ModalAddress(btnOpenModalMap, btnBackModalThirdFromMap, iconBackModalThirdFromMap, modalMap, modalFirst, modalSecond, modalThird, btnOpenModalFirst, btnCloseModalFirst, btnOpenModalSecond, btnOpenModalThird, btnBackModalFirstFromThird, btnBackModalFirstFromSecond)
+        handleSetupClassname_ModalAddress(modalSubmitMap, modalMap, modalFirst, modalSecond, modalThird, backDrop);
+        handleNested_ModalAddress(modalAddressNestedFirstAndSecond, modalAddressNestedMapAndSubmitMap);
+        handleClickPreventCloseOutside_ModalAddress(modalSubmitMap, modalMap, modalFirst, modalSecond, modalThird)
+        handleOpenAndClose_ModalAddress(btnBackModalMapAndSubmitMap, btnBackModalMapFromSubmitMap, btnOpenModalSubmitMap, modalSubmitMap, btnOpenModalMap, btnBackModalThirdFromMap, iconBackModalThirdFromMap, modalMap, modalFirst, modalSecond, modalThird, btnOpenModalFirst, btnCloseModalFirst, btnOpenModalSecond, btnOpenModalThird, btnBackModalFirstFromThird, btnBackModalFirstFromSecond)
     }
 
-    let auto_show = () => {
-        $('#modal_anddress-third').modal('show');
-    }
+
     let checkRexName = (name) => {
         let regex = /^[a-zA-Z ]+$/;
         return regex.test(name);
@@ -851,11 +893,10 @@ $(document).ready(() => {
                         mainValue.addClass('input-red-boder input-red-placeholder')
                         mainValue.removeClass('input-red-placeholder')
                     }
-                    console.log($(e.target).closest('#BackModalAddressFirstFromThird').length);
+
                 }
             }
             if ($(e.target).closest('#BackModalAddressFirstFromThird').length != 0) {
-                console.log("1");
                 mainValue.removeClass('input-red-boder input-red-placeholder')
                 itemSub.hide();
                 itemPlaceholder.removeClass('input-red-text')
@@ -873,9 +914,7 @@ $(document).ready(() => {
     }
     let handleClick_DropDown_DetailAddress = (mainValue, dropdown, itemSub, itemPlaceholder) => {
         mainValue.click(function (e) {
-
             $(".modal_anddress-third-down-body").scrollTop(mainValue.offset().top);
-           
             mainValue.removeClass('input-red-boder input-red-placeholder')
             itemPlaceholder.removeClass('input-red-text')
             itemSub.hide();
@@ -1031,6 +1070,13 @@ $(document).ready(() => {
             }
         })
     }
+    let handleShow_ModalMap = () => {
+        let inputDetailAddress = $('#inputaddressspecifically');
+        valueModalAddress.value = inputDetailAddress.val().trim();
+        GlobalTransferValue.historyDetailAddress = [...GlobalTransferValue.historyDetailAddress, valueModalAddress.value]
+        $('#itemTextFromDetailAddress').remove();
+        $(`#wrapItemTextModalAddress`).append(`<div class="item-text-FromDetailAddress" id="itemTextFromDetailAddress">${GlobalTransferValue.historyDetailAddress[GlobalTransferValue.historyDetailAddress.length - 1]}</div>`)
+    }
     let CountInputAddress = {
         name: 0,
         isTrueName: false,
@@ -1052,7 +1098,53 @@ $(document).ready(() => {
         isWards: false,
         Past: [],
         value: {},
-        
+    }
+    let valueModalAddress = {
+        value: "",
+    }
+    let GlobalTransferValue = {
+        historyDetailAddress: [],
+    }
+    let auto_show = () => {
+        $('#modal_transportto-address').modal('show');
+    }
+    let handleShow_DropDown_ModalAddressFirst = async (girdDropDown) => {
+        let ListProvince = await getData("../province.json");
+        girdDropDown.empty().append(ListProvince.data.data.map(item => `<div class="modalAddressFirst_dropdown-item col-12 py-2"id='${item.id}'>${item.name}</div>`))
+    }
+    let handleSearchItem_ModalAddressFirst = async (inputSearch, dropdown) => {
+        let ListProvince = await getData("../province.json");
+        let count = 0
+        inputSearch.keyup(function () {
+            let valueInput = $(this).val().toLowerCase();
+            $('#ModalAddressFirstDropdownGird .modalAddressFirst_dropdown-item').filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(valueInput) > -1)
+            })
+            if (inputSearch.val().trim().length > 0) {
+                dropdown.css('z-index', 3)
+            }
+            if (inputSearch.val().trim().length === 0) {
+                dropdown.css('z-index', -1)
+            }
+            $('#ModalAddressFirstDropdownGird .modalAddressFirst_dropdown-item').each(function () {
+                if ($(this).css('display') === 'block') {
+                    ++count; 
+                }
+            })
+            if (inputSearch.val().trim().length === 0) {
+                count = 0
+            }
+           
+        })
+    }
+    let handleModalAddressFirst = () => {
+        let inputSearch = $('#SearchModalAddressFirst');
+        let btnSubmit = $('#BtnSubmitModalAddressFirst');
+        let girdDropDown = $('#ModalAddressFirstDropdownGird')
+        let item = $('.modalAddressFirst_dropdown-item');
+        let dropdown = $('#modalAddressFirstDropDown')
+        handleShow_DropDown_ModalAddressFirst(girdDropDown)
+        handleSearchItem_ModalAddressFirst(inputSearch, dropdown);
     }
 
     handleGetvalidateform(modalAddress_InputName, itemSubName, modalAddress_InputPhone, itemSubPhone);
@@ -1063,4 +1155,5 @@ $(document).ready(() => {
     handleInputAddressSpecifically();
     handleButtonTypeAddress();
     handleClick_Submit_ThirdModal()
+    handleModalAddressFirst()
 })

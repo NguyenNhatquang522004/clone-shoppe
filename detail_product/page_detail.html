@@ -14,14 +14,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="./detail_header.css">
     <link rel="stylesheet" href="./detail_content.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="
     https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js
     "></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"
+        integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 </head>
 
 <body>
@@ -650,9 +650,6 @@
                                                                         <div class="item-text text-uppercase py-2">
                                                                             lưu
                                                                         </div>
-
-
-
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -870,14 +867,16 @@
                                                 <span class="item-text-info text-capitalize ms-1"><i
                                                         class="item-icon fa-solid fa-truck me-4"></i>vận chuyển
                                                     tới</span>
-                                                <a data-toggle="modal" class="modal_anddress-btn pt-0  ms-2 pb-2 mb-1"
+                                                <a class="modal_anddress-btn pt-0  ms-2 pb-2 mb-1"
+                                                    href="#modal_transportto-address"
                                                     data-bs-target="#modal_transportto-address"
                                                     id="openModalAddressFirst">
                                                     <span class="item-text text-capitalize">
                                                         huyện ba vì <i class="item-icon fa-solid fa-angle-down"></i>
                                                     </span>
                                                 </a>
-                                                <div class="modal  modal_anddress" id="modal_transportto-address">
+                                                <div class="modal  modal_anddress ModalNestedFirst"
+                                                    id="modal_transportto-address">
                                                     <div class="modal-dialog modal_anddress-dialog ">
                                                         <div
                                                             class="modal-content modal_anddress-content border-0 rounded-0">
@@ -895,44 +894,57 @@
                                                             <div class="modal-body modal_anddress-body mt-3  ">
                                                                 <div class="modal_anddress-body-container container ">
                                                                     <div class="modal_anddress-body-grid row px-0">
-                                                                        <input
-                                                                            class="item-search col-9 p-4 border border-1 rounded "
-                                                                            placeholder="Tìm Thành phố, Quận/Huyện"
-                                                                            type="text">
-                                                                        <button
-                                                                            class="item-btn ms-4 col-2 text-capitalize  rounded  py-2"
-                                                                            type="button" disabled>sử dụng</button>
-                                                                        <a data-toggle="modal"
-                                                                            data-bs-target="#modal_transportto-address"
-                                                                            href="#modal_anddress-sec"
+                                                                        <div class="wrap-top col-12 px-0 ">
+                                                                            <input
+                                                                                class="item-search col-9 p-4 border border-1 rounded "
+                                                                                placeholder="Tìm Thành phố, Quận/Huyện"
+                                                                                type="text" id="SearchModalAddressFirst"
+                                                                                autocomplete="off" value="">
+                                                                            <button
+                                                                                class="item-btn ms-4 col-2 text-capitalize  rounded  py-2"
+                                                                                type="button" disabled
+                                                                                id="BtnSubmitModalAddressFirst">sử
+                                                                                dụng</button>
+                                                                            <div class="modalAddressFirst_dropdown position-absolute border border-2 shadow-lg mt-1 rounded-2"
+                                                                                id="modalAddressFirstDropDown">
+                                                                                <div
+                                                                                    class="modalAddressFirst_dropdown-container container px-0 ">
+                                                                                    <div class="modalAddressFirst_dropdown-gird row mx-0 "
+                                                                                        id="ModalAddressFirstDropdownGird">
+
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <a data-bs-target="#modal_anddress-sec"
                                                                             id="openModalAddressSecond"
                                                                             class="item-text-use-address-present text-capitalize col-6 px-0 mt-4 mb-5 btn  "><i
                                                                                 class="item-icon fa-solid fa-crosshairs me-2"></i>
                                                                             sử
                                                                             dụng địa chỉ hiện tại
                                                                         </a>
+
                                                                         <span
                                                                             class="item-text-address-present text-capitalize col-12 px-0 mb-3">
                                                                             Địa chỉ của tôi
                                                                         </span>
-                                                                        <a data-toggle="modal"
-                                                                            id="openModalAddressThird"
+                                                                        <a id="openModalAddressThird"
                                                                             data-bs-target="#modal_anddress-third"
-                                                                            href="#modal_anddress-third"
                                                                             class="item-btn-add-address btn text-capitalize col-4 border border-1 rounded py-2 mb-4 px-0">
                                                                             <i class="item-icon fa-solid fa-plus"></i>
                                                                             thêm địa chỉ
                                                                         </a>
 
+
                                                                     </div>
                                                                 </div>
+
                                                             </div>
-
                                                         </div>
-
                                                     </div>
                                                 </div>
-                                                <div class="modal  modal_anddress " id="modal_anddress-sec">
+                                                <div class="modal  modal_anddress ModalNestedFirst "
+                                                    id="modal_anddress-sec">
                                                     <div
                                                         class="modal-dialog modal_anddress-sec-dialog  modal-dialog-centered  ">
                                                         <div
@@ -1212,9 +1224,12 @@
                                                                                         class="dropdown_setting-grid row   ">
                                                                                         <div class="item-text col-12">
                                                                                             Địa chỉ đầu tiên của bạn
-                                                                                            được cài đặt làm Địa Chỉ Mặc
-                                                                                            Định. Vui lòng thêm địa chỉ
-                                                                                            thứ hai để có thể thay đổi
+                                                                                            được cài đặt làm Địa Chỉ
+                                                                                            Mặc
+                                                                                            Định. Vui lòng thêm địa
+                                                                                            chỉ
+                                                                                            thứ hai để có thể thay
+                                                                                            đổi
                                                                                             cài đặt này.
                                                                                         </div>
                                                                                     </div>
@@ -1237,7 +1252,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="modal modalAddress_Wrap-Map fade" id="ModalAddressMap">
+                                                <div class="modal modalAddress_Wrap-Map  ModalAddressNestedMap"
+                                                    id="ModalAddressMap">
                                                     <div
                                                         class="modal-dialog modalAddress_Wrap-Map-dialog modal-dialog-centered modal-lg">
                                                         <div class="modal-content modalAddress_Wrap-Map-content">
@@ -1249,19 +1265,12 @@
                                                                         class="modalAddress_Wrap-Map-header-gird row d-flex align-items-center justify-content-start">
                                                                         <i class="item-icon-back fa-solid fa-arrow-left-long col-1 "
                                                                             id="BackModalAddressThirdFromMap_Icon"></i>
-                                                                        <div class="wrap-item-text col-11 ms-3">
+                                                                        <div class="wrap-item-text col-11 ms-3"
+                                                                            id="wrapItemTextModalAddress">
                                                                             <span
                                                                                 class="item-notify text-capitalize">sửa
                                                                                 vị trí
                                                                             </span>
-                                                                            <div class="item-text-FromDetailAddress">
-                                                                                Lorem ipsum dolor sit amet consectetur
-                                                                                adipisicing elit. Excepturi dolor alias
-                                                                                quidem ut esse iusto ex architecto,
-                                                                                commodi veritatis consectetur! Rem quasi
-                                                                                numquam ullam non quos nesciunt quidem
-                                                                                similique fugiat!
-                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -1284,15 +1293,53 @@
 
                                                             </div>
                                                             <div
-                                                                class="modal-footer modalAddress_Wrap-Map-footer border-0 py-4 pb-5">
+                                                                class="modal-footer  modalAddress_Wrap-Map-footer border-0 py-4 pb-5">
                                                                 <button type="button"
                                                                     class="button button_close-map col-2 text-capitalize"
                                                                     id="BackModalAddressThirdFromMap_Button">trở
                                                                     lại</button>
                                                                 <button type="button"
                                                                     class="button button_open-map  col-2 text-capitalize me-4"
-                                                                    data-bs-target="">
+                                                                    data-bs-target="#ModalSubmitModalMap"
+                                                                    id="openModalAddressSubmitMap">
                                                                     đồng ý</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal modalAddress_SubmitMap  ModalAddressNestedMap  "
+                                                    id="ModalSubmitModalMap">
+                                                    <div class="modal-dialog modalAddress_SubmitMap-dialog modal-dialog-centered modal-lg "
+                                                        id="modalAddressSubmitMapDialog">
+                                                        <div class="modal-content modalAddress_SubmitMap-content">
+                                                            <div class="modal-body modalAddress_SubmitMap-body py-5">
+                                                                <div
+                                                                    class="modalAddress_SubmitMap-body-container container">
+                                                                    <div class="modalAddress_SubmitMap-body-grid row">
+                                                                        <span
+                                                                            class="item-text-wraningTop col-12 text-capitalize mb-2">vui
+                                                                            lòng
+                                                                            xác nhận vị trí trên bản đồ
+                                                                        </span>
+                                                                        <span
+                                                                            class="item-text-wraningBottom col-12 text-capitalizep ps-2">vị
+                                                                            trí trên bản đồ phải khớp với vị trí của
+                                                                            bạn
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div
+                                                                class="modal-footer modalAddress_SubmitMap-footer border-0  py-4 pb-5">
+                                                                <button type="button"
+                                                                    class="button button_close-SubmitMap col-3 text-capitalize"
+                                                                    data-bs-dismiss="modal"
+                                                                    id="BackModalAddressMapFromSubmitMap">Thay
+                                                                    đổi</button>
+                                                                <button type="button"
+                                                                    class="button button_open-SubmitMap col-3 text-capitalize me-4"
+                                                                    id="BackModalAddressMapAndSubmit">Xác
+                                                                    nhận</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1321,26 +1368,25 @@
     <script src="./detail.js">
 
     </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-        </script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"
+        integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
-        </script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        </script> -->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-        </script>
+        </script> -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
         crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+        </script>
 
 </body>
 
