@@ -1134,7 +1134,18 @@ body {
 .modalAddressFirst_dropdown-gird .modalAddressFirst_dropdown-item:hover {
     background-color: var(--text-background-hover) !important;
 }
-#modalAddressFirstDropDown{
+
+#modalAddressFirstDropDown {
     z-index: -1;
     cursor: pointer;
+    width: 34rem;
+}
+
+#ItemDeleteModalAddressFirst {
+    font-size: 1.5rem;
+    color: var(--text-grey);
+    top: 50%;
+    left: 70%;
+    transform: translateY(-50%);
+    display: none;
 }

@@ -1,4 +1,4 @@
-
+import { getData } from "./fetchdata.js"
 $(document).ready(() => {
     let changeImg = () => {
         $(".products_left .detail_img .detail_img-gird .item-img").each((index, item) => {
@@ -92,7 +92,7 @@ $(document).ready(() => {
             }
         })
     }
-    let handleClick_Submit_ModalAddressFirst = (btnSubmitModalAddressFirst, itemPoint, modalFirst, dropDownSearch_ModalAddress, inputSearch_ModalAddres) => {
+    let handleClick_Submit_ModalAddressFirst = (itemDelete, btnSubmitModalAddressFirst, itemPoint, modalFirst, dropDownSearch_ModalAddress, inputSearch_ModalAddres) => {
         btnSubmitModalAddressFirst.click(function () {
             if ($(this).prop('disabled') === false) {
                 setTimeout(() => {
@@ -103,7 +103,7 @@ $(document).ready(() => {
                         data-bs-target="#modal_transportto-address"
                         id="openModalAddressFirst">
                         <span class="item-text text-capitalize">
-                      ${GlobalTransferValue.historyValueSearchModalAddressFirst[0]}<i class="item-icon fa-solid fa-angle-down"></i>
+                      ${GlobalTransferValue.historyValueSearchModalAddressFirst[0]}<i class="item-icon fa-solid fa-angle-down ms-1"></i>
                         </span>
                     </a>`)
                     }
@@ -113,17 +113,18 @@ $(document).ready(() => {
                         data-bs-target="#modal_transportto-address"
                         id="openModalAddressFirst">
                         <span class="item-text text-capitalize">
-                      ${GlobalTransferValue.historyValueSearchModalAddressFirst[GlobalTransferValue.historyValueSearchModalAddressFirst.length - 1][0].name}<i class="item-icon fa-solid fa-angle-down"></i>
+                      ${GlobalTransferValue.historyValueSearchModalAddressFirst[GlobalTransferValue.historyValueSearchModalAddressFirst.length - 1][0].name}<i class="item-icon fa-solid fa-angle-down ms-1"></i>
                         </span>
                     </a>`)
                     }
-                    isloading === true
                 }, 500);
                 setTimeout(() => {
                     isLoad.countSearchModalAddressFirst = 0;
+                    GlobalTransferValue.historyCountSearchModalAddressFirst = [];
                     inputSearch_ModalAddres.val('')
                     btnSubmitModalAddressFirst.prop('disabled', true)
                     dropDownSearch_ModalAddress.css('z-index', -1)
+                    itemDelete.hide();
                     modalFirst.modal("hide")
                 }, 600);
 
@@ -131,13 +132,19 @@ $(document).ready(() => {
 
         })
     }
-    let handleOpenAndClose_ModalAddress = (inputSearch_ModalAddres, dropDownSearch_ModalAddress, itemPoint, btnSubmitModalAddressFirst, btnBackModalMapAndSubmitMap, btnBackModalMapFromSubmitMap, btnOpenModalSubmitMap, modalSubmitMap, btnOpenModalMap, btnBackModalThirdFromMap, iconBackModalThirdFromMap, modalMap, modalFirst, modalSecond, modalThird, btnOpenModalFirst, btnCloseModalFirst, btnOpenModalSecond, btnOpenModalThird, btnBackModalFirstFromThird, btnBackModalFirstFromSecond) => {
+    let handleOpenAndClose_ModalAddress = (itemDelete, inputSearch_ModalAddres, dropDownSearch_ModalAddress, itemPoint, btnSubmitModalAddressFirst, btnBackModalMapAndSubmitMap, btnBackModalMapFromSubmitMap, btnOpenModalSubmitMap, modalSubmitMap, btnOpenModalMap, btnBackModalThirdFromMap, iconBackModalThirdFromMap, modalMap, modalFirst, modalSecond, modalThird, btnOpenModalFirst, btnCloseModalFirst, btnOpenModalSecond, btnOpenModalThird, btnBackModalFirstFromThird, btnBackModalFirstFromSecond) => {
         $('#WrapTransportto').on('click', '#openModalAddressFirst', function (e) {
             e.stopPropagation()
             modalFirst.modal(`show`);
         })
         btnCloseModalFirst.click(function (e) {
             e.stopPropagation()
+            isLoad.countSearchModalAddressFirst = 0;
+            GlobalTransferValue.historyCountSearchModalAddressFirst = [];
+            inputSearch_ModalAddres.val('')
+            btnSubmitModalAddressFirst.prop('disabled', true)
+            dropDownSearch_ModalAddress.css('z-index', -1)
+            itemDelete.hide()
             modalFirst.modal(`hide`);
         })
         btnOpenModalSecond.click(function (e) {
@@ -151,6 +158,12 @@ $(document).ready(() => {
         })
         btnOpenModalThird.click(function (e) {
             e.stopPropagation()
+            isLoad.countSearchModalAddressFirst = 0;
+            GlobalTransferValue.historyCountSearchModalAddressFirst = [];
+            inputSearch_ModalAddres.val('')
+            btnSubmitModalAddressFirst.prop('disabled', true)
+            dropDownSearch_ModalAddress.css('z-index', -1)
+            itemDelete.hide()
             modalFirst.modal('hide');
             modalThird.modal('show')
 
@@ -206,7 +219,7 @@ $(document).ready(() => {
             modalSubmitMap.modal('hide');
         })
         handleClick_Submit_ThirdModal()
-        handleClick_Submit_ModalAddressFirst(btnSubmitModalAddressFirst, itemPoint, modalFirst, dropDownSearch_ModalAddress, inputSearch_ModalAddres)
+        handleClick_Submit_ModalAddressFirst(itemDelete, btnSubmitModalAddressFirst, itemPoint, modalFirst, dropDownSearch_ModalAddress, inputSearch_ModalAddres)
     }
     let handleModalAddress = () => {
         let modalFirst = $('#modal_transportto-address');
@@ -232,11 +245,12 @@ $(document).ready(() => {
         let itemPoint = $('#ItemPointAppearOpenModalAddressFirst')
         let dropDownSearch_ModalAddress = $(`#modalAddressFirstDropDown`)
         let inputSearch_ModalAddres = $('#SearchModalAddressFirst')
+        let itemDelete = $('#ItemDeleteModalAddressFirst')
         let backDrop = $(`.modal-backdrop`)
         handleSetupClassname_ModalAddress(modalSubmitMap, modalMap, modalFirst, modalSecond, modalThird, backDrop);
         handleNested_ModalAddress(modalAddressNestedFirstAndSecond, modalAddressNestedMapAndSubmitMap);
         handleClickPreventCloseOutside_ModalAddress(modalSubmitMap, modalMap, modalFirst, modalSecond, modalThird)
-        handleOpenAndClose_ModalAddress(inputSearch_ModalAddres, dropDownSearch_ModalAddress, itemPoint, btnSubmitModalAddressFirst, btnBackModalMapAndSubmitMap, btnBackModalMapFromSubmitMap, btnOpenModalSubmitMap, modalSubmitMap, btnOpenModalMap, btnBackModalThirdFromMap, iconBackModalThirdFromMap, modalMap, modalFirst, modalSecond, modalThird, btnOpenModalFirst, btnCloseModalFirst, btnOpenModalSecond, btnOpenModalThird, btnBackModalFirstFromThird, btnBackModalFirstFromSecond)
+        handleOpenAndClose_ModalAddress(itemDelete, inputSearch_ModalAddres, dropDownSearch_ModalAddress, itemPoint, btnSubmitModalAddressFirst, btnBackModalMapAndSubmitMap, btnBackModalMapFromSubmitMap, btnOpenModalSubmitMap, modalSubmitMap, btnOpenModalMap, btnBackModalThirdFromMap, iconBackModalThirdFromMap, modalMap, modalFirst, modalSecond, modalThird, btnOpenModalFirst, btnCloseModalFirst, btnOpenModalSecond, btnOpenModalThird, btnBackModalFirstFromThird, btnBackModalFirstFromSecond)
     }
 
 
@@ -440,28 +454,6 @@ $(document).ready(() => {
         handleGetvalidatePhone();
 
     }
-
-
-    const getData = (url) => {
-        return new Promise(async (resolve, reject) => {
-            try {
-                let province = {};
-                provincedata = await axios.get(`${url}`);
-
-                if (provincedata) {
-                    resolve(provincedata)
-                }
-                else {
-                    province.mess = "not data ...."
-                    alert(province.mess);
-                }
-            }
-            catch (e) {
-                console.log(e);
-                reject(e)
-            }
-        })
-    };
     let handleAnimationInputAddress = async () => {
         let ListProvince = await getData("../province.json");
         let listDistrict = await getData(`./District/District${1}.json`)
@@ -1115,26 +1107,6 @@ $(document).ready(() => {
             $($('.btn_address_detail')[index]).addClass('input-red-boder input-red-text')
         })
     }
-    // let handleClick_Submit_ThirdModal = () => {
-    //     let buttonSubmit = $('#buttonModalThirdSubmit')
-    //     buttonSubmit.click(function (e) {
-
-    //         CountInputAddress.name = 1;
-    //         CountInputAddress.phone = 1;
-    //         CountInputAddress.address = 1;
-    //         CountInputAddress.DetailAddress = 1;
-    //         if (CountInputAddress.isTruePhone === true && CountInputAddress.isTrueName === true && CountInputAddress.isTrueAddress === true && CountInputAddress.isTrueDetailAddress === true) {
-    //             setTimeout(() => {
-    //                 alert("nice...")
-    //             }, 100);
-    //         }
-    //         else {
-    //             setTimeout(() => {
-    //                 alert("ohhNoo...")
-    //             }, 100)
-    //         }
-    //     })
-    // }
     let handleShow_ModalMap = () => {
         let inputDetailAddress = $('#inputaddressspecifically');
         let valueInput = inputDetailAddress.val().trim();
@@ -1146,7 +1118,7 @@ $(document).ready(() => {
         let ListProvince = await getData("../province.json");
         girdDropDown.empty().append(ListProvince.data.data.map(item => `<div class="modalAddressFirst_dropdown-item col-12 py-2"id='${item.id}'>${item.name}</div>`))
     }
-    let handleClickItem_DropDown_ModalAddressFirst = async (girdDropDown, inputSearch, btnSubmit) => {
+    let handleClickItem_DropDown_ModalAddressFirst = async (girdDropDown, inputSearch, btnSubmit, dropdown) => {
         let ListProvince = await getData("../province.json");
         let value = null;
         girdDropDown.on('click', `.modalAddressFirst_dropdown-item`, function () {
@@ -1159,10 +1131,11 @@ $(document).ready(() => {
             inputSearch.val('')
             inputSearch.val(`${value[0].name}`)
             btnSubmit.prop('disabled', false);
+            dropdown.css('z-index', -1)
             GlobalTransferValue.historyValueSearchModalAddressFirst = [...GlobalTransferValue.historyValueSearchModalAddressFirst, value]
         })
     }
-    let handleSearchItem_DropDown_ModalAddressFirst = async (inputSearch, dropdown, modalAddressDialog) => {
+    let handleSearchItem_DropDown_ModalAddressFirst = async (inputSearch, dropdown, modalAddressDialog, itemDelete) => {
         let ListProvince = await getData("../province.json");
         let historyCount = []
         let formatCheckSpecialCharacters = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
@@ -1175,20 +1148,26 @@ $(document).ready(() => {
             })
             if (inputSearch.val().trim().length > 0) {
                 dropdown.css('z-index', 3)
+                itemDelete.show();
             }
             if (inputSearch.val().trim().length === 0) {
                 dropdown.css('z-index', -1)
-
+                itemDelete.hide();
             }
             $('#ModalAddressFirstDropdownGird .modalAddressFirst_dropdown-item').each(function () {
                 if ($(this).css('display') === 'block') {
                     ++isLoad.countSearchModalAddressFirst;
                 }
             })
+            if (isLoad.countSearchModalAddressFirst === 0) {
+                modalAddressDialog.css('overflow-y', 'none')
+                dropdown.removeClass("border border-2 shadow-lg mt-1 rounded-2")
+            }
             if (inputSearch.val().trim().length === 0) {
                 isLoad.countSearchModalAddressFirst = GlobalTransferValue.historyCountSearchModalAddressFirst[GlobalTransferValue.historyCountSearchModalAddressFirst.length - 1]
             }
             GlobalTransferValue.historyCountSearchModalAddressFirst = [...GlobalTransferValue.historyCountSearchModalAddressFirst, isLoad.countSearchModalAddressFirst]
+
             if (isLoad.countSearchModalAddressFirst === 0) {
                 modalAddressDialog.css('overflow-y', 'none')
                 dropdown.removeClass("border border-2 shadow-lg mt-1 rounded-2")
@@ -1213,8 +1192,17 @@ $(document).ready(() => {
                 isLoad.countSearchModalAddressFirst = GlobalTransferValue.historyCountSearchModalAddressFirst[GlobalTransferValue.historyCountSearchModalAddressFirst.length - 1];
 
             }
-            console.log(GlobalTransferValue.historyCountSearchModalAddressFirst);
         })
+    }
+    let handleDelete_DropDown_ModalAddressFirst = (itemDelete, inputSearch, dropdown, btnSubmit) => {
+        itemDelete.click(function () {
+            isLoad.countSearchModalAddressFirst = 0;
+            GlobalTransferValue.historyCountSearchModalAddressFirst = []
+            btnSubmit.prop('disabled', true)
+            inputSearch.val('')
+            dropdown.css('z-index', -1);
+        })
+
     }
     let handleModalAddressFirst = () => {
         let inputSearch = $('#SearchModalAddressFirst');
@@ -1223,10 +1211,12 @@ $(document).ready(() => {
         let item = $('.modalAddressFirst_dropdown-item');
         let dropdown = $('#modalAddressFirstDropDown')
         let modalAddressDialog = $('#modalAnddressDialog')
+        let itemDelete = $('#ItemDeleteModalAddressFirst')
         modalAddressDialog.css('overflow', 'hidden')
-        handleClickItem_DropDown_ModalAddressFirst(girdDropDown, inputSearch, btnSubmit)
+        handleClickItem_DropDown_ModalAddressFirst(girdDropDown, inputSearch, btnSubmit, dropdown)
         handleShow_DropDown_ModalAddressFirst(girdDropDown)
-        handleSearchItem_DropDown_ModalAddressFirst(inputSearch, dropdown, modalAddressDialog);
+        handleSearchItem_DropDown_ModalAddressFirst(inputSearch, dropdown, modalAddressDialog, itemDelete);
+        handleDelete_DropDown_ModalAddressFirst(itemDelete, inputSearch, dropdown, btnSubmit)
     }
     let CountInputAddress = {
         name: 0,
@@ -1256,6 +1246,10 @@ $(document).ready(() => {
         historyValueSearchModalAddressFirst: ["huyện ba vì"],
         historyCountSearchModalAddressFirst: [],
     }
+    let autoshow = () => {
+        $('#modal_transportto-address').modal('show')
+    }
+    // autoshow()
     handleGetvalidateform(modalAddress_InputName, itemSubName, modalAddress_InputPhone, itemSubPhone);
     handle_slide_img();
     handleModalAddress();
