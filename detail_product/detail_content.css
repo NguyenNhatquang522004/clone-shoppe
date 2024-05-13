@@ -398,6 +398,7 @@ body {
     border-color: transparent;
     color: var(--text-white);
     background-color: var(--background-main-orange);
+    cursor: pointer;
 }
 
 .modal_anddress-body-grid .wrap-top .item-btn:disabled {

@@ -72,8 +72,67 @@ $(document).ready(() => {
 
         });
     }
-    let handleOpenAndClose_ModalAddress = (btnBackModalMapAndSubmitMap, btnBackModalMapFromSubmitMap, btnOpenModalSubmitMap, modalSubmitMap, btnOpenModalMap, btnBackModalThirdFromMap, iconBackModalThirdFromMap, modalMap, modalFirst, modalSecond, modalThird, btnOpenModalFirst, btnCloseModalFirst, btnOpenModalSecond, btnOpenModalThird, btnBackModalFirstFromThird, btnBackModalFirstFromSecond) => {
-        btnOpenModalFirst.click(function (e) {
+    let handleClick_Submit_ThirdModal = () => {
+        let buttonSubmit = $('#buttonModalThirdSubmit')
+        buttonSubmit.click(function (e) {
+
+            CountInputAddress.name = 1;
+            CountInputAddress.phone = 1;
+            CountInputAddress.address = 1;
+            CountInputAddress.DetailAddress = 1;
+            if (CountInputAddress.isTruePhone === true && CountInputAddress.isTrueName === true && CountInputAddress.isTrueAddress === true && CountInputAddress.isTrueDetailAddress === true) {
+                setTimeout(() => {
+                    alert("nice...")
+                }, 100);
+            }
+            else {
+                setTimeout(() => {
+                    alert("ohhNoo...")
+                }, 100)
+            }
+        })
+    }
+    let handleClick_Submit_ModalAddressFirst = (btnSubmitModalAddressFirst, itemPoint, modalFirst, dropDownSearch_ModalAddress, inputSearch_ModalAddres) => {
+        btnSubmitModalAddressFirst.click(function () {
+            if ($(this).prop('disabled') === false) {
+                setTimeout(() => {
+                    $('#openModalAddressFirst').remove();
+                    if (GlobalTransferValue.historyValueSearchModalAddressFirst.length === 1) {
+                        itemPoint.after(`<a class="modal_anddress-btn pt-0  ms-2 pb-2 mb-1"
+                        href="#modal_transportto-address"
+                        data-bs-target="#modal_transportto-address"
+                        id="openModalAddressFirst">
+                        <span class="item-text text-capitalize">
+                      ${GlobalTransferValue.historyValueSearchModalAddressFirst[0]}<i class="item-icon fa-solid fa-angle-down"></i>
+                        </span>
+                    </a>`)
+                    }
+                    if (GlobalTransferValue.historyValueSearchModalAddressFirst.length > 1) {
+                        itemPoint.after(`<a class="modal_anddress-btn pt-0  ms-2 pb-2 mb-1"
+                        href="#modal_transportto-address"
+                        data-bs-target="#modal_transportto-address"
+                        id="openModalAddressFirst">
+                        <span class="item-text text-capitalize">
+                      ${GlobalTransferValue.historyValueSearchModalAddressFirst[GlobalTransferValue.historyValueSearchModalAddressFirst.length - 1][0].name}<i class="item-icon fa-solid fa-angle-down"></i>
+                        </span>
+                    </a>`)
+                    }
+                    isloading === true
+                }, 500);
+                setTimeout(() => {
+                    isLoad.countSearchModalAddressFirst = 0;
+                    inputSearch_ModalAddres.val('')
+                    btnSubmitModalAddressFirst.prop('disabled', true)
+                    dropDownSearch_ModalAddress.css('z-index', -1)
+                    modalFirst.modal("hide")
+                }, 600);
+
+            }
+
+        })
+    }
+    let handleOpenAndClose_ModalAddress = (inputSearch_ModalAddres, dropDownSearch_ModalAddress, itemPoint, btnSubmitModalAddressFirst, btnBackModalMapAndSubmitMap, btnBackModalMapFromSubmitMap, btnOpenModalSubmitMap, modalSubmitMap, btnOpenModalMap, btnBackModalThirdFromMap, iconBackModalThirdFromMap, modalMap, modalFirst, modalSecond, modalThird, btnOpenModalFirst, btnCloseModalFirst, btnOpenModalSecond, btnOpenModalThird, btnBackModalFirstFromThird, btnBackModalFirstFromSecond) => {
+        $('#WrapTransportto').on('click', '#openModalAddressFirst', function (e) {
             e.stopPropagation()
             modalFirst.modal(`show`);
         })
@@ -147,6 +206,7 @@ $(document).ready(() => {
             modalSubmitMap.modal('hide');
         })
         handleClick_Submit_ThirdModal()
+        handleClick_Submit_ModalAddressFirst(btnSubmitModalAddressFirst, itemPoint, modalFirst, dropDownSearch_ModalAddress, inputSearch_ModalAddres)
     }
     let handleModalAddress = () => {
         let modalFirst = $('#modal_transportto-address');
@@ -169,11 +229,14 @@ $(document).ready(() => {
         let modalAddressNestedFirstAndSecond = $('.ModalNestedFirst')
         let modalAddressNestedMapAndSubmitMap = $('.ModalAddressNestedMap')
         let btnSubmitModalAddressFirst = $('#BtnSubmitModalAddressFirst')
+        let itemPoint = $('#ItemPointAppearOpenModalAddressFirst')
+        let dropDownSearch_ModalAddress = $(`#modalAddressFirstDropDown`)
+        let inputSearch_ModalAddres = $('#SearchModalAddressFirst')
         let backDrop = $(`.modal-backdrop`)
         handleSetupClassname_ModalAddress(modalSubmitMap, modalMap, modalFirst, modalSecond, modalThird, backDrop);
         handleNested_ModalAddress(modalAddressNestedFirstAndSecond, modalAddressNestedMapAndSubmitMap);
         handleClickPreventCloseOutside_ModalAddress(modalSubmitMap, modalMap, modalFirst, modalSecond, modalThird)
-        handleOpenAndClose_ModalAddress(btnBackModalMapAndSubmitMap, btnBackModalMapFromSubmitMap, btnOpenModalSubmitMap, modalSubmitMap, btnOpenModalMap, btnBackModalThirdFromMap, iconBackModalThirdFromMap, modalMap, modalFirst, modalSecond, modalThird, btnOpenModalFirst, btnCloseModalFirst, btnOpenModalSecond, btnOpenModalThird, btnBackModalFirstFromThird, btnBackModalFirstFromSecond)
+        handleOpenAndClose_ModalAddress(inputSearch_ModalAddres, dropDownSearch_ModalAddress, itemPoint, btnSubmitModalAddressFirst, btnBackModalMapAndSubmitMap, btnBackModalMapFromSubmitMap, btnOpenModalSubmitMap, modalSubmitMap, btnOpenModalMap, btnBackModalThirdFromMap, iconBackModalThirdFromMap, modalMap, modalFirst, modalSecond, modalThird, btnOpenModalFirst, btnCloseModalFirst, btnOpenModalSecond, btnOpenModalThird, btnBackModalFirstFromThird, btnBackModalFirstFromSecond)
     }
 
 
@@ -1052,30 +1115,30 @@ $(document).ready(() => {
             $($('.btn_address_detail')[index]).addClass('input-red-boder input-red-text')
         })
     }
-    let handleClick_Submit_ThirdModal = () => {
-        let buttonSubmit = $('#buttonModalThirdSubmit')
-        buttonSubmit.click(function (e) {
+    // let handleClick_Submit_ThirdModal = () => {
+    //     let buttonSubmit = $('#buttonModalThirdSubmit')
+    //     buttonSubmit.click(function (e) {
 
-            CountInputAddress.name = 1;
-            CountInputAddress.phone = 1;
-            CountInputAddress.address = 1;
-            CountInputAddress.DetailAddress = 1;
-            if (CountInputAddress.isTruePhone === true && CountInputAddress.isTrueName === true && CountInputAddress.isTrueAddress === true && CountInputAddress.isTrueDetailAddress === true) {
-                setTimeout(() => {
-                    alert("nice...")
-                }, 100);
-            }
-            else {
-                setTimeout(() => {
-                    alert("ohhNoo...")
-                }, 100)
-            }
-        })
-    }
+    //         CountInputAddress.name = 1;
+    //         CountInputAddress.phone = 1;
+    //         CountInputAddress.address = 1;
+    //         CountInputAddress.DetailAddress = 1;
+    //         if (CountInputAddress.isTruePhone === true && CountInputAddress.isTrueName === true && CountInputAddress.isTrueAddress === true && CountInputAddress.isTrueDetailAddress === true) {
+    //             setTimeout(() => {
+    //                 alert("nice...")
+    //             }, 100);
+    //         }
+    //         else {
+    //             setTimeout(() => {
+    //                 alert("ohhNoo...")
+    //             }, 100)
+    //         }
+    //     })
+    // }
     let handleShow_ModalMap = () => {
         let inputDetailAddress = $('#inputaddressspecifically');
-        valueModalAddress.value = inputDetailAddress.val().trim();
-        GlobalTransferValue.historyDetailAddress = [...GlobalTransferValue.historyDetailAddress, valueModalAddress.value]
+        let valueInput = inputDetailAddress.val().trim();
+        GlobalTransferValue.historyDetailAddress = [...GlobalTransferValue.historyDetailAddress, valueInput]
         $('#itemTextFromDetailAddress').remove();
         $(`#wrapItemTextModalAddress`).append(`<div class="item-text-FromDetailAddress" id="itemTextFromDetailAddress">${GlobalTransferValue.historyDetailAddress[GlobalTransferValue.historyDetailAddress.length - 1]}</div>`)
     }
@@ -1083,7 +1146,7 @@ $(document).ready(() => {
         let ListProvince = await getData("../province.json");
         girdDropDown.empty().append(ListProvince.data.data.map(item => `<div class="modalAddressFirst_dropdown-item col-12 py-2"id='${item.id}'>${item.name}</div>`))
     }
-    let handleClickItem_DropDown_ModalAddressFirst = async (girdDropDown, inputSearch, btnSubmitModalAddressFirst) => {
+    let handleClickItem_DropDown_ModalAddressFirst = async (girdDropDown, inputSearch, btnSubmit) => {
         let ListProvince = await getData("../province.json");
         let value = null;
         girdDropDown.on('click', `.modalAddressFirst_dropdown-item`, function () {
@@ -1095,16 +1158,12 @@ $(document).ready(() => {
             })
             inputSearch.val('')
             inputSearch.val(`${value[0].name}`)
-            btnSubmitModalAddressFirst.prop('disabled', false)
+            btnSubmit.prop('disabled', false);
             GlobalTransferValue.historyValueSearchModalAddressFirst = [...GlobalTransferValue.historyValueSearchModalAddressFirst, value]
         })
     }
-    function hasWhiteSpace(valueInput) {
-        return valueInput.includes(' ');
-    }
     let handleSearchItem_DropDown_ModalAddressFirst = async (inputSearch, dropdown, modalAddressDialog) => {
         let ListProvince = await getData("../province.json");
-        let count = 0
         let historyCount = []
         let formatCheckSpecialCharacters = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
         let formatCheckNumber = /^[0-9]+$/;
@@ -1119,35 +1178,42 @@ $(document).ready(() => {
             }
             if (inputSearch.val().trim().length === 0) {
                 dropdown.css('z-index', -1)
+
             }
             $('#ModalAddressFirstDropdownGird .modalAddressFirst_dropdown-item').each(function () {
                 if ($(this).css('display') === 'block') {
-                    ++count;
+                    ++isLoad.countSearchModalAddressFirst;
                 }
             })
-            if (inputSearch.val().trim().length === 0 || formatCheckSpecialCharacters.test(inputSearch.val().trim()) || formatCheckNumber.test(inputSearch.val().trim())) {
-                count = 0
+            if (inputSearch.val().trim().length === 0) {
+                isLoad.countSearchModalAddressFirst = GlobalTransferValue.historyCountSearchModalAddressFirst[GlobalTransferValue.historyCountSearchModalAddressFirst.length - 1]
             }
-            // let checkWhiteSpace = hasWhiteSpace(inputSearch.val().trim()) ? ++count : count
-            // console.log(checkWhiteSpace);
-            historyCount = [...historyCount, count]
-            if (historyCount.length === 1 && historyCount[0] > 0) {
-                modalAddressDialog.css('overflow-y', 'auto')
-                dropdown.addClass("border border-2 shadow-lg mt-1 rounded-2")
-            }
-            if (historyCount.length === 1 && historyCount[0] === 0) {
-                modalAddressDialog.css('overflow-y', 'auto')
-                dropdown.removeClass("border border-2 shadow-lg mt-1 rounded-2")
-            }
-            if (historyCount[historyCount.length - 2] != historyCount[historyCount.length - 1] && historyCount.length > 1) {
-                modalAddressDialog.css('overflow-y', 'auto')
-                dropdown.addClass("border border-2 shadow-lg mt-1 rounded-2")
-            }
-            if (historyCount[historyCount.length - 2] === historyCount[historyCount.length - 1] && historyCount.length > 1) {
+            GlobalTransferValue.historyCountSearchModalAddressFirst = [...GlobalTransferValue.historyCountSearchModalAddressFirst, isLoad.countSearchModalAddressFirst]
+            if (isLoad.countSearchModalAddressFirst === 0) {
                 modalAddressDialog.css('overflow-y', 'none')
                 dropdown.removeClass("border border-2 shadow-lg mt-1 rounded-2")
             }
-            console.log(historyCount);
+            if (GlobalTransferValue.historyCountSearchModalAddressFirst.length === 1 && GlobalTransferValue.historyCountSearchModalAddressFirst[0] > 0) {
+                modalAddressDialog.css('overflow-y', 'auto')
+                dropdown.addClass("border border-2 shadow-lg mt-1 rounded-2")
+            }
+            if (GlobalTransferValue.historyCountSearchModalAddressFirst.length === 1 && GlobalTransferValue.historyCountSearchModalAddressFirst[0] === 0) {
+                modalAddressDialog.css('overflow-y', 'auto')
+                dropdown.removeClass("border border-2 shadow-lg mt-1 rounded-2")
+            }
+            if (GlobalTransferValue.historyCountSearchModalAddressFirst[GlobalTransferValue.historyCountSearchModalAddressFirst.length - 2] != GlobalTransferValue.historyCountSearchModalAddressFirst[GlobalTransferValue.historyCountSearchModalAddressFirst.length - 1] && GlobalTransferValue.historyCountSearchModalAddressFirst.length > 1) {
+                modalAddressDialog.css('overflow-y', 'auto')
+                dropdown.addClass("border border-2 shadow-lg mt-1 rounded-2")
+            }
+            if (GlobalTransferValue.historyCountSearchModalAddressFirst[GlobalTransferValue.historyCountSearchModalAddressFirst.length - 2] === GlobalTransferValue.historyCountSearchModalAddressFirst[GlobalTransferValue.historyCountSearchModalAddressFirst.length - 1] && GlobalTransferValue.historyCountSearchModalAddressFirst.length > 1) {
+                modalAddressDialog.css('overflow-y', 'none')
+                dropdown.removeClass("border border-2 shadow-lg mt-1 rounded-2")
+            }
+            if (inputSearch.val().trim().length === 0 || formatCheckSpecialCharacters.test(inputSearch.val().trim()) || formatCheckNumber.test(inputSearch.val().trim())) {
+                isLoad.countSearchModalAddressFirst = GlobalTransferValue.historyCountSearchModalAddressFirst[GlobalTransferValue.historyCountSearchModalAddressFirst.length - 1];
+
+            }
+            console.log(GlobalTransferValue.historyCountSearchModalAddressFirst);
         })
     }
     let handleModalAddressFirst = () => {
@@ -1157,9 +1223,8 @@ $(document).ready(() => {
         let item = $('.modalAddressFirst_dropdown-item');
         let dropdown = $('#modalAddressFirstDropDown')
         let modalAddressDialog = $('#modalAnddressDialog')
-        let btnSubmitModalAddressFirst = $('#BtnSubmitModalAddressFirst');
         modalAddressDialog.css('overflow', 'hidden')
-        handleClickItem_DropDown_ModalAddressFirst(girdDropDown, item, inputSearch, btnSubmitModalAddressFirst)
+        handleClickItem_DropDown_ModalAddressFirst(girdDropDown, inputSearch, btnSubmit)
         handleShow_DropDown_ModalAddressFirst(girdDropDown)
         handleSearchItem_DropDown_ModalAddressFirst(inputSearch, dropdown, modalAddressDialog);
     }
@@ -1184,23 +1249,18 @@ $(document).ready(() => {
         isWards: false,
         Past: [],
         value: {},
-    }
-    let valueModalAddress = {
-        value: "",
+        countSearchModalAddressFirst: 0,
     }
     let GlobalTransferValue = {
         historyDetailAddress: [],
-        historyValueSearchModalAddressFirst: [],
-    }
-    let auto_show = () => {
-        $('#modal_transportto-address').modal('show');
+        historyValueSearchModalAddressFirst: ["huyện ba vì"],
+        historyCountSearchModalAddressFirst: [],
     }
     handleGetvalidateform(modalAddress_InputName, itemSubName, modalAddress_InputPhone, itemSubPhone);
-    auto_show();
     handle_slide_img();
     handleModalAddress();
+    handleModalAddressFirst()
     handleInputAddress()
     handleInputAddressSpecifically();
     handleButtonTypeAddress();
-    handleModalAddressFirst()
 })
