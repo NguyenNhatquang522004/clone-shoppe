@@ -1,4 +1,5 @@
-import { getData } from "./fetchdata.js"
+import * as fetch from "./fetchdata.js"
+import * as ModalProductImg from "./detailModalProductImg.js"
 $(document).ready(() => {
     let changeImg = () => {
         $(".products_left .detail_img .detail_img-gird .item-img").each((index, item) => {
@@ -120,7 +121,6 @@ $(document).ready(() => {
                 }, 500);
                 setTimeout(() => {
                     isLoad.countSearchModalAddressFirst = 0;
-                    GlobalTransferValue.historyCountSearchModalAddressFirst = [];
                     inputSearch_ModalAddres.val('')
                     btnSubmitModalAddressFirst.prop('disabled', true)
                     dropDownSearch_ModalAddress.css('z-index', -1)
@@ -140,7 +140,6 @@ $(document).ready(() => {
         btnCloseModalFirst.click(function (e) {
             e.stopPropagation()
             isLoad.countSearchModalAddressFirst = 0;
-            GlobalTransferValue.historyCountSearchModalAddressFirst = [];
             inputSearch_ModalAddres.val('')
             btnSubmitModalAddressFirst.prop('disabled', true)
             dropDownSearch_ModalAddress.css('z-index', -1)
@@ -159,7 +158,6 @@ $(document).ready(() => {
         btnOpenModalThird.click(function (e) {
             e.stopPropagation()
             isLoad.countSearchModalAddressFirst = 0;
-            GlobalTransferValue.historyCountSearchModalAddressFirst = [];
             inputSearch_ModalAddres.val('')
             btnSubmitModalAddressFirst.prop('disabled', true)
             dropDownSearch_ModalAddress.css('z-index', -1)
@@ -252,8 +250,6 @@ $(document).ready(() => {
         handleClickPreventCloseOutside_ModalAddress(modalSubmitMap, modalMap, modalFirst, modalSecond, modalThird)
         handleOpenAndClose_ModalAddress(itemDelete, inputSearch_ModalAddres, dropDownSearch_ModalAddress, itemPoint, btnSubmitModalAddressFirst, btnBackModalMapAndSubmitMap, btnBackModalMapFromSubmitMap, btnOpenModalSubmitMap, modalSubmitMap, btnOpenModalMap, btnBackModalThirdFromMap, iconBackModalThirdFromMap, modalMap, modalFirst, modalSecond, modalThird, btnOpenModalFirst, btnCloseModalFirst, btnOpenModalSecond, btnOpenModalThird, btnBackModalFirstFromThird, btnBackModalFirstFromSecond)
     }
-
-
     let checkRexName = (name) => {
         let regex = /^[a-zA-Z ]+$/;
         return regex.test(name);
@@ -455,9 +451,9 @@ $(document).ready(() => {
 
     }
     let handleAnimationInputAddress = async () => {
-        let ListProvince = await getData("../province.json");
-        let listDistrict = await getData(`./District/District${1}.json`)
-        let listWards = await getData(`./District/District${2}.json`)
+        let ListProvince = await fetch.getData("../province.json");
+        let listDistrict = await fetch.getData(`./District/District${1}.json`)
+        let listWards = await fetch.getData(`./District/District${2}.json`)
         $('#wrapProvincecity').mouseover(function (e) {
             if (isSuccess.isCity === false) {
                 $(this).css('cursor', 'no-drop');
@@ -555,9 +551,9 @@ $(document).ready(() => {
     }
     let handleShow = async () => {
         try {
-            let ListProvince = await getData("../province.json");
-            let listDistrict = await getData(`./District/District${1}.json`)
-            let listWards = await getData(`./District/District${2}.json`)
+            let ListProvince = await fetch.getData("../province.json");
+            let listDistrict = await fetch.getData(`./District/District${1}.json`)
+            let listWards = await fetch.getData(`./District/District${2}.json`)
             if (isLoad.isCity === true) {
                 $('#wrapProvincecity').addClass('intputCity_animation-color')
                 $('#wrapProvinceDistrict').removeClass('intputCity_animation-color')
@@ -623,7 +619,7 @@ $(document).ready(() => {
             let index = $(this).attr('id')
             if (isLoad.isCity === true) {
 
-                let ListProvince = await getData("../province.json");
+                let ListProvince = await fetch.getData("../province.json");
                 getNameProvince = ListProvince.data.data.filter(item => {
                     if (item.id === Number(index)) {
 
@@ -654,7 +650,7 @@ $(document).ready(() => {
             }
             else if (isLoad.isDistrict === true) {
 
-                let listDistrict = await getData(`./District/District${1}.json`)
+                let listDistrict = await fetch.getData(`./District/District${1}.json`)
                 getNameDistrict = listDistrict.data.District.filter(item => {
                     if (item.id === Number(index)) {
                         return item
@@ -683,7 +679,7 @@ $(document).ready(() => {
             }
             else if (isLoad.isWards === true) {
 
-                let listWards = await getData(`./District/District${2}.json`)
+                let listWards = await fetch.getData(`./District/District${2}.json`)
                 getNameWards = listWards.data.District.filter(item => {
                     if (item.id === Number(index)) {
                         return item
@@ -715,7 +711,7 @@ $(document).ready(() => {
 
     }
     let ActionDropDownAddress = async () => {
-        $('#inputProvince').on("click ", function () {
+        $('#inputProvince').on("click ", function (e) {
             $("#itemSubProvince").hide();
             $(this).removeClass('input-red-boder input-red-text input-red-placeholder')
             $("#dropdownaddress").show()
@@ -965,7 +961,7 @@ $(document).ready(() => {
         })
     }
     let handleShow_Dropdown_DetailAddress = async (mainValue, dropdown) => {
-        let DataDetailAddress = await getData('../province.json');
+        let DataDetailAddress = await fetch.getData('../province.json');
         $('#dropdrownDetailAddressGird').empty().append(DataDetailAddress.data.data.map(item => `<div class="item-detailAddress col-12  p-2" id="${item.id}">${item.name} </div>`))
         $('#dropdrownDetailAddressGird').find('#1.item-detailAddress').addClass('item-detailAddress-active')
     }
@@ -990,6 +986,7 @@ $(document).ready(() => {
         let curtainPrevent = $('#mapBarrierCurtain');
         let embedGoogle = $('#embedGoogle')
         mainValue.keyup(function (event) {
+            event.stopImmediatePropagation();
             let count = 0;
             let min = [];
             itemSub.hide();
@@ -1032,6 +1029,7 @@ $(document).ready(() => {
             else {
                 dropdown.removeClass('rounded-2 border border-2 shadow')
             }
+            console.log(count);
             mainValue.removeClass('input-red-boder input-red-placeholder')
             itemPlaceholder.removeClass('input-red-text')
             if ($(this).val().length > 0) {
@@ -1074,7 +1072,7 @@ $(document).ready(() => {
 
     }
     let handleAction_Dropdown_DetailAddress = async (mainValue, dropdown, itemSub, itemPlaceholder) => {
-        let DataDetailAddress = await getData('../province.json');
+        let DataDetailAddress = await fetch.getData('../province.json');
         $('#dropdrownDetailAddressGird').on('click', `.item-detailAddress`, function (e) {
             let position = $(this).prop('id');
             let valuesDetailAddress = DataDetailAddress.data.data.filter((item) => {
@@ -1115,11 +1113,11 @@ $(document).ready(() => {
         $(`#wrapItemTextModalAddress`).append(`<div class="item-text-FromDetailAddress" id="itemTextFromDetailAddress">${GlobalTransferValue.historyDetailAddress[GlobalTransferValue.historyDetailAddress.length - 1]}</div>`)
     }
     let handleShow_DropDown_ModalAddressFirst = async (girdDropDown) => {
-        let ListProvince = await getData("../province.json");
+        let ListProvince = await fetch.getData("../province.json");
         girdDropDown.empty().append(ListProvince.data.data.map(item => `<div class="modalAddressFirst_dropdown-item col-12 py-2"id='${item.id}'>${item.name}</div>`))
     }
     let handleClickItem_DropDown_ModalAddressFirst = async (girdDropDown, inputSearch, btnSubmit, dropdown) => {
-        let ListProvince = await getData("../province.json");
+        let ListProvince = await fetch.getData("../province.json");
         let value = null;
         girdDropDown.on('click', `.modalAddressFirst_dropdown-item`, function () {
             let position = $(this).prop('id')
@@ -1136,62 +1134,75 @@ $(document).ready(() => {
         })
     }
     let handleSearchItem_DropDown_ModalAddressFirst = async (inputSearch, dropdown, modalAddressDialog, itemDelete) => {
-        let ListProvince = await getData("../province.json");
-        let historyCount = []
         let formatCheckSpecialCharacters = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
         let formatCheckNumber = /^[0-9]+$/;
         inputSearch.keyup(function () {
+            isLoad.countSearchModalAddressFirst = 0
             modalAddressDialog.css('overflow', 'hidden')
             let valueInput = $(this).val().toLowerCase();
             $('#ModalAddressFirstDropdownGird .modalAddressFirst_dropdown-item').filter(function () {
                 $(this).toggle($(this).text().toLowerCase().indexOf(valueInput) > -1)
             })
             if (inputSearch.val().trim().length > 0) {
+                dropdown.addClass("border border-2 shadow-lg mt-1 rounded-2")
                 dropdown.css('z-index', 3)
                 itemDelete.show();
             }
-            if (inputSearch.val().trim().length === 0) {
+            else {
+                dropdown.removeClass("border border-2 shadow-lg mt-1 rounded-2")
                 dropdown.css('z-index', -1)
                 itemDelete.hide();
             }
             $('#ModalAddressFirstDropdownGird .modalAddressFirst_dropdown-item').each(function () {
                 if ($(this).css('display') === 'block') {
-                    ++isLoad.countSearchModalAddressFirst;
+                    ++isLoad.countSearchModalAddressFirst
                 }
             })
-            if (isLoad.countSearchModalAddressFirst === 0) {
+            if (inputSearch.val().trim().length <= 0) {
+                isLoad.countSearchModalAddressFirst = 0
+            }
+            if (isLoad.countSearchModalAddressFirst > 0) {
+                modalAddressDialog.css('overflow-y', 'auto')
+                dropdown.addClass('border border-2 shadow-lg mt-1 rounded-2 ')
+            }
+            else {
                 modalAddressDialog.css('overflow-y', 'none')
-                dropdown.removeClass("border border-2 shadow-lg mt-1 rounded-2")
+                dropdown.removeClass('border border-2 shadow-lg mt-1 rounded-2')
             }
-            if (inputSearch.val().trim().length === 0) {
-                isLoad.countSearchModalAddressFirst = GlobalTransferValue.historyCountSearchModalAddressFirst[GlobalTransferValue.historyCountSearchModalAddressFirst.length - 1]
-            }
-            GlobalTransferValue.historyCountSearchModalAddressFirst = [...GlobalTransferValue.historyCountSearchModalAddressFirst, isLoad.countSearchModalAddressFirst]
+            // if (isLoad.countSearchModalAddressFirst === 0) {
+            //     modalAddressDialog.css('overflow-y', 'none')
+            //     dropdown.removeClass("border border-2 shadow-lg mt-1 rounded-2")
+            // }
+            // if (inputSearch.val().trim().length === 0) {
+            //     isLoad.countSearchModalAddressFirst = GlobalTransferValue.historyCountSearchModalAddressFirst[GlobalTransferValue.historyCountSearchModalAddressFirst.length - 1]
+            // }
+            // GlobalTransferValue.historyCountSearchModalAddressFirst = [...GlobalTransferValue.historyCountSearchModalAddressFirst, isLoad.countSearchModalAddressFirst]
 
-            if (isLoad.countSearchModalAddressFirst === 0) {
-                modalAddressDialog.css('overflow-y', 'none')
-                dropdown.removeClass("border border-2 shadow-lg mt-1 rounded-2")
-            }
-            if (GlobalTransferValue.historyCountSearchModalAddressFirst.length === 1 && GlobalTransferValue.historyCountSearchModalAddressFirst[0] > 0) {
-                modalAddressDialog.css('overflow-y', 'auto')
-                dropdown.addClass("border border-2 shadow-lg mt-1 rounded-2")
-            }
-            if (GlobalTransferValue.historyCountSearchModalAddressFirst.length === 1 && GlobalTransferValue.historyCountSearchModalAddressFirst[0] === 0) {
-                modalAddressDialog.css('overflow-y', 'auto')
-                dropdown.removeClass("border border-2 shadow-lg mt-1 rounded-2")
-            }
-            if (GlobalTransferValue.historyCountSearchModalAddressFirst[GlobalTransferValue.historyCountSearchModalAddressFirst.length - 2] != GlobalTransferValue.historyCountSearchModalAddressFirst[GlobalTransferValue.historyCountSearchModalAddressFirst.length - 1] && GlobalTransferValue.historyCountSearchModalAddressFirst.length > 1) {
-                modalAddressDialog.css('overflow-y', 'auto')
-                dropdown.addClass("border border-2 shadow-lg mt-1 rounded-2")
-            }
-            if (GlobalTransferValue.historyCountSearchModalAddressFirst[GlobalTransferValue.historyCountSearchModalAddressFirst.length - 2] === GlobalTransferValue.historyCountSearchModalAddressFirst[GlobalTransferValue.historyCountSearchModalAddressFirst.length - 1] && GlobalTransferValue.historyCountSearchModalAddressFirst.length > 1) {
-                modalAddressDialog.css('overflow-y', 'none')
-                dropdown.removeClass("border border-2 shadow-lg mt-1 rounded-2")
-            }
-            if (inputSearch.val().trim().length === 0 || formatCheckSpecialCharacters.test(inputSearch.val().trim()) || formatCheckNumber.test(inputSearch.val().trim())) {
-                isLoad.countSearchModalAddressFirst = GlobalTransferValue.historyCountSearchModalAddressFirst[GlobalTransferValue.historyCountSearchModalAddressFirst.length - 1];
+            // if (isLoad.countSearchModalAddressFirst === 0) {
+            //     modalAddressDialog.css('overflow-y', 'none')
+            //     dropdown.removeClass("border border-2 shadow-lg mt-1 rounded-2")
+            // }
+            // if (GlobalTransferValue.historyCountSearchModalAddressFirst.length === 1 && GlobalTransferValue.historyCountSearchModalAddressFirst[0] > 0) {
+            //     modalAddressDialog.css('overflow-y', 'auto')
+            //     dropdown.addClass("border border-2 shadow-lg mt-1 rounded-2")
+            // }
+            // if (GlobalTransferValue.historyCountSearchModalAddressFirst.length === 1 && GlobalTransferValue.historyCountSearchModalAddressFirst[0] === 0) {
+            //     modalAddressDialog.css('overflow-y', 'auto')
+            //     dropdown.removeClass("border border-2 shadow-lg mt-1 rounded-2")
+            // }
+            // if (GlobalTransferValue.historyCountSearchModalAddressFirst[GlobalTransferValue.historyCountSearchModalAddressFirst.length - 2] != GlobalTransferValue.historyCountSearchModalAddressFirst[GlobalTransferValue.historyCountSearchModalAddressFirst.length - 1] && GlobalTransferValue.historyCountSearchModalAddressFirst.length > 1) {
+            //     modalAddressDialog.css('overflow-y', 'auto')
+            //     dropdown.addClass("border border-2 shadow-lg mt-1 rounded-2")
+            // }
+            // if (GlobalTransferValue.historyCountSearchModalAddressFirst[GlobalTransferValue.historyCountSearchModalAddressFirst.length - 2] === GlobalTransferValue.historyCountSearchModalAddressFirst[GlobalTransferValue.historyCountSearchModalAddressFirst.length - 1] && GlobalTransferValue.historyCountSearchModalAddressFirst.length > 1) {
+            //     modalAddressDialog.css('overflow-y', 'none')
+            //     dropdown.removeClass("border border-2 shadow-lg mt-1 rounded-2")
+            // }
+            // if (inputSearch.val().trim().length === 0 || formatCheckSpecialCharacters.test(inputSearch.val().trim()) || formatCheckNumber.test(inputSearch.val().trim())) {
+            //     isLoad.countSearchModalAddressFirst = GlobalTransferValue.historyCountSearchModalAddressFirst[GlobalTransferValue.historyCountSearchModalAddressFirst.length - 1];
 
-            }
+            // }
+
         })
     }
     let handleDelete_DropDown_ModalAddressFirst = (itemDelete, inputSearch, dropdown, btnSubmit) => {
@@ -1244,7 +1255,6 @@ $(document).ready(() => {
     let GlobalTransferValue = {
         historyDetailAddress: [],
         historyValueSearchModalAddressFirst: ["huyện ba vì"],
-        historyCountSearchModalAddressFirst: [],
     }
     let autoshow = () => {
         $('#modal_transportto-address').modal('show')
@@ -1257,4 +1267,5 @@ $(document).ready(() => {
     handleInputAddress()
     handleInputAddressSpecifically();
     handleButtonTypeAddress();
+    ModalProductImg.AllHandleModalProductsImg();
 })
