@@ -1,25 +1,7 @@
 import * as fetch from "./fetchdata.js"
 import * as ModalProductImg from "./detailModalProductImg.js"
 $(document).ready(() => {
-    let changeImg = () => {
-        $(".products_left .detail_img .detail_img-gird .item-img").each((index, item) => {
-            $(item).on("mouseover", (e) => {
-                $(".detail_products .detail_products-container  .detail_products-grid .products_left .item-img")[0].src = $(item).attr('src')
-            })
-        })
-    }
-    let scrollslidecart = () => {
-        $(".products_left .detail_img .detail_img-button-next").on('click', (e) => {
-            $('.detail_products-grid .products_left .detail_img .detail_img-gird').scrollLeft(+200)
-        })
-        $(".products_left .detail_img .detail_img-button-prev").on('click', (e) => {
-            $('.detail_products-grid .products_left .detail_img .detail_img-gird').scrollLeft(-200)
-        })
-    }
-    let handle_slide_img = () => {
-        changeImg();
-        scrollslidecart();
-    }
+    
     let handleSetupClassname_ModalAddress = (modalSubmitMap, modalMap, modalFirst, modalSecond, modalThird, backDrop) => {
         modalFirst.on('shown.bs.modal', function () {
             $(`.modal-backdrop`).addClass('ModalBackDropNestedFirst BackDropAndgroundModal ');
@@ -1259,9 +1241,10 @@ $(document).ready(() => {
     let autoshow = () => {
         $('#modal_transportto-address').modal('show')
     }
+
     // autoshow()
     handleGetvalidateform(modalAddress_InputName, itemSubName, modalAddress_InputPhone, itemSubPhone);
-    handle_slide_img();
+    // handle_slide_img();
     handleModalAddress();
     handleModalAddressFirst()
     handleInputAddress()

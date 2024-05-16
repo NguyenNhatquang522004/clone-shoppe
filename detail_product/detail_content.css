@@ -129,10 +129,7 @@ body {
     cursor: pointer;
 }
 
-.products_left .detail_img .detail_img-gird .item-img:hover {
-    border-color: var(--text-main);
-    border: 0.2px 0.2px;
-    border-style: solid;
+#DetailImgGird.item-img {
     cursor: pointer;
 }
 
