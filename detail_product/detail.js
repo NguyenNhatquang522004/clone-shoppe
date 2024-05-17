@@ -1,7 +1,8 @@
 import * as fetch from "./fetchdata.js"
 import * as ModalProductImg from "./detailModalProductImg.js"
+import * as Change from "./handleChangeImg.js"
 $(document).ready(() => {
-    
+
     let handleSetupClassname_ModalAddress = (modalSubmitMap, modalMap, modalFirst, modalSecond, modalThird, backDrop) => {
         modalFirst.on('shown.bs.modal', function () {
             $(`.modal-backdrop`).addClass('ModalBackDropNestedFirst BackDropAndgroundModal ');
@@ -551,7 +552,7 @@ $(document).ready(() => {
                     $("#wrapItemProvincegird").empty().append(ListProvince.data.data.map(item => `<div class="item-text-Province col-12 p-3 text-capitalize"   id="${item.id}">${item.name}</div>`)
                     );
                 }
-            }
+            }   
             if (isLoad.isDistrict === true) {
                 $('#wrapProvincecity').removeClass('intputCity_animation-color')
                 $('#wrapProvinceDistrict').addClass('intputCity_animation-color')

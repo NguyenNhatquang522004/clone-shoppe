@@ -233,6 +233,7 @@ body {
     background-color: var(--background-main);
     width: 70%;
     box-sizing: border-box;
+    z-index: 2;
 }
 
 .dropdown_discounts-grid .item-text-top {
@@ -1160,6 +1161,7 @@ body {
 #ModalProductsDetailImgDisplayMain {
     height: 85rem !important;
     width: 99%;
+    object-fit: contain;
 }
 
 #ModalProductsDetailImgItemTitle {
@@ -1181,7 +1183,7 @@ body {
     background-color: var(--background-main);
 }
 
-.curtainlayer-ModalProductsDetailImg {
+#ModalProductsDetailWrapImgGrid .wrap-item .curtainlayer-ModalProductsDetailImg {
     height: 100%;
     width: 100% !important;
     top: 0;
@@ -1190,9 +1192,10 @@ body {
     background-color: transparent;
     border: 2px solid #dee2e6;
     z-index: 1;
+    cursor: pointer;
 }
 
-.curtainlayer-ModalProductsDetailImg:hover {
+#ModalProductsDetailWrapImgGrid .wrap-item .curtainlayer-ModalProductsDetailImg:hover {
     transition: all 0.1s;
     background: hsla(0, 0%, 100%, .4);
 }
@@ -1200,7 +1203,7 @@ body {
 .ModalProductsDetailImg-body-grid .wrap-left .button {
     background-color: rgba(0, 0, 0, .54);
     transform: translateY(-50%);
-    height: 10rem;
+    height: 8rem;
     width: 4rem;
     cursor: pointer;
 }
@@ -1218,4 +1221,180 @@ body {
 .ModalProductsDetailImg-body-grid .wrap-left .button .item-icon {
     font-size: 4rem;
     color: var(--text-white);
+}
+
+.wrap_introduce-gird .wrap-transport-price .item-title {
+    font-size: 1.4rem;
+    color: var(--text-grey-1);
+    font-weight: 500;
+}
+
+#unitOutSidedropdown_transport-price {
+    top: 0%;
+    left: -15%;
+    font-size: 1rem;
+    text-decoration: underline;
+}
+
+.wrap_introduce-gird .wrap-transport-price .wrap-item-price .item-price {
+    font-size: 1.4rem;
+    color: var(--text-black);
+}
+
+.wrap_introduce-gird .wrap-transport-price .wrap-item-price .item-price .item-icon {
+    color: var(--text-grey) !important;
+}
+
+.wrap_introduce-gird .wrap-transport-price .wrap-item-price {
+    cursor: pointer;
+}
+
+.wrap_introduce-gird .wrap-transport-price .wrap-item-price:hover #ItemTransportPrice {
+    color: var(--text-main);
+
+}
+
+#DropDownTransportPrice {
+    left: 50%;
+    transform: translateX(-55%);
+    width: 50rem;
+    background-color: var(--background-main);
+    cursor: context-menu;
+    z-index: 2;
+    display: none;
+}
+
+#DropDownTransportPrice::before {
+    content: "";
+    height: 2rem;
+    width: 100%;
+    background-color: transparent;
+    position: absolute;
+    top: -10%;
+}
+
+#DropDownTransportPriceContainer {}
+
+.wrap_introduce-gird .wrap-transport-price .wrap-item-price:hover #DropDownTransportPrice {
+    display: block;
+}
+
+.dropdown_transport-price-top-grid .item-status {
+    font-size: 1.4rem;
+    font-weight: 500 !important;
+    color: var(--text-black) !important;
+}
+
+.dropdown_transport-price-top-grid .wrap-right .item-price {
+    font-size: 1.2rem !important;
+    color: var(--text-grey) !important;
+}
+
+.dropdown_transport-price-top-grid .wrap-right .unit {
+    right: 101%;
+    top: 2%;
+    font-size: 1rem !important;
+    color: var(--text-grey);
+    text-decoration: underline;
+
+}
+
+.dropdown_transport-price-top-grid .wrap-right .item-text {
+    font-size: 1.35rem !important;
+    color: var(--text-main) !important;
+    font-weight: 500 !important;
+    display: inline-block;
+}
+
+.dropdown_transport-price-top-grid .wrap-right .item-text::first-letter {
+    text-transform: uppercase !important;
+}
+
+.dropdown_transport-price-middle .dropdown_transport-price-middle-grid .item-text {
+    font-size: 1.25rem !important;
+    color: var(--text-grey) !important;
+    line-height: 1.6rem;
+}
+
+.dropdown_transport-price-middle .dropdown_transport-price-middle-grid .item-text-first {
+    height: auto;
+}
+
+.dropdown_transport-price-middle .dropdown_transport-price-middle-grid .item-text::first-letter {
+    text-transform: uppercase;
+}
+
+.dropdown_transport-price-grid .dropdown_transport-price-bottom .item-title {
+    font-size: 1.4rem !important;
+    color: var(--text-main) !important;
+    font-weight: 500 !important;
+}
+
+.dropdown_transport-price-grid .dropdown_transport-price-bottom .item-title::first-letter {
+    text-transform: uppercase;
+}
+
+.dropdown_transport-price-grid .dropdown_transport-price-bottom .bill {
+    font-size: 1.35rem !important;
+    display: inline-block;
+    color: var(--text-grey);
+}
+
+.dropdown_transport-price-grid .dropdown_transport-price-bottom .bill::first-letter {
+    text-transform: uppercase;
+}
+
+.dropdown_transport-price-grid .dropdown_transport-price-bottom .item-price {
+    font-size: 1.35rem;
+    color: var(--text-grey) !important;
+}
+
+.dropdown_transport-price-grid .dropdown_transport-price-bottom .unita {
+    font-size: 1.1rem;
+    top: 0%;
+    right: 52%;
+    transform: translateY(2%);
+    text-decoration: underline;
+    color: var(--text-grey) !important;
+}
+
+.wrap-color .wrap-color-right .wrap-color-right-gird .wrap_item {
+    cursor: pointer;
+}
+
+.wrap-color .wrap-color-right {
+    height: 20rem;
+    overflow-y: auto;
+}
+
+.wrap-color-grid .item-text-left {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--text-grey);
+}
+
+.wrap-color-right-gird .wrap_item .wrap_item-gird .item-title {
+    font-size: 1.2rem;
+}
+
+.wrap-type .wrap-type-container .wrap-type-gird .item-type {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--text-grey);
+}
+
+.wrap-type .wrap-type-container .wrap-type-gird .wrap-type-right .wrap-type-right-gird .wrap_item .wrap_item-container {
+    font-size: 1.35rem;
+    color: var(--text-black);
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.wrap-type .wrap-type-container .wrap-type-gird .wrap-type-right .wrap-type-right-gird .wrap_item:hover {
+    border-color: var(--text-main) !important;
+    color: var(--text-main) !important;
+}
+
+.wrap-type .wrap-type-container .wrap-type-gird .wrap-type-right .wrap-type-right-gird .wrap_item:hover .wrap_item-container {
+    color: var(--text-main) !important;
 }
