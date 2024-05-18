@@ -131,15 +131,20 @@ const handleShowItem_Color = async () => {
     const FetchItem = await fetch.getData(`./Color.json`);
     if (FetchItem) {
         $('#WrapColorRightGird').empty().append(FetchItem.data.data.map(item =>
-            `<div class="wrap_item border border-1 mx-2  mt-3 wrap_item-color" >
-            <div class="wrap_item-gird row py-2 px-1  align-items-center mx-0 ">
-                <img class="item-img  col-2 px-0"
-                    src="${item.url}"
-                    alt="">
-                <span
-                    class="item-title text-capitalize col-10 px-0 ps-2 text-uppercase text-truncate">${item.title}
-             </span>
-             <span class="item-type"  id="${item.id}">${item.type}</span>
+            `   <div class="wrap_item border border-1 mx-2  mt-3 wrap_item-color ">
+            <div class="wrap_item-container container  px-0">
+                <div
+                    class="wrap_item-gird row py-2 px-1  align-items-center mx-0  ">
+                    <div class="wrap_Img px-0  position-relative col-2 ">
+                        <img class="item-img img-fluid  px-0 object-fit-contain position-absolute"
+                            src="${item.url}" alt="">
+                    </div>
+                    <span
+                        class="item-title text-capitalize col-9  px-0  text-uppercase  ms-1 text-truncate ">
+                       ${item.title}
+                    </span>
+                    <span class="item-type" id="${item.id}">${item.type} </span>
+                </div>
             </div>
         </div>`
         ))
@@ -151,9 +156,9 @@ const handleClick_type = (parentItemType, typeColor, typeItem, itemTitleColor) =
         parentItemType.removeClass("input-red-text input-red-boder");
         $(this).addClass('input-red-text input-red-boder')
         typeColor.each((index, item) => {
-            $(item).parent().parent().removeClass('item-Color-Action')
-            if ($(typeItem[position]).text() === $(item).text()) {
-                $(item).parent().parent().addClass("item-Color-Action");
+            $(item).parent().parent().parent().removeClass('item-Color-Action')
+            if ($(typeItem[position]).text().trim() === $(item).text().trim()) {
+                $(item).parent().parent().parent().addClass("item-Color-Action");
             }
         })
     })
@@ -163,7 +168,6 @@ const CountNextAndPrevios_ModalProducts = {
 }
 export const AllHandleModalProductsImg = () => {
     handleShowItem_ModalProducts()
-
     handleShowTitle_ModalProducts()
     handleShow_Type();
     handleShowItem_Color();
@@ -177,9 +181,9 @@ export const AllHandleModalProductsImg = () => {
         const manyItemImg = $('#ModalProductsDetailWrapImgGrid .wrap-item').find('.ModalProductsDetail_item-img')
         const representItemImg = $('#ModalProductsDetailWrapImgGrid .wrap-item').find('.curtainlayer-ModalProductsDetailImg')
         const itemColor = $('#WrapColorRightGird').find('.wrap_item-color')
-        const itemTitleColor = $('#WrapColorRightGird').find('.wrap_item-color .wrap_item-gird .item-title')
+        const itemTitleColor = $('#WrapColorRightGird').find('.wrap_item-color .wrap_item-container .wrap_item-gird .item-title')
         const parentItemType = $('#WrapTypeRightGird').find('.wrap_item-type');
-        const typeColor = $('#WrapColorRightGird').find('.wrap_item-color .wrap_item-gird .item-type')
+        const typeColor = $('#WrapColorRightGird').find('.wrap_item-color .wrap_item-container .wrap_item-gird .item-type')
         const typeItem = $('#WrapTypeRightGird').find('.wrap_item-type .wrap_item-container .type');
         handleShowInitial_ModalProducts(ImgOutSide, btnOpenModalProductDetailImg, itemImgMain, typeColor)
         handleOpenClose_ModalProducts(btnOpenModalProductDetailImg, modalProductDetailImg, representItemImg, ImgOutSide, itemImgMain)
