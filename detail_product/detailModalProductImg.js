@@ -144,26 +144,107 @@ const handleShowItem_Color = async () => {
                        ${item.title}
                     </span>
                     <span class="item-type" id="${item.id}">${item.type} </span>
+                    <span class="quantity_color d-none">${item.quantity}</span>
                 </div>
             </div>
         </div>`
         ))
     }
 }
-const handleClick_type = (parentItemType, typeColor, typeItem, itemTitleColor) => {
-    parentItemType.click(function () {
-        const position = parentItemType.index(this)
-        parentItemType.removeClass("input-red-text input-red-boder");
+const handleClickEq_Color = (parentItemType, typeColor, typeItem, itemTitleColor, itemColor, index) => {
+    itemColor.eq(index).on('click', function () {
+        const position = itemColor.index(this);
+        itemColor.removeClass('input-red-text input-red-boder')
         $(this).addClass('input-red-text input-red-boder')
-        typeColor.each((index, item) => {
-            $(item).parent().parent().parent().removeClass('item-Color-Action')
-            if ($(typeItem[position]).text().trim() === $(item).text().trim()) {
-                $(item).parent().parent().parent().addClass("item-Color-Action");
+        parentItemType.off('click')
+        typeItem.each((index, item) => {
+            $(item).parent().parent().addClass("item-Color-Action");
+            if ($(typeColor[position]).text().trim() === $(item).text().trim()) {
+                $(item).parent().parent().removeClass('item-Color-Action')
+                // $(parentItemType[index]).click()
+                // handleClick_type(parentItemType, typeColor, typeItem, itemTitleColor, itemColor)
+                handleClickEq_type(parentItemType, typeColor, typeItem, itemTitleColor, itemColor, index)
             }
         })
     })
 }
+const handleClick_Color = (parentItemType, typeColor, typeItem, itemTitleColor, itemColor) => {
+    itemColor.click(function () {
+        const position = itemColor.index(this);
+        itemColor.removeClass('input-red-text input-red-boder')
+        $(this).addClass('input-red-text input-red-boder')
+        parentItemType.off('click')
+        typeItem.each((index, item) => {
+            $(parentItemType[index]).addClass("item-Color-Action");
+            if ($(typeColor[position]).text().trim() === $(item).text().trim()) {
+                $(parentItemType[index]).removeClass('item-Color-Action')
+                // $(parentItemType[index]).click()
+                // handleClick_type(parentItemType, typeColor, typeItem, itemTitleColor, itemColor)
+                handleClickEq_type(parentItemType, typeColor, typeItem, itemTitleColor, itemColor, index)
+            }
+        })
+    })
+}
+const handleDbClick_Color = (parentItemType, typeColor, typeItem, itemTitleColor, itemColor) => {
+    itemColor.dblclick(function () {
+        $(this).removeClass('input-red-text input-red-boder')
+
+    })
+}
+const handleClick_type = (parentItemType, typeColor, typeItem, itemTitleColor, itemColor) => {
+    parentItemType.click(function () {
+        const position = parentItemType.index(this)
+        itemColor.removeClass('input-red-text input-red-boder')
+        parentItemType.removeClass("input-red-text input-red-boder");
+        $(this).addClass('input-red-text input-red-boder')
+        itemColor.off('click')
+        typeColor.each((index, item) => {
+            $(itemColor[index]).addClass('item-Color-Action')
+            if ($(typeItem[position]).text().trim() === $(item).text().trim()) {
+                $(itemColor[index]).removeClass("item-Color-Action");
+                console.log($(itemColor[index]));
+                $(itemColor[index]).click();
+                // handleClick_Color(parentItemType, typeColor, typeItem, itemTitleColor, itemColor)
+                handleClickEq_Color(parentItemType, typeColor, typeItem, itemTitleColor, itemColor, index)
+            }
+        })
+    })
+}
+const handleClickEq_type = (parentItemType, typeColor, typeItem, itemTitleColor, itemColor, index) => {
+    parentItemType.eq(index).click(function () {
+        const position = parentItemType.index(this)
+        itemColor.removeClass('input-red-text input-red-boder')
+        parentItemType.removeClass("input-red-text input-red-boder");
+        $(this).addClass('input-red-text input-red-boder')
+        itemColor.off('click')
+        typeColor.each((index, item) => {
+            $(itemColor[index]).addClass('item-Color-Action')
+            if ($(typeItem[position]).text().trim() === $(item).text().trim()) {
+                $(itemColor[index]).removeClass("item-Color-Action");
+                // $(itemColor[index]).click();
+                // handleClick_Color(parentItemType, typeColor, typeItem, itemTitleColor, itemColor)
+                handleClickEq_Color(parentItemType, typeColor, typeItem, itemTitleColor, itemColor, index)
+            }
+        })
+    })
+}
+const handleclick_Quantity = (btnDecrease, btnIncrease, ItemQuantum) => {
+    btnDecrease.click(function () {
+        --Quantity.Count
+        if (Quantity.Count < 0) {
+            Quantity.Count = 0
+        }
+        ItemQuantum.text(`${Quantity.Count}`)
+    })
+    btnIncrease.click(function () {
+        ++Quantity.Count
+        ItemQuantum.text(`${Quantity.Count}`)
+    })
+}
 const CountNextAndPrevios_ModalProducts = {
+    Count: 0,
+}
+const Quantity = {
     Count: 0,
 }
 export const AllHandleModalProductsImg = () => {
@@ -185,6 +266,9 @@ export const AllHandleModalProductsImg = () => {
         const parentItemType = $('#WrapTypeRightGird').find('.wrap_item-type');
         const typeColor = $('#WrapColorRightGird').find('.wrap_item-color .wrap_item-container .wrap_item-gird .item-type')
         const typeItem = $('#WrapTypeRightGird').find('.wrap_item-type .wrap_item-container .type');
+        const btnDecrease = $('#ItemDecrease')
+        const btnIncrease = $('#ItemIncrease')
+        const ItemQuantum = $("#ItemQuantum")
         handleShowInitial_ModalProducts(ImgOutSide, btnOpenModalProductDetailImg, itemImgMain, typeColor)
         handleOpenClose_ModalProducts(btnOpenModalProductDetailImg, modalProductDetailImg, representItemImg, ImgOutSide, itemImgMain)
         handleSetupName_ModalProducts(modalProductDetailImg)
@@ -193,7 +277,10 @@ export const AllHandleModalProductsImg = () => {
         handleClick_ModalProducts(itemImgMain, manyItemImg, representItemImg);
         scrollslidecart();
         handleChangeImg_color(btnOpenModalProductDetailImg, itemColor);
-        handleClick_type(parentItemType, typeColor, typeItem, itemTitleColor);
+        handleClick_type(parentItemType, typeColor, typeItem, itemTitleColor, itemColor);
+        handleClick_Color(parentItemType, typeColor, typeItem, itemTitleColor, itemColor)
+        handleclick_Quantity(btnDecrease, btnIncrease, ItemQuantum)
+        handleDbClick_Color(parentItemType, typeColor, typeItem, itemTitleColor, itemColor)
     }, 1000);
 }
 
