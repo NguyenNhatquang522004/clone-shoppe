@@ -1423,11 +1423,13 @@ body {
 /* .wrap-type .wrap-type-container .wrap-type-gird .wrap-type-right .wrap-type-right-gird .wrap_item {
     border: 1px solid #dee2e6;
 } */
+.wrap-type .wrap-type-container .wrap-type-gird .wrap-type-right .wrap-type-right-gird .wrap_item {
+    cursor: pointer;
+}
 
 .wrap-type .wrap-type-container .wrap-type-gird .wrap-type-right .wrap-type-right-gird .wrap_item .wrap_item-container {
     font-size: 1.35rem;
     background-color: transparent;
-    cursor: pointer;
 }
 
 .wrap-type .wrap-type-container .wrap-type-gird .wrap-type-right .wrap-type-right-gird .wrap_item:hover {
@@ -1468,4 +1470,9 @@ body {
     font-size: 1.8rem;
     color: var(--text-grey);
 
+}
+
+.wrap-quantity-right-container .wrap-quantity-right-grid .item-exist {
+    font-size: 1.3rem;
+    color: var(--text-grey-1);
 }

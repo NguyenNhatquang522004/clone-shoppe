@@ -5,35 +5,40 @@
             "url": "https://down-vn.img.susercontent.com/file/sg-11134201-23010-s5kmz6tscdmv3a",
             "title": "color",
             "type": 3,
-            "quantity": 200
+            "quantity": 200,
+            "price": 100
         },
         {
             "id": 2,
             "url": "https://down-vn.img.susercontent.com/file/sg-11134201-23010-c0kegqxscdmvd3",
             "title": "color",
             "type": 1,
-            "quantity": 100
+            "quantity": 100,
+            "price": 200
         },
         {
             "id": 3,
             "url": "https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lg0ob2nh6lwq4b",
             "title": "color",
             "type": 4,
-            "quantity": 500
+            "quantity": 500,
+            "price": 800
         },
         {
             "id": 4,
             "url": "https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lg0ob2nh80h688",
             "title": "color",
             "type": 1,
-            "quantity": 600
+            "quantity": 600,
+            "price": 600
         },
         {
             "id": 5,
             "url": "https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lg0ob2nh9f1m12",
             "title": "color",
             "type": 2,
-            "quantity": 700
+            "quantity": 700,
+            "price": 125
         }
     ]
 }

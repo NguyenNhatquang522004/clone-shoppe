@@ -552,7 +552,7 @@ $(document).ready(() => {
                     $("#wrapItemProvincegird").empty().append(ListProvince.data.data.map(item => `<div class="item-text-Province col-12 p-3 text-capitalize"   id="${item.id}">${item.name}</div>`)
                     );
                 }
-            }   
+            }
             if (isLoad.isDistrict === true) {
                 $('#wrapProvincecity').removeClass('intputCity_animation-color')
                 $('#wrapProvinceDistrict').addClass('intputCity_animation-color')
@@ -1242,7 +1242,6 @@ $(document).ready(() => {
     let autoshow = () => {
         $('#modal_transportto-address').modal('show')
     }
-
     // autoshow()
     handleGetvalidateform(modalAddress_InputName, itemSubName, modalAddress_InputPhone, itemSubPhone);
     // handle_slide_img();
