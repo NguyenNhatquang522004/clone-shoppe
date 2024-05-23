@@ -156,7 +156,7 @@ const handleShowItem_Color = async () => {
         ))
     }
 }
-const handleClickEq_Color = (parentItemType, typeColor, typeItem, itemTitleColor, itemColor, index, itemExist) => {
+const handleClickEq_Color = (parentItemType, typeColor, typeItem, itemTitleColor, itemColor, index, itemExist, parentColorTypeQuantity, itemWarningBuy) => {
     itemColor.eq(index).on('click', function () {
         const typeColorOBJ = {
             id: 0,
@@ -169,7 +169,6 @@ const handleClickEq_Color = (parentItemType, typeColor, typeItem, itemTitleColor
         const position = itemColor.index(this);
         if ($(this).hasClass('input-red-text input-red-boder') === false) {
             selectItem.selectColor = true
-            handleShow_Exist(itemExist)
             itemColor.removeClass('input-red-text input-red-boder')
             $(this).addClass('input-red-text input-red-boder')
             typeColorOBJ.id = Number($(itemColor[position]).find(".wrap_item-container .wrap_item-gird .item-type").attr('id'))
@@ -179,30 +178,33 @@ const handleClickEq_Color = (parentItemType, typeColor, typeItem, itemTitleColor
             typeColorOBJ.quantity = Number($(itemColor[position]).find(".wrap_item-container .wrap_item-gird .quantity_color").text().trim())
             typeColorOBJ.price = Number($(itemColor[position]).find(".wrap_item-container .wrap_item-gird .price_color").text().trim())
             history.listItemColor = [...history.listItemColor, typeColorOBJ]
+            handleShow_Exist(itemExist)
+            handleShow1_Item(parentColorTypeQuantity, itemWarningBuy)
             parentItemType.off('click')
             typeItem.each((index, item) => {
                 $(parentItemType[index]).addClass("item-Color-Action");
                 if ($(typeColor[position]).text().trim() === $(item).text().trim()) {
                     $(parentItemType[index]).removeClass('item-Color-Action')
-                    handleClickEq_type(parentItemType, typeColor, typeItem, itemTitleColor, itemColor, index, itemExist)
+                    handleClickEq_type(parentItemType, typeColor, typeItem, itemTitleColor, itemColor, index, itemExist, parentColorTypeQuantity, itemWarningBuy)
                 }
             })
         }
         else {
             selectItem.selectColor = false
             handleShow_Exist(itemExist)
+            handleShow1_Item(parentColorTypeQuantity, itemWarningBuy)
             $(this).removeClass('input-red-text input-red-boder')
             parentItemType.removeClass('item-Color-Action')
             parentItemType.off('click')
             typeItem.each((index, item) => {
-                handleClickEq_type(parentItemType, typeColor, typeItem, itemTitleColor, itemColor, index, itemExist)
+                handleClickEq_type(parentItemType, typeColor, typeItem, itemTitleColor, itemColor, index, itemExist, parentColorTypeQuantity, itemWarningBuy)
             })
 
         }
 
     })
 }
-const handleClick_Color = (parentItemType, typeColor, typeItem, itemTitleColor, itemColor, itemExist) => {
+const handleClick_Color = (parentItemType, typeColor, typeItem, itemTitleColor, itemColor, itemExist, parentColorTypeQuantity, itemWarningBuy) => {
     itemColor.on('click', function () {
         const typeColorOBJ = {
             id: 0,
@@ -215,7 +217,6 @@ const handleClick_Color = (parentItemType, typeColor, typeItem, itemTitleColor, 
         const position = itemColor.index(this);
         if ($(this).hasClass('input-red-text input-red-boder') === false) {
             selectItem.selectColor = true
-            handleShow_Exist(itemExist)
             itemColor.removeClass('input-red-text input-red-boder')
             $(this).addClass('input-red-text input-red-boder')
             parentItemType.off('click')
@@ -226,28 +227,31 @@ const handleClick_Color = (parentItemType, typeColor, typeItem, itemTitleColor, 
             typeColorOBJ.quantity = Number($(itemColor[position]).find(".wrap_item-container .wrap_item-gird .quantity_color").text().trim())
             typeColorOBJ.price = Number($(itemColor[position]).find(".wrap_item-container .wrap_item-gird .price_color").text().trim())
             history.listItemColor = [...history.listItemColor, typeColorOBJ]
+            handleShow_Exist(itemExist)
+            handleShow1_Item(parentColorTypeQuantity, itemWarningBuy)
             typeItem.each((index, item) => {
                 $(parentItemType[index]).addClass("item-Color-Action");
                 if ($(typeColor[position]).text().trim() === $(item).text().trim()) {
                     $(parentItemType[index]).removeClass('item-Color-Action')
-                    handleClickEq_type(parentItemType, typeColor, typeItem, itemTitleColor, itemColor, index, itemExist)
+                    handleClickEq_type(parentItemType, typeColor, typeItem, itemTitleColor, itemColor, index, itemExist, parentColorTypeQuantity, itemWarningBuy)
                 }
             })
         }
         else {
             selectItem.selectColor = false
             handleShow_Exist(itemExist)
+            handleShow1_Item(parentColorTypeQuantity, itemWarningBuy)
             $(this).removeClass('input-red-text input-red-boder')
             parentItemType.removeClass('item-Color-Action')
             parentItemType.off('click')
             typeItem.each((index, item) => {
-                handleClickEq_type(parentItemType, typeColor, typeItem, itemTitleColor, itemColor, index, itemExist)
+                handleClickEq_type(parentItemType, typeColor, typeItem, itemTitleColor, itemColor, index, itemExist, parentColorTypeQuantity, itemWarningBuy)
             })
         }
 
     })
 }
-const handleClick_type = (parentItemType, typeColor, typeItem, itemTitleColor, itemColor, itemExist) => {
+const handleClick_type = (parentItemType, typeColor, typeItem, itemTitleColor, itemColor, itemExist, parentColorTypeQuantity, itemWarningBuy) => {
     parentItemType.on('click', function () {
         const typeInfo = {
             id: 0,
@@ -257,7 +261,6 @@ const handleClick_type = (parentItemType, typeColor, typeItem, itemTitleColor, i
         const position = parentItemType.index(this)
         if ($(this).hasClass('input-red-text input-red-boder') === false) {
             selectItem.selectType = true
-            handleShow_Exist(itemExist)
             parentItemType.removeClass("input-red-text input-red-boder");
             $(this).addClass('input-red-text input-red-boder')
             itemColor.off('click')
@@ -265,28 +268,31 @@ const handleClick_type = (parentItemType, typeColor, typeItem, itemTitleColor, i
                 typeInfo.title = $(parentItemType[position]).find('.wrap_item-container .item-title').text().trim(),
                 typeInfo.type = Number($(parentItemType[position]).find('.wrap_item-container .type').text().trim()),
                 history.listItemType = [...history.listItemType, typeInfo]
+            handleShow_Exist(itemExist)
+            handleShow1_Item(parentColorTypeQuantity, itemWarningBuy)
             typeColor.each((index, item) => {
                 $(itemColor[index]).addClass('item-Color-Action')
                 if ($(typeItem[position]).text().trim() === $(item).text().trim()) {
                     $(itemColor[index]).removeClass("item-Color-Action");
-                    handleClickEq_Color(parentItemType, typeColor, typeItem, itemTitleColor, itemColor, index, itemExist)
+                    handleClickEq_Color(parentItemType, typeColor, typeItem, itemTitleColor, itemColor, index, itemExist, parentColorTypeQuantity, itemWarningBuy)
                 }
             })
         }
         else {
             selectItem.selectType = false
+            handleShow1_Item(parentColorTypeQuantity, itemWarningBuy)
             handleShow_Exist(itemExist)
             $(this).removeClass('input-red-text input-red-boder')
             itemColor.removeClass("item-Color-Action")
             itemColor.off('click')
             typeColor.each((index, item) => {
-                handleClickEq_Color(parentItemType, typeColor, typeItem, itemTitleColor, itemColor, index, itemExist)
+                handleClickEq_Color(parentItemType, typeColor, typeItem, itemTitleColor, itemColor, index, itemExist, parentColorTypeQuantity, itemWarningBuy)
             })
 
         }
     })
 }
-const handleClickEq_type = (parentItemType, typeColor, typeItem, itemTitleColor, itemColor, index, itemExist) => {
+const handleClickEq_type = (parentItemType, typeColor, typeItem, itemTitleColor, itemColor, index, itemExist, parentColorTypeQuantity, itemWarningBuy) => {
     parentItemType.eq(index).on('click', function () {
         const typeInfo = {
             id: 0,
@@ -297,31 +303,32 @@ const handleClickEq_type = (parentItemType, typeColor, typeItem, itemTitleColor,
         if ($(this).hasClass('input-red-text input-red-boder') === false) {
             selectItem.selectType = true
             parentItemType.removeClass("input-red-text input-red-boder");
-            handleShow_Exist(itemExist)
             $(this).addClass('input-red-text input-red-boder')
             itemColor.off('click')
             typeInfo.id = Number($(parentItemType[position]).find('.wrap_item-container .type').attr('id')),
                 typeInfo.title = $(parentItemType[position]).find('.wrap_item-container .item-title').text().trim(),
                 typeInfo.type = Number($(parentItemType[position]).find('.wrap_item-container .type').text().trim()),
                 history.listItemType = [...history.listItemType, typeInfo]
-            console.log(history.listItemType);
+            handleShow_Exist(itemExist)
+            handleShow1_Item(parentColorTypeQuantity, itemWarningBuy)
             typeColor.each((index, item) => {
                 $(itemColor[index]).addClass('item-Color-Action')
                 if ($(typeItem[position]).text().trim() === $(item).text().trim()) {
                     $(itemColor[index]).removeClass("item-Color-Action");
 
-                    handleClickEq_Color(parentItemType, typeColor, typeItem, itemTitleColor, itemColor, index, itemExist)
+                    handleClickEq_Color(parentItemType, typeColor, typeItem, itemTitleColor, itemColor, index, itemExist, parentColorTypeQuantity, itemWarningBuy)
                 }
             })
         }
         else {
             selectItem.selectType = false
             handleShow_Exist(itemExist)
+            handleShow1_Item(parentColorTypeQuantity, itemWarningBuy)
             $(this).removeClass('input-red-text input-red-boder')
             itemColor.removeClass("item-Color-Action")
             itemColor.off('click')
             typeColor.each((index, item) => {
-                handleClickEq_Color(parentItemType, typeColor, typeItem, itemTitleColor, itemColor, index, itemExist)
+                handleClickEq_Color(parentItemType, typeColor, typeItem, itemTitleColor, itemColor, index, itemExist, parentColorTypeQuantity, itemWarningBuy)
             })
         }
     })
@@ -333,11 +340,27 @@ const handleTotal = async (itemColor) => {
 
 }
 const handleShow_Exist = (itemExist) => {
-    if (selectItem.selectColor === true && selectItem.selectType === true && selectItem.totalQuantity != 0) {
+    const priceBuy = $('#ItemPricePresents')
+    const priceAfter = $('#ItemPriceInitial')
+    if (selectItem.selectColor === true && selectItem.selectType === true && selectItem.totalQuantity != 0 && history.listItemColor.length > 0) {
         $(itemExist).text(`${history.listItemColor[history.listItemColor.length - 1].quantity} sản phẩm có sẵn`)
+        priceBuy.remove();
+        $(priceAfter).after(
+            ` <div class="item-price-Presents d-inline-block mx-4" id="ItemPricePresents">
+            <span class="item-value">đ</span>${history.listItemColor[history.listItemColor.length - 1].price}
+           
+        </div>`
+        )
     }
     else {
         $(itemExist).text(`${selectItem.totalQuantity} sản phẩm có sẵn`)
+        priceBuy.remove();
+        $(priceAfter).after(
+            ` <div class="item-price-Presents d-inline-block mx-4" id="ItemPricePresents">
+            <span class="item-value">đ</span>200.000 -
+            <span class="item-value">đ</span>320.00
+        </div>`
+        )
     }
 }
 const handleclick_Quantity = (btnDecrease, btnIncrease, ItemQuantum) => {
@@ -352,6 +375,35 @@ const handleclick_Quantity = (btnDecrease, btnIncrease, ItemQuantum) => {
         ++Quantity.Count
         ItemQuantum.text(`${Quantity.Count}`)
     })
+}
+const handleShow1_Item = (parentColorTypeQuantity, itemWarningBuy) => {
+    if (selectItem.selectColor && selectItem.selectType) {
+        itemWarningBuy.hide();
+        parentColorTypeQuantity.removeClass('not-item')
+
+    }
+}
+const handleShow_Item = (parentColorTypeQuantity, itemWarningBuy) => {
+    if (selectItem.selectColor && selectItem.selectType) {
+        itemWarningBuy.hide();
+        parentColorTypeQuantity.removeClass('not-item')
+        window.location.href = '../home_page.html'
+
+    }
+    else {
+        itemWarningBuy.show();
+        parentColorTypeQuantity.addClass('not-item')
+    }
+}
+const handleSubmit_Item = (submitAddCart, submitBuy, parentColorTypeQuantity, itemWarningBuy) => {
+    submitAddCart.click(function (e) {
+        e.preventDefault()
+        handleShow_Item(parentColorTypeQuantity, itemWarningBuy)
+    })
+    submitBuy.click(function () {
+        handleShow_Item(parentColorTypeQuantity, itemWarningBuy)
+    })
+
 }
 const selectItem = {
     selectColor: false,
@@ -391,6 +443,10 @@ export const AllHandleModalProductsImg = () => {
         const btnDecrease = $('#ItemDecrease')
         const btnIncrease = $('#ItemIncrease')
         const ItemQuantum = $("#ItemQuantum")
+        const submitAddCart = $('#ButtonAddCart')
+        const submitBuy = $('#ButtonBuy')
+        const parentColorTypeQuantity = $('#WrapColorTypeQuantityContainer')
+        const itemWarningBuy = $('#ItemWarningTypeColorQuantity')
         handleTotal(itemColor);
         handleShowInitial_ModalProducts(ImgOutSide, btnOpenModalProductDetailImg, itemImgMain, typeColor, itemColor, itemExist)
         handleOpenClose_ModalProducts(btnOpenModalProductDetailImg, modalProductDetailImg, representItemImg, ImgOutSide, itemImgMain)
@@ -400,9 +456,10 @@ export const AllHandleModalProductsImg = () => {
         handleClick_ModalProducts(itemImgMain, manyItemImg, representItemImg);
         scrollslidecart();
         handleChangeImg_color(btnOpenModalProductDetailImg, itemColor);
-        handleClick_type(parentItemType, typeColor, typeItem, itemTitleColor, itemColor, itemExist);
-        handleClick_Color(parentItemType, typeColor, typeItem, itemTitleColor, itemColor, itemExist)
+        handleClick_type(parentItemType, typeColor, typeItem, itemTitleColor, itemColor, itemExist, parentColorTypeQuantity, itemWarningBuy);
+        handleClick_Color(parentItemType, typeColor, typeItem, itemTitleColor, itemColor, itemExist, parentColorTypeQuantity, itemWarningBuy)
         handleclick_Quantity(btnDecrease, btnIncrease, ItemQuantum)
+        handleSubmit_Item(submitAddCart, submitBuy, parentColorTypeQuantity, itemWarningBuy)
     }, 1000);
 }
 

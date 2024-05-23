@@ -1,6 +1,5 @@
 import * as fetch from "./fetchdata.js"
 import * as ModalProductImg from "./detailModalProductImg.js"
-import * as Change from "./handleChangeImg.js"
 $(document).ready(() => {
 
     let handleSetupClassname_ModalAddress = (modalSubmitMap, modalMap, modalFirst, modalSecond, modalThird, backDrop) => {

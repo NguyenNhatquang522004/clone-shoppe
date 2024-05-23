@@ -1476,3 +1476,50 @@ body {
     font-size: 1.3rem;
     color: var(--text-grey-1);
 }
+
+.not-item {
+    background-color: #fff5f5;
+}
+
+.wrap-SubmitBuy .wrap-SubmitBuy-gird .button {
+    background-color: yellow;
+    height: 4rem;
+    font-size: 1.45rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    border: none;
+}
+
+.wrap-SubmitBuy .wrap-SubmitBuy-gird #ButtonAddCart {
+    border: 1px solid var(--background-main-orange);
+    background-color: rgba(208, 1, 27, .08);
+    color: var(--text-price);
+}
+
+.wrap-SubmitBuy .wrap-SubmitBuy-gird #ButtonAddCart:hover {
+    background: rgba(241, 180, 187, .163);
+
+}
+
+.wrap-SubmitBuy .wrap-SubmitBuy-gird #ButtonAddCart:active {
+    outline: none;
+    background-color: rgba(208, 1, 27, .08);
+}
+
+.wrap-SubmitBuy .wrap-SubmitBuy-gird #ButtonBuy {
+    background: var(--background-sale);
+    color: var(--text-white);
+    font-weight: 400;
+}
+
+.wrap-SubmitBuy .wrap-SubmitBuy-gird #ButtonBuy:active {
+    background: #c6011a;
+}
+
+#ItemWarningTypeColorQuantity {
+    color: var(--text-main);
+    font-size: 1.4rem;
+    display: none;
+}
