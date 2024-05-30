@@ -1190,7 +1190,7 @@ $(document).ready(() => {
     let handleDelete_DropDown_ModalAddressFirst = (itemDelete, inputSearch, dropdown, btnSubmit) => {
         itemDelete.click(function () {
             isLoad.countSearchModalAddressFirst = 0;
-            GlobalTransferValue.historyCountSearchModalAddressFirst = []
+            GlobalTransferValue.historyCountSearchModalAddressFirrst = []
             btnSubmit.prop('disabled', true)
             inputSearch.val('')
             dropdown.css('z-index', -1);

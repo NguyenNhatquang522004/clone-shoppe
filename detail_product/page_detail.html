@@ -418,15 +418,16 @@
                 </div>
             </div>
         </div>
-        <div class="detail_products ">
+        <div class="detail_products mb-5">
             <div class="detail_products-container container shadow-lg p-0" style="background-color: #fff;">
-                <div class="detail_products-grid mt-4 row mx-0 ">
-                    <div class="products_left col-4  row mx-0 p-4">
-                        <img class="item-img img-fluid col-7  object-fit-contain px-4 "
-                            style="width: 45rem; height: 45rem;"
-                            src="https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lh8h728ij7xve2" alt=""
-                            id="OpenModalProductsDetailImg" data-bs-target="#ModalProductsDetailImg">
-                        <div class="detail_img col-12 position-relative mb-3  mt-2 px-0 mx-0 ">
+                <div class="detail_products-grid mt-4 row mx-0  pb-5">
+                    <div class="products_left col-4  row mx-0 p-4 pb-5">
+                        <div class="col-12 position-relative" id="WrapOpenModalProductsDetailImg">
+                            <img class="item-img img-fluid  position-absolute "
+                                src="https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lh8h728ij7xve2" alt=""
+                                id="OpenModalProductsDetailImg" data-bs-target="#ModalProductsDetailImg">
+                        </div>
+                        <div class="detail_img col-12 position-relative   mt px-0 mx-0 ">
                             <div class="detail_img-gird row row-cols-5 overflow-hidden d-flex flex-nowrap  mx-0 w-100"
                                 id="DetailImgGird">
                                 <img class="item-img img-fluid  object-fit-contain  mx-1 border border-2"
@@ -505,8 +506,29 @@
                                 type="button" id="DetailImgButtonPrevios">
                                 <i class="fa-solid fa-angle-left"></i>
                             </button>
+                            <div class="footer_left col-12 d-flex align-items-center justify-content-around">
+                                <div class="footer_left-wrap">
+                                    <span class="item-text text-capitalize">chia sẽ:</span>
+                                    <a class="item-link mx-1" href="#"><i
+                                            class="item-icon fa-brands fa-facebook-messenger "></i>
+                                    </a>
+                                    <a class="item-link mx-1" href="#"><i
+                                            class="item-icon fa-brands fa-facebook text-secondary"></i> </a>
+                                    <a class="item-link mx-1" href="#"><i
+                                            class="item-icon fa-brands fa-pinterest text-danger"></i></a>
+                                    <a class="item-link mx-1" href="#"><i
+                                            class="item-icon fa-brands fa-twitter text-info"></i></a>
+                                </div>
+                                <div class="vertical text-secondary">|</div>
+
+                                <div class="footer_right-wrap">
+                                    <a class="item-link  mx-2" href="#"><i
+                                            class="item-icon fa-regular fa-heart text-danger"></i></a>
+                                    <span class="item-text text-capitalize">đã thích (1.2k)</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="footer_left col-12 d-flex align-items-center justify-content-around">
+                        <!-- <div class="footer_left col-12 d-flex align-items-center justify-content-around">
                             <div class="footer_left-wrap">
                                 <span class="item-text text-capitalize">chia sẽ:</span>
                                 <a class="item-link mx-1" href="#"><i
@@ -524,7 +546,7 @@
                                         class="item-icon fa-regular fa-heart text-danger"></i></a>
                                 <span class="item-text text-capitalize">đã thích (1.2k)</span>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="products_right col-8  ps-5 pt-4 pe-5">
                         <div class="products_right-grid row  ps-2 pt-2 pe-2">
@@ -1624,8 +1646,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="wrap-SubmitBuy col-12 ">
-                                <div class="wrap-SubmitBuy-gird row">
+                            <div class="wrap-SubmitBuy col-12  mb-5">
+                                <div class="wrap-SubmitBuy-gird row ms-5">
                                     <button class="button button-addCart text-capitalize col-3  shadow-sm "
                                         id="ButtonAddCart">
                                         <i class="item-icon fa-solid fa-cart-plus me-2"></i> thêm vào giỏ hàng
@@ -1636,12 +1658,132 @@
                                     </button>
                                 </div>
                             </div>
+                            <div class="wrap-policy-shoppe col-12 border-top mt-4 mb-4 ">
+                                <div class="wrap-policy-shoppe-container container ">
+                                    <div
+                                        class="wrap-policy-shoppe-gird d-flex align-items-center justify-content-around mt-5">
+                                        <span class="item-policy-lie item-policy">
+                                            <i class="item-icon fa-solid fa-box-open"></i>
+                                            Đổi ý miễn phí 15 ngày
+                                            <div
+                                                class="dropdown-policy dropdown-policy-lie position-absolute shadow-sm border border-1">
+                                                <div class="dropdown-policy-container container ">
+                                                    <div class="dropdown-policy-gird row px-4 py-4">
+                                                        Miễn phí Trả hàng trong 15 ngày nếu Đổi ý (hàng trả phải còn
+                                                        nguyên seal, tem, hộp sản phẩm), áp dụng cho một số sản phẩm
+                                                        nhất định. Ngoài ra, tại thời điểm nhận hàng, bạn có thể đồng
+                                                        kiểm và được trả hàng miễn phí. <a class="px-0"
+                                                            style="text-decoration: none;" href="#">xem thêm.</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </span>
+                                        <span class="item-policy-genuine item-policy">
+                                            <i class="item-icon fa-solid fa-shield"></i>
+                                            Hàng chính hãng 100%
+                                            <div
+                                                class="dropdown-policy dropdown-policy-genuine position-absolute shadow-sm border border-1">
+                                                <div class="dropdown-policy-container container">
+                                                    <div class="dropdown-policy-gird row px-4 py-4 ">
+                                                        Nhận lại gấp đôi số tiền mà bạn đã thanh toán cho sản phẩm không
+                                                        chính hãng từ Shopee Mall
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </span>
+                                        <span class="item-policy-transport item-policy h-100">
+                                            <i class="item-icon fa-solid fa-truck-fast"></i>
+                                            Miễn phí vận chuyển
+                                            <div
+                                                class="dropdown-policy dropdown-policy-transport position-absolute shadow-sm border border-1">
+                                                <div class="dropdown-policy-container container">
+                                                    <div class="dropdown-policy-gird row px-4 py-4">
+                                                        Ưu đãi miễn phí vận chuyển lên tới 40,000 VNĐ cho đơn hàng của
+                                                        Shopee Mall từ 150,000 VNĐ
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
+        </div>
+        <div class="deal_products ">
+            <div class="deal_products-container container shadow-lg ">
+                <div class="deal_products-gird row py-5 ">
+                    <div class="deal_products-left col-10  border-end px-3 ps-5 pe-4">
+                        <div
+                            class="deal_products-left-top-gird d-flex align-items-center justify-content-between   ps-3">
+                            <span class="item-text-left item-text">
+                                Mua thêm deal sốc
+                            </span>
+                            <span class="item-text-right item-text d-flex align-items-center justify-content-center">
+                                xem thêm
+                                <i class="item-icon fa-solid fa-chevron-right  ms-2"></i>
+                            </span>
+                        </div>
+                        <div
+                            class="deal_products-left-main-grid  ps-3 d-flex  align-items-center justify-content-start">
+                            <div class="card wrap_deal-card px-0 border-0" style="width: 18rem;">
+                                <img src="https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lg0ob2nh6lwq4b_tn"
+                                    class="img-fluid deal-card-img" alt="..." draggable="false">
+                                <div class="card-body deal-card-body pe-4">
+                                    <div class="deal-card-body-top mb-3">
+                                        Gọng kính cận mắt vuông nam nữ Braby aaaaaaaaaaaaaaa aaaaaaaa
+                                    </div>
+                                    <div class="deal-card-body-main mb-3">
+                                        <div
+                                            class="deal-card-body-main-gird row  d-flex align-items-center justify-content-center">
+                                            <div
+                                                class="deal-card-body-main-left col-1 border border-1 position-relative rounded-4">
+                                                <div class="wrap_item-icon position-absolute ">
+                                                    <div
+                                                        class="wrap_item-icon-child d-flex  align-items-center justify-content-center">
+                                                        <i class="item-icon fa-solid fa-check"></i>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <span
+                                                class="deal-card-body-main-right col-10 ms-1 position-relative text-capitalize">
+                                                MK37GMrep1:1,Mắt 0độ
+                                                <i class="item-icon fa-solid fa-sort-down position-absolute"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="deal-card-body-footer">
+                                        <span class="item-price-sale item-price">
+                                            <span class="item-unit">
+                                                đ
+                                            </span>
+                                            495.000
+                                        </span>
+                                        <span class="item-price-buy item-price ms-2">
+                                            <span class="item-unit">
+                                                đ
+                                            </span>
+                                            495.000
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="buy-based-on border border-1">
+                                +
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="deal_products-right col-3 ">
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     </div>
     </div>

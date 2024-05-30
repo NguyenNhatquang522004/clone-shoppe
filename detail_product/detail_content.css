@@ -79,16 +79,16 @@ body {
     border: none;
 }
 
-.detail_products-grid .products_left .detail_img-button-next {
-    top: 50%;
+.detail_products-grid .products_left .detail_img .detail_img-button-next {
+    top: 0%;
     right: 0%;
-    transform: translateY(-50%);
+    transform: translateY(50%);
 }
 
-.detail_products-grid .products_left .detail_img-button-prev {
-    top: 50%;
+.detail_products-grid .products_left .detail_img .detail_img-button-prev {
+    top: 0%;
     left: 0%;
-    transform: translateY(-50%);
+    transform: translateY(50%);
 
 }
 
@@ -127,6 +127,15 @@ body {
 
 #OpenModalProductsDetailImg {
     cursor: pointer;
+    object-fit: fill !important;
+    height: 100%;
+    left: 0%;
+    width: 100%;
+}
+
+#WrapOpenModalProductsDetailImg {
+    height: 65rem !important;
+    /* overflow: hidden; */
 }
 
 #DetailImgGird.item-img {
@@ -1176,7 +1185,7 @@ body {
 
 #ModalProductsDetailImgItemTitle {
     font-size: 1.6rem;
-    font-weight: 400i;
+    font-weight: 400;
     color: var(--text-black);
 
     @supports (-webkit-line-clamp: 2) {
@@ -1370,7 +1379,7 @@ body {
 
 .wrap-color .wrap-color-right .wrap-color-right-gird .wrap_item {
     cursor: pointer;
-
+    background-color: var(--background-main);
     min-width: 10rem;
 }
 
@@ -1425,6 +1434,7 @@ body {
 } */
 .wrap-type .wrap-type-container .wrap-type-gird .wrap-type-right .wrap-type-right-gird .wrap_item {
     cursor: pointer;
+    background-color: var(--background-main);
 }
 
 .wrap-type .wrap-type-container .wrap-type-gird .wrap-type-right .wrap-type-right-gird .wrap_item .wrap_item-container {
@@ -1522,4 +1532,169 @@ body {
     color: var(--text-main);
     font-size: 1.4rem;
     display: none;
+}
+
+.wrap-policy-shoppe {}
+
+.wrap-policy-shoppe-container .wrap-policy-shoppe-gird .item-policy {
+    font-size: 1.6rem;
+    color: var(--text-black);
+    cursor: help;
+    position: relative;
+    display: block;
+}
+
+.wrap-policy-shoppe-container .wrap-policy-shoppe-gird .item-policy .item-icon {
+    font-size: 1.2rem !important;
+    color: var(--text-price) !important;
+}
+
+.wrap-policy-shoppe-container .wrap-policy-shoppe-gird .item-policy .dropdown-policy {
+    position: absolute;
+    top: 100%;
+    transform: translateY(7%);
+    width: 26rem;
+    left: -30%;
+    background-color: var(--background-main);
+    font-size: 1.2rem !important;
+    color: var(--text-black) !important;
+    cursor: auto !important;
+    box-sizing: border-box;
+    display: none;
+}
+
+.wrap-policy-shoppe-container .wrap-policy-shoppe-gird .item-policy .dropdown-policy::after {
+    content: "";
+    width: 100%;
+    height: 2rem;
+    top: -12%;
+    background-color: transparent;
+    position: absolute;
+}
+
+.wrap-policy-shoppe-container .wrap-policy-shoppe-gird .item-policy .dropdown-policy::before {
+    content: "";
+    width: 1rem;
+    height: 1rem;
+    background-color: var(--background-main);
+    top: -6.25%;
+    left: 50%;
+    transform: rotate(45deg);
+    position: absolute;
+    border-width: 1.2px 0px 0px 1.2px;
+    border-style: solid;
+    border-color: #dee2e6;
+}
+
+.wrap-policy-shoppe-container .wrap-policy-shoppe-gird .item-policy .dropdown-policy-lie::before {
+    top: -3.8% !important;
+}
+
+.wrap-policy-shoppe-container .wrap-policy-shoppe-gird .item-policy-lie:hover .dropdown-policy-lie {
+    display: block;
+}
+
+.wrap-policy-shoppe-container .wrap-policy-shoppe-gird .item-policy-genuine:hover .dropdown-policy-genuine {
+    display: block;
+}
+
+.wrap-policy-shoppe-container .wrap-policy-shoppe-gird .item-policy-transport:hover .dropdown-policy-transport {
+    display: block;
+}
+
+.deal_products .deal_products-container {
+    background-color: var(--background-main);
+}
+
+.deal_products-left .deal_products-left-top-gird .item-text {
+    font-size: 1.6rem;
+    color: var(--text-price);
+}
+
+.deal_products-left .deal_products-left-top-gird .item-text-left {
+    color: var(--text-black);
+}
+
+.deal_products-left .deal_products-left-top-gird .item-text-right {
+    cursor: pointer;
+}
+
+.deal_products-left .deal_products-left-top-gird .item-text-right .item-icon {
+    font-size: 1.1rem !important;
+    font-weight: bolder;
+}
+
+.deal_products-left-main-grid .wrap_deal-card {
+    cursor: pointer;
+}
+
+.wrap_deal-card .deal-card-body .deal-card-body-top {
+    font-size: 1.5rem;
+    display: block;
+
+    @supports (-webkit-line-clamp: 2) {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: initial;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+}
+
+.deal-card-body-main .deal-card-body-main-gird .deal-card-body-main-left {
+    height: 2rem;
+    width: 2rem !important;
+}
+
+.deal-card-body-main .deal-card-body-main-gird .deal-card-body-main-left:hover {
+    box-shadow: inset 0 2px 1px 0 rgba(0, 0, 0, .09);
+}
+
+.deal-card-body-main .deal-card-body-main-gird .deal-card-body-main-left .wrap_item-icon {
+    height: 100%;
+    width: 100%;
+    top: 0%;
+    background-color: var(--background-sale);
+    left: 0%;
+    /* display: none; */
+}
+
+.deal-card-body-main .deal-card-body-main-gird .deal-card-body-main-left .wrap_item-icon .wrap_item-icon-child {
+    height: 100%;
+    width: 100%;
+}
+
+.deal-card-body-main .deal-card-body-main-gird .deal-card-body-main-left .wrap_item-icon .wrap_item-icon-child .item-icon {
+    font-size: 1.2rem;
+    color: var(--text-white);
+}
+
+.deal-card-body-main .deal-card-body-main-gird .deal-card-body-main-right {
+    font-size: 1.4rem;
+}
+
+.deal-card-body-main .deal-card-body-main-gird .deal-card-body-main-right .item-icon {
+    font-size: 1.4rem !important;
+    top: 20%;
+    right: -2%;
+}
+
+.deal-card-body-footer .item-price {
+    font-size: 1.2rem;
+    color: var(--text-price);
+}
+
+.deal-card-body-footer .item-price .item-unit {
+    vertical-align: 12%;
+    font-size: 1.2rem !important;
+    text-decoration: underline solid 1px;
+    text-underline-offset: 2px;
+    display: inline-block;
+
+}
+
+.deal-card-body-footer .item-price-sale {
+    color: var(--text-grey);
+    text-decoration: line-through;
 }
