@@ -405,21 +405,7 @@ const handleSubmit_Item = (submitAddCart, submitBuy, parentColorTypeQuantity, it
     })
 
 }
-const handleShow_DropDown_Deal = (btnOpenDropDownDeal, dropDownDeal) => {
-    $(document).click(function (e) {
-        if ($(e.target).closest(dropDownDeal).length === 0 && dropDownDeal.css('display') === 'block' && $(e.target).closest(btnOpenDropDownDeal).length === 0) {
-            dropDownDeal.hide().removeClass('show').addClass('hide');
-        }
-    })
-    btnOpenDropDownDeal.click(function () {
-        if (dropDownDeal.css('display') === 'none') {
-            dropDownDeal.show().removeClass('hide').addClass('show');
-        }
-        else {
-            dropDownDeal.hide().removeClass('show').addClass('hide');
-        }
-    })
-}
+
 const selectItem = {
     selectColor: false,
     selectType: false,
@@ -462,8 +448,6 @@ export const AllHandleModalProductsImg = () => {
         const submitBuy = $('#ButtonBuy')
         const parentColorTypeQuantity = $('#WrapColorTypeQuantityContainer')
         const itemWarningBuy = $('#ItemWarningTypeColorQuantity')
-        const btnOpenDropDownDeal = $('#ItemTextTitleDealCard')
-        const dropDownDeal = $('#DropdownDeal')
         handleTotal(itemColor);
         handleShowInitial_ModalProducts(ImgOutSide, btnOpenModalProductDetailImg, itemImgMain, typeColor, itemColor, itemExist)
         handleOpenClose_ModalProducts(btnOpenModalProductDetailImg, modalProductDetailImg, representItemImg, ImgOutSide, itemImgMain)
@@ -477,7 +461,6 @@ export const AllHandleModalProductsImg = () => {
         handleClick_Color(parentItemType, typeColor, typeItem, itemTitleColor, itemColor, itemExist, parentColorTypeQuantity, itemWarningBuy)
         handleclick_Quantity(btnDecrease, btnIncrease, ItemQuantum)
         handleSubmit_Item(submitAddCart, submitBuy, parentColorTypeQuantity, itemWarningBuy)
-        handleShow_DropDown_Deal(btnOpenDropDownDeal, dropDownDeal);
     }, 1000);
 }
 

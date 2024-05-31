@@ -1,5 +1,6 @@
 import * as fetch from "./fetchdata.js"
 import * as ModalProductImg from "./detailModalProductImg.js"
+import * as Deal from "./deal.js"
 $(document).ready(() => {
 
     let handleSetupClassname_ModalAddress = (modalSubmitMap, modalMap, modalFirst, modalSecond, modalThird, backDrop) => {
@@ -1239,7 +1240,7 @@ $(document).ready(() => {
         historyValueSearchModalAddressFirst: ["huyện ba vì"],
     }
     let autoshow = () => {
-        $('#modal_transportto-address').modal('show')
+        $('#modal_anddress-third').modal('show')
     }
     // autoshow()
     handleGetvalidateform(modalAddress_InputName, itemSubName, modalAddress_InputPhone, itemSubPhone);
@@ -1250,4 +1251,5 @@ $(document).ready(() => {
     handleInputAddressSpecifically();
     handleButtonTypeAddress();
     ModalProductImg.AllHandleModalProductsImg();
+    Deal.AllHandleDeal()
 })
