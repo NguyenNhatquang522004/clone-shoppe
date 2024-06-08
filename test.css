@@ -29,6 +29,25 @@
     right: calc(100% - 2rem);
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 12px 0px !important;
 }
+/* ${item.Type.map(item2 => `
+    <div class="wrap_item-deal-type  border border-1 mt-2 mx-2">
+        <div class="wrap_item-deal-type-container container px-3 py-2 ">
+            <span class="item-text text-capitalize">${item2.title}</span>
+            <span class="id d-none">${item2.id}</span>
+            <span class="type d-none">${item2.type}</span>
+        </div>
+    </div>`).join('')} */
+    /* ${item.Color.map(item1 => `
+        <div class="wrap_item-deal wrap_item-color-deal border border-1 mt-2 mx-2">
+            <div class="wrap_item-deal-container container px-3 py-2">
+                <span class="item-title text-capitalize">mk37 ${item1.title}</span>
+                <span class="id d-none">${item1.id}</span>
+                <span class="type d-none">${item1.type}</span>
+                <span class="quantity_color d-none">${item1.quantity}</span>
+                <span class="price_color d-none">${item1.price}</span>
+            </div>
+        </div>
+    `).join('')}                        */
 
 .content_category-container .content_catagory-carousel-control-next {
     opacity: 0.5 !important;

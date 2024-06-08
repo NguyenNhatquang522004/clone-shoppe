@@ -421,7 +421,7 @@
         <div class="detail_products mb-5">
             <div class="detail_products-container container shadow-lg p-0" style="background-color: #fff;">
                 <div class="detail_products-grid mt-4 row mx-0  pb-5">
-                    <div class="products_left col-4  row mx-0 p-4 pb-5">
+                    <div class="products_left col-4  row mx-0 p-4 pb-5 d-flex flex-column">
                         <div class="col-12 position-relative" id="WrapOpenModalProductsDetailImg">
                             <img class="item-img img-fluid  position-absolute px-0"
                                 src="https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lh8h728ij7xve2" alt=""
@@ -1728,8 +1728,8 @@
                                 <i class="item-icon fa-solid fa-chevron-right  ms-2"></i>
                             </span>
                         </div>
-                        <div
-                            class="deal_products-left-main-grid  ps-3 d-flex  align-items-baseline justify-content-start ">
+                        <div class="deal_products-left-main-grid  ps-3 d-flex  align-items-baseline justify-content-start "
+                            id="DealProductsLeftMainGrid">
                             <div class="card wrap_deal-card px-0 border-0" style="width: 18rem;">
                                 <img src="https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lg0ob2nh6lwq4b_tn"
                                     class="img-fluid deal-card-img" alt="..." draggable="false">
@@ -1750,21 +1750,23 @@
 
                                                 </div>
                                             </div>
-                                            <span class="deal-card-body-main-right col-10 ms-1 position-relative">
-                                                <div class="item-text capitalize" id="ItemTextTitleDealCard">
+                                            <div class="deal-card-body-main-right col-10 ms-1 position-relative check ">
+                                                <div class="item-text capitalize itemOpenDropDownCardDeal"
+                                                    id="ItemTextTitleDealCard">
                                                     MK37GMrep1:1,Mắt 0độ Lorem ipsum dolor sit amet consectetur
                                                     adipisicing elit. Alias repellendus, consectetur dolores assumenda
                                                     iste et expedita nihil optio eaque quo tempore nisi suscipit
-                                                    doloribus incidunt dolor. Deleniti animi maiores aliquid.</div>
+                                                    doloribus incidunt dolor. Deleniti animi maiores aliquid.
+                                                </div>
                                                 <i class="item-icon fa-solid fa-sort-down position-absolute  "></i>
-                                                <div class="dropdown-deal position-absolute shadow-sm  border border-1 "
-                                                    id="DropdownDeal">
+                                                <div
+                                                    class="dropdown-deal position-absolute shadow-sm  border border-1 DropdownDealCSS ">
                                                     <div class="dropdown-deal-container container py-5 ">
                                                         <div class="dropdown-deal-gird row px-3 ">
-                                                            <div class="wrap-parent col-12 d-flex flex-wrap mb-4 ">
+                                                            <div class="wrap-parent col-12 d-flex flex-wrap mb-4  ">
                                                                 <div class="wrap-color-top d-flex flex-wrap mb-3 ">
                                                                     <span
-                                                                        class="item-title-top col-12 text-capitalize mx-2">màu
+                                                                        class="item-title-top col-12 text-capitalize mx-2 ">màu
                                                                         sắc:
                                                                     </span>
                                                                     <div
@@ -1773,47 +1775,23 @@
                                                                             class="wrap_item-deal-container container px-3 py-2 ">
                                                                             <span
                                                                                 class="item-title text-capitalize">mk37
-                                                                                đen lì
-                                                                            </span>
+                                                                                đen lì</span>
+                                                                            <span class="id d-none"></span>
                                                                             <span class="type d-none"></span>
                                                                             <span class="quantity_color d-none"></span>
                                                                             <span class="price_color d-none"></span>
+
                                                                         </div>
                                                                     </div>
-                                                                    <div
-                                                                        class="wrap_item-deal wrap_item-color-deal border border-1 mt-2 mx-2 ">
-                                                                        <div
-                                                                            class="wrap_item-deal-container container px-3 py-2 ">
-                                                                            <span
-                                                                                class="item-title text-capitalize">mk37
-                                                                                đen lì
-                                                                            </span>
-                                                                            <span class="type d-none"></span>
-                                                                            <span class="quantity_color d-none"></span>
-                                                                            <span class="price_color d-none"></span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div
-                                                                        class="wrap_item-deal wrap_item-color-deal border border-1 mt-2 mx-2 ">
-                                                                        <div
-                                                                            class="wrap_item-deal-container container px-3 py-2 ">
-                                                                            <span
-                                                                                class="item-title text-capitalize">mk37
-                                                                                đen lì
-                                                                            </span>
-                                                                            <span class="type d-none"></span>
-                                                                            <span class="quantity_color d-none"></span>
-                                                                            <span class="price_color d-none"></span>
-                                                                        </div>
-                                                                    </div>
+
                                                                 </div>
-                                                                <div class="wrap_deal-type  ">
+                                                                <div class="wrap_deal-type" id="WrapDealType">
                                                                     <div class="wrap_deal-type-gird row">
                                                                         <span
                                                                             class="item-title-type ms-2 text-capitalize  col-12">tròng
                                                                             mắt:</span>
-                                                                        <div
-                                                                            class="wrap-parent-item-deal-type col-12 d-flex flex-wrap">
+                                                                        <div class="wrap-parent-item-deal-type col-12 d-flex flex-wrap"
+                                                                            id="WrapParentItemDealType">
                                                                             <div
                                                                                 class="wrap_item-deal-type  border border-1 mt-2 mx-2">
                                                                                 <div
@@ -1840,21 +1818,22 @@
                                                                                     class="wrap_item-deal-type-container container px-3 py-2 ">
                                                                                     <span
                                                                                         class="item-text text-capitalize">
-                                                                                        Mắt Chốngtia UV 0-6đ
+                                                                                        Mắt Chống Xước 0-6độ
                                                                                     </span>
                                                                                 </div>
                                                                             </div>
+
                                                                             <div
                                                                                 class="wrap_item-deal-type ms-2 border border-1 mt-2 mx-2">
                                                                                 <div
                                                                                     class="wrap_item-deal-type-container container px-3 py-2 ">
                                                                                     <span
                                                                                         class="item-text text-capitalize">
-                                                                                        Mắt Chống ASX 0-6độ
-
+                                                                                        Mắt Chốngtia UV 0-6đ
                                                                                     </span>
                                                                                 </div>
                                                                             </div>
+
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -1870,16 +1849,16 @@
                                                                                 class="wrap-quantity-items col-4   px-0 ">
                                                                                 <div
                                                                                     class="wrap-quantity-items-grid   row  mx-0 w-100  border border-1 ">
-                                                                                    <div class="item-reduce-deal item-reduce-increase  col-3 d-flex align-items-center justify-content-center px-0"
+                                                                                    <div class="item-reduce-deal item-reduce-increase  col-3 d-flex align-items-center justify-content-center px-0 ItemReduceDealClass"
                                                                                         id="ItemReduceDeal">
                                                                                         <i
                                                                                             class="item-icon fa-solid fa-minus"></i>
                                                                                     </div>
                                                                                     <div
-                                                                                        class="display-quantity-deal col-6  border-start border-end d-flex align-items-center justify-content-center">
+                                                                                        class="display-quantity-deal col-6  border-start border-end d-flex align-items-center justify-content-center DisplayQuantityDealClass">
                                                                                         1
                                                                                     </div>
-                                                                                    <div class="item-increase-deal item-reduce-increase col-3 d-flex align-items-center justify-content-center px-0"
+                                                                                    <div class="item-increase-deal item-reduce-increase col-3 d-flex align-items-center justify-content-center px-0 ItemIncreaseDealClass"
                                                                                         id="ItemIncreaseDeal">
                                                                                         <i
                                                                                             class="item-icon fa-solid fa-plus"></i>
@@ -1892,7 +1871,7 @@
                                                                     <div class="wrap-submit-back col-12">
                                                                         <div
                                                                             class="wrap-submit-back-grid row d-flex align-items-center justify-content-end">
-                                                                            <div class="item-back-deal text-uppercase col-4  shadow-sm px-2 py-3 mx-3"
+                                                                            <div class="item-back-deal text-uppercase col-4  shadow-sm px-2 py-3 mx-3  "
                                                                                 id="ItemBackDeal">
                                                                                 trở lại
                                                                             </div>
@@ -1907,7 +1886,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </span>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="deal-card-body-footer">
@@ -1922,7 +1901,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="buy-based-on  mx-5 d-flex align-items-start justify-content-center pt-4 ">
+                            <div class="buy-based-on  mx-5 d-flex align-items-start justify-content-center pt-4 "
+                                id="BuyBasedOnDeal">
                                 <i class="item-icon fa-solid fa-plus"></i>
                             </div>
                             <div class="card wrap_deal-card-sub px-0 border border-0 mx-3" style="width: 18rem;">
@@ -1953,65 +1933,117 @@
                                                     </div>
                                                 </div>
                                                 <div
-                                                    class="item-info-deal-card-sub text-capitalize mx-1 position-relative col-9 px-0 ms-2">
-                                                    PK02 Nuoclau Lorem ipsum dolor, sit amet consectetur adipisicing
-                                                    elit. Odit hic error accusamus praesentium nemo inventore harum
-                                                    recusandae incidunt, rem quis. Sapiente porro libero ipsam veritatis
-                                                    adipisci enim. Nulla, odit sed!
-                                                </div>
-                                                <i class="item-icon fa-solid fa-sort-down col-1 px-0"></i>
-                                            </div>
-                                        </div>
-                                        <div class="wrap-item-footer-deal-sub col-12">
-                                            <div class="wrap-item-footer-deal-sub-gird d-flex">
-                                                <span class="wrap-item-price-sale">
-                                                    <span class="item-unit">đ</span>
-                                                    495.000
-                                                </span>
-                                                <span class="wrap-item-price-buy mx-2">
-                                                    <span class="item-unit">đ</span>
-                                                    495.000
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
+                                                    class="item-info-deal-card-sub text-capitalize mx-1 position-relative col-9 px-0 ms-2 Select_DropDownDeal">
+                                                    <div class="item-text-outside-card-deal itemOpenDropDownCardDeal">
+                                                        PK02 Nuoclau Lorem ipsum dolor, sit amet consectetur adipisicing
+                                                        elit. Odit hic error accusamus praesentium nemo inventore harum
+                                                        recusandae incidunt, rem quis. Sapiente porro libero ipsam
+                                                        veritatis
+                                                        adipisci enim. Nulla, odit sed!
+                                                    </div>
 
-                                </div>
-                            </div>
-                            <div class="card wrap_deal-card-sub px-0 border border-0 mx-3" style="width: 18rem;">
-                                <img src="https://down-vn.img.susercontent.com/file/sg-11134201-22100-ig1wurs4g9iv23_tn"
-                                    class="card-img-top img-fluid" alt="...">
-                                <div class="card-body wrap_deal-card-sub-body ps-1">
-                                    <div class="wrap_deal-card-sub-body-gird row">
-                                        <div class="wrap-item-top-deal-sub  col-12 mb-4">
-                                            <span class="item-info border border-1  px-2">
-                                                deal sốc
-                                            </span>
-                                            <span class="item-title ms-1">
-                                                Nước xịt rửa mắt kính Braby chuyên dụng làm sạch chống bụi 60ml PK02
-                                            </span>
-                                        </div>
-                                        <div class="wrap-item-main-deal-sub col-12 mb-3">
-                                            <div
-                                                class="wrap-item-main-deal-sub-grid d-flex align-items-center justify-content-start row">
-                                                <div
-                                                    class="wrap-item-icon position-relative border border-1 col-1 deal-cards-parent-check">
-                                                    <div
-                                                        class="wrap-parent-item-icon position-absolute  deal-cards-check">
-                                                        <div
-                                                            class="wrap-final d-flex align-items-center justify-content-center">
-                                                            <i class="item-icon fa-solid fa-check"></i>
+                                                    <div class="dropdown-deal position-absolute shadow-sm  border border-1 DropdownDealCSS"
+                                                        id="">
+                                                        <div class="dropdown-deal-container container py-5 ">
+                                                            <div class="dropdown-deal-gird row px-3 ">
+                                                                <div class="wrap-parent col-12 d-flex flex-wrap mb-4  ">
+                                                                    <div class="wrap-color-top d-flex flex-wrap mb-3 ">
+                                                                        <span
+                                                                            class="item-title-top col-12 text-capitalize mx-2">màu
+                                                                            sắc:
+                                                                        </span>
+                                                                        <div
+                                                                            class="wrap_item-deal wrap_item-color-deal border border-1 mt-2 mx-2 ">
+                                                                            <div
+                                                                                class="wrap_item-deal-container container px-3 py-2 ">
+                                                                                <span
+                                                                                    class="item-title text-capitalize">mk37
+                                                                                    đen lì
+                                                                                </span>
+                                                                                <span class="id d-none"></span>
+                                                                                <span class="type d-none"></span>
+                                                                                <span
+                                                                                    class="quantity_color d-none"></span>
+                                                                                <span class="price_color d-none"></span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="wrap_deal-type">
+                                                                        <div class="wrap_deal-type-gird row">
+                                                                            <span
+                                                                                class="item-title-type ms-2 text-capitalize  col-12">tròng
+                                                                                mắt:</span>
+                                                                            <div
+                                                                                class="wrap-parent-item-deal-type col-12 d-flex flex-wrap">
+                                                                                <div
+                                                                                    class="wrap_item-deal-type  border border-1 mt-2 mx-2 position-relative">
+                                                                                    <div
+                                                                                        class="wrap_item-deal-type-container container px-3 py-2 ">
+                                                                                        <span
+                                                                                            class="item-text text-capitalize">mắt
+                                                                                            0 độ </span>
+                                                                                        <span class="id d-none"></span>
+                                                                                        <span
+                                                                                            class="type d-none"></span>
+                                                                                        <!-- <div class="abc position-absolute  text-star">
+                                                                                            <i
+                                                                                                class="icon fa-solid fa-check"></i>
+                                                                                        </div> -->
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="wrap-footer-deal ms-2">
+                                                                    <div class="wrap-footer-deal-gird row">
+                                                                        <div class="wrap-quantity-deal col-12 mb-3">
+                                                                            <div class="wrap-quantity-deal-gird row">
+                                                                                <div class="item-text col-3 ">
+                                                                                    số lượng:
+                                                                                </div>
+                                                                                <div
+                                                                                    class="wrap-quantity-items col-4   px-0 ">
+                                                                                    <div
+                                                                                        class="wrap-quantity-items-grid   row  mx-0 w-100  border border-1 ">
+                                                                                        <div class="item-reduce-deal item-reduce-increase  col-3 d-flex align-items-center justify-content-center px-0 ItemReduceDealClass"
+                                                                                            id="ItemReduceDeal">
+                                                                                            <i
+                                                                                                class="item-icon fa-solid fa-minus"></i>
+                                                                                        </div>
+                                                                                        <div
+                                                                                            class="display-quantity-deal col-6  border-start border-end d-flex align-items-center justify-content-center DisplayQuantityDealClass">
+                                                                                            1
+                                                                                        </div>
+                                                                                        <div class="item-increase-deal item-reduce-increase col-3 d-flex align-items-center justify-content-center px-0 ItemIncreaseDealClass"
+                                                                                            id="ItemIncreaseDeal">
+                                                                                            <i
+                                                                                                class="item-icon fa-solid fa-plus"></i>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="wrap-submit-back col-12">
+                                                                            <div
+                                                                                class="wrap-submit-back-grid row d-flex align-items-center justify-content-end">
+                                                                                <div class="item-back-deal text-uppercase col-4  shadow-sm px-2 py-3 mx-3"
+                                                                                    id="ItemBackDeal">
+                                                                                    trở lại
+                                                                                </div>
+                                                                                <div class="item-submit-deal text-uppercase col-4 shadow-sm px-2 py-3"
+                                                                                    id="ItemSubmitDeal">
+                                                                                    xác nhận
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
-
                                                     </div>
                                                 </div>
-                                                <div
-                                                    class="item-info-deal-card-sub text-capitalize mx-1 position-relative col-9 px-0 ms-2">
-                                                    PK02 Nuoclau Lorem ipsum dolor, sit amet consectetur adipisicing
-                                                    elit. Odit hic error accusamus praesentium nemo inventore harum
-                                                    recusandae incidunt, rem quis. Sapiente porro libero ipsam veritatis
-                                                    adipisci enim. Nulla, odit sed!
-                                                </div>
                                                 <i class="item-icon fa-solid fa-sort-down col-1 px-0"></i>
                                             </div>
                                         </div>
@@ -2031,112 +2063,7 @@
 
                                 </div>
                             </div>
-                            <div class="card wrap_deal-card-sub px-0 border border-0 mx-3" style="width: 18rem;">
-                                <img src="https://down-vn.img.susercontent.com/file/sg-11134201-22100-ig1wurs4g9iv23_tn"
-                                    class="card-img-top img-fluid" alt="...">
-                                <div class="card-body wrap_deal-card-sub-body ps-1">
-                                    <div class="wrap_deal-card-sub-body-gird row">
-                                        <div class="wrap-item-top-deal-sub  col-12 mb-4">
-                                            <span class="item-info border border-1  px-2">
-                                                deal sốc
-                                            </span>
-                                            <span class="item-title ms-1">
-                                                Nước xịt rửa mắt kính Braby chuyên dụng làm sạch chống bụi 60ml PK02
-                                            </span>
-                                        </div>
-                                        <div class="wrap-item-main-deal-sub col-12 mb-3">
-                                            <div
-                                                class="wrap-item-main-deal-sub-grid d-flex align-items-center justify-content-start row">
-                                                <div
-                                                    class="wrap-item-icon position-relative border border-1 col-1 deal-cards-parent-check">
-                                                    <div
-                                                        class="wrap-parent-item-icon position-absolute  deal-cards-check">
-                                                        <div
-                                                            class="wrap-final d-flex align-items-center justify-content-center">
-                                                            <i class="item-icon fa-solid fa-check"></i>
-                                                        </div>
 
-                                                    </div>
-                                                </div>
-                                                <div
-                                                    class="item-info-deal-card-sub text-capitalize mx-1 position-relative col-9 px-0 ms-2">
-                                                    PK02 Nuoclau Lorem ipsum dolor, sit amet consectetur adipisicing
-                                                    elit. Odit hic error accusamus praesentium nemo inventore harum
-                                                    recusandae incidunt, rem quis. Sapiente porro libero ipsam veritatis
-                                                    adipisci enim. Nulla, odit sed!
-                                                </div>
-                                                <i class="item-icon fa-solid fa-sort-down col-1 px-0"></i>
-                                            </div>
-                                        </div>
-                                        <div class="wrap-item-footer-deal-sub col-12">
-                                            <div class="wrap-item-footer-deal-sub-gird d-flex">
-                                                <span class="wrap-item-price-sale">
-                                                    <span class="item-unit">đ</span>
-                                                    495.000
-                                                </span>
-                                                <span class="wrap-item-price-buy mx-2">
-                                                    <span class="item-unit">đ</span>
-                                                    495.000
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="card wrap_deal-card-sub px-0 border border-0 mx-3" style="width: 18rem;">
-                                <img src="https://down-vn.img.susercontent.com/file/sg-11134201-22100-ig1wurs4g9iv23_tn"
-                                    class="card-img-top img-fluid" alt="...">
-                                <div class="card-body wrap_deal-card-sub-body ps-1">
-                                    <div class="wrap_deal-card-sub-body-gird row">
-                                        <div class="wrap-item-top-deal-sub  col-12 mb-4">
-                                            <span class="item-info border border-1  px-2">
-                                                deal sốc
-                                            </span>
-                                            <span class="item-title ms-1">
-                                                Nước xịt rửa mắt kính Braby chuyên dụng làm sạch chống bụi 60ml PK02
-                                            </span>
-                                        </div>
-                                        <div class="wrap-item-main-deal-sub col-12 mb-3">
-                                            <div
-                                                class="wrap-item-main-deal-sub-grid d-flex align-items-center justify-content-start row">
-                                                <div
-                                                    class="wrap-item-icon position-relative border border-1 col-1 deal-cards-parent-check">
-                                                    <div
-                                                        class="wrap-parent-item-icon position-absolute deal-cards-check">
-                                                        <div
-                                                            class="wrap-final d-flex align-items-center justify-content-center">
-                                                            <i class="item-icon fa-solid fa-check"></i>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                                <div
-                                                    class="item-info-deal-card-sub text-capitalize mx-1 position-relative col-9 px-0 ms-2">
-                                                    PK02 Nuoclau Lorem ipsum dolor, sit amet consectetur adipisicing
-                                                    elit. Odit hic error accusamus praesentium nemo inventore harum
-                                                    recusandae incidunt, rem quis. Sapiente porro libero ipsam veritatis
-                                                    adipisci enim. Nulla, odit sed!
-                                                </div>
-                                                <i class="item-icon fa-solid fa-sort-down col-1 px-0"></i>
-                                            </div>
-                                        </div>
-                                        <div class="wrap-item-footer-deal-sub col-12">
-                                            <div class="wrap-item-footer-deal-sub-gird d-flex">
-                                                <span class="wrap-item-price-sale">
-                                                    <span class="item-unit">đ</span>
-                                                    495.000
-                                                </span>
-                                                <span class="wrap-item-price-buy mx-2">
-                                                    <span class="item-unit">đ</span>
-                                                    495.000
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
                         </div>
 
                     </div>

@@ -36,7 +36,7 @@ html {
     --text-price: #d0011b;
     --background-sale: #d0011b;
     --text-white: #fff;
-    --text-black: #000;
+    --text-black: #000000;
     --background-modal-address-map: #fff8e4;
     --text-modal-address-map: #f69113;
     --text-background-hover: #f5f5f5;
@@ -135,7 +135,7 @@ body {
 }
 
 #WrapOpenModalProductsDetailImg {
-    height: 65rem !important;
+    height: 45rem !important;
     /* overflow: hidden; */
 }
 
@@ -1179,9 +1179,9 @@ body {
 }
 
 #ModalProductsDetailImgDisplayMain {
-    height: 85rem !important;
-    width: 99%;
-    object-fit: contain;
+    height: 80rem !important;
+    width: 100%;
+    object-fit: contain !important;
 }
 
 #ModalProductsDetailImgItemTitle {
@@ -1708,16 +1708,33 @@ body {
     text-decoration: line-through !important;
 }
 
-.deal-card-body-main .deal-card-body-main-gird .deal-card-body-main-right .dropdown-deal {
+.a {
+    display: none;
+}
+
+.DropdownDealCSS {
     width: 40rem;
     background-color: var(--background-main);
-    /* top: -33.7rem; */
-    left: -15rem;
-    top: 100%;
+    /* bottom: 120%;
+    left: -100%; */
     display: none;
-    animation: dropdown_notification-has-item-in-deal ease .3s;
-    transform-origin: 60% 0%;
+    /* transform-origin: 50% 105%; */
+    z-index: 2;
 }
+
+/* .DropdownDealCSS::before {
+    content: "";
+    height: 1rem;
+    width: 1rem;
+    background-color: var(--background-main);
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+    transform: rotate(45deg) translateY(84%);
+    border-style: solid;
+    border-width: 0px 1px 1px 0;
+    border-color: var(--color-border);
+} */
 
 @keyframes dropdown_notification-has-item-in-deal {
     from {
@@ -1744,34 +1761,54 @@ body {
 }
 
 .dropdown_up {
-    top: -33.7rem;
-    transform-origin: 52% 100%;
+    bottom: 120%;
+    left: -100%;
+    transform-origin: 50% 105%;
 }
 
 .dropdown_down {
-    top: 100%;
-    transform-origin: top center;
+    top: 120%;
+    left: -100%;
+    transform-origin: 50% 105%;
 }
 
 .show_up {
-    animation: dropdown_notification-has-item-in-deal 10s ease forwards;
+    transition: all 0.3s;
+    transform-origin: 50% 105%;
+    animation: dropdown_notification-has-item-in-deal 0.3s ease forwards;
 }
 
 .hide_up {
-    transform: scale(0);
-    opacity: 0;
-    transition: all 1s;
-    /* transform-origin: 60% 115% !important; */
-    transform-origin: 60% 0% !important;
-    display: none;
+    transition: all 0.3s;
+    animation: dropdown_notification-has-item-in-deal1 0.3s ease forwards;
+    transform-origin: 50% 105%;
+}
+
+.show_down {
+    transform-origin: 50% -10%;
+    animation: dropdown_notification-has-item-in-deal 0.3s ease forwards;
 }
 
 .hide_down {
-    transform: scale(0);
-    opacity: 0;
-    transition: all 1s;
-    transform-origin: top center !important;
-    display: block;
+    transition: all 0.3s;
+    animation: dropdown_notification-has-item-in-deal1 0.3s ease forwards;
+    transform-origin: 50% -10%;
+
+}
+
+.abc {
+    bottom: -25%;
+    right: -9%;
+    height: 1.8rem;
+    width: 1.5rem;
+    font-size: 1rem;
+    background: var(--background-sale);
+    color: var(--text-price);
+    transform: rotate(45deg);
+}
+
+.abc .icon {
+    color: var(--text-white);
 }
 
 .dropdown_up-before::before {
@@ -1780,9 +1817,9 @@ body {
     width: 1rem;
     background-color: var(--background-main);
     position: absolute;
-    bottom: -1.65%;
-    left: 52%;
-    transform: rotate(45deg);
+    bottom: 0%;
+    left: 50%;
+    transform: rotate(45deg) translateY(84%);
     border-style: solid;
     border-width: 0px 1px 1px 0;
     border-color: var(--color-border);
@@ -1794,23 +1831,9 @@ body {
     width: 1rem;
     background-color: var(--background-main);
     position: absolute;
-    top: -1.8%;
+    top: 0%;
     left: 50%;
-    transform: rotate(-135deg);
-    border-style: solid;
-    border-width: 0px 1px 1px 0;
-    border-color: var(--color-border);
-}
-
-.deal-card-body-main .deal-card-body-main-gird .deal-card-body-main-right .dropdown-deal::before {
-    content: "";
-    height: 1rem;
-    width: 1rem;
-    background-color: var(--background-main);
-    position: absolute;
-    top: -1.8%;
-    left: 50%;
-    transform: rotate(-135deg);
+    transform: rotate(-135deg) translateY(84%);
     border-style: solid;
     border-width: 0px 1px 1px 0;
     border-color: var(--color-border);
@@ -1826,7 +1849,7 @@ body {
 }
 
 .wrap-parent .wrap-color-top .wrap_item-deal {
-    background-color: var(-ba);
+    background-color: var(--background-main);
     color: var(--text-black);
 }
 
@@ -1840,7 +1863,7 @@ body {
 }
 
 .dropdown-deal-container .dropdown-deal-gird .wrap-parent {
-    max-height: 30rem !important;
+    max-height: 30rem;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -1848,6 +1871,7 @@ body {
 .wrap-parent .wrap_deal-type .wrap_deal-type-gird .wrap-parent-item-deal-type .wrap_item-deal-type {
     background-color: var(--background-main);
     color: var(--text-black);
+    overflow: hidden;
 }
 
 .wrap-parent .wrap_deal-type .wrap_deal-type-gird .wrap-parent-item-deal-type .wrap_item-deal-type:hover {
@@ -1866,6 +1890,7 @@ body {
 
 .wrap-parent-item-deal-type .wrap_item-deal-type .wrap_item-deal-type-container .item-text {
     font-size: 1.35rem;
+    opacity: 1 !important;
 }
 
 .wrap-footer-deal-gird .wrap-quantity-deal .wrap-quantity-deal-gird .item-text {
@@ -1989,7 +2014,7 @@ body {
 
 }
 
-.wrap-item-main-deal-sub .wrap-item-main-deal-sub-grid .item-info-deal-card-sub {
+.wrap-item-main-deal-sub .wrap-item-main-deal-sub-grid .item-info-deal-card-sub .item-text-outside-card-deal {
     font-size: 1.4rem;
     color: var(--text-grey);
     overflow: hidden;
@@ -1997,6 +2022,13 @@ body {
     -webkit-line-clamp: 2;
     line-clamp: 2;
     -webkit-box-orient: vertical;
+}
+
+.itemOpenDropDownCardDeal {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .wrap-item-main-deal-sub .wrap-item-main-deal-sub-grid .item-icon {
@@ -2104,4 +2136,14 @@ body {
     font-size: 1.2rem;
     color: var(--text-price);
 
+}
+
+.text_ {
+    color: var(--text-price) !important;
+    transition: all 0.5s;
+}
+
+.border_ {
+    border-color: var(--text-price) !important;
+    transition: all 0.5s;
 }

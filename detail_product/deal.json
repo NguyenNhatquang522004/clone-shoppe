@@ -1,0 +1,292 @@
+{
+    "data": [
+        {
+            "CardImg": "https://down-vn.img.susercontent.com/file/vn-11134201-23020-fr50lvoriunv78_tn",
+            "cartitleTop": "Gọng kính cận mắt vuông nam nữ Braby Glasses chất liệu nhựa dẻo cao cấp phụ kiện thời trang sành điệu MK37 Hộp",
+            "cardTitle": "MK01 Bạc,Mắt Chống Xước 0-6độ",
+            "info": "deal sốc",
+            "Cardsale": "59.000",
+            "cardPrice": "0",
+            "Color": [
+                {
+                    "id": 1,
+                    "title": "MK01 Bạc",
+                    "type": 3,
+                    "quantity": 200,
+                    "price": 100
+                },
+                {
+                    "id": 2,
+                    "title": "MK37 Đen bóng",
+                    "type": 1,
+                    "quantity": 100,
+                    "price": 200
+                },
+                {
+                    "id": 3,
+                    "title": "MK37GMrep1:1",
+                    "type": 4,
+                    "quantity": 500,
+                    "price": 800
+                },
+                {
+                    "id": 4,
+                    "title": "MK27GMrep1:1",
+                    "type": 1,
+                    "quantity": 600,
+                    "price": 600
+                },
+                {
+                    "id": 5,
+                    "title": "MK37 Da beo",
+                    "type": 2,
+                    "quantity": 700,
+                    "price": 125
+                }
+            ],
+            "Type": [
+                {
+                    "id": 1,
+                    "title": "mắt 0 độ",
+                    "type": 1
+                },
+                {
+                    "id": 2,
+                    "title": "Mắt Chống Xước 0-6độ",
+                    "type": 2
+                },
+                {
+                    "id": 3,
+                    "title": "Mắt Chốngtia UV 0-6đ",
+                    "type": 3
+                },
+                {
+                    "id": 4,
+                    "title": "Mắt Chống ASX 0-6độ",
+                    "type": 4
+                },
+                {
+                    "id": 5,
+                    "title": "Mắt Chống ASX 0-6độ",
+                    "type": 1
+                }
+            ]
+        },
+        {
+            "CardImg": "https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lvw101k2b26z4b_tn",
+            "cartitleTop": "Hộp kính da Braby lót nhung mềm mịn cao cấp chống va đập, nứt vỡ",
+            "cardTitle": "Hộp DaXanh Braby NEW",
+            "info": "quà tặng",
+            "Cardsale": "13.000",
+            "cardPrice": "0",
+            "Color": [
+                {
+                    "id": 1,
+                    "title": "mk37 đen lì",
+                    "type": 3,
+                    "quantity": 200,
+                    "price": 100
+                },
+                {
+                    "id": 2,
+                    "title": "MK37 Đen bóng",
+                    "type": 1,
+                    "quantity": 100,
+                    "price": 200
+                },
+                {
+                    "id": 3,
+                    "title": "MK37GMrep1:1",
+                    "type": 4,
+                    "quantity": 500,
+                    "price": 800
+                },
+                {
+                    "id": 4,
+                    "title": "MK27GMrep1:1",
+                    "type": 1,
+                    "quantity": 600,
+                    "price": 600
+                },
+                {
+                    "id": 5,
+                    "title": "MK37 Da beo",
+                    "type": 2,
+                    "quantity": 700,
+                    "price": 125
+                }
+            ],
+            "Type": [
+                {
+                    "id": 1,
+                    "title": "mắt 0 độ",
+                    "type": 1
+                },
+                {
+                    "id": 2,
+                    "title": "Mắt Chống Xước 0-6độ",
+                    "type": 2
+                },
+                {
+                    "id": 3,
+                    "title": "Mắt Chốngtia UV 0-6đ",
+                    "type": 3
+                },
+                {
+                    "id": 4,
+                    "title": "Mắt Chống ASX 0-6độ",
+                    "type": 4
+                },
+                {
+                    "id": 5,
+                    "title": "Mắt Chống ASX 0-6độ",
+                    "type": 1
+                }
+            ]
+        },
+        {
+            "CardImg": "https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lfg7bodz0kucaf_tn",
+            "cartitleTop": "Khăn lau kính cận loạn chống bám hơi nước Braby chuyên dụng mềm mịn cao cấp đa năng",
+            "cardTitle": "Chọn loại hàng",
+            "info": "deal sốc",
+            "Cardsale": "30.000",
+            "cardPrice": "15.000",
+            "Color": [
+                {
+                    "id": 1,
+                    "title": "mk37 đen lì",
+                    "type": 3,
+                    "quantity": 200,
+                    "price": 100
+                },
+                {
+                    "id": 2,
+                    "title": "MK37 Đen bóng",
+                    "type": 1,
+                    "quantity": 100,
+                    "price": 200
+                },
+                {
+                    "id": 3,
+                    "title": "MK37GMrep1:1",
+                    "type": 4,
+                    "quantity": 500,
+                    "price": 800
+                },
+                {
+                    "id": 4,
+                    "title": "MK27GMrep1:1",
+                    "type": 1,
+                    "quantity": 600,
+                    "price": 600
+                },
+                {
+                    "id": 5,
+                    "title": "MK37 Da beo",
+                    "type": 2,
+                    "quantity": 700,
+                    "price": 125
+                }
+            ],
+            "Type": [
+                {
+                    "id": 1,
+                    "title": "mắt 0 độ",
+                    "type": 1
+                },
+                {
+                    "id": 2,
+                    "title": "Mắt Chống Xước 0-6độ",
+                    "type": 2
+                },
+                {
+                    "id": 3,
+                    "title": "Mắt Chốngtia UV 0-6đ",
+                    "type": 3
+                },
+                {
+                    "id": 4,
+                    "title": "Mắt Chống ASX 0-6độ",
+                    "type": 4
+                },
+                {
+                    "id": 5,
+                    "title": "Mắt Chống ASX 0-6độ",
+                    "type": 1
+                }
+            ]
+        },
+        {
+            "CardImg": "https://down-vn.img.susercontent.com/file/sg-11134201-22100-ig1wurs4g9iv23_tn",
+            "cartitleTop": "Nước xịt rửa mắt kính Braby chuyên dụng làm sạch chống bụi 60ml PK02",
+            "cardTitle": "PK02 Nuoclau",
+            "info": "",
+            "Cardsale": "298.000",
+            "cardPrice": "147.000",
+            "Color": [
+                {
+                    "id": 1,
+                    "title": "mk37 đen lì",
+                    "type": 3,
+                    "quantity": 200,
+                    "price": 100
+                },
+                {
+                    "id": 2,
+                    "title": "MK37 Đen bóng",
+                    "type": 1,
+                    "quantity": 100,
+                    "price": 200
+                },
+                {
+                    "id": 3,
+                    "title": "MK37GMrep1:1",
+                    "type": 4,
+                    "quantity": 500,
+                    "price": 800
+                },
+                {
+                    "id": 4,
+                    "title": "MK27GMrep1:1",
+                    "type": 1,
+                    "quantity": 600,
+                    "price": 600
+                },
+                {
+                    "id": 5,
+                    "title": "MK37 Da beo",
+                    "type": 2,
+                    "quantity": 700,
+                    "price": 125
+                }
+            ],
+            "Type": [
+                {
+                    "id": 1,
+                    "title": "mắt 0 độ",
+                    "type": 1
+                },
+                {
+                    "id": 2,
+                    "title": "Mắt Chống Xước 0-6độ",
+                    "type": 2
+                },
+                {
+                    "id": 3,
+                    "title": "Mắt Chốngtia UV 0-6đ",
+                    "type": 3
+                },
+                {
+                    "id": 4,
+                    "title": "Mắt Chống ASX 0-6độ",
+                    "type": 4
+                },
+                {
+                    "id": 5,
+                    "title": "Mắt Chống ASX 0-6độ",
+                    "type": 1
+                }
+            ]
+        }
+    ]
+}
