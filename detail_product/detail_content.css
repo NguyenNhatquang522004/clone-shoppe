@@ -1853,10 +1853,10 @@ body {
     color: var(--text-black);
 }
 
-.wrap-parent .wrap-color-top .wrap_item-deal:hover {
+/* .wrap-parent .wrap-color-top .wrap_item-deal:hover {
     border-color: var(--background-sale) !important;
     color: var(--background-sale);
-}
+} */
 
 .wrap_item-deal .wrap_item-deal-container .item-title {
     font-size: 1.35rem;
@@ -1874,10 +1874,10 @@ body {
     overflow: hidden;
 }
 
-.wrap-parent .wrap_deal-type .wrap_deal-type-gird .wrap-parent-item-deal-type .wrap_item-deal-type:hover {
+/* .wrap-parent .wrap_deal-type .wrap_deal-type-gird .wrap-parent-item-deal-type .wrap_item-deal-type:hover {
     border-color: var(--background-sale) !important;
     color: var(--background-sale);
-}
+} */
 
 /* .wrap-parent .wrap_deal-type .wrap_deal-type-gird .wrap-parent-item-deal-type .wrap_item-deal-type {
     color: var(--text-black);
@@ -1923,24 +1923,24 @@ body {
     color: var(--text-black);
 }
 
-#ItemBackDeal {
+.ItemBackDeal {
     background-color: var(--background-main);
     text-align: center;
     font-size: 1.3rem;
 }
 
-#ItemBackDeal:hover {
+.ItemBackDeal:hover {
     background-color: var(--background-hover-map);
 }
 
-#ItemSubmitDeal {
+.ItemSubmitDeal {
     text-align: center;
     font-size: 1.3rem;
     background-color: var(--background-sale);
     color: var(--text-white);
 }
 
-#ItemSubmitDeal:hover {
+.ItemSubmitDeal:hover {
     background: rgb(219, 26, 52);
 }
 
@@ -2140,10 +2140,44 @@ body {
 
 .text_ {
     color: var(--text-price) !important;
-    transition: all 0.5s;
+    transition: all 0.2s;
 }
 
 .border_ {
     border-color: var(--text-price) !important;
-    transition: all 0.5s;
+    transition: all 0.2s;
+}
+
+.text_hover {
+    color: var(--text-price) !important;
+    transition: all 0.2s;
+}
+
+.border_hover {
+    border-color: var(--text-price) !important;
+    transition: all 0.2s;
+}
+
+.wrap_deal-card-sub .item-percent-sale {
+    height: 2.5rem;
+    width: 3rem;
+    font-size: 1.45rem;
+    background-color: var(--background-sale);
+    color: var(--text-white);
+    top: 0%;
+    right: 0%;
+
+}
+
+.wrap_deal-card-sub .item-percent-sale::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 1.2rem solid transparent;
+    border-right: 1.5rem solid var(--background-sale);
+    border-bottom: 1.32rem solid transparent;
+    left: 0%;
+    transform: translateX(-100%);
+
 }

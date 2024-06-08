@@ -1,4 +1,79 @@
 {
+    "data1": [
+        {
+            "CardImg": "https://down-vn.img.susercontent.com/file/vn-11134201-23020-fr50lvoriunv78_tn",
+            "cartitleTop": "Gọng kính cận mắt vuông nam nữ Braby Glasses chất liệu nhựa dẻo cao cấp phụ kiện thời trang sành điệu MK37 Hộp",
+            "cardTitle": "MK01 Bạc,Mắt Chống Xước 0-6độ",
+            "info": "deal sốc",
+            "Cardsale": "59.000",
+            "cardPrice": "0",
+            "sale": "10%",
+            "Color": [
+                {
+                    "id": 1,
+                    "title": "MK01 Bạc",
+                    "type": 3,
+                    "quantity": 200,
+                    "price": 100
+                },
+                {
+                    "id": 2,
+                    "title": "MK37 Đen bóng",
+                    "type": 1,
+                    "quantity": 100,
+                    "price": 200
+                },
+                {
+                    "id": 3,
+                    "title": "MK37GMrep1:1",
+                    "type": 4,
+                    "quantity": 500,
+                    "price": 800
+                },
+                {
+                    "id": 4,
+                    "title": "MK27GMrep1:1",
+                    "type": 1,
+                    "quantity": 600,
+                    "price": 600
+                },
+                {
+                    "id": 5,
+                    "title": "MK37 Da beo",
+                    "type": 2,
+                    "quantity": 700,
+                    "price": 125
+                }
+            ],
+            "Type": [
+                {
+                    "id": 1,
+                    "title": "mắt 0 độ",
+                    "type": 1
+                },
+                {
+                    "id": 2,
+                    "title": "Mắt Chống Xước 0-6độ",
+                    "type": 2
+                },
+                {
+                    "id": 3,
+                    "title": "Mắt Chốngtia UV 0-6đ",
+                    "type": 3
+                },
+                {
+                    "id": 4,
+                    "title": "Mắt Chống ASX 0-6độ",
+                    "type": 4
+                },
+                {
+                    "id": 5,
+                    "title": "Mắt Chống ASX 0-6độ",
+                    "type": 1
+                }
+            ]
+        }
+    ],
     "data": [
         {
             "CardImg": "https://down-vn.img.susercontent.com/file/vn-11134201-23020-fr50lvoriunv78_tn",
@@ -6,6 +81,7 @@
             "cardTitle": "MK01 Bạc,Mắt Chống Xước 0-6độ",
             "info": "deal sốc",
             "Cardsale": "59.000",
+            "sale": "10%",
             "cardPrice": "0",
             "Color": [
                 {
@@ -78,6 +154,7 @@
             "cardTitle": "Hộp DaXanh Braby NEW",
             "info": "quà tặng",
             "Cardsale": "13.000",
+            "sale": "10%",
             "cardPrice": "0",
             "Color": [
                 {
@@ -151,6 +228,7 @@
             "info": "deal sốc",
             "Cardsale": "30.000",
             "cardPrice": "15.000",
+            "sale": "",
             "Color": [
                 {
                     "id": 1,
@@ -223,6 +301,7 @@
             "info": "",
             "Cardsale": "298.000",
             "cardPrice": "147.000",
+            "sale": "10%",
             "Color": [
                 {
                     "id": 1,
