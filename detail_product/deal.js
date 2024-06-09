@@ -1,6 +1,5 @@
 import * as fetch from "./fetchdata.js"
-
-const handleShow_DropDown_Deal = (btnOpenDropDownDeal, dropDownDeal, dealProducts) => {
+const handleShow_DropDown_Deal = (btnOpenDropDownDeal, dropDownDeal, dealProducts, btnSubmitDropDownDeal) => {
     let positonDropDown
     let historyPosition = [];
     $(document).click(function (e) {
@@ -20,6 +19,15 @@ const handleShow_DropDown_Deal = (btnOpenDropDownDeal, dropDownDeal, dealProduct
         const positionWindowX = window.pageYOffset
         const dropDownHeight = $(dropDownDeal[position]).css(`height`)
         const currenPosition = positionWindowX - parseInt(dropDownHeight)
+        if (selectItem[`item${position}`].color === true && selectItem[`item${position}`].type === true) {
+            $(dropDownDeal[position]).find(btnSubmitDropDownDeal).off('click');
+            $(dropDownDeal[position]).find(btnSubmitDropDownDeal).removeClass('Submit-disable')
+            handleSubmitClick_DropDown_Deal($(dropDownDeal[position]).find(btnSubmitDropDownDeal));
+        }
+        else {
+            $(dropDownDeal[position]).find(btnSubmitDropDownDeal).addClass('Submit-disable')
+            $(dropDownDeal[position]).find(btnSubmitDropDownDeal).off('click');
+        }
         if ($(dropDownDeal[position]).css('display') === 'none') {
             if (currenPosition < parseInt(dropDownHeight) + 13) {
                 handleAnimationShowUp($(dropDownDeal[position]))
@@ -65,17 +73,33 @@ const handleIncreaseAndDecrease_DropDown_deal = (increaseQuantityDeal, reduceQua
 
     })
 }
-const handleClickCheck_Carts_Deal = (checkCardsDeal, checkParentCardsDeal, dealProducts) => {
+const handleClickCheck_Carts_Deal = (checkCardsDeal, checkParentCardsDeal, dealProducts, dropDownDeal) => {
     checkParentCardsDeal.click(function () {
         const position = checkParentCardsDeal.index(this)
         if (Number($(checkParentCardsDeal[position]).css(`opacity`)) >= 1) {
-            $(checkCardsDeal[position]).toggle()
+            if ($(checkCardsDeal[position]).css('display') === 'none') {
+                $(checkCardsDeal[position]).show();
+                selectItem[`item${position}`] = {
+                    ...selectItem[`item${position}`],
+                    check: true,
+                }
+            }
+            else {
+                $(checkCardsDeal[position]).hide()
+                selectItem[`item${position}`] = {
+                    ...selectItem[`item${position}`],
+                    check: false,
+                }
+            }
         }
+        const cloneSelectItem = { ...selectItem }
+        historyDeal.historySelectItem = [...historyDeal.historySelectItem, cloneSelectItem]
     })
 }
 const handleItemClick_DropDown_Deal = (itemType, itemColor, dropDownDeal, btnOpenDropDownDeal, btnSubmitDropDownDeal) => {
     const handleClickColorEq = (value, index) => {
         value.click(function () {
+            const position = $(this).closest(dropDownDeal).index('.DropdownDealCSS')
             const valueItemColor = $(this).find($(`.wrap_item-deal-container .item-title`)).text().trim()
             const positionDropDownColor = $(this).closest(dropDownDeal).index('.DropdownDealCSS')
             const currentColor = $(this).find('.wrap_item-deal-container .type')
@@ -87,10 +111,12 @@ const handleItemClick_DropDown_Deal = (itemType, itemColor, dropDownDeal, btnOpe
                     color: false,
                     valueColor: "",
                 }
+
                 $(this).closest(dropDownDeal).find(itemType).off('click')
                 $(this).closest(dropDownDeal).find(itemType).map((index, item) => {
                     handleClickTypeEq($(item), index)
                 })
+                handleConditionTriggerSunmit_DropDown_Deal(dropDownDeal, btnSubmitDropDownDeal, position)
             }
             else {
                 $(this).closest(dropDownDeal).find(itemColor).removeClass('text_  border_')
@@ -101,6 +127,7 @@ const handleItemClick_DropDown_Deal = (itemType, itemColor, dropDownDeal, btnOpe
                     valueColor: valueItemColor,
                 }
                 $(this).closest(dropDownDeal).find(itemType).off('click')
+                handleConditionTriggerSunmit_DropDown_Deal(dropDownDeal, btnSubmitDropDownDeal, position)
                 $(this).closest(dropDownDeal).find(itemType).map((index, item) => {
                     $(item).removeClass('item-Color-Action')
                     if (Number($(item).find('.wrap_item-deal-type-container .type').text().trim()) != Number(currentColor.text().trim())) {
@@ -123,6 +150,8 @@ const handleItemClick_DropDown_Deal = (itemType, itemColor, dropDownDeal, btnOpe
     }
     const handleClickTypeEq = (value, index) => {
         value.click(function () {
+            const position = $(this).closest(dropDownDeal).index('.DropdownDealCSS')
+            console.log(position);
             const valueItemType = $(this).find($(`.wrap_item-deal-type-container .item-text`)).text().trim()
             const positionDropDownType = $(this).closest(dropDownDeal).index('.DropdownDealCSS')
             const currentType = $(this).find('.wrap_item-deal-type-container .type')
@@ -134,11 +163,11 @@ const handleItemClick_DropDown_Deal = (itemType, itemColor, dropDownDeal, btnOpe
                     type: false,
                     valueType: "",
                 }
-
                 $(this).closest(dropDownDeal).find(itemColor).off('click')
                 $(this).closest(dropDownDeal).find(itemColor).map((index, item) => {
                     handleClickColorEq($(item), index)
                 })
+                handleConditionTriggerSunmit_DropDown_Deal(dropDownDeal, btnSubmitDropDownDeal, position)
             }
             else {
                 $(this).closest(dropDownDeal).find(itemType).removeClass('text_  border_')
@@ -149,6 +178,7 @@ const handleItemClick_DropDown_Deal = (itemType, itemColor, dropDownDeal, btnOpe
                     valueType: valueItemType,
                 }
                 $(this).closest(dropDownDeal).find(itemColor).off('click')
+                handleConditionTriggerSunmit_DropDown_Deal(dropDownDeal, btnSubmitDropDownDeal, position)
                 $(this).closest(dropDownDeal).find(itemColor).map((index, item) => {
                     $(item).removeClass('item-Color-Action')
                     if (Number($(item).find('.wrap_item-deal-container .type').text().trim()) != Number(currentType.text().trim())) {
@@ -170,6 +200,8 @@ const handleItemClick_DropDown_Deal = (itemType, itemColor, dropDownDeal, btnOpe
         })
     }
     itemType.click(function () {
+        const position = $(this).closest(dropDownDeal).index('.DropdownDealCSS')
+        console.log(position);
         const valueItemType = $(this).find($(`.wrap_item-deal-type-container .item-text`)).text().trim()
         const positionDropDownType = $(this).closest(dropDownDeal).index('.DropdownDealCSS')
         const currentType = $(this).find('.wrap_item-deal-type-container .type')
@@ -185,6 +217,7 @@ const handleItemClick_DropDown_Deal = (itemType, itemColor, dropDownDeal, btnOpe
             $(this).closest(dropDownDeal).find(itemColor).map((index, item) => {
                 handleClickColorEq($(item), index)
             })
+            handleConditionTriggerSunmit_DropDown_Deal(dropDownDeal, btnSubmitDropDownDeal, position)
         }
         else {
             $(this).closest(dropDownDeal).find(itemType).removeClass('text_  border_')
@@ -195,6 +228,7 @@ const handleItemClick_DropDown_Deal = (itemType, itemColor, dropDownDeal, btnOpe
                 valueType: valueItemType,
             }
             $(this).closest(dropDownDeal).find(itemColor).off('click')
+            handleConditionTriggerSunmit_DropDown_Deal(dropDownDeal, btnSubmitDropDownDeal, position)
             $(this).closest(dropDownDeal).find(itemColor).map((index, item) => {
                 $(item).removeClass('item-Color-Action')
                 if (Number($(item).find('.wrap_item-deal-container .type').text().trim()) != Number(currentType.text().trim())) {
@@ -215,6 +249,7 @@ const handleItemClick_DropDown_Deal = (itemType, itemColor, dropDownDeal, btnOpe
         historyDeal.historySelectItem = [...historyDeal.historySelectItem, cloneSelectItem]
     })
     itemColor.click(function () {
+        const position = $(this).closest(dropDownDeal).index('.DropdownDealCSS')
         const valueItemColor = $(this).find($(`.wrap_item-deal-container .item-title`)).text().trim()
         const positionDropDownColor = $(this).closest(dropDownDeal).index('.DropdownDealCSS')
         const currentColor = $(this).find('.wrap_item-deal-container .type')
@@ -230,6 +265,8 @@ const handleItemClick_DropDown_Deal = (itemType, itemColor, dropDownDeal, btnOpe
             $(this).closest(dropDownDeal).find(itemType).map((index, item) => {
                 handleClickTypeEq($(item), index)
             })
+            handleConditionTriggerSunmit_DropDown_Deal(dropDownDeal, btnSubmitDropDownDeal, position)
+
         }
         else {
             $(this).closest(dropDownDeal).find(itemColor).removeClass('text_  border_')
@@ -240,6 +277,7 @@ const handleItemClick_DropDown_Deal = (itemType, itemColor, dropDownDeal, btnOpe
                 valueColor: valueItemColor,
             }
             $(this).closest(dropDownDeal).find(itemType).off('click')
+            handleConditionTriggerSunmit_DropDown_Deal(dropDownDeal, btnSubmitDropDownDeal, position)
             $(this).closest(dropDownDeal).find(itemType).map((index, item) => {
                 $(item).removeClass('item-Color-Action')
                 if (Number($(item).find('.wrap_item-deal-type-container .type').text().trim()) != Number(currentColor.text().trim())) {
@@ -262,9 +300,8 @@ const handleItemClick_DropDown_Deal = (itemType, itemColor, dropDownDeal, btnOpe
 }
 const handleShow_cardDeal = async () => {
     const value = await fetch.getData('./deal.json')
-    console.log(value.data.data1);
     $('#DealProductsLeftMainGrid').find(`.wrap_deal-card-sub`).remove()
-    await $('#DealProductsLeftMainGrid').find('#BuyBasedOnDeal').before(value.data.data1.map(item =>
+    await $('#DealProductsLeftMainGrid').append(value.data.data1.map(item =>
         ` <div class="card wrap_deal-card-sub px-0 border border-0 mx-3" style="width: 18rem;">
                                 <img src="${item.CardImg}"
                                     class="card-img-top img-fluid" alt="...">
@@ -378,12 +415,12 @@ const handleShow_cardDeal = async () => {
             <div class="wrap-submit-back col-12">
                 <div
                     class="wrap-submit-back-grid row d-flex align-items-center justify-content-end">
-                    <div class="item-back-deal text-uppercase col-4  shadow-sm px-2 py-3 mx-3"
-                        id="ItemBackDeal">
+                    <div class="item-back-deal text-uppercase col-4  shadow-sm px-2 py-3 mx-3 ItemBackDeal"
+                       >
                         trở lại
                     </div>
-                    <div class="item-submit-deal text-uppercase col-4 shadow-sm px-2 py-3"
-                        id="ItemSubmitDeal">
+                    <div class="item-submit-deal text-uppercase col-4 shadow-sm px-2 py-3 ItemSubmitDeal">
+                        
                         xác nhận
                     </div>
                 </div>
@@ -412,9 +449,12 @@ const handleShow_cardDeal = async () => {
                                     </div >
 
                                 </div >
-                            </div > `
+                            </div > 
+                             <div class="buy-based-on  mx-5 d-flex align-items-start justify-content-center pt-4 "
+                                id="BuyBasedOnDeal">
+                                <i class="item-icon fa-solid fa-plus"></i>
+                            </div>`
     ).join(''))
-
     await $('#DealProductsLeftMainGrid').find('#BuyBasedOnDeal').after(value.data.data.map(item =>
         ` <div class="card wrap_deal-card-sub px-0 border border-0 mx-3" style="width: 18rem;">
                                 <img src="${item.CardImg}"
@@ -565,6 +605,36 @@ const handleShow_cardDeal = async () => {
                                 </div >
                             </div > `
     ).join(''))
+    await $('#DealProductsRightGrid').empty().append(value.data.data2.map(item =>
+        `<div class="wrap-item-right d-flex flex-column">
+                                <div class="wrap-item-right-top">
+                                    <div class="item-title d-inline-block">tổng cộng:</div>
+                                    <span class="item-price-sale d-inline-block text-truncate"><span
+                                            class="item-unit">đ</span><span>${item.sale}0</span></span>
+                                    <span class="item-buy"><span
+                                            class="item-unit me-1">đ</span><span>${item.price}</span></span>
+                                </div>
+                                <div class="wrap-item-right-main mb-3">
+                                    <div class="item-title d-inline-block">
+                                        tiết kiệm
+                                    </div>
+                                    <span class="item-buy ms-4"><span
+                                            class="item-unit ">đ</span><span>${item.save}</span></span>
+                                </div>
+                                <div class="wrap-item-right-footer   border border-1 rounded-1"
+                                    id="WrapItemRightFooterDeal">
+                                    <div class="wrap-item-right-footer-gird  d-flex align-items-center justify-content-center  w-100 h-100"
+                                        id="ExactlyBuyDeal" data-bs-target="#ModalSureBuyDeal">
+                                        <i class="item-icon fa-solid fa-cart-shopping"></i>
+                                        <div class="item-title text-capitalize  text-center  ms-2 "
+                                            id="infoExactlyBuyDeal">
+                                            bấm để mua deal sốc
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>`
+    ).join(''))
 }
 const handleMouseOver_DropDown_Deal = (itemType, itemColor, dropDownDeal) => {
     itemColor.mouseover(function () {
@@ -588,8 +658,6 @@ const handleMouseOver_DropDown_Deal = (itemType, itemColor, dropDownDeal) => {
 
     })
 }
-const test = async () => {
-}
 const handleAnimationShowDown = (value) => {
     value.removeClass('dropdown_down dropdown_up hide_down show_down show_up hide_up dropdown_up-before dropdown_down-before')
     value.addClass('dropdown_down dropdown_down-before')
@@ -610,7 +678,7 @@ const handleAnimationHideUp = (value) => {
     value.addClass('dropdown_up')
     value.removeClass(`show_up`).addClass(`hide_up`).hide(350)
 }
-const handleSubmitAndBackClick_DropDown_Deal = (btnBackDropDownDeal, btnSubmitDropDownDeal, dropDownDeal) => {
+const handleBackClick_DropDown_Deal = (btnBackDropDownDeal, dropDownDeal) => {
     btnBackDropDownDeal.click(function () {
         if ($(this).closest(dropDownDeal).hasClass(`show_down`)) {
             handleAnimationHideDown($(this).closest(dropDownDeal))
@@ -620,34 +688,85 @@ const handleSubmitAndBackClick_DropDown_Deal = (btnBackDropDownDeal, btnSubmitDr
         }
     })
 }
+const handleSubmitClick_DropDown_Deal = (btnSubmitDropDownDeal, dropDownDeal) => {
+    btnSubmitDropDownDeal.click(function () {
+    })
+}
+const handleConditionTriggerSunmit_DropDown_Deal = (dropDownDeal, btnSubmitDropDownDeal, position) => {
+    if (selectItem[`item${position}`].color === true && selectItem[`item${position}`].type === true) {
+        $(dropDownDeal[position]).find(btnSubmitDropDownDeal).off('click');
+        $(dropDownDeal[position]).find(btnSubmitDropDownDeal).removeClass('Submit-disable')
+        handleSubmitClick_DropDown_Deal($(dropDownDeal[position]).find(btnSubmitDropDownDeal));
+    }
+    else {
+        $(dropDownDeal[position]).find(btnSubmitDropDownDeal).addClass('Submit-disable')
+        $(dropDownDeal[position]).find(btnSubmitDropDownDeal).off('click');
+    }
+}
+const handleMouseSubmit_DropDown_Deal = (btnSubmitDropDownDeal, dropDownDeal) => {
+    btnSubmitDropDownDeal.mouseover(function () {
+        const position = $(this).closest(dropDownDeal).index('.DropdownDealCSS')
+        if (selectItem[`item${position}`].color === true && selectItem[`item${position}`].type === true) {
+            $(dropDownDeal[position]).find(btnSubmitDropDownDeal).removeClass('Submit-disable')
+            $(dropDownDeal[position]).find(btnSubmitDropDownDeal).addClass('ItemSubmitDeal_hover')
+        }
+        else {
+            $(dropDownDeal[position]).find(btnSubmitDropDownDeal).removeClass('ItemSubmitDeal_hover')
+        }
+    })
+
+}
+const handleBuy_Card_Deal = (exactlyBuy, infoExactlyBuy, modalExactlyBuy) => {
+    exactlyBuy.click(function () {
+        if (infoExactlyBuy.text().trim() === 'đến giỏ hàng') {
+            alert("1")
+        }
+        else {
+            infoExactlyBuy.text('đến giỏ hàng');
+            modalExactlyBuy.modal('show')
+        }
+    })
+}
+const handleSetup_BackDrop_ModalDeal = (modalExactlyBuy) => {
+    modalExactlyBuy.on('shown.bs.modal', function () {
+        $(`.modal-backdrop`).addClass('BackDropAndgroundModalDeal');
+    })
+}
 const selectItem = {
     item0: {
-        color: false,
+        color: true,
         valueColor: "",
-        type: false,
+        type: true,
         valueType: "",
-        check: false
+        check: true
     },
     item1: {
-        color: false,
+        color: true,
         valueColor: "",
-        type: false,
+        type: true,
         valueType: "",
-        check: false
+        check: true
     },
     item2: {
-        color: false,
+        color: true,
         valueColor: "",
-        type: false,
+        type: true,
         valueType: "",
-        check: false
+        check: true
     },
     item3: {
-        color: false,
+        color: true,
         valueColor: "",
-        type: false,
+        type: true,
         valueType: "",
-        check: false
+        check: true
+    },
+    item4: {
+        color: true,
+        valueColor: "",
+        type: true,
+        valueType: "",
+        check: true
     }
 }
 const quantityProduct = {
@@ -655,6 +774,7 @@ const quantityProduct = {
     quantity1: 1,
     quantity2: 1,
     quantity3: 1,
+    quantity4: 1,
 }
 const historyDeal = {
     historyQuantity: [],
@@ -662,7 +782,6 @@ const historyDeal = {
 }
 export const AllHandleDeal = () => {
     handleShow_cardDeal()
-    // test()
     setTimeout(() => {
         const dealProducts = $('#DealProducts')
         const btnOpenDropDownDeal = $('.itemOpenDropDownCardDeal')
@@ -676,11 +795,17 @@ export const AllHandleDeal = () => {
         const itemColor = $('.wrap_item-color-deal')
         const btnBackDropDownDeal = $('.ItemBackDeal')
         const btnSubmitDropDownDeal = $('.ItemSubmitDeal')
-        handleShow_DropDown_Deal(btnOpenDropDownDeal, dropDownDeal, dealProducts, checkParentCardsDeal, dealProducts);
-        handleClickCheck_Carts_Deal(checkCardsDeal, checkParentCardsDeal, dealProducts);
+        const exactlyBuy = $('#ExactlyBuyDeal')
+        const infoExactlyBuy = $('#infoExactlyBuyDeal')
+        const modalExactlyBuy = $('#ModalSureBuyDeal')
+        handleShow_DropDown_Deal(btnOpenDropDownDeal, dropDownDeal, dealProducts, btnSubmitDropDownDeal);
+        handleClickCheck_Carts_Deal(checkCardsDeal, checkParentCardsDeal, dealProducts, dropDownDeal);
         handleIncreaseAndDecrease_DropDown_deal(increaseQuantityDeal, reduceQuantityDeal, displayQuantity, itemType, dropDownDeal);
         handleItemClick_DropDown_Deal(itemType, itemColor, dropDownDeal, btnOpenDropDownDeal, btnSubmitDropDownDeal);
         handleMouseOver_DropDown_Deal(itemType, itemColor, dropDownDeal);
-        handleSubmitAndBackClick_DropDown_Deal(btnBackDropDownDeal, btnSubmitDropDownDeal, dropDownDeal);
+        handleBackClick_DropDown_Deal(btnBackDropDownDeal, dropDownDeal);
+        handleMouseSubmit_DropDown_Deal(btnSubmitDropDownDeal, dropDownDeal);
+        handleBuy_Card_Deal(exactlyBuy, infoExactlyBuy, modalExactlyBuy)
+        handleSetup_BackDrop_ModalDeal(modalExactlyBuy);
     }, 900);
 }

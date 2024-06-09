@@ -8,6 +8,7 @@ html {
     font-size: 62.5%;
     line-height: 1.6rem;
     font-family: "Roboto", sans-serif;
+    overflow-y: auto;
 }
 
 :root {
@@ -43,6 +44,7 @@ html {
     --text-color-placeholders: #bbb;
     --background-hover-map: #f8f8f8;
     --color-border: #dee2e6;
+    --background-submit-disable: rgb(241, 179, 187):
 }
 
 body {
@@ -1562,6 +1564,7 @@ body {
     cursor: auto !important;
     box-sizing: border-box;
     display: none;
+    z-index: 2;
 }
 
 .wrap-policy-shoppe-container .wrap-policy-shoppe-gird .item-policy .dropdown-policy::after {
@@ -1940,7 +1943,7 @@ body {
     color: var(--text-white);
 }
 
-.ItemSubmitDeal:hover {
+.ItemSubmitDeal_hover:hover {
     background: rgb(219, 26, 52);
 }
 
@@ -2180,4 +2183,43 @@ body {
     left: 0%;
     transform: translateX(-100%);
 
+}
+
+.Submit-disable {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transition: all 0.1s;
+}
+
+.BackDropAndgroundModalDeal {
+    background-color: rgba(0, 0, 0, 0.01);
+    transform: all 0.2s;
+}
+
+#ModalSureBuyDeal .ModalSureBuyDealClass-dialog .ModalSureBuyDealClass-content {
+    background-color: rgba(0, 0, 0, 0.65);
+    overflow: hidden;
+}
+
+.ModalSureBuyDealClass-body .ModalSureBuyDealClass-body-container .ModalSureBuyDealClass-body-grid .wrap-icon-parent {
+    height: 10rem;
+    background-color: transparent;
+}
+
+.ModalSureBuyDealClass-body .ModalSureBuyDealClass-body-container .ModalSureBuyDealClass-body-grid .wrap-icon-parent .wrap-icon {
+    border-radius: 100%;
+    height: 8rem;
+    width: 8rem;
+    background-color: #00bfa5;
+    font-size: 5rem;
+    font-weight: bolder;
+    color: var(--text-white);
+}
+
+.ModalSureBuyDealClass-body .ModalSureBuyDealClass-body-container .ModalSureBuyDealClass-body-grid .item-text {
+    width: 100%;
+    height: 1.5rem;
+    font-size: 1.1rem;
+    color: var(--text-white);
+    overflow: hidden;
 }

@@ -1711,11 +1711,10 @@
                     </div>
                 </div>
             </div>
-
         </div>
         <div class="deal_products " id="DealProducts">
-            <div class="deal_products-container container shadow-lg h-100">
-                <div class="deal_products-gird row py-5 ">
+            <div class="deal_products-container container shadow-lg ">
+                <div class="deal_products-gird row pt-5 pb-1 ">
                     <div class="deal_products-left col-10  border-end px-3 ps-5 pe-4">
                         <div
                             class="deal_products-left-top-gird d-flex align-items-center justify-content-between   ps-3 mb-3">
@@ -1730,11 +1729,11 @@
                         </div>
                         <div class="deal_products-left-main-grid  ps-3 d-flex  align-items-baseline justify-content-start "
                             id="DealProductsLeftMainGrid">
-                            <div class="buy-based-on  mx-5 d-flex align-items-start justify-content-center pt-4 "
+                            <!-- <div class="buy-based-on  mx-5 d-flex align-items-start justify-content-center pt-4 "
                                 id="BuyBasedOnDeal">
                                 <i class="item-icon fa-solid fa-plus"></i>
-                            </div>
-                            <div class="card wrap_deal-card-sub px-0 border border-0 mx-3 position-relative"
+                            </div> -->
+                            <!-- <div class="card wrap_deal-card-sub px-0 border border-0 mx-3 position-relative"
                                 style="width: 18rem;">
                                 <img src="https://down-vn.img.susercontent.com/file/sg-11134201-22100-ig1wurs4g9iv23_tn"
                                     class="card-img-top img-fluid" alt="...">
@@ -1841,8 +1840,8 @@
                                                                                     class="wrap-quantity-items col-4   px-0 ">
                                                                                     <div
                                                                                         class="wrap-quantity-items-grid   row  mx-0 w-100  border border-1 ">
-                                                                                        <div class="item-reduce-deal item-reduce-increase  col-3 d-flex align-items-center justify-content-center px-0 ItemReduceDealClass"
-                                                                                            id="ItemReduceDeal">
+                                                                                        <div
+                                                                                            class="item-reduce-deal item-reduce-increase  col-3 d-flex align-items-center justify-content-center px-0 ItemReduceDealClass">
                                                                                             <i
                                                                                                 class="item-icon fa-solid fa-minus"></i>
                                                                                         </div>
@@ -1850,8 +1849,8 @@
                                                                                             class="display-quantity-deal col-6  border-start border-end d-flex align-items-center justify-content-center DisplayQuantityDealClass">
                                                                                             1
                                                                                         </div>
-                                                                                        <div class="item-increase-deal item-reduce-increase col-3 d-flex align-items-center justify-content-center px-0 ItemIncreaseDealClass"
-                                                                                            id="ItemIncreaseDeal">
+                                                                                        <div
+                                                                                            class="item-increase-deal item-reduce-increase col-3 d-flex align-items-center justify-content-center px-0 ItemIncreaseDealClass">
                                                                                             <i
                                                                                                 class="item-icon fa-solid fa-plus"></i>
                                                                                         </div>
@@ -1897,13 +1896,12 @@
                                     </div>
 
                                 </div>
-                            </div>
-
+                            </div> -->
                         </div>
                     </div>
                     <div class="deal_products-right col-2 ">
-                        <div
-                            class="deal_products-right-grid d-flex align-items-center justify-content-center w-100 h-100">
+                        <div class="deal_products-right-grid d-flex align-items-center justify-content-center w-100 h-100"
+                            id="DealProductsRightGrid">
                             <div class="wrap-item-right d-flex flex-column">
                                 <div class="wrap-item-right-top">
                                     <div class="item-title d-inline-block">tổng cộng:</div>
@@ -1921,11 +1919,36 @@
                                 </div>
                                 <div class="wrap-item-right-footer   border border-1 rounded-1"
                                     id="WrapItemRightFooterDeal">
-                                    <div
-                                        class="wrap-item-right-footer-gird  d-flex align-items-center justify-content-center  w-100 h-100">
+                                    <div class="wrap-item-right-footer-gird  d-flex align-items-center justify-content-center  w-100 h-100"
+                                        id="ExactlyBuyDeal" data-bs-target="#ModalSureBuyDeal">
                                         <i class="item-icon fa-solid fa-cart-shopping"></i>
-                                        <div class="item-title text-capitalize  text-center  ms-2 ">
+                                        <div class="item-title text-capitalize  text-center  ms-2 "
+                                            id="infoExactlyBuyDeal">
                                             bấm để mua deal sốc
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal  ModalSureBuyDealClass" id="ModalSureBuyDeal">
+                        <div class="modal-dialog ModalSureBuyDealClass-dialog modal-dialog-centered ">
+                            <div class="modal-content ModalSureBuyDealClass-content">
+                                <div class="modal-body ModalSureBuyDealClass-body p-0">
+                                    <div class="ModalSureBuyDealClass-body-container container p-0 px-2 py-3">
+                                        <div class="ModalSureBuyDealClass-body-grid d-flex flex-column">
+                                            <div
+                                                class="wrap-icon-parent d-flex align-items-center justify-content-center ">
+                                                <div
+                                                    class="wrap-icon d-flex align-items-center justify-content-center ">
+                                                    <i class="item-icon fa-solid fa-check"></i>
+                                                </div>
+                                            </div>
+                                            <div class="item-text">Lorem ipsum, dolor sit amet
+                                                consectetur adipisicing elit. Molestias doloremque
+                                                nostrum
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

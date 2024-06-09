@@ -46,8 +46,6 @@ const handleShowItem_ModalProducts = () => {
     }).get()
     )
 }
-
-
 const handleButtonNext_ModalProducts = (btnNextModalProductDetailImg, btnPreviosModalProductDetailImg, itemImgMain, manyItemImg, representItemImg) => {
     manyItemImg.removeClass('input-red-boder')
     btnNextModalProductDetailImg.off('click');
