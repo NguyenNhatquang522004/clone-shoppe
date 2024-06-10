@@ -358,15 +358,26 @@ const handleClickColor = (itemType, itemColor, dropDownDeal, btnSubmitDropDownDe
                 if (Number($(item).find('.wrap_item-deal-type-container .type').text().trim()) != Number(currentColor.text().trim())) {
                     if ($(item).hasClass('text_') && $(item).hasClass('border_')) {
                         $(item).removeClass('text_  border_').addClass('item-Color-Action')
+                        selectItem[`item${positionDropDownColor}`] = {
+                            ...selectItem[`item${positionDropDownColor}`],
+                            type: false,
+                        }
                     }
                     else {
                         $(item).addClass('item-Color-Action')
                     }
+                    handleConditionTriggerSunmit_DropDown_Deal(dropDownDeal, btnSubmitDropDownDeal, position)
                 }
                 else {
+                    selectItem[`item${positionDropDownColor}`] = {
+                        ...selectItem[`item${positionDropDownColor}`],
+                        color: true,
+                    }
+                    handleConditionTriggerSunmit_DropDown_Deal(dropDownDeal, btnSubmitDropDownDeal, position)
                     $(item).removeClass('item-Color-Action')
                     handleClickTypeEq($(item), index, itemType, itemColor, dropDownDeal, btnSubmitDropDownDeal)
                 }
+
             })
         }
         const cloneSelectItem = { ...selectItem }
