@@ -9,7 +9,6 @@ const changeImg = (btnOpenModalProductDetailImg, ImgOutSide) => {
         })
     })
 }
-
 const handleChangeImg_color = (btnOpenModalProductDetailImg, itemColor) => {
     $(itemColor).mouseover(function () {
         const position = itemColor.index($(this))

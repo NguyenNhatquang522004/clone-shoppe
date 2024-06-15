@@ -429,6 +429,7 @@ html {
     width: 88%;
     background-color: var(--background-main);
     display: none;
+    z-index: 3;
 }
 
 .dropdown_search .dropdown_search-container .dropdown_search-grid .item-text-top {

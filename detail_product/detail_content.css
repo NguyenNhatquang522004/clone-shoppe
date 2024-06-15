@@ -1974,6 +1974,11 @@ body {
 }
 
 .wrap_deal-card-sub .wrap_deal-card-sub-body .wrap_deal-card-sub-body-gird .wrap-item-top-deal-sub {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
     @supports (-webkit-line-clamp: 2) {
         overflow: hidden;
         text-overflow: ellipsis;
@@ -2234,4 +2239,76 @@ body {
     font-size: 1.1rem;
     color: var(--text-white);
     overflow: hidden;
+}
+
+#InfoShop .info_shop-container {
+    background-color: var(--background-main);
+}
+
+.info_shop-left .info_shop-left-grid .info_shop-left-left .item-brand {
+    height: 7.8rem;
+    width: 7.8rem;
+    object-fit: contain !important;
+}
+
+.info_shop-left .info_shop-left-grid .info_shop-left-left .item-brand-shoppe {
+    background-color: bisque;
+    height: 1.7rem;
+    width: 65%;
+    top: 100%;
+    transform: translateY(-50%);
+    background-image: url(https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/productdetailspage/483071c49603aa7163a7.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.info_shop-left .info_shop-left-grid .info_shop-left-right .item-title {
+    font-size: 1.5rem;
+    color: var(--text-black);
+}
+
+.info_shop-left .info_shop-left-grid .info_shop-left-right .shope-has-work {
+    font-size: 1.4rem;
+    color: var(--text-grey);
+}
+
+.info_shop-left .info_shop-left-grid .info_shop-left-right .info_shop-left-right-footer .info_shop-left-right-footer-item {
+    outline: none;
+    height: 3.5rem;
+    border: 1px solid var(--color-border);
+    font-size: 1.4rem;
+}
+
+.info_shop-left .info_shop-left-grid .info_shop-left-right .info_shop-left-right-footer .info_shop-left-right-footer-item .item-icon {
+    font-size: 1.2rem;
+
+}
+
+.info_shop-left .info_shop-left-grid .info_shop-left-right .info_shop-left-right-footer .item-chat-shop {
+    background-color: rgba(208, 1, 27, .08);
+    color: var(--text-price);
+    border: 1px solid var(--text-price);
+}
+
+.info_shop-left .info_shop-left-grid .info_shop-left-right .info_shop-left-right-footer .item-chat-shop:hover {
+    background-color: rgba(241, 180, 187, .163);
+}
+
+.info_shop-left .info_shop-left-grid .info_shop-left-right .info_shop-left-right-footer .item-chat-shop:active {
+    background: rgba(92, 0, 12, .126);
+    box-shadow: inset 0 2px 1px 0 rgba(0, 0, 0, .05);
+}
+
+.info_shop-left .info_shop-left-grid .info_shop-left-right .info_shop-left-right-footer .item-deatail-shope {
+    background-color: var(--background-main);
+    color: var(--text-grey-1);
+}
+
+.info_shop-left .info_shop-left-grid .info_shop-left-right .info_shop-left-right-footer .item-deatail-shope:active {
+    box-shadow: inset 0 2px 1px 0 rgba(0, 0, 0, .05);
+
+}
+
+.info_shop-left .info_shop-left-grid .info_shop-left-right .info_shop-left-right-footer .item-deatail-shope:hover {
+    background: rgba(0, 0, 0, .02);
 }

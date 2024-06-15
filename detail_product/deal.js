@@ -1,5 +1,5 @@
 import * as fetch from "./fetchdata.js"
-const handleShow_DropDown_Deal = (btnOpenDropDownDeal, dropDownDeal, dealProducts, btnSubmitDropDownDeal, itemType, itemColor, wrapParentItemColor, wrapParentItemType, WrapParentTypeColor) => {
+const handleShow_DropDown_Deal = (btnOpenDropDownDeal, dropDownDeal, dealProducts, btnSubmitDropDownDeal, itemType, itemColor, wrapParentItemColor, wrapParentItemType, WrapParentTypeColor, btnBackDropDownDeal) => {
     let positonDropDown = undefined
     let historyPosition = [];
     $(document).click(function (e) {
@@ -10,6 +10,7 @@ const handleShow_DropDown_Deal = (btnOpenDropDownDeal, dropDownDeal, dealProduct
                     color: true,
                     type: true,
                 }
+                handleConditionTriggerSunmit_DropDown_Deal(dropDownDeal, btnSubmitDropDownDeal, positonDropDown)
                 if (initSelectItem[`item${positonDropDown}`].positionType != undefined) {
                     selectItem[`item${positonDropDown}`] = {
                         ...selectItem[`item${positonDropDown}`],
@@ -20,7 +21,6 @@ const handleShow_DropDown_Deal = (btnOpenDropDownDeal, dropDownDeal, dealProduct
                     historyDeal.historySelectItem = [...historyDeal.historySelectItem, CloneSelectItem]
                 }
             }
-            handleConditionTriggerSunmit_DropDown_Deal(dropDownDeal, btnSubmitDropDownDeal, positonDropDown)
             $(dropDownDeal[positonDropDown]).find(itemType).off(`click`)
             $(dropDownDeal[positonDropDown]).find(itemType).removeClass(`item-Color-Action`)
             handleClickType($(dropDownDeal[positonDropDown]).find(itemType), itemColor, dropDownDeal, btnSubmitDropDownDeal)
@@ -65,7 +65,8 @@ const handleShow_DropDown_Deal = (btnOpenDropDownDeal, dropDownDeal, dealProduct
                         $(item).addClass('text_  border_')
                         initSelectItem[`item${position}`] = {
                             ...initSelectItem[`item${position}`],
-                            positonColor: Number(index)
+                            positonColor: Number(index),
+                            valueColor: String($(item).find(`.wrap_item-deal-container .item-title`).text().trim()),
                         }
                     }
                 })
@@ -77,6 +78,7 @@ const handleShow_DropDown_Deal = (btnOpenDropDownDeal, dropDownDeal, dealProduct
                         initSelectItem[`item${position}`] = {
                             ...initSelectItem[`item${position}`],
                             positionType: Number(index),
+                            valueType: String($(item).find(`.wrap_item-deal-type-container .item-text`).text().trim()),
                         }
                     }
                 })
@@ -97,7 +99,10 @@ const handleShow_DropDown_Deal = (btnOpenDropDownDeal, dropDownDeal, dealProduct
         if (selectItem[`item${position}`].color === true && selectItem[`item${position}`].type === true) {
             $(dropDownDeal[position]).find(btnSubmitDropDownDeal).off('click');
             $(dropDownDeal[position]).find(btnSubmitDropDownDeal).removeClass('Submit-disable')
-            handleSubmitClick_DropDown_Deal($(dropDownDeal[position]).find(btnSubmitDropDownDeal));
+            btnSubmitDropDownDeal.off('click')
+            handleSubmitClick_DropDown_Deal($(dropDownDeal[position]).find(btnSubmitDropDownDeal), $(dropDownDeal[position]));
+            btnBackDropDownDeal.off('click')
+            handleBackClick_DropDown_Deal($(dropDownDeal[position]).find(btnBackDropDownDeal), $(dropDownDeal[position]))
         }
         else {
             $(dropDownDeal[position]).find(btnSubmitDropDownDeal).addClass('Submit-disable')
@@ -148,25 +153,49 @@ const handleIncreaseAndDecrease_DropDown_deal = (increaseQuantityDeal, reduceQua
 
     })
 }
-const handleClickCheck_Carts_Deal = (checkCardsDeal, checkParentCardsDeal, dealProducts, dropDownDeal) => {
+const handleClickCheck_Carts_Deal = (checkCardsDeal, checkParentCardsDeal, dealProducts, dropDownDeal, itemSale, itemPrice, itemSaleTotal, itemPriceTotal, itemSaveTotal) => {
+    let cloneTotalSaleB = parseFloat(selectItem.All.sumTotalSale);
+    let cloneTotalSaleS = 0;
+    let displaySale = 0;
+    let cloneTotalPriceB = parseFloat(itemPriceTotal.text().trim());
+    let cloneTotalPriceS = 0;
+    let displayPrice = 0;
+    let displaySave = 0;
+    let conditionTrigger = false
     checkParentCardsDeal.click(function () {
+        let valueTotalSaleCurrent = parseFloat(itemSaleTotal.text().trim())
+        let valueTotalPriceCurrent = parseFloat(itemPriceTotal.text().trim())
         const position = checkParentCardsDeal.index(this)
         if (Number($(checkParentCardsDeal[position]).css(`opacity`)) >= 1) {
-            if ($(checkCardsDeal[position]).css('display') === 'none') {
-                $(checkCardsDeal[position]).show();
+            // đang đóng
+            if ($(checkCardsDeal[position]).hasClass('d-none') === true) {
+                $(checkCardsDeal[position]).removeClass('d-none');
                 selectItem[`item${position}`] = {
                     ...selectItem[`item${position}`],
                     check: true,
                 }
+                cloneTotalPriceS += parseFloat(selectItem[`item${position}`].valuePrice);
+                cloneTotalSaleS -= parseFloat(selectItem[`item${position}`].valueSale);
+                valueTotalSaleCurrent += parseFloat(selectItem[`item${position}`].valueSale)
+                itemSaleTotal.text(`${valueTotalSaleCurrent.toFixed(3)}`)
             }
+            // đang mở
             else {
-                $(checkCardsDeal[position]).hide()
+                $(checkCardsDeal[position]).addClass('d-none')
                 selectItem[`item${position}`] = {
                     ...selectItem[`item${position}`],
                     check: false,
                 }
+                cloneTotalPriceS += parseFloat(selectItem[`item${position}`].valuePrice);
+                cloneTotalSaleS += parseFloat(selectItem[`item${position}`].valueSale);
+                valueTotalSaleCurrent = cloneTotalSaleB - cloneTotalSaleS
+                itemSaleTotal.text(`${valueTotalSaleCurrent.toFixed(3)}`)
             }
+            // console.log(displaySale);
         }
+        // console.log(cloneTotalSaleS);
+        // console.log(displaySale);
+        console.log(selectItem);
         const cloneSelectItem = { ...selectItem }
         historyDeal.historySelectItem = [...historyDeal.historySelectItem, cloneSelectItem]
     })
@@ -177,6 +206,7 @@ const handleClickColorEq = (value, index, itemType, itemColor, dropDownDeal, btn
         const valueItemColor = $(this).find($(`.wrap_item-deal-container .item-title`)).text().trim()
         const positionDropDownColor = $(this).closest(dropDownDeal).index('.DropdownDealCSS')
         const currentColor = $(this).find('.wrap_item-deal-container .type')
+        let conditionTrigger = false
         if ($(this).hasClass('text_') && $(this).hasClass('border_')) {
             $(this).removeClass('text_  border_')
             $(this).closest(dropDownDeal).find(itemType).removeClass('item-Color-Action')
@@ -211,12 +241,30 @@ const handleClickColorEq = (value, index, itemType, itemColor, dropDownDeal, btn
                     else {
                         $(item).addClass('item-Color-Action')
                     }
+                    if (conditionTrigger === false) {
+                        selectItem[`item${positionDropDownColor}`] = {
+                            ...selectItem[`item${positionDropDownColor}`],
+                            type: false,
+                        }
+                    }
                 }
                 else {
-                    $(item).removeClass('item-Color-Action')
-                    handleClickTypeEq($(item), index, itemType, itemColor, dropDownDeal, btnSubmitDropDownDeal)
+                    if ($(item).hasClass('text_') && $(item).hasClass('border_')) {
+                        conditionTrigger = true
+                        selectItem[`item${positionDropDownColor}`] = {
+                            ...selectItem[`item${positionDropDownColor}`],
+                            type: true,
+                        }
+                        $(item).removeClass('item-Color-Action')
+                        handleClickTypeEq($(item), index, itemType, itemColor, dropDownDeal, btnSubmitDropDownDeal)
+                    }
+                    else {
+                        $(item).removeClass('item-Color-Action')
+                        handleClickTypeEq($(item), index, itemType, itemColor, dropDownDeal, btnSubmitDropDownDeal)
+                    }
                 }
             })
+            handleConditionTriggerSunmit_DropDown_Deal(dropDownDeal, btnSubmitDropDownDeal, position)
         }
         const cloneSelectItem = { ...selectItem }
         historyDeal.historySelectItem = [...historyDeal.historySelectItem, cloneSelectItem]
@@ -228,6 +276,7 @@ const handleClickTypeEq = (value, index, itemType, itemColor, dropDownDeal, btnS
         const valueItemType = $(this).find($(`.wrap_item-deal-type-container .item-text`)).text().trim()
         const positionDropDownType = $(this).closest(dropDownDeal).index('.DropdownDealCSS')
         const currentType = $(this).find('.wrap_item-deal-type-container .type')
+        let conditionTrigger = false
         if ($(this).hasClass('text_') && $(this).hasClass('border_')) {
             $(this).removeClass('text_  border_')
             $(this).closest(dropDownDeal).find(itemColor).removeClass('item-Color-Action')
@@ -261,12 +310,31 @@ const handleClickTypeEq = (value, index, itemType, itemColor, dropDownDeal, btnS
                     else {
                         $(item).addClass('item-Color-Action')
                     }
+                    if (conditionTrigger === false) {
+                        selectItem[`item${positionDropDownType}`] = {
+                            ...selectItem[`item${positionDropDownType}`],
+                            color: false,
+                        }
+                    }
+
                 }
                 else {
-                    $(item).removeClass('item-Color-Action')
-                    handleClickColorEq($(item), index, itemType, itemColor, dropDownDeal, btnSubmitDropDownDeal)
+                    if ($(item).hasClass('text_') && $(item).hasClass('border_')) {
+                        conditionTrigger = true;
+                        selectItem[`item${positionDropDownType}`] = {
+                            ...selectItem[`item${positionDropDownType}`],
+                            color: true,
+                        }
+                        $(item).removeClass('item-Color-Action')
+                        handleClickColorEq($(item), index, itemType, itemColor, dropDownDeal, btnSubmitDropDownDeal)
+                    }
+                    else {
+                        $(item).removeClass('item-Color-Action')
+                        handleClickColorEq($(item), index, itemType, itemColor, dropDownDeal, btnSubmitDropDownDeal)
+                    }
                 }
             })
+            handleConditionTriggerSunmit_DropDown_Deal(dropDownDeal, btnSubmitDropDownDeal, position)
         }
         const cloneSelectItem = { ...selectItem }
         historyDeal.historySelectItem = [...historyDeal.historySelectItem, cloneSelectItem]
@@ -278,6 +346,7 @@ const handleClickType = (itemType, itemColor, dropDownDeal, btnSubmitDropDownDea
         const valueItemType = $(this).find($(`.wrap_item-deal-type-container .item-text`)).text().trim()
         const positionDropDownType = $(this).closest(dropDownDeal).index('.DropdownDealCSS')
         const currentType = $(this).find('.wrap_item-deal-type-container .type')
+        let conditionTrigger = false;
         if ($(this).hasClass('text_') && $(this).hasClass('border_')) {
             $(this).removeClass('text_  border_')
             $(this).closest(dropDownDeal).find(itemColor).removeClass('item-Color-Action')
@@ -311,12 +380,31 @@ const handleClickType = (itemType, itemColor, dropDownDeal, btnSubmitDropDownDea
                     else {
                         $(item).addClass('item-Color-Action')
                     }
+                    if (conditionTrigger === false) {
+                        selectItem[`item${positionDropDownType}`] = {
+                            ...selectItem[`item${positionDropDownType}`],
+                            color: false,
+                        }
+                    }
                 }
                 else {
-                    $(item).removeClass('item-Color-Action')
-                    handleClickColorEq($(item), index, itemType, itemColor, dropDownDeal, btnSubmitDropDownDeal)
+                    if ($(item).hasClass('text_') && $(item).hasClass('border_')) {
+                        conditionTrigger = true;
+                        selectItem[`item${positionDropDownType}`] = {
+                            ...selectItem[`item${positionDropDownType}`],
+                            color: true,
+                        }
+                        $(item).removeClass('item-Color-Action')
+                        handleClickColorEq($(item), index, itemType, itemColor, dropDownDeal, btnSubmitDropDownDeal)
+                    }
+                    else {
+                        $(item).removeClass('item-Color-Action')
+                        handleClickColorEq($(item), index, itemType, itemColor, dropDownDeal, btnSubmitDropDownDeal)
+                    }
+
                 }
             })
+            handleConditionTriggerSunmit_DropDown_Deal(dropDownDeal, btnSubmitDropDownDeal, position)
         }
         const cloneSelectItem = { ...selectItem }
         historyDeal.historySelectItem = [...historyDeal.historySelectItem, cloneSelectItem]
@@ -328,6 +416,7 @@ const handleClickColor = (itemType, itemColor, dropDownDeal, btnSubmitDropDownDe
         const valueItemColor = $(this).find($(`.wrap_item-deal-container .item-title`)).text().trim()
         const positionDropDownColor = $(this).closest(dropDownDeal).index('.DropdownDealCSS')
         const currentColor = $(this).find('.wrap_item-deal-container .type')
+        let conditionTrigger = false;
         if ($(this).hasClass('text_') && $(this).hasClass('border_')) {
             $(this).removeClass('text_  border_')
             $(this).closest(dropDownDeal).find(itemType).removeClass('item-Color-Action')
@@ -358,27 +447,36 @@ const handleClickColor = (itemType, itemColor, dropDownDeal, btnSubmitDropDownDe
                 if (Number($(item).find('.wrap_item-deal-type-container .type').text().trim()) != Number(currentColor.text().trim())) {
                     if ($(item).hasClass('text_') && $(item).hasClass('border_')) {
                         $(item).removeClass('text_  border_').addClass('item-Color-Action')
+                    }
+                    else {
+                        $(item).addClass('item-Color-Action')
+                    }
+                    if (conditionTrigger === false) {
                         selectItem[`item${positionDropDownColor}`] = {
                             ...selectItem[`item${positionDropDownColor}`],
                             type: false,
                         }
                     }
-                    else {
-                        $(item).addClass('item-Color-Action')
-                    }
-                    handleConditionTriggerSunmit_DropDown_Deal(dropDownDeal, btnSubmitDropDownDeal, position)
                 }
                 else {
-                    selectItem[`item${positionDropDownColor}`] = {
-                        ...selectItem[`item${positionDropDownColor}`],
-                        color: true,
+                    if ($(item).hasClass('text_') && $(item).hasClass('border_')) {
+                        conditionTrigger = true
+                        selectItem[`item${positionDropDownColor}`] = {
+                            ...selectItem[`item${positionDropDownColor}`],
+                            type: true,
+                        }
+                        $(item).removeClass('item-Color-Action')
+                        handleClickTypeEq($(item), index, itemType, itemColor, dropDownDeal, btnSubmitDropDownDeal)
                     }
-                    handleConditionTriggerSunmit_DropDown_Deal(dropDownDeal, btnSubmitDropDownDeal, position)
-                    $(item).removeClass('item-Color-Action')
-                    handleClickTypeEq($(item), index, itemType, itemColor, dropDownDeal, btnSubmitDropDownDeal)
-                }
+                    else {
+                        $(item).removeClass('item-Color-Action')
+                        handleClickTypeEq($(item), index, itemType, itemColor, dropDownDeal, btnSubmitDropDownDeal)
+                    }
 
+                }
             })
+            handleConditionTriggerSunmit_DropDown_Deal(dropDownDeal, btnSubmitDropDownDeal, position)
+
         }
         const cloneSelectItem = { ...selectItem }
         historyDeal.historySelectItem = [...historyDeal.historySelectItem, cloneSelectItem]
@@ -521,14 +619,15 @@ const handleShow_cardDeal = async () => {
                                             </div >
                                         </div >
     <div class="wrap-item-footer-deal-sub col-12">
-        <div class="wrap-item-footer-deal-sub-gird d-flex">
-            <span class="wrap-item-price-sale">
+        <div class="wrap-item-footer-deal-sub-gird d-flex WrapItemFooterDealSubGird">
+           <span class="wrap-item-price-sale ${item.Cardsale === '' ? `d-none` : ``} WrapItemPriceSaleDeal">
                 <span class="item-unit">đ</span>
-                ${item.Cardsale}
+                 <span class="ItemSaleCardDeal"> ${item.Cardsale}</span>
+               
             </span>
-            <span class="wrap-item-price-buy mx-2">
+            <span class="wrap-item-price-buy mx-2  ${item.cardPrice === '' ? `d-none` : ``}WrapItemPriceBuyDeal">
                 <span class="item-unit">đ</span>
-                ${item.cardPrice}
+                <span class="ItemPriceCardDeal">${item.cardPrice}</span>
             </span>
         </div>
     </div>
@@ -675,14 +774,15 @@ const handleShow_cardDeal = async () => {
                                             </div >
                                         </div >
     <div class="wrap-item-footer-deal-sub col-12">
-        <div class="wrap-item-footer-deal-sub-gird d-flex">
-            <span class="wrap-item-price-sale">
+        <div class="wrap-item-footer-deal-sub-gird d-flex WrapItemFooterDealSubGird">
+            <span class="wrap-item-price-sale ${item.Cardsale === '' ? `d-none` : ``} WrapItemPriceSaleDeal">
                 <span class="item-unit">đ</span>
-                ${item.Cardsale}
+                 <span class="ItemSaleCardDeal"> ${item.Cardsale}</span>
+               
             </span>
-            <span class="wrap-item-price-buy mx-2">
+            <span class="wrap-item-price-buy mx-2  ${item.cardPrice === '' ? `d-none` : ``} WrapItemPriceBuyDeal">
                 <span class="item-unit">đ</span>
-                ${item.cardPrice}
+                <span class="ItemPriceCardDeal">${item.cardPrice}</span>
             </span>
         </div>
     </div>
@@ -691,36 +791,7 @@ const handleShow_cardDeal = async () => {
                                 </div >
                             </div > `
     ).join(''))
-    await $('#DealProductsRightGrid').empty().append(value.data.data2.map(item =>
-        `<div class="wrap-item-right d-flex flex-column">
-                                <div class="wrap-item-right-top">
-                                    <div class="item-title d-inline-block">tổng cộng:</div>
-                                    <span class="item-price-sale d-inline-block text-truncate"><span
-                                            class="item-unit">đ</span><span>${item.sale}0</span></span>
-                                    <span class="item-buy"><span
-                                            class="item-unit me-1">đ</span><span>${item.price}</span></span>
-                                </div>
-                                <div class="wrap-item-right-main mb-3">
-                                    <div class="item-title d-inline-block">
-                                        tiết kiệm
-                                    </div>
-                                    <span class="item-buy ms-4"><span
-                                            class="item-unit ">đ</span><span>${item.save}</span></span>
-                                </div>
-                                <div class="wrap-item-right-footer   border border-1 rounded-1"
-                                    id="WrapItemRightFooterDeal">
-                                    <div class="wrap-item-right-footer-gird  d-flex align-items-center justify-content-center  w-100 h-100"
-                                        id="ExactlyBuyDeal" data-bs-target="#ModalSureBuyDeal">
-                                        <i class="item-icon fa-solid fa-cart-shopping"></i>
-                                        <div class="item-title text-capitalize  text-center  ms-2 "
-                                            id="infoExactlyBuyDeal">
-                                            bấm để mua deal sốc
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>`
-    ).join(''))
+    return true
 }
 const handleMouseOver_DropDown_Deal = (itemType, itemColor, dropDownDeal) => {
     itemColor.mouseover(function () {
@@ -766,23 +837,34 @@ const handleAnimationHideUp = (value) => {
 }
 const handleBackClick_DropDown_Deal = (btnBackDropDownDeal, dropDownDeal) => {
     btnBackDropDownDeal.click(function () {
-        if ($(this).closest(dropDownDeal).hasClass(`show_down`)) {
-            handleAnimationHideDown($(this).closest(dropDownDeal))
+        if (dropDownDeal.hasClass(`show_down`)) {
+            handleAnimationHideDown(dropDownDeal)
         }
-        if ($(this).closest(dropDownDeal).hasClass(`show_up`)) {
-            handleAnimationHideUp($(this).closest(dropDownDeal));
+        if (dropDownDeal.hasClass(`show_up`)) {
+            handleAnimationHideUp(dropDownDeal);
         }
     })
 }
 const handleSubmitClick_DropDown_Deal = (btnSubmitDropDownDeal, dropDownDeal) => {
     btnSubmitDropDownDeal.click(function () {
+        const CloneSelectItem = { ...selectItem }
+        const CloneQuantity = { ...quantityProduct }
+        historyDeal.historySelectItem = [...historyDeal.historySelectItem, CloneSelectItem]
+        historyDeal.historyQuantity = [...historyDeal.historyQuantity, CloneQuantity]
+        if (dropDownDeal.hasClass(`show_down`)) {
+            handleAnimationHideDown(dropDownDeal)
+        }
+        else {
+            handleAnimationHideUp(dropDownDeal);
+        }
+
     })
 }
 const handleConditionTriggerSunmit_DropDown_Deal = (dropDownDeal, btnSubmitDropDownDeal, position) => {
     if (selectItem[`item${position}`].color === true && selectItem[`item${position}`].type === true) {
         $(dropDownDeal[position]).find(btnSubmitDropDownDeal).off('click');
         $(dropDownDeal[position]).find(btnSubmitDropDownDeal).removeClass('Submit-disable')
-        handleSubmitClick_DropDown_Deal($(dropDownDeal[position]).find(btnSubmitDropDownDeal));
+        handleSubmitClick_DropDown_Deal($(dropDownDeal[position]).find(btnSubmitDropDownDeal), $(dropDownDeal[position]));
     }
     else {
         $(dropDownDeal[position]).find(btnSubmitDropDownDeal).addClass('Submit-disable')
@@ -821,31 +903,93 @@ const handleSetup_BackDrop_ModalDeal = (modalExactlyBuy) => {
         $(`.modal-backdrop`).addClass('BackDropAndgroundModalDeal');
     })
 }
+const handleInitSalePriceTotal_Deal = (itemSale, itemPrice, parentItemSalePrice, parentItemSale, parentItemPrice, itemSaveTotal, itemPriceTotal, itemSaleTotal) => {
+    let ClonePrice = 0;
+    let CloneSale = 0;
+    let CloneSave = 0;
+    parentItemSalePrice.map((index, item) => {
+        if ($(item).find(parentItemSale).hasClass('d-none') === false) {
+            selectItem[`item${index}`] = {
+                ...selectItem[`item${index}`],
+                valueSale: String($(item).find(parentItemSale).find(itemSale).text()),
+            }
+            CloneSale += parseFloat(selectItem[`item${index}`].valueSale)
+        }
+        else {
+            selectItem[`item${index}`] = {
+                ...selectItem[`item${index}`],
+                valueSale: '0',
+            }
+            CloneSale += parseFloat(selectItem[`item${index}`].valueSale)
+            if ($(item).find(parentItemPrice).hasClass('d-none') === false) {
+                CloneSale += parseFloat($(item).find(parentItemPrice).find(itemPrice).text());
+                selectItem[`item${index}`] = {
+                    ...selectItem[`item${index}`],
+                    valueSale: String($(item).find(parentItemPrice).find(itemPrice).text()),
+                }
+            }
+        }
+        if ($(item).find(parentItemPrice).hasClass('d-none') === false) {
+            selectItem[`item${index}`] = {
+                ...selectItem[`item${index}`],
+                valuePrice: String($(item).find(parentItemPrice).find(itemPrice).text()),
+            }
+            ClonePrice += parseFloat(selectItem[`item${index}`].valuePrice)
+        }
+        else {
+            selectItem[`item${index}`] = {
+                ...selectItem[`item${index}`],
+                valuePrice: '0',
+            }
+            ClonePrice += parseFloat(selectItem[`item${index}`].valuePrice)
+        }
+
+    })
+    selectItem.All = {
+        ...selectItem.All,
+        sumTotalPrice: ClonePrice.toFixed(3),
+        sumTotalSale: CloneSale.toFixed(3),
+        sumTotalSave: (CloneSave = CloneSale - ClonePrice).toFixed(3),
+    }
+    itemSaveTotal.text(`${selectItem.All.sumTotalSave}`)
+    itemPriceTotal.text(`${selectItem.All.sumTotalPrice}`)
+    itemSaleTotal.text(`${selectItem.All.sumTotalSale}`)
+}
 const initSelectItem = {
     item0: {
         positonColor: undefined,
         positionType: undefined,
+        valueColor: "",
+        valueType: "",
         init: false,
 
     },
     item1: {
         positonColor: undefined,
         positionType: undefined,
+        valueColor: "",
+        valueType: "",
         init: false,
     },
     item2: {
         positonColor: undefined,
         positionType: undefined,
+        valueColor: "",
+        valueType: "",
         init: false,
     },
     item3: {
         positonColor: undefined,
         positionType: undefined,
+        valueColor: "",
+        valueType: "",
         init: false,
     },
     item4: {
         positonColor: undefined,
         positionType: undefined,
+        valueColor: "",
+        valueType: "",
         init: false,
     }
 }
@@ -855,6 +999,8 @@ const selectItem = {
         valueColor: "",
         type: true,
         valueType: "",
+        valueSale: 0,
+        valuePrice: 0,
         check: true
     },
     item1: {
@@ -862,6 +1008,8 @@ const selectItem = {
         valueColor: "",
         type: true,
         valueType: "",
+        valueSale: 0,
+        valuePrice: 0,
         check: true
     },
     item2: {
@@ -869,6 +1017,8 @@ const selectItem = {
         valueColor: "",
         type: true,
         valueType: "",
+        valueSale: 0,
+        valuePrice: 0,
         check: true
     },
     item3: {
@@ -876,6 +1026,8 @@ const selectItem = {
         valueColor: "",
         type: true,
         valueType: "",
+        valueSale: 0,
+        valuePrice: 0,
         check: true
     },
     item4: {
@@ -883,7 +1035,14 @@ const selectItem = {
         valueColor: "",
         type: true,
         valueType: "",
+        valueSale: 0,
+        valuePrice: 0,
         check: true
+    },
+    All: {
+        sumTotalSale: 0,
+        sumTotalPrice: 0,
+        sumTotalSave: 0,
     }
 }
 const quantityProduct = {
@@ -897,36 +1056,45 @@ const historyDeal = {
     historyQuantity: [],
     historySelectItem: [],
 }
-export const AllHandleDeal = () => {
-    handleShow_cardDeal()
-    setTimeout(() => {
-        const dealProducts = $('#DealProducts')
-        const btnOpenDropDownDeal = $('.itemOpenDropDownCardDeal')
-        const dropDownDeal = $('.DropdownDealCSS')
-        const checkCardsDeal = $('.deal-cards-check')
-        const checkParentCardsDeal = $('.deal-cards-parent-check')
-        const increaseQuantityDeal = $(`.ItemIncreaseDealClass`)
-        const reduceQuantityDeal = $(`.ItemReduceDealClass`)
-        const displayQuantity = $('.DisplayQuantityDealClass')
-        const itemType = $('.wrap_item-deal-type')
-        const itemColor = $('.wrap_item-color-deal')
-        const btnBackDropDownDeal = $('.ItemBackDeal')
-        const btnSubmitDropDownDeal = $('.ItemSubmitDeal')
-        const exactlyBuy = $('#ExactlyBuyDeal')
-        const infoExactlyBuy = $('#infoExactlyBuyDeal')
-        const modalExactlyBuy = $('#ModalSureBuyDeal')
-        const wrapParentItemType = $(`.WrapTypeDeal`)
-        const wrapParentItemColor = $(`.WrapColorTopDeal`)
-        const WrapParentTypeColor = $('.WrapParentDropDownDeal')
-        handleShow_DropDown_Deal(btnOpenDropDownDeal, dropDownDeal, dealProducts, btnSubmitDropDownDeal, itemType, itemColor, wrapParentItemColor, wrapParentItemType, WrapParentTypeColor);
-        handleClickCheck_Carts_Deal(checkCardsDeal, checkParentCardsDeal, dealProducts, dropDownDeal);
-        handleIncreaseAndDecrease_DropDown_deal(increaseQuantityDeal, reduceQuantityDeal, displayQuantity, itemType, dropDownDeal);
-        handleMouseOver_DropDown_Deal(itemType, itemColor, dropDownDeal);
-        handleBackClick_DropDown_Deal(btnBackDropDownDeal, dropDownDeal);
-        handleMouseSubmit_DropDown_Deal(btnSubmitDropDownDeal, dropDownDeal);
-        handleBuy_Card_Deal(exactlyBuy, infoExactlyBuy, modalExactlyBuy)
-        handleSetup_BackDrop_ModalDeal(modalExactlyBuy);
-        handleClickType(itemType, itemColor, dropDownDeal, btnSubmitDropDownDeal)
-        handleClickColor(itemType, itemColor, dropDownDeal, btnSubmitDropDownDeal)
-    }, 900);
+export const AllHandleDeal = async () => {
+    const has = await handleShow_cardDeal()
+    const dealProducts = $('#DealProducts')
+    const btnOpenDropDownDeal = $('.itemOpenDropDownCardDeal')
+    const dropDownDeal = $('.DropdownDealCSS')
+    const checkCardsDeal = $('.deal-cards-check')
+    const checkParentCardsDeal = $('.deal-cards-parent-check')
+    const increaseQuantityDeal = $(`.ItemIncreaseDealClass`)
+    const reduceQuantityDeal = $(`.ItemReduceDealClass`)
+    const displayQuantity = $('.DisplayQuantityDealClass')
+    const itemType = $('.wrap_item-deal-type')
+    const itemColor = $('.wrap_item-color-deal')
+    const btnBackDropDownDeal = $('.ItemBackDeal')
+    const btnSubmitDropDownDeal = $('.ItemSubmitDeal')
+    const exactlyBuy = $('#ExactlyBuyDeal')
+    const infoExactlyBuy = $('#infoExactlyBuyDeal')
+    const modalExactlyBuy = $('#ModalSureBuyDeal')
+    const wrapParentItemType = $(`.WrapTypeDeal`)
+    const wrapParentItemColor = $(`.WrapColorTopDeal`)
+    const WrapParentTypeColor = $('.WrapParentDropDownDeal')
+    const itemSale = $('.ItemSaleCardDeal')
+    const parentItemSale = $('.WrapItemPriceSaleDeal')
+    const itemPrice = $('.ItemPriceCardDeal')
+    const parentItemPrice = $('.WrapItemPriceBuyDeal')
+    const itemSaleTotal = $('#ItemTotalSaleDeal')
+    const itemPriceTotal = $('#ItemTotalPriceDeal')
+    const itemSaveTotal = $('#ItemTotalSaveDeal')
+    const parentItemSalePrice = $(`.WrapItemFooterDealSubGird`)
+    handleInitSalePriceTotal_Deal(itemSale, itemPrice, parentItemSalePrice, parentItemSale, parentItemPrice, itemSaveTotal, itemPriceTotal, itemSaleTotal)
+    handleShow_DropDown_Deal(btnOpenDropDownDeal, dropDownDeal, dealProducts, btnSubmitDropDownDeal, itemType, itemColor, wrapParentItemColor, wrapParentItemType, WrapParentTypeColor, btnBackDropDownDeal);
+    handleClickCheck_Carts_Deal(checkCardsDeal, checkParentCardsDeal, dealProducts, dropDownDeal, itemSale, itemPrice, itemSaleTotal, itemPriceTotal, itemSaveTotal);
+    handleIncreaseAndDecrease_DropDown_deal(increaseQuantityDeal, reduceQuantityDeal, displayQuantity, itemType, dropDownDeal);
+    handleMouseOver_DropDown_Deal(itemType, itemColor, dropDownDeal);
+    handleBackClick_DropDown_Deal(btnBackDropDownDeal, dropDownDeal);
+    handleMouseSubmit_DropDown_Deal(btnSubmitDropDownDeal, dropDownDeal);
+    handleBuy_Card_Deal(exactlyBuy, infoExactlyBuy, modalExactlyBuy)
+    handleSetup_BackDrop_ModalDeal(modalExactlyBuy);
+    handleClickType(itemType, itemColor, dropDownDeal, btnSubmitDropDownDeal)
+    handleClickColor(itemType, itemColor, dropDownDeal, btnSubmitDropDownDeal)
+
+
 }

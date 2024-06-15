@@ -1712,8 +1712,8 @@
                 </div>
             </div>
         </div>
-        <div class="deal_products" id="DealProducts">
-            <div class="deal_products-container container shadow-lg h-100 ">
+        <div class="deal_products mb-5" id="DealProducts">
+            <div class="deal_products-container container shadow-lg  ">
                 <div class="deal_products-gird row pt-5 pb-1 ">
                     <div class="deal_products-left col-10  border-end px-3 ps-5 pe-4">
                         <div
@@ -1779,8 +1779,8 @@
                                                         id="">
                                                         <div class="dropdown-deal-container container py-5 ">
                                                             <div class="dropdown-deal-gird row px-3 ">
-                                                                <div class="wrap-parent col-12 d-flex flex-wrap mb-4  WrapParentDropDownDeal"
-                                                                    >
+                                                                <div
+                                                                    class="wrap-parent col-12 d-flex flex-wrap mb-4  WrapParentDropDownDeal">
                                                                     <div
                                                                         class="wrap-color-top d-flex flex-wrap mb-3  WrapColorTopDeal">
                                                                         <span
@@ -1804,7 +1804,8 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="wrap_deal-type WrapTypeDeal">
-                                                                        <div class="wrap_deal-type-gird row">
+                                                                        <div class="wrap_deal-type-gird row"
+                                                                            draggable="false">
                                                                             <span
                                                                                 class="item-title-type ms-2 text-capitalize  col-12">tròng
                                                                                 mắt:</span>
@@ -1884,14 +1885,17 @@
                                             </div>
                                         </div>
                                         <div class="wrap-item-footer-deal-sub col-12">
-                                            <div class="wrap-item-footer-deal-sub-gird d-flex">
-                                                <span class="wrap-item-price-sale">
+                                            <div
+                                                class="wrap-item-footer-deal-sub-gird d-flex WrapItemFooterDealSubGird">
+                                                <span class="wrap-item-price-sale WrapItemPriceSaleDeal">
                                                     <span class="item-unit">đ</span>
-                                                    495.000
+                                                    <span class="ItemSaleCardDeal">495.000</span>
+
                                                 </span>
-                                                <span class="wrap-item-price-buy mx-2">
+                                                <span class="wrap-item-price-buy mx-2 WrapItemPriceBuyDeal">
                                                     <span class="item-unit">đ</span>
-                                                    495.000
+                                                    <span class="ItemPriceCardDeal">495.000</span>
+
                                                 </span>
                                             </div>
                                         </div>
@@ -1908,16 +1912,17 @@
                                 <div class="wrap-item-right-top">
                                     <div class="item-title d-inline-block">tổng cộng:</div>
                                     <span class="item-price-sale d-inline-block text-truncate"><span
-                                            class="item-unit">đ</span><span>665000000</span></span>
-                                    <span class="item-buy"><span
-                                            class="item-unit me-1">đ</span><span>4560.0000</span></span>
+                                            class="item-unit">đ</span><span
+                                            id="ItemTotalSaleDeal">665000000</span></span>
+                                    <span class="item-buy"><span class="item-unit me-1">đ</span><span
+                                            id="ItemTotalPriceDeal">4560.0000</span></span>
                                 </div>
                                 <div class="wrap-item-right-main mb-3">
                                     <div class="item-title d-inline-block">
                                         tiết kiệm
                                     </div>
-                                    <span class="item-buy ms-4"><span
-                                            class="item-unit ">đ</span><span>4560.0000</span></span>
+                                    <span class="item-buy ms-4"><span class="item-unit ">đ</span><span
+                                            id="ItemTotalSaveDeal">4560.0000</span></span>
                                 </div>
                                 <div class="wrap-item-right-footer   border border-1 rounded-1"
                                     id="WrapItemRightFooterDeal">
@@ -1954,6 +1959,57 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="info_shop" id="InfoShop">
+            <div class="info_shop-container container shadow-lg h-100">
+                <div class="info_shop-grid row py-5 ">
+                    <div class="info_shop-left col-4">
+                        <div
+                            class="info_shop-left-grid row  ms-2  border-end d-flex align-items-start justify-content-center">
+                            <div
+                                class="info_shop-left-left col-3  ms-5 d-flex align-items-center justify-content-center position-relative">
+                                <img src="https://down-vn.img.susercontent.com/file/vn-11134216-7r98o-lvye3hloyml599_tn"
+                                    alt="" class="item-brand img-fluid">
+                                <div class="item-brand-shoppe   position-absolute rounded-4">
+                                </div>
+                            </div>
+                            <div class="info_shop-left-right col-8  d-flex flex-column">
+                                <span class="item-title text-uppercase mb-1">KÍNH MẮT BRABY</span>
+                                <span class="shope-has-work text-capitalize">Online 23 Phút Trước</span>
+                                <div class="info_shop-left-right-footer mt-3">
+                                    <div class="info_shop-left-right-footer-grid row mx-0">
+                                        <button
+                                            class="item-chat-shop col-6 text-capitalize info_shop-left-right-footer-item"><i
+                                                class="item-icon fa-solid fa-message">&nbsp</i>chat ngay</button>
+                                        <button
+                                            class="item-deatail-shope col-5 text-capitalize info_shop-left-right-footer-item ms-3"><i
+                                                class="item-icon fa-solid fa-store">&nbsp</i>xem shope</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="info_shop-right col-8">
+                        <div class="info_shop-right-grid row px-5">
+                            <div class="wrap-evaluate-product col-3 d-flex flex-column">
+                                <div class="wrap">
+
+                                </div>
+                                <div>
+
+                                </div>
+                            </div>
+                            <div class="wrap-feedback-responsetime col-3 mx-4 d-flex flex-column">
+
+                            </div>
+                            <div class="wrap-join-monitor col-3 d-flex flex-column">
+
                             </div>
                         </div>
                     </div>

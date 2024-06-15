@@ -5,8 +5,8 @@
             "cartitleTop": "Gọng kính cận mắt vuông nam nữ Braby Glasses chất liệu nhựa dẻo cao cấp phụ kiện thời trang sành điệu MK37 Hộp",
             "cardTitle": "MK01 Bạc,Mắt Chống Xước 0-6độ",
             "info": "deal sốc",
-            "Cardsale": "59.000",
-            "cardPrice": "0",
+            "Cardsale": "",
+            "cardPrice": "299.000",
             "sale": "10%",
             "Color": [
                 {
@@ -366,13 +366,6 @@
                     "type": 1
                 }
             ]
-        }
-    ],
-    "data2": [
-        {
-            "sale": "600.0000",
-            "price": "250.000",
-            "save": "125.000"
         }
     ]
 }
