@@ -1965,8 +1965,8 @@
                 </div>
             </div>
         </div>
-        <div class="info_shop" id="InfoShop">
-            <div class="info_shop-container container shadow-lg h-100">
+        <div class="info_shop mb-5" id="InfoShop">
+            <div class="info_shop-container container shadow-lg ">
                 <div class="info_shop-grid row py-5 ">
                     <div class="info_shop-left col-4">
                         <div
@@ -1984,11 +1984,13 @@
                                 <div class="info_shop-left-right-footer mt-3">
                                     <div class="info_shop-left-right-footer-grid row mx-0">
                                         <button
-                                            class="item-chat-shop col-6 text-capitalize info_shop-left-right-footer-item"><i
+                                            class="item-chat-shop col-6 text-capitalize info_shop-left-right-footer-item"
+                                            id="ChatWithShopeInfo"><i
                                                 class="item-icon fa-solid fa-message">&nbsp</i>chat ngay</button>
                                         <button
-                                            class="item-deatail-shope col-5 text-capitalize info_shop-left-right-footer-item ms-3"><i
-                                                class="item-icon fa-solid fa-store">&nbsp</i>xem shope</button>
+                                            class="item-deatail-shope col-5 text-capitalize info_shop-left-right-footer-item ms-3"
+                                            id="SeeShopeInfo"><i class="item-icon fa-solid fa-store">&nbsp</i>xem
+                                            shope</button>
                                     </div>
                                 </div>
                             </div>
@@ -1996,23 +1998,412 @@
                         </div>
                     </div>
                     <div class="info_shop-right col-8">
-                        <div class="info_shop-right-grid row px-5">
-                            <div class="wrap-evaluate-product col-3 d-flex flex-column">
-                                <div class="wrap">
+                        <div
+                            class="info_shop-right-grid row px-5 h-100 d-flex align-items-center justify-content-center">
+                            <div class="wrap-evaluate-product col-4 d-flex flex-column ">
+                                <div class="wrap-evaluate d-flex align-items-center justify-content-between item-info-left-title-parent mb-5 ItemInfoLeftTitleParent"
+                                    id="ItemEvaluateInfo">
+                                    <span class="item-info-left-title text-capitalize ItemInfoLeftTitle">
+                                        đánh giá
+                                    </span>
+                                    <span class="item-info-right-title pe-5">
+                                        13,7k
+                                    </span>
+                                </div>
+                                <div class="wrap-product d-flex align-items-center justify-content-between item-info-left-title-parent  ItemInfoLeftTitleParent "
+                                    id="ItemProductInfo">
+                                    <span class="item-info-left-title text-capitalize ItemInfoLeftTitle">
+                                        sản phẩm
+                                    </span>
+                                    <span class="item-info-right-title pe-5">
+                                        164
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="wrap-feedback-responsetime col-4  d-flex flex-column ">
+                                <div class="wrap-feedback  d-flex align-items-center justify-content-between item-info-left-title-parent mb-5 ItemInfoLeftTitleParent"
+                                    id="ItemFeedBackInfo" data-bs-target="#ModalFeedBackInfo">
+                                    <span class="item-info-left-title text-capitalize ItemInfoLeftTitle">
+                                        tỉ lệ phản hồi
+                                    </span>
+                                    <span class="item-info-right-title pe-5">
+                                        99%
+                                    </span>
+                                </div>
+                                <div class="modal fade ModalFeedBackInfoClass" id="ModalFeedBackInfo">
+                                    <div class="modal-dialog ModalFeedBackInfoClass-dialog modal-dialog-centered ">
+                                        <div class="modal-content ModalFeedBackInfoClass-content pb-3">
+                                            <div class="modal-body ModalFeedBackInfoClass-body  w-100">
+                                                <div
+                                                    class="ModalFeedBackInfoClass-grid row d-flex align-items-center justify-content-center ">
+                                                    <div
+                                                        class="wrap-top col-12 d-flex align-items-center justify-content-center mb-5">
+                                                        tỉ lệ phản hồi chat cho biết tần suất Người bán trả lời chat và
+                                                        trả giá.
+                                                    </div>
+                                                    <div class="btn  mt-5 col-5 me-3 d-flex align-items-center justify-content-center  rounded-5"
+                                                        id="BtnFindOutMoreModalFeedBack">
+                                                        tìm hiểu thêm
+                                                    </div>
+                                                    <div class="btn  mt-5 col-5 ms-3 d-flex align-items-center justify-content-center   rounded-5"
+                                                        id="BtnSubMitModalFeedBack">
+                                                        ok
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    class="wrap-responsetime d-flex align-items-center justify-content-between item-info-left-title-parent ItemInfoLeftTitleParent">
+                                    <span
+                                        class="item-info-left-title text-capitalize ItemInfoLeftTitle ItemInfoLeftTitle">
+                                        thời gian phản hổi
+                                    </span>
+                                    <span class="item-info-right-title pe-5">
+                                        trong vài giờ
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="wrap-join-monitor col-4 d-flex flex-column ">
+                                <div
+                                    class="wrap-join d-flex align-items-center justify-content-between item-info-left-title-parent mb-5 ItemInfoLeftTitleParent">
+                                    <span class="item-info-left-title text-capitalize ItemInfoLeftTitle">
+                                        tham gia
+                                    </span>
+                                    <span class="item-info-right-title pe-5">
+                                        4 năm trước
+                                    </span>
+                                </div>
+                                <div
+                                    class="wrap-monitor d-flex align-items-center justify-content-between item-info-left-title-parent ItemInfoLeftTitleParent">
+                                    <span class="item-info-left-title text-capitalize ItemInfoLeftTitle">
+                                        người theo dõi
+                                    </span>
+                                    <span class="item-info-right-title pe-5">
+                                        47,5k
+                                    </span>
+                                </div>
+                            </div>
 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="info_products" id="InfoProducts">
+            <div class="info_products-container container  px-0">
+                <div class="info_products-grid d-flex  position-relative">
+                    <div class="info_products-left  shadow  px-3 py-3">
+                        <div class="info_products-left-container container py-3 px-4">
+                            <div class="info_products-left-grid row ">
+                                <div class="introduction_products col-12  mb-5">
+                                    <div class="introduction_products-grid row">
+                                        <div
+                                            class="introduction_products-title text-uppercase  d-flex  d-flex align-items-center justify-content-start   col-12 mb-5">
+                                            chi tiết sản phẩm
+                                        </div>
+                                        <div
+                                            class="item-category col-2 item-introduction-color-text  item-introduction-text-transform-letter">
+                                            danh
+                                            mục</div>
+                                        <div
+                                            class="category-right col-10 d-flex align-items-center justify-content-start">
+                                            <a href=""
+                                                class="item-category-right text-capitalize  item-introduction-color-font-dec-tagA-right ">shopee</a>
+                                            <i class="item-icon fa-solid fa-chevron-right mx-2"></i>
+                                            <a href=""
+                                                class="item-category-right text-capitalize  item-introduction-color-font-dec-tagA-right ">Phụ
+                                                Kiện &
+                                                Trang
+                                                Sức
+                                                Nữ</a>
+                                            <i class="item-icon fa-solid fa-chevron-right mx-2"></i>
+                                            <a href=""
+                                                class="item-category-right text-capitalize item-introduction-color-font-dec-tagA-right  ">Kính
+                                                mắt</a>
+                                            <i class="item-icon fa-solid fa-chevron-right mx-2"></i>
+                                            <a href=""
+                                                class="item-category-right text-capitalize  item-introduction-color-font-dec-tagA-right ">Gọng
+                                                kính</a>
+                                        </div>
+                                        <div
+                                            class="item-brand col-2 item-introduction-color-text mt-4 item-introduction-text-transform-letter">
+                                            thương
+                                            hiệu</div>
+                                        <div
+                                            class="wrap-item-brand col-10 d-flex align-items-center justify-content-start mt-4">
+                                            <a href=""
+                                                class="item-brand-right text-capitalize item-introduction-color-font-dec-tagA-right ">BRABY
+                                                GLASSES</a>
+                                        </div>
+                                        <div
+                                            class="item-origin mt-4  item-introduction-color-text col-2 item-introduction-text-transform-letter">
+                                            xuất
+                                            xứ
+                                        </div>
+                                        <span
+                                            class="item-origin-right col-10 text-capitalize mt-4 item-introduction-color-font-dec-right ">việt
+                                            nam </span>
+                                        <div
+                                            class="item-sex mt-4  item-introduction-color-text col-2 item-introduction-text-transform-letter">
+                                            giới
+                                            tính</div>
+                                        <span
+                                            class="item-sex-right text-capitalize mt-4 item-introduction-color-font-dec-right col-10">unisex</span>
+                                        <div
+                                            class="item-material mt-4  item-introduction-color-text col-2 text-truncate item-introduction-text-transform-letter">
+                                            chất liệu khung kính</div>
+                                        <span
+                                            class="item-material-right mt-4 text-capitalize item-introduction-color-text col-10 item-introduction-color-font-dec-right">
+                                            nhựa
+                                        </span>
+                                        <div
+                                            class="item-shape mt-4  item-introduction-color-text col-2 text-truncate item-introduction-text-transform-letter">
+                                            Hình dạng khung kính</div>
+                                        <span
+                                            class="item-shape-right mt-4 text-capitalize item-introduction-color-text col-10 item-introduction-color-font-dec-right">Vuông</span>
+                                        <div
+                                            class="item-type-product mt-4  item-introduction-color-text col-2 text-truncate item-introduction-text-transform-letter">
+                                            loại kính</div>
+                                        <span
+                                            class="item-type-product-right mt-4 text-capitalize item-introduction-color-text col-10 item-introduction-color-font-dec-right">Đầy
+                                            RIM</span>
+                                        <div
+                                            class="item-option mt-4  item-introduction-color-text col-2 text-truncate item-introduction-text-transform-letter">
+                                            Loại lens</div>
+                                        <span
+                                            class="item-option-right mt-4 text-capitalize item-introduction-color-text col-10 item-introduction-color-font-dec-right">Chống
+                                            ánh sáng xanh</span>
+                                        <div
+                                            class="item-material-overall mt-4  item-introduction-color-text col-2 text-truncate item-introduction-text-transform-letter">
+                                            Chất liệu</div>
+                                        <span
+                                            class="item-material-overall-right mt-4 text-capitalize item-introduction-color-text col-10 item-introduction-color-font-dec-right">Nhựa
+                                            Dẻo</span>
+                                        <div
+                                            class="item-quantity-sale mt-4  item-introduction-color-text col-2 text-truncate item-introduction-text-transform-letter">
+                                            Số lượng hàng khuyến mãi</div>
+                                        <span
+                                            class="item-quantity-sale-right mt-4 text-capitalize item-introduction-color-text col-10 item-introduction-color-font-dec-right">588477</span>
+                                        <div
+                                            class="item-quantity-remain mt-4  item-introduction-color-text col-2 text-truncate item-introduction-text-transform-letter">
+                                            Số sản phẩm còn lại</div>
+                                        <span
+                                            class="item-quantity-remain-right mt-4 text-capitalize item-introduction-color-text col-10 item-introduction-color-font-dec-right">309654</span>
+                                        <div
+                                            class="item-from mt-4  item-introduction-color-text col-2 text-truncate item-introduction-text-transform-letter">
+                                            Gửi từ</div>
+                                        <span
+                                            class="item-from-right mt-4 text-capitalize item-introduction-color-text col-10 item-introduction-color-font-dec-right">Hà
+                                            Nội</span>
+                                    </div>
+
+                                </div>
+                                <div class="describe_products col-12 mb-4">
+                                    <div class="describe_products-grid row ">
+                                        <div
+                                            class="describe_products-title col-12 text-uppercase d-flex align-items-center justify-content-start mb-5">
+                                            mô tả sản phẩm
+                                        </div>
+                                        <div class="item-describe-brand col-12 item-describe-font-color-text-normal">
+                                            Braby - Thương hiệu kính mắt trẻ trung, là lựa chọn giúp bạn tự tin thể hiện
+                                            cá tính. Hãy để Braby đem đến cho bạn trải nghiệm tốt nhất thông qua những
+                                            sản phẩm gọng kính hiện đại và thời thượng.
+                                        </div>
+                                        <div
+                                            class="item-title-warranty-policy item-describe-font-color-text-title col-12 mt-4 ps-0  mb-2">
+                                            📌CHÍNH SÁCH BẢO HÀNH CỦA BRABY:
+                                        </div>
+                                        <div
+                                            class="item-warranty-policy item-describe-font-color-text-normal col-12 ps-0">
+                                            - Hàng đảm bảo chính hãng, cam kết 100% ảnh thật shop tự chụp, quý khách
+                                            hàng an tâm khi mua và sử dụng sản phẩm.
+                                        </div>
+                                        <div
+                                            class="item-warranty-policy item-describe-font-color-text-normal col-12 my-2 ps-0">
+                                            - Nếu sản phẩm có lỗi do nhà sản xuất, chúng tôi sẽ thay thế sản phẩm mới
+                                            cho bạn (không hỗ trợ đổi trả)
+
+                                        </div>
+                                        <div
+                                            class="item-warranty-policy item-describe-font-color-text-normal col-12 ps-0">
+                                            Tư vấn, hỗ trợ giải đáp thắc mắc nhanh chóng 24/7
+                                        </div>
+                                        <div
+                                            class="item-title-product-description item-describe-font-color-text-title col-12 mt-4 ps-0  mb-2">
+                                            ❣️MÔ TẢ SẢN PHẨM:
+                                        </div>
+                                        <div
+                                            class="item-product-description item-describe-font-color-text-normal col-12 mt- ps-0  ">
+                                            - Loại sản phẩm: Gọng kính cận, Gọng kính thời trang, Kính giả cận,...
+                                        </div>
+                                        <div
+                                            class="item-product-description item-describe-font-color-text-normal col-12 mt-4 ps-0  ">
+                                            - Xuất xứ: Việt Nam
+                                        </div>
+                                        <div
+                                            class="item-product-description item-describe-font-color-text-normal col-12 mt-4 ps-0  ">
+                                            - Kích thước: Freesize
+                                        </div>
+                                        <div
+                                            class="item-product-description item-describe-font-color-text-normal col-12 mt-4 ps-0  ">
+                                            - Chất liệu: Nhựa dẻo cao cấp
+                                        </div>
+                                        <div
+                                            class="item-product-description item-describe-font-color-text-normal col-12 mt-4 ps-0  ">
+                                            - Màu sắc: 1 màu (Đen)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="describe_products-img col-12">
+                                    <img src="https://down-vn.img.susercontent.com/file/5282e30f803be9205054faa68ad1ef00"
+                                        alt="" class="img-fluid w-100 " style="object-fit: contain;">
+                                </div>
+                                <div class="describe_products-img col-12">
+                                    <img src="https://down-vn.img.susercontent.com/file/5282e30f803be9205054faa68ad1ef00"
+                                        alt="" class="img-fluid w-100 " style="object-fit: contain;">
+                                </div>
+                                <div class="describe_products-img col-12">
+                                    <img src="https://down-vn.img.susercontent.com/file/sg-11134202-23010-5wvf1irc8ulv30"
+                                        alt="" class="img-fluid w-100 " style="object-fit: contain;">
+                                </div>
+                                <div class="describe_products-img col-12">
+                                    <img src="https://down-vn.img.susercontent.com/file/sg-11134202-23010-sb2osbrc8ulv02"
+                                        alt="" class="img-fluid w-100 " style="object-fit: contain;">
                                 </div>
                                 <div>
-
+                                    <pre class="item-include item-describe-font-color-text-include  ">
+*Bộ sản phẩm Kính Cận Braby gồm:
+- Gọng kính + mắt kính 0 độ Braby
+- Bao đựng kính Braby
+- Khăn lau kính 
+- Hộp đựng kính Braby
+</pre>
+                                    <div class="describe_products-img col-12">
+                                        <img src="https://down-vn.img.susercontent.com/file/vn-11134208-7qukw-lg0o87uo1rsn10"
+                                            alt="" class="img-fluid w-100 " style="object-fit: contain;">
+                                    </div>
+                                    <div class="describe_products-img col-12">
+                                        <img src="https://down-vn.img.susercontent.com/file/vn-11134208-7qukw-lg0o87uo1rsn10"
+                                            alt="" class="img-fluid w-100 " style="object-fit: contain;">
+                                    </div>
+                                    <div class="describe_products-img col-12">
+                                        <img src="https://down-vn.img.susercontent.com/file/vn-11134208-7qukw-lg0o87uo1rsn10"
+                                            alt="" class="img-fluid w-100 " style="object-fit: contain;">
+                                    </div>
+                                    <div class="describe_products-img col-12">
+                                        <img src="https://down-vn.img.susercontent.com/file/vn-11134208-7qukw-lg0o87uo1rsn10"
+                                            alt="" class="img-fluid w-100 " style="object-fit: contain;">
+                                    </div>
+                                    <div
+                                        class="describe_note-title col-12 item-describe-font-color-text-title ps-0 mt-2">
+                                        💢
+                                        LƯU Ý:
+                                    </div>
+                                    <pre class="describe_note item-describe-font-color-text-normal col-12">
+- Braby nhận cắt mắt kính cận từ 0 - 6 độ, đảm bảo uy tín, chất lượng. Khách hàng vui lòng nhắn tin để được tư vấn và hỗ trợ nhanh nhất.
+- Giá sản phẩm không bao gồm dịch vụ cắt mắt kính cận.
+</pre>
+                                    <div
+                                        class="describe_types-item-title mt-4  col-12 item-describe-font-color-text-title">
+                                        💌 CÁC LOẠI MẮT KÍNH CẬN CỦA BRABY:
+                                    </div>
+                                    <div class="describe_types-item my-5  col-12 item-describe-font-color-text-normal">
+                                        1. MẮT KÍNH CHỐNG XƯỚC: tăng độ bền cho tròng kính, giảm trầy xước và hạn chế
+                                        nguy cơ tăng độ
+                                    </div>
+                                    <div class="describe_types-item my-5  col-12 item-describe-font-color-text-normal">
+                                        2. MẮT KÍNH NANO: hạn chế phản quang, giảm trầy xước, chống chống Tia UV 400
+                                        (tia bức xạ mặt trời).
+                                    </div>
+                                    <div class="describe_types-item my-5  col-12 item-describe-font-color-text-normal">
+                                        3. MẮT KÍNH BLUE CONTROL 1.61: lọc ánh sáng xanh có hại cho mắt khi dùng máy
+                                        tính, điện thoại, giảm bám nước, giảm độ chói lóa, chống tia UV 400, bảo vệ đôi
+                                        mắt
+                                    </div>
+                                    <div class="describe_types-item my-5  col-12 item-describe-font-color-text-normal">
+                                        4. MẮT KÍNH ĐỔI MÀU KHI RA NẮNG: giảm mỏi mắt, tổn thương mắt, chống tia UV, đổi
+                                        màu nhanh chóng, tiện lợi kết hợp 2in1
+                                    </div>
+                                    <div class="describe_products-img col-12">
+                                        <img src="https://down-vn.img.susercontent.com/file/vn-11134208-7qukw-lg0o87uo1rsn10"
+                                            alt="" class="img-fluid w-100 " style="object-fit: contain;">
+                                    </div>
+                                    <div class="describe_products-img col-12">
+                                        <img src="https://down-vn.img.susercontent.com/file/vn-11134208-7qukw-lg0o87uo1rsn10"
+                                            alt="" class="img-fluid w-100 " style="object-fit: contain;">
+                                    </div>
+                                    <div class="describe_products-img col-12">
+                                        <img src="https://down-vn.img.susercontent.com/file/vn-11134208-7qukw-lg0o87uo1rsn10"
+                                            alt="" class="img-fluid w-100 " style="object-fit: contain;">
+                                    </div>
+                                    <div
+                                        class="describe_preserve-item-title item-describe-font-color-text-title col-12 mt-4">
+                                        💯HƯỚNG DẪN BẢO QUẢN KÍNH:
+                                    </div>
+                                    <div class="describe_preserve-item item-describe-font-color-text-normal col-12 ">
+                                        - Nên dùng cả hai tay khi đeo và gỡ gọng kính
+                                    </div>
+                                    <div
+                                        class="describe_preserve-item item-describe-font-color-text-normal col-12 mt-4">
+                                        - Tránh cầm vào tròng kính mắt
+                                    </div>
+                                    <div
+                                        class="describe_preserve-item item-describe-font-color-text-normal col-12 mt-4">
+                                        - Tránh các va đập mạnh vào gọng kính
+                                    </div>
+                                    <div
+                                        class="describe_preserve-item item-describe-font-color-text-normal col-12 mt-4">
+                                        - Vệ sinh và lau chùi kính mắt bằng khăn lau kính và nước xịt chuyên dụng
+                                    </div>
+                                    <div
+                                        class="describe_preserve-item item-describe-font-color-text-normal col-12 mt-4">
+                                        - Để kính vào hộp hoặc bao da khi không sử dụng
+                                    </div>
+                                    <hr class="col-5">
+                                    <div class="describe-hastag col-12 item-describe-font-color-text-title">
+                                        #gọng_kính #gongkinhcan #kính_mắt #mắt #kính #kinhmatcan #kinhgiacan
+                                        #gongkinhkimloai #kinhchongtiauv #uv400 #locanhsangxanh #kinhthoitrang
+                                        #kinhcannamnu #gongkinhnu #gongkinhnam #sale #shopee #Braby #kinhmattron
+                                        #gongkinhtron #gongkinhvuong
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="wrap-feedback-responsetime col-3 mx-4 d-flex flex-column">
-
-                            </div>
-                            <div class="wrap-join-monitor col-3 d-flex flex-column">
-
                             </div>
                         </div>
                     </div>
+                    <div class="info_products-right  position-absolute">
+                        <div class="info_products-right-container container">
+                            <div class="info_products-right-grid row">
+                                <div class="discount_code col-12">
+                                    <div class="discount_code-grid row">
+                                        <span
+                                            class="discount_code-item-title col-12 discount_code-item-font-color-title my-3">Mã
+                                            giảm giá của Shop</span>
+                                        <div
+                                            class="discount_code-Content col-12  d-flex align-items-center justify-content-center">
+
+                                            <div class="discount_code-Content-wrap-item">
+                                                <div class="discount_code-Content-wrap-item-grid row mx-0 h-100">
+                                                    <div
+                                                        class="discount_code-Content-wrap-item-left col-9 d-flex align-items-center justify-content-center h-100">
+                                                        <div>a</div>
+                                                        <div>a</div>
+                                                        <div>a</div>
+                                                    </div>
+                                                    <div class="discount_code-Content-wrap-item-right">
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>

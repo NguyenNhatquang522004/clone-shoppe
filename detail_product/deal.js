@@ -1,5 +1,5 @@
 import * as fetch from "./fetchdata.js"
-const handleShow_DropDown_Deal = (btnOpenDropDownDeal, dropDownDeal, dealProducts, btnSubmitDropDownDeal, itemType, itemColor, wrapParentItemColor, wrapParentItemType, WrapParentTypeColor, btnBackDropDownDeal) => {
+const handleShow_DropDown_Deal = (btnOpenDropDownDeal, dropDownDeal, btnSubmitDropDownDeal, itemType, itemColor, wrapParentItemColor, wrapParentItemType, WrapParentTypeColor, btnBackDropDownDeal) => {
     let positonDropDown = undefined
     let historyPosition = [];
     $(document).click(function (e) {
@@ -153,33 +153,43 @@ const handleIncreaseAndDecrease_DropDown_deal = (increaseQuantityDeal, reduceQua
 
     })
 }
-const handleClickCheck_Carts_Deal = (checkCardsDeal, checkParentCardsDeal, dealProducts, dropDownDeal, itemSale, itemPrice, itemSaleTotal, itemPriceTotal, itemSaveTotal) => {
+const handleClickCheck_Carts_Deal = (checkCardsDeal, checkParentCardsDeal, itemSaleTotal, itemPriceTotal, itemSaveTotal) => {
     let cloneTotalSaleB = parseFloat(selectItem.All.sumTotalSale);
     let cloneTotalSaleS = 0;
-    let displaySale = 0;
-    let cloneTotalPriceB = parseFloat(itemPriceTotal.text().trim());
+    let cloneTotalPriceB = parseFloat(selectItem.All.sumTotalPrice);
     let cloneTotalPriceS = 0;
-    let displayPrice = 0;
-    let displaySave = 0;
-    let conditionTrigger = false
+    let valueCheck = {
+        valueSale: "",
+        valuePrice: '',
+        valueSave: "",
+    }
     checkParentCardsDeal.click(function () {
         let valueTotalSaleCurrent = parseFloat(itemSaleTotal.text().trim())
         let valueTotalPriceCurrent = parseFloat(itemPriceTotal.text().trim())
+        let valueTotalSaveCurrent = 0
         const position = checkParentCardsDeal.index(this)
         if (Number($(checkParentCardsDeal[position]).css(`opacity`)) >= 1) {
-            // đang đóng
             if ($(checkCardsDeal[position]).hasClass('d-none') === true) {
                 $(checkCardsDeal[position]).removeClass('d-none');
                 selectItem[`item${position}`] = {
                     ...selectItem[`item${position}`],
                     check: true,
                 }
-                cloneTotalPriceS += parseFloat(selectItem[`item${position}`].valuePrice);
+                cloneTotalPriceS -= parseFloat(selectItem[`item${position}`].valuePrice);
                 cloneTotalSaleS -= parseFloat(selectItem[`item${position}`].valueSale);
                 valueTotalSaleCurrent += parseFloat(selectItem[`item${position}`].valueSale)
+                valueTotalPriceCurrent += parseFloat(selectItem[`item${position}`].valuePrice)
+                valueTotalSaveCurrent = valueTotalSaleCurrent - valueTotalPriceCurrent
                 itemSaleTotal.text(`${valueTotalSaleCurrent.toFixed(3)}`)
+                itemPriceTotal.text(`${valueTotalPriceCurrent.toFixed(3)}`)
+                itemSaveTotal.text(`${valueTotalSaveCurrent.toFixed(3)}`)
+                valueCheck = {
+                    ...valueCheck,
+                    valueSale: valueTotalSaleCurrent.toFixed(3),
+                    valuePrice: valueTotalPriceCurrent.toFixed(3),
+                    valueSave: valueTotalSaveCurrent.toFixed(3),
+                }
             }
-            // đang mở
             else {
                 $(checkCardsDeal[position]).addClass('d-none')
                 selectItem[`item${position}`] = {
@@ -189,15 +199,23 @@ const handleClickCheck_Carts_Deal = (checkCardsDeal, checkParentCardsDeal, dealP
                 cloneTotalPriceS += parseFloat(selectItem[`item${position}`].valuePrice);
                 cloneTotalSaleS += parseFloat(selectItem[`item${position}`].valueSale);
                 valueTotalSaleCurrent = cloneTotalSaleB - cloneTotalSaleS
+                valueTotalPriceCurrent = cloneTotalPriceB - cloneTotalPriceS
+                valueTotalSaveCurrent = valueTotalSaleCurrent - valueTotalPriceCurrent
                 itemSaleTotal.text(`${valueTotalSaleCurrent.toFixed(3)}`)
+                itemPriceTotal.text(`${valueTotalPriceCurrent.toFixed(3)}`)
+                itemSaveTotal.text(`${valueTotalSaveCurrent.toFixed(3)}`)
+                valueCheck = {
+                    ...valueCheck,
+                    valueSale: valueTotalSaleCurrent.toFixed(3),
+                    valuePrice: valueTotalPriceCurrent.toFixed(3),
+                    valueSave: valueTotalSaveCurrent.toFixed(3),
+                }
             }
-            // console.log(displaySale);
         }
-        // console.log(cloneTotalSaleS);
-        // console.log(displaySale);
-        console.log(selectItem);
+        const cloneValueCheck = { ...valueCheck }
         const cloneSelectItem = { ...selectItem }
         historyDeal.historySelectItem = [...historyDeal.historySelectItem, cloneSelectItem]
+        historyDeal.historySelectItemCheck = [...historyDeal.historySelectItemCheck, cloneValueCheck]
     })
 }
 const handleClickColorEq = (value, index, itemType, itemColor, dropDownDeal, btnSubmitDropDownDeal) => {
@@ -1055,46 +1073,47 @@ const quantityProduct = {
 const historyDeal = {
     historyQuantity: [],
     historySelectItem: [],
+    historySelectItemCheck: [],
 }
 export const AllHandleDeal = async () => {
     const has = await handleShow_cardDeal()
-    const dealProducts = $('#DealProducts')
-    const btnOpenDropDownDeal = $('.itemOpenDropDownCardDeal')
-    const dropDownDeal = $('.DropdownDealCSS')
-    const checkCardsDeal = $('.deal-cards-check')
-    const checkParentCardsDeal = $('.deal-cards-parent-check')
-    const increaseQuantityDeal = $(`.ItemIncreaseDealClass`)
-    const reduceQuantityDeal = $(`.ItemReduceDealClass`)
-    const displayQuantity = $('.DisplayQuantityDealClass')
-    const itemType = $('.wrap_item-deal-type')
-    const itemColor = $('.wrap_item-color-deal')
-    const btnBackDropDownDeal = $('.ItemBackDeal')
-    const btnSubmitDropDownDeal = $('.ItemSubmitDeal')
-    const exactlyBuy = $('#ExactlyBuyDeal')
-    const infoExactlyBuy = $('#infoExactlyBuyDeal')
-    const modalExactlyBuy = $('#ModalSureBuyDeal')
-    const wrapParentItemType = $(`.WrapTypeDeal`)
-    const wrapParentItemColor = $(`.WrapColorTopDeal`)
-    const WrapParentTypeColor = $('.WrapParentDropDownDeal')
-    const itemSale = $('.ItemSaleCardDeal')
-    const parentItemSale = $('.WrapItemPriceSaleDeal')
-    const itemPrice = $('.ItemPriceCardDeal')
-    const parentItemPrice = $('.WrapItemPriceBuyDeal')
-    const itemSaleTotal = $('#ItemTotalSaleDeal')
-    const itemPriceTotal = $('#ItemTotalPriceDeal')
-    const itemSaveTotal = $('#ItemTotalSaveDeal')
-    const parentItemSalePrice = $(`.WrapItemFooterDealSubGird`)
-    handleInitSalePriceTotal_Deal(itemSale, itemPrice, parentItemSalePrice, parentItemSale, parentItemPrice, itemSaveTotal, itemPriceTotal, itemSaleTotal)
-    handleShow_DropDown_Deal(btnOpenDropDownDeal, dropDownDeal, dealProducts, btnSubmitDropDownDeal, itemType, itemColor, wrapParentItemColor, wrapParentItemType, WrapParentTypeColor, btnBackDropDownDeal);
-    handleClickCheck_Carts_Deal(checkCardsDeal, checkParentCardsDeal, dealProducts, dropDownDeal, itemSale, itemPrice, itemSaleTotal, itemPriceTotal, itemSaveTotal);
-    handleIncreaseAndDecrease_DropDown_deal(increaseQuantityDeal, reduceQuantityDeal, displayQuantity, itemType, dropDownDeal);
-    handleMouseOver_DropDown_Deal(itemType, itemColor, dropDownDeal);
-    handleBackClick_DropDown_Deal(btnBackDropDownDeal, dropDownDeal);
-    handleMouseSubmit_DropDown_Deal(btnSubmitDropDownDeal, dropDownDeal);
-    handleBuy_Card_Deal(exactlyBuy, infoExactlyBuy, modalExactlyBuy)
-    handleSetup_BackDrop_ModalDeal(modalExactlyBuy);
-    handleClickType(itemType, itemColor, dropDownDeal, btnSubmitDropDownDeal)
-    handleClickColor(itemType, itemColor, dropDownDeal, btnSubmitDropDownDeal)
-
-
+    if (has === true) {
+        const btnOpenDropDownDeal = $('.itemOpenDropDownCardDeal')
+        const dropDownDeal = $('.DropdownDealCSS')
+        const checkCardsDeal = $('.deal-cards-check')
+        const checkParentCardsDeal = $('.deal-cards-parent-check')
+        const increaseQuantityDeal = $(`.ItemIncreaseDealClass`)
+        const reduceQuantityDeal = $(`.ItemReduceDealClass`)
+        const displayQuantity = $('.DisplayQuantityDealClass')
+        const itemType = $('.wrap_item-deal-type')
+        const itemColor = $('.wrap_item-color-deal')
+        const btnBackDropDownDeal = $('.ItemBackDeal')
+        const btnSubmitDropDownDeal = $('.ItemSubmitDeal')
+        const exactlyBuy = $('#ExactlyBuyDeal')
+        const infoExactlyBuy = $('#infoExactlyBuyDeal')
+        const modalExactlyBuy = $('#ModalSureBuyDeal')
+        const wrapParentItemType = $(`.WrapTypeDeal`)
+        const wrapParentItemColor = $(`.WrapColorTopDeal`)
+        const WrapParentTypeColor = $('.WrapParentDropDownDeal')
+        const itemSale = $('.ItemSaleCardDeal')
+        const parentItemSale = $('.WrapItemPriceSaleDeal')
+        const itemPrice = $('.ItemPriceCardDeal')
+        const parentItemPrice = $('.WrapItemPriceBuyDeal')
+        const itemSaleTotal = $('#ItemTotalSaleDeal')
+        const itemPriceTotal = $('#ItemTotalPriceDeal')
+        const itemSaveTotal = $('#ItemTotalSaveDeal')
+        const parentItemSalePrice = $(`.WrapItemFooterDealSubGird`)
+        
+        handleInitSalePriceTotal_Deal(itemSale, itemPrice, parentItemSalePrice, parentItemSale, parentItemPrice, itemSaveTotal, itemPriceTotal, itemSaleTotal)
+        handleShow_DropDown_Deal(btnOpenDropDownDeal, dropDownDeal, btnSubmitDropDownDeal, itemType, itemColor, wrapParentItemColor, wrapParentItemType, WrapParentTypeColor, btnBackDropDownDeal);
+        handleClickCheck_Carts_Deal(checkCardsDeal, checkParentCardsDeal, itemSaleTotal, itemPriceTotal, itemSaveTotal);
+        handleIncreaseAndDecrease_DropDown_deal(increaseQuantityDeal, reduceQuantityDeal, displayQuantity, itemType, dropDownDeal);
+        handleMouseOver_DropDown_Deal(itemType, itemColor, dropDownDeal);
+        handleBackClick_DropDown_Deal(btnBackDropDownDeal, dropDownDeal);
+        handleMouseSubmit_DropDown_Deal(btnSubmitDropDownDeal, dropDownDeal);
+        handleBuy_Card_Deal(exactlyBuy, infoExactlyBuy, modalExactlyBuy)
+        handleSetup_BackDrop_ModalDeal(modalExactlyBuy);
+        handleClickType(itemType, itemColor, dropDownDeal, btnSubmitDropDownDeal)
+        handleClickColor(itemType, itemColor, dropDownDeal, btnSubmitDropDownDeal)
+    }
 }

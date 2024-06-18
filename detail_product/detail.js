@@ -1,6 +1,7 @@
 import * as fetch from "./fetchdata.js"
 import * as ModalProductImg from "./detailModalProductImg.js"
 import * as Deal from "./deal.js"
+import * as info from "./info.js"
 $(document).ready(() => {
 
     let handleSetupClassname_ModalAddress = (modalSubmitMap, modalMap, modalFirst, modalSecond, modalThird, backDrop) => {
@@ -145,7 +146,7 @@ $(document).ready(() => {
             btnSubmitModalAddressFirst.prop('disabled', true)
             dropDownSearch_ModalAddress.css('z-index', -1)
             itemDelete.hide()
-            modalFirst.modal('hide');
+            modalFirst.modal('hide')
             modalThird.modal('show')
 
         })
@@ -167,6 +168,7 @@ $(document).ready(() => {
             $('.btn_address_detail').removeClass('input-red-boder input-red-text');
             modalThird.modal(`hide`)
             modalFirst.modal('show');
+            $('.modal-backdrop').removeClass(`modal_anddress-thirdwerwer`);
         })
         iconBackModalThirdFromMap.click(function (e) {
             e.stopPropagation();
@@ -1242,9 +1244,7 @@ $(document).ready(() => {
     let autoshow = () => {
         $('#modal_anddress-third').modal('show')
     }
-    // autoshow()
     handleGetvalidateform(modalAddress_InputName, itemSubName, modalAddress_InputPhone, itemSubPhone);
-    // handle_slide_img();
     handleModalAddress();
     handleModalAddressFirst()
     handleInputAddress()
@@ -1252,4 +1252,5 @@ $(document).ready(() => {
     handleButtonTypeAddress();
     ModalProductImg.AllHandleModalProductsImg();
     Deal.AllHandleDeal()
+    info.AllhandleInfo();
 })
