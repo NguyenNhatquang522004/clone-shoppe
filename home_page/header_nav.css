@@ -24,7 +24,6 @@ html {
 }
 
 .header_nav .header_nav-grind {
-
     width: 1200px;
     max-width: 100%;
     margin: 0 auto;
@@ -205,6 +204,7 @@ html {
     text-align: center;
     font-size: 1.5rem;
     background-color: #F5F5F5;
+
 }
 
 .header_notification-grid:hover .header_notification-grid-item-register-link:hover {

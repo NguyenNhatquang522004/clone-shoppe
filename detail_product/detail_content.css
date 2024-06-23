@@ -47,6 +47,7 @@ html {
     --background-submit-disable: rgb(241, 179, 187);
     --background-grey: rgba(0, 0, 0, .04);
     --color-tag-a: #05a;
+    --background-evaluate_products-filter: #fffbf8;
 }
 
 body {
@@ -2370,14 +2371,21 @@ body {
 
 #InfoProducts .info_products-container .info_products-grid .info_products-left {
     background-color: var(--background-main);
-    width: 75%;
+    width: 81%;
 }
 
 #InfoProducts .info_products-container .info_products-grid .info_products-right {
-    background-color: var(--background-main);
     right: 0%;
-    width: 23%;
+    width: 16%;
     z-index: 3;
+}
+
+#InfoProducts .info_products-container .info_products-grid .info_products-right .info_products-right-container .info_products-right-grid .discount_code {
+    background-color: var(--background-main);
+}
+
+#InfoProducts .info_products-container .info_products-grid .info_products-right .info_products-right-container .info_products-right-grid .outstanding_products {
+    background-color: var(--background-main);
 }
 
 .info_products-left-grid .introduction_products .introduction_products-grid .introduction_products-title {
@@ -2441,7 +2449,12 @@ body {
 
 .discount_code-item-font-color-title {
     color: var(--text-grey);
-    font-size: 1.35rem;
+    font-size: 1.5rem;
+}
+
+.outstanding_products-item-font-color-title {
+    color: var(--text-grey);
+    font-size: 1.5rem;
 }
 
 .discount_code-Content .discount_code-Content-wrap-item {
@@ -2450,5 +2463,169 @@ body {
     background-color: rgba(208, 1, 27, .08);
     color: var(--text-price);
     content: "";
-width: 80%;
+    width: 90%;
+    border-color: rgba(208, 1, 27, .08);
+
+}
+
+
+
+.discount_code-Content-wrap-item-grid .discount_code-Content-wrap-item-left .discount_code-percent-item {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.discount_code-Content-wrap-item-grid .discount_code-Content-wrap-item-left .discount_code-minimum-max-item {
+    font-size: 1.2rem;
+}
+
+.discount_code-Content-wrap-item-right .discount_code-Content-wrap-item-right-grid .item-save {
+    font-size: 1.35rem;
+    background-color: var(--background-sale);
+    height: 3rem;
+    width: 100%;
+    color: var(--text-white);
+    cursor: pointer;
+}
+
+.outstanding_products-card-body .outstanding_products-card-body-item-title {
+    font-size: 1.45rem;
+    color: var(--text-black);
+
+    @supports (-webkit-line-clamp: 2) {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: initial;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+}
+
+
+.outstanding_products-card-body .wrap-parent-item-price .wrap-item-price .item-price {
+    font-size: 1.75rem;
+    color: var(--text-price);
+}
+
+.outstanding_products-card-body .wrap-parent-item-price .wrap-item-price .item-unit {
+    top: 0%;
+    font-size: 1.4rem;
+    left: -17%;
+    color: var(--text-price);
+    text-decoration: underline;
+}
+
+.outstanding_products-card-body .wrap-parent-item-price .min_to_max {
+    width: 2rem;
+    font-size: 2rem;
+    color: var(--text-price);
+}
+
+.outstanding_products .outstanding_products-grid .horizontal {
+    border: 0.1px solid var(--color-border);
+}
+
+.outstanding_products .outstanding_products-grid .outstanding_products-card {
+    cursor: pointer;
+}
+
+.outstanding_products .outstanding_products-grid .outstanding_products-card:last-child {
+    border: none !important;
+}
+
+#EvaluateProducts .evaluate_products-container .evaluate_products-grid {
+    background-color: var(--background-main);
+    width: 81%;
+}
+
+.evaluate_products-grid .evaluate_products-title {
+    font-size: 1.8rem;
+    color: var(--text-black);
+    font-weight: 500;
+}
+
+.evaluate_products-grid .evaluate_products-filter {
+    background-color: var(--background-evaluate_products-filter);
+}
+
+.evaluate_products-filter-left-grid .evaluate_products-filter-left-wrap-item-top .item-overall-rating {
+    font-size: 3.5rem;
+    color: var(--text-price);
+}
+
+.evaluate_products-filter-left-grid .evaluate_products-filter-left-wrap-item-top .item-overall-rating-per {
+    font-size: 2rem;
+    color: var(--text-price);
+}
+
+.evaluate_products-filter-left-wrap-item-footer .evaluate_products-filter-left-wrap-item-footer .item-icon {
+    font-size: 1.55rem;
+    color: var(--text-price);
+}
+
+.evaluate_products-filter-right .evaluate_products-filter-right-grid .item-filter-evaluate {
+    background-color: var(--background-main);
+    min-width: 10rem;
+    height: 3rem;
+    border: 1px solid var(--color-border);
+    font-size: 1.35rem;
+    color: var(--text-black);
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.evaluate-user-left .wrap-avatar-user .item-img {
+    border-radius: 100%;
+}
+
+.evaluate-user-right-grid .item-name-user {
+    font-size: 1.2rem;
+    color: var(--text-black);
+}
+
+.evaluate-user-right-grid .wrap-item-evaluate-user .item-icon {
+    font-size: 1.3rem;
+    color: var(--text-price);
+}
+
+.wrap-item-date-evaluate-user .wrap-item-date-evaluate-user-grid .item-date {
+    font-size: 1.1rem;
+    color: var(--text-black);
+}
+
+.wrap-item-date-evaluate-user .wrap-item-date-evaluate-user-grid .item-time {
+    font-size: 1.1rem;
+    color: var(--text-black);
+}
+
+.wrap-item-date-evaluate-user .wrap-item-date-evaluate-user-grid .vertical {
+    width: 2px;
+    height: 1.5rem;
+    background-color: var(--color-border);
+    content: "";
+}
+
+.wrap-item-date-evaluate-user .wrap-item-date-evaluate-user-grid .item-type-user {
+    font-size: 1.1rem;
+    color: var(--text-black);
+}
+
+.wrap-item-products-user .wrap-item-products-user-grid .wrap-item .item-describe-product-brand {
+    font-size: 1.35rem;
+    color: var(--text-grey);
+}
+
+.wrap-item-products-user .wrap-item-products-user-grid .wrap-item .item-describe-user {
+    font-size: 1.35rem;
+    color: var(--text-black);
+}
+
+.wrap-item-products-user .wrap-item-products-user-grid .wrap-item .item-describe-product-brand::first-letter {
+    text-transform: uppercase;
+}
+
+.evaluate-user-right .evaluate-user-right-grid .wrap-item-evaluate-text {
+    font-size: 1.4rem;
+    color: var(--text-black);
 }

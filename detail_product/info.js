@@ -1,10 +1,14 @@
 
 const handleRedirect_right_info = (itemEvaluate, itemProduct, itemFeedBack, modalFeedBack) => {
+    let count = 0;
     itemEvaluate.click(function () {
-        alert("1")
+        count++;
+        console.log("check >>", count);
+
     })
     itemProduct.click(function () {
-        alert('2')
+        console.log(count);
+
     })
     itemFeedBack.click(function () {
         modalFeedBack.modal('show')

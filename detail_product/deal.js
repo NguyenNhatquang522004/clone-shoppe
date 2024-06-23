@@ -1075,9 +1075,11 @@ const historyDeal = {
     historySelectItem: [],
     historySelectItemCheck: [],
 }
+
 export const AllHandleDeal = async () => {
     const has = await handleShow_cardDeal()
     if (has === true) {
+
         const btnOpenDropDownDeal = $('.itemOpenDropDownCardDeal')
         const dropDownDeal = $('.DropdownDealCSS')
         const checkCardsDeal = $('.deal-cards-check')
