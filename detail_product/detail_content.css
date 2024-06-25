@@ -8,7 +8,7 @@ html {
     font-size: 62.5%;
     line-height: 1.6rem;
     font-family: "Roboto", sans-serif;
-    overflow-y: auto;
+
 }
 
 :root {
@@ -2628,4 +2628,124 @@ body {
 .evaluate-user-right .evaluate-user-right-grid .wrap-item-evaluate-text {
     font-size: 1.4rem;
     color: var(--text-black);
+}
+
+.carousel-evaluate-video-img-user .carousel-evaluate-video-img-user-inner {
+    height: 80rem;
+}
+
+.carousel-evaluate-video-img-user-inner .carousel-item-evaluate-video-img-user .item-img {
+    object-fit: cover;
+    width: 75%;
+    height: 80rem;
+
+}
+
+.carousel-item-evaluate-video-img-user {
+    transition: transform ease-in-out 0.3s;
+}
+
+#CarouselControlEvaluateVideoImgUserNext {
+    font-size: 2rem;
+    color: var(--text-black);
+    height: 3.5rem;
+    width: 3.5rem;
+    border-radius: 100%;
+    top: 50%;
+    background-color: var(--background-main);
+    box-shadow: 0 1px 12px 0 rgba(0, 0, 0, .12);
+    transform: translate(-50%, -50%);
+    transition: all ease-in-out 0.3s;
+    opacity: 1;
+}
+
+#CarouselControlEvaluateVideoImgUserPrev {
+    font-size: 2rem;
+    color: var(--text-black);
+    height: 3.5rem;
+    width: 3.5rem;
+    border-radius: 100%;
+    top: 50%;
+    background-color: var(--background-main);
+    box-shadow: 0 1px 12px 0 rgba(0, 0, 0, .12);
+    transform: translate(-50%, -50%);
+    transition: left ease-in-out 0.3s;
+    opacity: 1;
+}
+
+.outLine-img-sub-evaluate {
+    outline: 3px solid var(--text-price);
+    outline-offset: 2px;
+}
+
+/* #CarouselControlEvaluateVideoImgUserNext:hover {
+    height: 5rem;
+    width: 5rem;
+    font-size: 2.5rem;
+    opacity: 1;
+
+}
+
+.carousel-evaluate-video-img-user-inner:hover~#CarouselControlEvaluateVideoImgUserNext {
+    height: 5rem;
+    width: 5rem;
+    font-size: 2.5rem;
+    opacity: 1;
+} */
+
+.wrap-item-evaluate-img-grid .wrap-item-img-sub {
+    cursor: zoom-in;
+}
+
+.wrap-item-evaluate-img-grid .wrap-item-img-sub .item-img {
+    object-fit: contain;
+    height: 7rem;
+    width: 7rem;
+}
+
+.wrap-item-evaluate-img-grid .wrap-item-img-sub .item-time-video {
+    bottom: 0%;
+    width: 100%;
+    height: 2rem;
+    content: "";
+    background-color: rgba(0, 0, 0, .54);
+    color: var(--text-white);
+    font-size: 1.2rem;
+}
+
+#WarpItemConsensusManyUser {
+    font-size: 1.3rem;
+    color: var(--text-grey);
+    transition: all ease 0.5s;
+}
+
+.Consensus_Quantity_color {
+    color: var(--text-price) !important;
+}
+
+.wrap-item-Number-Pagination .wrap-item-Number-Pagination-grid .item-number-Pagination {
+    height: 4rem;
+    width: 5rem;
+    background-color: var(--background-main);
+    color: var(--text-grey);
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+#BtnControlPaginationPrev {
+    height: 4rem;
+    width: 5rem;
+    background-color: var(--background-main);
+    color: var(--text-grey);
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+#BtnControlPaginationNext {
+    height: 4rem;
+    width: 5rem;
+    background-color: var(--background-main);
+    color: var(--text-grey);
+    font-size: 2rem;
+    cursor: pointer;
 }

@@ -2,6 +2,7 @@ import * as fetch from "./fetchdata.js"
 import * as ModalProductImg from "./detailModalProductImg.js"
 import * as Deal from "./deal.js"
 import * as info from "./info.js"
+import * as evaluateUser from "./evaluate_user.js"
 $(document).ready(() => {
 
     let handleSetupClassname_ModalAddress = (modalSubmitMap, modalMap, modalFirst, modalSecond, modalThird, backDrop) => {
@@ -1253,4 +1254,5 @@ $(document).ready(() => {
     ModalProductImg.AllHandleModalProductsImg();
     Deal.AllHandleDeal()
     info.AllhandleInfo();
+    evaluateUser.handleAllEvaluateUser()
 })
