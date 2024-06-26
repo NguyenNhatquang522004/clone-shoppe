@@ -3,7 +3,7 @@
     padding: 0;
 }
 
-html {
+html {  
     background-color: #F5F5F5;
     font-size: 62.5%;
     line-height: 1.6rem;
@@ -2634,18 +2634,18 @@ body {
     height: 80rem;
 }
 
-.carousel-evaluate-video-img-user-inner .carousel-item-evaluate-video-img-user .item-img {
-    object-fit: cover;
+.CarouselEvaluateVideoImgUserInnerClass .CarouselItemEvaluateVideoImgUserClass .item-img {
+    object-fit: fill;
     width: 75%;
     height: 80rem;
 
 }
 
-.carousel-item-evaluate-video-img-user {
+.CarouselItemEvaluateVideoImgUserClass {
     transition: transform ease-in-out 0.3s;
 }
 
-#CarouselControlEvaluateVideoImgUserNext {
+.CarouselControlEvaluateVideoImgUserNextClass {
     font-size: 2rem;
     color: var(--text-black);
     height: 3.5rem;
@@ -2656,10 +2656,10 @@ body {
     box-shadow: 0 1px 12px 0 rgba(0, 0, 0, .12);
     transform: translate(-50%, -50%);
     transition: all ease-in-out 0.3s;
-    opacity: 1;
+    opacity: 1 !important;
 }
 
-#CarouselControlEvaluateVideoImgUserPrev {
+.CarouselControlEvaluateVideoImgUserPrevClass {
     font-size: 2rem;
     color: var(--text-black);
     height: 3.5rem;
@@ -2669,8 +2669,8 @@ body {
     background-color: var(--background-main);
     box-shadow: 0 1px 12px 0 rgba(0, 0, 0, .12);
     transform: translate(-50%, -50%);
-    transition: left ease-in-out 0.3s;
-    opacity: 1;
+    transition: all ease-in-out 0.3s;
+    opacity: 1 !important;
 }
 
 .outLine-img-sub-evaluate {
@@ -2678,29 +2678,21 @@ body {
     outline-offset: 2px;
 }
 
-/* #CarouselControlEvaluateVideoImgUserNext:hover {
-    height: 5rem;
-    width: 5rem;
-    font-size: 2.5rem;
-    opacity: 1;
-
+.CarouselControlEvaluateVideoImgUserClass:hover {
+    color: var(--text-black) !important;
 }
 
-.carousel-evaluate-video-img-user-inner:hover~#CarouselControlEvaluateVideoImgUserNext {
-    height: 5rem;
-    width: 5rem;
-    font-size: 2.5rem;
-    opacity: 1;
-} */
 
 .wrap-item-evaluate-img-grid .wrap-item-img-sub {
     cursor: zoom-in;
 }
-
-.wrap-item-evaluate-img-grid .wrap-item-img-sub .item-img {
-    object-fit: contain;
+.wrap-item-evaluate-img  .wrap-item-evaluate-img-grid {
     height: 7rem;
-    width: 7rem;
+}
+.wrap-item-evaluate-img-grid .wrap-item-img-sub .item-img {
+    object-fit: scale-down;
+    height: 100%;
+    width: 100%;
 }
 
 .wrap-item-evaluate-img-grid .wrap-item-img-sub .item-time-video {
@@ -2713,7 +2705,7 @@ body {
     font-size: 1.2rem;
 }
 
-#WarpItemConsensusManyUser {
+.WarpItemConsensusManyUserClass {
     font-size: 1.3rem;
     color: var(--text-grey);
     transition: all ease 0.5s;
