@@ -130,7 +130,8 @@ const handleShowCarousel_Evaluate = (itemWarpImgSubEvaluate, carouselItem, btnCa
         }
     })
 }
-const init = (itemWarpImgSubEvaluate, videoSrc, displayTimeDuration, carouselItem, grandParentEvaluateUser) => {
+const init = (itemWarpImgSubEvaluate, videoSrc, displayTimeDuration, carouselItem, grandParentEvaluateUser, btnPaginationNumber) => {
+    const lengthPanigation = btnPaginationNumber.length
     grandParentEvaluateUser.map((index, item) => {
         $(item).find(carouselItem).removeClass(`active`)
         $(item).find(itemWarpImgSubEvaluate).eq(0).removeClass("mx-3")
@@ -147,6 +148,8 @@ const init = (itemWarpImgSubEvaluate, videoSrc, displayTimeDuration, carouselIte
             $(item).find(displayTimeDuration).addClass('d-none')
         }
     })
+    $(btnPaginationNumber[0]).addClass('Animation-click-back-color')
+    $(btnPaginationNumber[lengthPanigation - 1]).text(`...`)
 }
 const handleShow_Carousel = async () => {
     const grandParentEvaluateUser = $(`.EvaluateUserClass`)
@@ -188,24 +191,618 @@ const handleClick_ConsensusQuantity = (itemConsensusQuantity, parentItemConsensu
         }
     })
 }
-const handleInit_Pagination = (itemEvaluateUser, btnPaginationNext, btnPaginationPrev, btnPaginationNumber) => {
+const handleAnimationDirect_Pagination = (itemEvaluateUser, btnPaginationNext, btnPaginationPrev, btnPaginationNumber, parentNumberPagination) => {
     const postionDestination = $(itemEvaluateUser[0]).position()
+    let current = 1
+    const limitPage = 9
     btnPaginationNext.click(function () {
+        const limitLoadItemZero = 6
+        const limitLoadItemFirst = 8
+        const limitLoadItemSec = 9
+        const limitLoadItemlimitPage = 8
         $('html, body').animate({
             scrollTop: postionDestination.top - 100
-        }, 10);
+        }, 1);
+        if (current != limitPage) {
+            ++current
+        }
+        const distanceLimitPage = limitPage - current
+        if (current <= 5) {
+            let valueIncreaseLoadFirst = 0
+            parentNumberPagination.empty()
+            if (current === 5) {
+                for (let IndexFirst = 0; IndexFirst < limitLoadItemFirst; IndexFirst++) {
+                    if (IndexFirst < 7) {
+                        parentNumberPagination.append(
+                            `
+                     <div
+                                                class="item-number-Pagination mx-3 d-flex align-items-center justify-content-center ItemNumberPaginationSelect">
+                                                ${valueIncreaseLoadFirst + 1}
+                                            </div>
+                    `
+                        )
+                        ++valueIncreaseLoadFirst
+                    }
+                    else {
+                        parentNumberPagination.append(
+                            `
+                     <div
+                                                class="item-number-Pagination mx-3 d-flex align-items-center justify-content-center ItemNumberPaginationSelect">
+                                                ...
+                                            </div>
+                    `
+                        )
+                    }
+                }
+            }
+            if (current < 5) {
+                let valueIncreaseLoadZero = 0
+                parentNumberPagination.empty()
+                for (let IndexZero = 0; IndexZero < limitLoadItemZero; IndexZero++) {
+                    if (IndexZero < 5) {
+                        parentNumberPagination.append(
+                            `
+                         <div
+                                                    class="item-number-Pagination mx-3 d-flex align-items-center justify-content-center ItemNumberPaginationSelect">
+                                                    ${valueIncreaseLoadZero + 1}
+                                                </div>
+                        `
+                        )
+                        ++valueIncreaseLoadZero
+                    }
+                    else {
+                        parentNumberPagination.append(
+                            `
+                         <div
+                                                    class="item-number-Pagination mx-3 d-flex align-items-center justify-content-center ItemNumberPaginationSelect">
+                                                    ...
+                                                </div>
+                        `
+                        )
+                    }
+                }
+
+            }
+
+        }
+        if (current >= 6 && distanceLimitPage > 2) {
+            let cloneCurrent = current
+            let valueIncreaseFirstPart = 0
+            let valueReduceMiddlePartFirst = 2
+            let saveValueReduceMiddlePartFirst = 0
+            let valueIncreaseMiddlePartSecond = 1
+            let saveValueIncreaseMiddlePartSecond = 0
+            parentNumberPagination.empty()
+            for (let indexSec = 0; indexSec < limitLoadItemSec; indexSec++) {
+                if (indexSec < 5) {
+                    if (indexSec <= 1) {
+                        parentNumberPagination.append(
+                            `
+                 <div
+                                            class="item-number-Pagination mx-3 d-flex align-items-center justify-content-center ItemNumberPaginationSelect">
+                                            ${valueIncreaseFirstPart += 1}
+                                        </div>
+                `
+                        )
+                    }
+                    if (indexSec === 2) {
+                        parentNumberPagination.append(
+                            `
+                     <div
+                                                class="item-number-Pagination mx-3 d-flex align-items-center justify-content-center ItemNumberPaginationSelect">
+                                                ...
+                                            </div>
+                    `
+                        )
+                    }
+                    if (indexSec >= 3 && indexSec <= 4) {
+                        parentNumberPagination.append(
+                            `
+                     <div
+                                                class="item-number-Pagination mx-3 d-flex align-items-center justify-content-center ItemNumberPaginationSelect">
+                                                ${saveValueReduceMiddlePartFirst = cloneCurrent - valueReduceMiddlePartFirst}
+                                            </div>
+                    `
+                        )
+                        --valueReduceMiddlePartFirst
+                    }
+                }
+                if (indexSec === 5) {
+                    parentNumberPagination.append(
+                        `
+             <div
+                                        class="item-number-Pagination mx-3 d-flex align-items-center justify-content-center ItemNumberPaginationSelect">
+                                        ${cloneCurrent}
+                                    </div>
+            `
+                    )
+                }
+                if (indexSec > 5) {
+                    if (indexSec >= 6 && indexSec <= 7) {
+                        parentNumberPagination.append(
+                            `
+                 <div
+                                            class="item-number-Pagination mx-3 d-flex align-items-center justify-content-center ItemNumberPaginationSelect">
+                                            ${saveValueIncreaseMiddlePartSecond = cloneCurrent + valueIncreaseMiddlePartSecond}
+                                        </div>
+                `
+                        )
+                        ++valueIncreaseMiddlePartSecond
+                    }
+                    if (indexSec === 8) {
+                        parentNumberPagination.append(
+                            `
+                 <div
+                                            class="item-number-Pagination mx-3 d-flex align-items-center justify-content-center ItemNumberPaginationSelect">
+                                            ...
+                                        </div>
+                `
+                        )
+                    }
+                }
+            }
+
+        }
+        if (current >= 6 && distanceLimitPage <= 2) {
+            let CloneLimitPage = limitPage
+            let cloneCurrentLimitPage = current
+            let saveValueLimitPage = 0
+            let valueIncreaseLimitPage = CloneLimitPage - 4;
+
+            let valueIncreaseLimitPageFirstPart = 1
+            parentNumberPagination.empty()
+            for (let indexLimitPage = 0; indexLimitPage < limitLoadItemlimitPage; indexLimitPage++) {
+                if (indexLimitPage <= 1) {
+                    parentNumberPagination.append(
+                        `
+             <div
+                                        class="item-number-Pagination mx-3 d-flex align-items-center justify-content-center ItemNumberPaginationSelect">
+                                        ${valueIncreaseLimitPageFirstPart}
+                                    </div>
+            `
+                    )
+                    ++valueIncreaseLimitPageFirstPart
+                }
+                if (indexLimitPage === 2) {
+                    parentNumberPagination.append(
+                        `
+                 <div
+                                            class="item-number-Pagination mx-3 d-flex align-items-center justify-content-center ItemNumberPaginationSelect">
+                                            ...
+                                        </div>
+                `
+                    )
+                }
+                if (indexLimitPage > 2) {
+                    parentNumberPagination.append(
+                        `
+                 <div
+                                            class="item-number-Pagination mx-3 d-flex align-items-center justify-content-center ItemNumberPaginationSelect">
+                                            ${valueIncreaseLimitPage}
+                                        </div>
+                `
+                    )
+                    ++valueIncreaseLimitPage
+                }
+
+            }
+        }
+        $(`.ItemNumberPaginationSelect`).map((index, item) => {
+            if ($(item).text().trim() === `${current}` && $(item).text().trim() != '...') {
+                $(`.ItemNumberPaginationSelect`).removeClass(`Animation-click-back-color`)
+                $(item).addClass(`Animation-click-back-color`)
+            }
+        })
+
     })
     btnPaginationPrev.click(function () {
+        const limitLoadItemZero = 6
+        const limitLoadItemFirst = 8
+        const limitLoadItemSec = 9
+        const limitLoadItemlimitPage = 8
         $('html, body').animate({
             scrollTop: postionDestination.top - 100
-        }, 10);
+        }, 1);
+        --current
+        if (current === 0) {
+            current = 1
+        }
+        const distanceLimitPage = limitPage - current
+        if (current <= 5) {
+            let valueIncreaseLoadFirst = 0
+            parentNumberPagination.empty()
+            if (current === 5) {
+                for (let IndexFirst = 0; IndexFirst < limitLoadItemFirst; IndexFirst++) {
+                    if (IndexFirst < 7) {
+                        parentNumberPagination.append(
+                            `
+                     <div
+                                                class="item-number-Pagination mx-3 d-flex align-items-center justify-content-center ItemNumberPaginationSelect">
+                                                ${valueIncreaseLoadFirst + 1}
+                                            </div>
+                    `
+                        )
+                        ++valueIncreaseLoadFirst
+                    }
+                    else {
+                        parentNumberPagination.append(
+                            `
+                     <div
+                                                class="item-number-Pagination mx-3 d-flex align-items-center justify-content-center ItemNumberPaginationSelect">
+                                                ...
+                                            </div>
+                    `
+                        )
+                    }
+                }
+            }
+            if (current < 5) {
+                let valueIncreaseLoadZero = 0
+                parentNumberPagination.empty()
+                for (let IndexZero = 0; IndexZero < limitLoadItemZero; IndexZero++) {
+                    if (IndexZero < 5) {
+                        parentNumberPagination.append(
+                            `
+                         <div
+                                                    class="item-number-Pagination mx-3 d-flex align-items-center justify-content-center ItemNumberPaginationSelect">
+                                                    ${valueIncreaseLoadZero + 1}
+                                                </div>
+                        `
+                        )
+                        ++valueIncreaseLoadZero
+                    }
+                    else {
+                        parentNumberPagination.append(
+                            `
+                         <div
+                                                    class="item-number-Pagination mx-3 d-flex align-items-center justify-content-center ItemNumberPaginationSelect">
+                                                    ...
+                                                </div>
+                        `
+                        )
+                    }
+                }
+
+            }
+
+        }
+        if (current >= 6 && distanceLimitPage > 2) {
+            let cloneCurrent = current
+            let valueIncreaseFirstPart = 0
+            let valueReduceMiddlePartFirst = 2
+            let saveValueReduceMiddlePartFirst = 0
+            let valueIncreaseMiddlePartSecond = 1
+            let saveValueIncreaseMiddlePartSecond = 0
+            parentNumberPagination.empty()
+            for (let indexSec = 0; indexSec < limitLoadItemSec; indexSec++) {
+                if (indexSec < 5) {
+                    if (indexSec <= 1) {
+                        parentNumberPagination.append(
+                            `
+                 <div
+                                            class="item-number-Pagination mx-3 d-flex align-items-center justify-content-center ItemNumberPaginationSelect">
+                                            ${valueIncreaseFirstPart += 1}
+                                        </div>
+                `
+                        )
+                    }
+                    if (indexSec === 2) {
+                        parentNumberPagination.append(
+                            `
+                     <div
+                                                class="item-number-Pagination mx-3 d-flex align-items-center justify-content-center ItemNumberPaginationSelect">
+                                                ...
+                                            </div>
+                    `
+                        )
+                    }
+                    if (indexSec >= 3 && indexSec <= 4) {
+                        parentNumberPagination.append(
+                            `
+                     <div
+                                                class="item-number-Pagination mx-3 d-flex align-items-center justify-content-center ItemNumberPaginationSelect">
+                                                ${saveValueReduceMiddlePartFirst = cloneCurrent - valueReduceMiddlePartFirst}
+                                            </div>
+                    `
+                        )
+                        --valueReduceMiddlePartFirst
+                    }
+                }
+                if (indexSec === 5) {
+                    parentNumberPagination.append(
+                        `
+             <div
+                                        class="item-number-Pagination mx-3 d-flex align-items-center justify-content-center ItemNumberPaginationSelect">
+                                        ${cloneCurrent}
+                                    </div>
+            `
+                    )
+                }
+                if (indexSec > 5) {
+                    if (indexSec >= 6 && indexSec <= 7) {
+                        parentNumberPagination.append(
+                            `
+                 <div
+                                            class="item-number-Pagination mx-3 d-flex align-items-center justify-content-center ItemNumberPaginationSelect">
+                                            ${saveValueIncreaseMiddlePartSecond = cloneCurrent + valueIncreaseMiddlePartSecond}
+                                        </div>
+                `
+                        )
+                        ++valueIncreaseMiddlePartSecond
+                    }
+                    if (indexSec === 8) {
+                        parentNumberPagination.append(
+                            `
+                 <div
+                                            class="item-number-Pagination mx-3 d-flex align-items-center justify-content-center ItemNumberPaginationSelect">
+                                            ...
+                                        </div>
+                `
+                        )
+                    }
+                }
+            }
+
+        }
+        if (current >= 6 && distanceLimitPage <= 2) {
+            let CloneLimitPage = limitPage
+            let cloneCurrentLimitPage = current
+            let saveValueLimitPage = 0
+            let valueIncreaseLimitPage = CloneLimitPage - 4;
+
+            let valueIncreaseLimitPageFirstPart = 1
+            parentNumberPagination.empty()
+            for (let indexLimitPage = 0; indexLimitPage < limitLoadItemlimitPage; indexLimitPage++) {
+                if (indexLimitPage <= 1) {
+                    parentNumberPagination.append(
+                        `
+             <div
+                                        class="item-number-Pagination mx-3 d-flex align-items-center justify-content-center ItemNumberPaginationSelect">
+                                        ${valueIncreaseLimitPageFirstPart}
+                                    </div>
+            `
+                    )
+                    ++valueIncreaseLimitPageFirstPart
+                }
+                if (indexLimitPage === 2) {
+                    parentNumberPagination.append(
+                        `
+                 <div
+                                            class="item-number-Pagination mx-3 d-flex align-items-center justify-content-center ItemNumberPaginationSelect">
+                                            ...
+                                        </div>
+                `
+                    )
+                }
+                if (indexLimitPage > 2) {
+                    parentNumberPagination.append(
+                        `
+                 <div
+                                            class="item-number-Pagination mx-3 d-flex align-items-center justify-content-center ItemNumberPaginationSelect">
+                                            ${valueIncreaseLimitPage}
+                                        </div>
+                `
+                    )
+                    ++valueIncreaseLimitPage
+                }
+
+            }
+        }
+        $(`.ItemNumberPaginationSelect`).map((index, item) => {
+            if ($(item).text().trim() === `${current}` && $(item).text().trim() != '...') {
+                $(`.ItemNumberPaginationSelect`).removeClass(`Animation-click-back-color`)
+                $(item).addClass(`Animation-click-back-color`)
+            }
+        })
+
     })
-    btnPaginationNumber.click(function () {
+    $(document).on('click', '.ItemNumberPaginationSelect', function () {
+        const limitLoadItemZero = 6
+        const limitLoadItemFirst = 8
+        const limitLoadItemSec = 9
+        const limitLoadItemlimitPage = 8
+        const position = $(`.ItemNumberPaginationSelect`).index(this)
         $('html, body').animate({
             scrollTop: postionDestination.top - 100
-        }, 10);
+        }, 1);
+        if ($(this).text().trim() != '...') {
+            current = Number($(this).text().trim())
+        }
+        const distanceLimitPage = limitPage - current
+        if (current <= 5) {
+            let valueIncreaseLoadFirst = 0
+            parentNumberPagination.empty()
+            if (current === 5) {
+                for (let IndexFirst = 0; IndexFirst < limitLoadItemFirst; IndexFirst++) {
+                    if (IndexFirst < 7) {
+                        parentNumberPagination.append(
+                            `
+                     <div
+                                                class="item-number-Pagination mx-3 d-flex align-items-center justify-content-center ItemNumberPaginationSelect">
+                                                ${valueIncreaseLoadFirst + 1}
+                                            </div>
+                    `
+                        )
+                        ++valueIncreaseLoadFirst
+                    }
+                    else {
+                        parentNumberPagination.append(
+                            `
+                     <div
+                                                class="item-number-Pagination mx-3 d-flex align-items-center justify-content-center ItemNumberPaginationSelect">
+                                                ...
+                                            </div>
+                    `
+                        )
+                    }
+                }
+            }
+            if (current < 5) {
+                let valueIncreaseLoadZero = 0
+                parentNumberPagination.empty()
+                for (let IndexZero = 0; IndexZero < limitLoadItemZero; IndexZero++) {
+                    if (IndexZero < 5) {
+                        parentNumberPagination.append(
+                            `
+                         <div
+                                                    class="item-number-Pagination mx-3 d-flex align-items-center justify-content-center ItemNumberPaginationSelect">
+                                                    ${valueIncreaseLoadZero + 1}
+                                                </div>
+                        `
+                        )
+                        ++valueIncreaseLoadZero
+                    }
+                    else {
+                        parentNumberPagination.append(
+                            `
+                         <div
+                                                    class="item-number-Pagination mx-3 d-flex align-items-center justify-content-center ItemNumberPaginationSelect">
+                                                    ...
+                                                </div>
+                        `
+                        )
+                    }
+                }
+
+            }
+
+        }
+        if (current >= 6 && distanceLimitPage > 2) {
+            let cloneCurrent = current
+            let valueIncreaseFirstPart = 0
+            let valueReduceMiddlePartFirst = 2
+            let saveValueReduceMiddlePartFirst = 0
+            let valueIncreaseMiddlePartSecond = 1
+            let saveValueIncreaseMiddlePartSecond = 0
+            parentNumberPagination.empty()
+            for (let indexSec = 0; indexSec < limitLoadItemSec; indexSec++) {
+                if (indexSec < 5) {
+                    if (indexSec <= 1) {
+                        parentNumberPagination.append(
+                            `
+                 <div
+                                            class="item-number-Pagination mx-3 d-flex align-items-center justify-content-center ItemNumberPaginationSelect">
+                                            ${valueIncreaseFirstPart += 1}
+                                        </div>
+                `
+                        )
+                    }
+                    if (indexSec === 2) {
+                        parentNumberPagination.append(
+                            `
+                     <div
+                                                class="item-number-Pagination mx-3 d-flex align-items-center justify-content-center ItemNumberPaginationSelect">
+                                                ...
+                                            </div>
+                    `
+                        )
+                    }
+                    if (indexSec >= 3 && indexSec <= 4) {
+                        parentNumberPagination.append(
+                            `
+                     <div
+                                                class="item-number-Pagination mx-3 d-flex align-items-center justify-content-center ItemNumberPaginationSelect">
+                                                ${saveValueReduceMiddlePartFirst = cloneCurrent - valueReduceMiddlePartFirst}
+                                            </div>
+                    `
+                        )
+                        --valueReduceMiddlePartFirst
+                    }
+                }
+                if (indexSec === 5) {
+                    parentNumberPagination.append(
+                        `
+             <div
+                                        class="item-number-Pagination mx-3 d-flex align-items-center justify-content-center ItemNumberPaginationSelect">
+                                        ${cloneCurrent}
+                                    </div>
+            `
+                    )
+                }
+                if (indexSec > 5) {
+                    if (indexSec >= 6 && indexSec <= 7) {
+                        parentNumberPagination.append(
+                            `
+                 <div
+                                            class="item-number-Pagination mx-3 d-flex align-items-center justify-content-center ItemNumberPaginationSelect">
+                                            ${saveValueIncreaseMiddlePartSecond = cloneCurrent + valueIncreaseMiddlePartSecond}
+                                        </div>
+                `
+                        )
+                        ++valueIncreaseMiddlePartSecond
+                    }
+                    if (indexSec === 8) {
+                        parentNumberPagination.append(
+                            `
+                 <div
+                                            class="item-number-Pagination mx-3 d-flex align-items-center justify-content-center ItemNumberPaginationSelect">
+                                            ...
+                                        </div>
+                `
+                        )
+                    }
+                }
+            }
+
+        }
+        if (current >= 6 && distanceLimitPage <= 2) {
+            let CloneLimitPage = limitPage
+            let cloneCurrentLimitPage = current
+            let saveValueLimitPage = 0
+            let valueIncreaseLimitPage = CloneLimitPage - 4;
+
+            let valueIncreaseLimitPageFirstPart = 1
+            parentNumberPagination.empty()
+            for (let indexLimitPage = 0; indexLimitPage < limitLoadItemlimitPage; indexLimitPage++) {
+                if (indexLimitPage <= 1) {
+                    parentNumberPagination.append(
+                        `
+             <div
+                                        class="item-number-Pagination mx-3 d-flex align-items-center justify-content-center ItemNumberPaginationSelect">
+                                        ${valueIncreaseLimitPageFirstPart}
+                                    </div>
+            `
+                    )
+                    ++valueIncreaseLimitPageFirstPart
+                }
+                if (indexLimitPage === 2) {
+                    parentNumberPagination.append(
+                        `
+                 <div
+                                            class="item-number-Pagination mx-3 d-flex align-items-center justify-content-center ItemNumberPaginationSelect">
+                                            ...
+                                        </div>
+                `
+                    )
+                }
+                if (indexLimitPage > 2) {
+                    parentNumberPagination.append(
+                        `
+                 <div
+                                            class="item-number-Pagination mx-3 d-flex align-items-center justify-content-center ItemNumberPaginationSelect">
+                                            ${valueIncreaseLimitPage}
+                                        </div>
+                `
+                    )
+                    ++valueIncreaseLimitPage
+                }
+
+            }
+        }
+        $(`.ItemNumberPaginationSelect`).map((index, item) => {
+            if ($(item).text().trim() === `${current}` && $(item).text().trim() != '...') {
+                $(`.ItemNumberPaginationSelect`).removeClass(`Animation-click-back-color`)
+                $(item).addClass(`Animation-click-back-color`)
+            }
+        })
     })
 
+}
+const handleShowPage_Pagination = () => {
+
+}
+const currentPage = {
+    position: 1,
 }
 export const handleAllEvaluateUser = async () => {
     let x = await handleShow_Carousel()
@@ -215,14 +812,10 @@ export const handleAllEvaluateUser = async () => {
     const carousel = $('.CarouselEvaluateVideoImgUserClass')
     const carouselItem = $(`.CarouselItemEvaluateVideoImgUserClass`)
     const item = (".item")
-    const itemVideo = (".item-video")
     const itemImg = (".item-img")
     const itemWarpImgSubEvaluate = $('.WrapItemImgSubEvaluate')
-    const srcSubEvaluate = $(`.src`)
     const videoSrc = $(`.videoSrc`)
     const displayTimeDuration = $('.TimeDurationClass')
-    const parentDisplayTimeDuration = $('.WrapTimeDurationClass')
-    const parentCarouselItem = $(`.CarouselEvaluateVideoImgUserInnerClass`)
     const itemConsensusQuantity = $(`.ItemConsensusQuantityClass`)
     const parentItemConsensusQuantity = $(`.WarpItemConsensusManyUserClass`)
     const itemEvaluateUser = $('.EvaluateUserClass')
@@ -230,9 +823,11 @@ export const handleAllEvaluateUser = async () => {
     const btnPaginationNext = $(`#BtnControlPaginationNext`)
     const btnPaginationNumber = $(`.ItemNumberPaginationSelect`)
     const grandParentEvaluateUser = $(`.EvaluateUserClass`)
-    handleInit_Pagination(itemEvaluateUser, btnPaginationNext, btnPaginationPrev, btnPaginationNumber);
+    const parentNumberPagination = $(`#WrapItemNumberPaginationGrid`)
+    handleShowPage_Pagination()
+    handleAnimationDirect_Pagination(itemEvaluateUser, btnPaginationNext, btnPaginationPrev, btnPaginationNumber, parentNumberPagination);
     handleClick_ConsensusQuantity(itemConsensusQuantity, parentItemConsensusQuantity);
-    init(itemWarpImgSubEvaluate, videoSrc, displayTimeDuration, carouselItem, grandParentEvaluateUser)
+    init(itemWarpImgSubEvaluate, videoSrc, displayTimeDuration, carouselItem, grandParentEvaluateUser, btnPaginationNumber)
     handleBtnNextPrev_Carousel_Evaluate(carouselItem, btnCarousel, grandParentEvaluateUser, item)
     handleAnimationBtnNextPrev_Carousel_Evaluate(btnCarouselNext, btnCarouselPrev, carousel, carouselItem, itemImg, grandParentEvaluateUser);
     handleShowCarousel_Evaluate(itemWarpImgSubEvaluate, carouselItem, btnCarouselNext, btnCarouselPrev, itemImg, carousel, grandParentEvaluateUser);

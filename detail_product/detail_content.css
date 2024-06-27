@@ -3,7 +3,7 @@
     padding: 0;
 }
 
-html {  
+html {
     background-color: #F5F5F5;
     font-size: 62.5%;
     line-height: 1.6rem;
@@ -2686,9 +2686,11 @@ body {
 .wrap-item-evaluate-img-grid .wrap-item-img-sub {
     cursor: zoom-in;
 }
-.wrap-item-evaluate-img  .wrap-item-evaluate-img-grid {
+
+.wrap-item-evaluate-img .wrap-item-evaluate-img-grid {
     height: 7rem;
 }
+
 .wrap-item-evaluate-img-grid .wrap-item-img-sub .item-img {
     object-fit: scale-down;
     height: 100%;
@@ -2740,4 +2742,9 @@ body {
     color: var(--text-grey);
     font-size: 2rem;
     cursor: pointer;
+}
+
+.Animation-click-back-color {
+    background-color: var(--background-sale) !important;
+    color: var(--text-white) !important;
 }
